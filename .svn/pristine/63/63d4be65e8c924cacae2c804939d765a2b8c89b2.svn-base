@@ -1,0 +1,1219 @@
+package com.mingcloud.proxy.datalayer.entity.archiveinfo;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+import com.mingcloud.proxy.datalayer.entity.BaseEntity;
+
+public class StockcontrolEntity extends BaseEntity {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8324523054640736724L;
+
+	/**
+     * stockcontrol.id
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer id;
+
+    /**
+     * stockcontrol.spid
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer spid;
+
+    /**
+     * stockcontrol.stockid
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer stockid;
+
+    /**
+     * stockcontrol.stocklocationid
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer stocklocationid;
+
+    /**
+     * stockcontrol.supplierid
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer supplierid;
+
+    /**
+     * stockcontrol.accountid
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer accountid;
+
+    /**
+     * stockcontrol.qty
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private BigDecimal qty;
+
+    /**
+     * stockcontrol.stockcontroldatetime
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Date stockcontroldatetime;
+
+    /**
+     * stockcontrol.checkreorder
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Byte checkreorder;
+
+    /**
+     * stockcontrol.minquantity
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private BigDecimal minquantity;
+
+    /**
+     * stockcontrol.maxquantity
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private BigDecimal maxquantity;
+
+    /**
+     * stockcontrol.autoreorder
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Byte autoreorder;
+
+    /**
+     * stockcontrol.countlock
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Byte countlock;
+
+    /**
+     * stockcontrol.latestcount
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Date latestcount;
+
+    /**
+     * stockcontrol.averagepricestock
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private BigDecimal averagepricestock;
+
+    /**
+     * stockcontrol.quantityphysical
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private BigDecimal quantityphysical;
+
+    /**
+     * stockcontrol.quantityeconomical
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private BigDecimal quantityeconomical;
+
+    /**
+     * stockcontrol.quantityatdisp
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private BigDecimal quantityatdisp;
+
+    /**
+     * stockcontrol.quantityreserved
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private BigDecimal quantityreserved;
+
+    /**
+     * stockcontrol.quantityordered
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private BigDecimal quantityordered;
+
+    /**
+     * stockcontrol.abcspare
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private String abcspare;
+
+    /**
+     * stockcontrol.stockcontrolbarcode
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Long stockcontrolbarcode;
+
+    /**
+     * stockcontrol.lastchangedate
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Date lastchangedate;
+
+    /**
+     * stockcontrol.lastchangetime
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer lastchangetime;
+
+    /**
+     * stockcontrol.relatekey
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private String relatekey;
+
+    /**
+     * stockcontrol.lastexportdate
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Date lastexportdate;
+
+    /**
+     * stockcontrol.lastexporttime
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer lastexporttime;
+
+    /**
+     * stockcontrol.lastimportdate
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Date lastimportdate;
+
+    /**
+     * stockcontrol.lastimporttime
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer lastimporttime;
+
+    /**
+     * stockcontrol.supplierminquantity
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private BigDecimal supplierminquantity;
+
+    /**
+     * stockcontrol.spname
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private String spname;
+
+    /**
+     * stockcontrol.spcodeid
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer spcodeid;
+
+    /**
+     * stockcontrol.spgroupid
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer spgroupid;
+
+    /**
+     * stockcontrol.autoapproved
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Byte autoapproved;
+
+    /**
+     * stockcontrol.costtypeid
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer costtypeid;
+
+    /**
+     * stockcontrol.siteid
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer siteid;
+
+    /**
+     * stockcontrol.recordactive
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Byte recordactive;
+
+    /**
+     * stockcontrol.custombarcode
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private String custombarcode;
+
+    /**
+     * stockcontrol.quantityreorder
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private BigDecimal quantityreorder;
+
+    /**
+     * stockcontrol.minsupplierquantity
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private BigDecimal minsupplierquantity;
+
+    /**
+     * stockcontrol.minsecurityquantity
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private BigDecimal minsecurityquantity;
+
+    /**
+     * stockcontrol.checksupplierreorder
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Byte checksupplierreorder;
+
+    /**
+     * stockcontrol.quantitypicklist
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private BigDecimal quantitypicklist;
+
+    /**
+     * stockcontrol.quantityrequested
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private BigDecimal quantityrequested;
+
+    /**
+     * stockcontrol.foreignowner
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Byte foreignowner;
+
+    /**
+     * stockcontrol.latestdelivery
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Date latestdelivery;
+
+    /**
+     * stockcontrol.latestremoval
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Date latestremoval;
+
+    /**
+     * stockcontrol.extrastockctlinfo1
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private String extrastockctlinfo1;
+
+    /**
+     * stockcontrol.extrastockctlinfo2
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private String extrastockctlinfo2;
+
+    /**
+     * stockcontrol.extrastockctlinfo3
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private String extrastockctlinfo3;
+
+    /**
+     * stockcontrol.extrastockctlinfo4
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private String extrastockctlinfo4;
+
+    /**
+     * stockcontrol.extrastockctlinfo5
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private String extrastockctlinfo5;
+
+    /**
+     * stockcontrol.purchaseactivationdate
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Date purchaseactivationdate;
+
+    /**
+     * stockcontrol.purchaseactivationdelay
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer purchaseactivationdelay;
+
+    /**
+     * stockcontrol.repairitem
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Byte repairitem;
+
+    /**
+     * stockcontrol.quantityprodrepair
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private BigDecimal quantityprodrepair;
+
+    /**
+     * stockcontrol.virtualstockrecord
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Byte virtualstockrecord;
+
+    /**
+     * stockcontrol.plantid
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer plantid;
+
+    /**
+     * stockcontrol.legalunitid
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer legalunitid;
+
+    /**
+     * stockcontrol.legalunitcurrencykey
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private String legalunitcurrencykey;
+
+    /**
+     * stockcontrol.classid
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer classid;
+
+    /**
+     * stockcontrol.lastchangedtz
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Date lastchangedtz;
+
+    /**
+     * stockcontrol.lastexportdtz
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Date lastexportdtz;
+
+    /**
+     * stockcontrol.lastimportdtz
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Date lastimportdtz;
+
+    /**
+     * stockcontrol.latestcountdtz
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Date latestcountdtz;
+
+    /**
+     * stockcontrol.latestdeliverydtz
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Date latestdeliverydtz;
+
+    /**
+     * stockcontrol.latestremovaldtz
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Date latestremovaldtz;
+
+    /**
+     * stockcontrol.recordlanguageid
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer recordlanguageid;
+
+    /**
+     * stockcontrol.createdate
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Date createdate;
+
+    /**
+     * stockcontrol.createuserid
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer createuserid;
+
+    /**
+     * stockcontrol.modificationdate
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Date modificationdate;
+
+    /**
+     * stockcontrol.modificationuserid
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer modificationuserid;
+
+    /**
+     * stockcontrol.picpath
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private String picpath;
+
+    /**
+     * stockcontrol.barcode
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private String barcode;
+
+    /**
+     * stockcontrol.memo
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private String memo;
+
+    /**
+     * stockcontrol.orgid
+     * @ibatorgenerated 2016-05-25 21:39:25
+     */
+    private Integer orgid;
+    
+    /**
+     * stockcontrol.spid 备件id
+     * @ibatorgenerated 2016-05-20 20:37:19
+     */
+    private String sparepartkey;
+    
+    /**
+     * stockcontrol.spid 备件id
+     * @ibatorgenerated 2016-05-20 20:37:19
+     */
+    private String sparepartname;
+    
+    /**
+     * stockcontrol.stockid 仓库ID
+     * @ibatorgenerated 2016-05-20 20:37:16
+     */
+    private String stockkey;
+    
+    /**
+     * stockcontrol.stockid 仓库ID
+     * @ibatorgenerated 2016-05-20 20:37:16
+     */
+    private String stockname;
+    
+    /**
+     * stockcontrol.stocklocationid 库位ID
+     * @ibatorgenerated 2016-05-20 20:37:19
+     */
+    private String stocklocationkey;
+    
+    /**
+     * stockcontrol.stocklocationid 库位ID
+     * @ibatorgenerated 2016-05-20 20:37:19
+     */
+    private String stocklocationname;
+    
+    /**
+     * stockcontrol.accountid 成本中心id
+     * @ibatorgenerated 2016-05-20 20:37:16
+     */
+    private String costcenterkey;
+    
+    /**
+     * stockcontrol.accountid 成本中心id
+     * @ibatorgenerated 2016-05-20 20:37:16
+     */
+    private String costcentername;
+    
+    /**
+     * stockcontrol.createuserid 创建用户ID
+     * @ibatorgenerated 2016-05-20 20:37:16
+     */
+    private String createusername;
+    
+    /**
+     * stockcontrol.modificationuserid 修改用户ID
+     * @ibatorgenerated 2016-05-20 20:37:16
+     */
+    private String modificationusername;
+    
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getSpid() {
+        return spid;
+    }
+
+    public void setSpid(Integer spid) {
+        this.spid = spid;
+    }
+
+    public Integer getStockid() {
+        return stockid;
+    }
+
+    public void setStockid(Integer stockid) {
+        this.stockid = stockid;
+    }
+
+    public Integer getStocklocationid() {
+        return stocklocationid;
+    }
+
+    public void setStocklocationid(Integer stocklocationid) {
+        this.stocklocationid = stocklocationid;
+    }
+
+    public Integer getSupplierid() {
+        return supplierid;
+    }
+
+    public void setSupplierid(Integer supplierid) {
+        this.supplierid = supplierid;
+    }
+
+    public Integer getAccountid() {
+        return accountid;
+    }
+
+    public void setAccountid(Integer accountid) {
+        this.accountid = accountid;
+    }
+
+    public BigDecimal getQty() {
+        return qty;
+    }
+
+    public void setQty(BigDecimal qty) {
+        this.qty = qty;
+    }
+
+    public Date getStockcontroldatetime() {
+        return stockcontroldatetime;
+    }
+
+    public void setStockcontroldatetime(Date stockcontroldatetime) {
+        this.stockcontroldatetime = stockcontroldatetime;
+    }
+
+    public Byte getCheckreorder() {
+        return checkreorder;
+    }
+
+    public void setCheckreorder(Byte checkreorder) {
+        this.checkreorder = checkreorder;
+    }
+
+    public BigDecimal getMinquantity() {
+        return minquantity;
+    }
+
+    public void setMinquantity(BigDecimal minquantity) {
+        this.minquantity = minquantity;
+    }
+
+    public BigDecimal getMaxquantity() {
+        return maxquantity;
+    }
+
+    public void setMaxquantity(BigDecimal maxquantity) {
+        this.maxquantity = maxquantity;
+    }
+
+    public Byte getAutoreorder() {
+        return autoreorder;
+    }
+
+    public void setAutoreorder(Byte autoreorder) {
+        this.autoreorder = autoreorder;
+    }
+
+    public Byte getCountlock() {
+        return countlock;
+    }
+
+    public void setCountlock(Byte countlock) {
+        this.countlock = countlock;
+    }
+
+    public Date getLatestcount() {
+        return latestcount;
+    }
+
+    public void setLatestcount(Date latestcount) {
+        this.latestcount = latestcount;
+    }
+
+    public BigDecimal getAveragepricestock() {
+        return averagepricestock;
+    }
+
+    public void setAveragepricestock(BigDecimal averagepricestock) {
+        this.averagepricestock = averagepricestock;
+    }
+
+    public BigDecimal getQuantityphysical() {
+        return quantityphysical;
+    }
+
+    public void setQuantityphysical(BigDecimal quantityphysical) {
+        this.quantityphysical = quantityphysical;
+    }
+
+    public BigDecimal getQuantityeconomical() {
+        return quantityeconomical;
+    }
+
+    public void setQuantityeconomical(BigDecimal quantityeconomical) {
+        this.quantityeconomical = quantityeconomical;
+    }
+
+    public BigDecimal getQuantityatdisp() {
+        return quantityatdisp;
+    }
+
+    public void setQuantityatdisp(BigDecimal quantityatdisp) {
+        this.quantityatdisp = quantityatdisp;
+    }
+
+    public BigDecimal getQuantityreserved() {
+        return quantityreserved;
+    }
+
+    public void setQuantityreserved(BigDecimal quantityreserved) {
+        this.quantityreserved = quantityreserved;
+    }
+
+    public BigDecimal getQuantityordered() {
+        return quantityordered;
+    }
+
+    public void setQuantityordered(BigDecimal quantityordered) {
+        this.quantityordered = quantityordered;
+    }
+
+    public String getAbcspare() {
+        return abcspare;
+    }
+
+    public void setAbcspare(String abcspare) {
+        this.abcspare = abcspare;
+    }
+
+    public Long getStockcontrolbarcode() {
+        return stockcontrolbarcode;
+    }
+
+    public void setStockcontrolbarcode(Long stockcontrolbarcode) {
+        this.stockcontrolbarcode = stockcontrolbarcode;
+    }
+
+    public Date getLastchangedate() {
+        return lastchangedate;
+    }
+
+    public void setLastchangedate(Date lastchangedate) {
+        this.lastchangedate = lastchangedate;
+    }
+
+    public Integer getLastchangetime() {
+        return lastchangetime;
+    }
+
+    public void setLastchangetime(Integer lastchangetime) {
+        this.lastchangetime = lastchangetime;
+    }
+
+    public String getRelatekey() {
+        return relatekey;
+    }
+
+    public void setRelatekey(String relatekey) {
+        this.relatekey = relatekey;
+    }
+
+    public Date getLastexportdate() {
+        return lastexportdate;
+    }
+
+    public void setLastexportdate(Date lastexportdate) {
+        this.lastexportdate = lastexportdate;
+    }
+
+    public Integer getLastexporttime() {
+        return lastexporttime;
+    }
+
+    public void setLastexporttime(Integer lastexporttime) {
+        this.lastexporttime = lastexporttime;
+    }
+
+    public Date getLastimportdate() {
+        return lastimportdate;
+    }
+
+    public void setLastimportdate(Date lastimportdate) {
+        this.lastimportdate = lastimportdate;
+    }
+
+    public Integer getLastimporttime() {
+        return lastimporttime;
+    }
+
+    public void setLastimporttime(Integer lastimporttime) {
+        this.lastimporttime = lastimporttime;
+    }
+
+    public BigDecimal getSupplierminquantity() {
+        return supplierminquantity;
+    }
+
+    public void setSupplierminquantity(BigDecimal supplierminquantity) {
+        this.supplierminquantity = supplierminquantity;
+    }
+
+    public String getSpname() {
+        return spname;
+    }
+
+    public void setSpname(String spname) {
+        this.spname = spname;
+    }
+
+    public Integer getSpcodeid() {
+        return spcodeid;
+    }
+
+    public void setSpcodeid(Integer spcodeid) {
+        this.spcodeid = spcodeid;
+    }
+
+    public Integer getSpgroupid() {
+        return spgroupid;
+    }
+
+    public void setSpgroupid(Integer spgroupid) {
+        this.spgroupid = spgroupid;
+    }
+
+    public Byte getAutoapproved() {
+        return autoapproved;
+    }
+
+    public void setAutoapproved(Byte autoapproved) {
+        this.autoapproved = autoapproved;
+    }
+
+    public Integer getCosttypeid() {
+        return costtypeid;
+    }
+
+    public void setCosttypeid(Integer costtypeid) {
+        this.costtypeid = costtypeid;
+    }
+
+    public Integer getSiteid() {
+        return siteid;
+    }
+
+    public void setSiteid(Integer siteid) {
+        this.siteid = siteid;
+    }
+
+    public Byte getRecordactive() {
+        return recordactive;
+    }
+
+    public void setRecordactive(Byte recordactive) {
+        this.recordactive = recordactive;
+    }
+
+    public String getCustombarcode() {
+        return custombarcode;
+    }
+
+    public void setCustombarcode(String custombarcode) {
+        this.custombarcode = custombarcode;
+    }
+
+    public BigDecimal getQuantityreorder() {
+        return quantityreorder;
+    }
+
+    public void setQuantityreorder(BigDecimal quantityreorder) {
+        this.quantityreorder = quantityreorder;
+    }
+
+    public BigDecimal getMinsupplierquantity() {
+        return minsupplierquantity;
+    }
+
+    public void setMinsupplierquantity(BigDecimal minsupplierquantity) {
+        this.minsupplierquantity = minsupplierquantity;
+    }
+
+    public BigDecimal getMinsecurityquantity() {
+        return minsecurityquantity;
+    }
+
+    public void setMinsecurityquantity(BigDecimal minsecurityquantity) {
+        this.minsecurityquantity = minsecurityquantity;
+    }
+
+    public Byte getChecksupplierreorder() {
+        return checksupplierreorder;
+    }
+
+    public void setChecksupplierreorder(Byte checksupplierreorder) {
+        this.checksupplierreorder = checksupplierreorder;
+    }
+
+    public BigDecimal getQuantitypicklist() {
+        return quantitypicklist;
+    }
+
+    public void setQuantitypicklist(BigDecimal quantitypicklist) {
+        this.quantitypicklist = quantitypicklist;
+    }
+
+    public BigDecimal getQuantityrequested() {
+        return quantityrequested;
+    }
+
+    public void setQuantityrequested(BigDecimal quantityrequested) {
+        this.quantityrequested = quantityrequested;
+    }
+
+    public Byte getForeignowner() {
+        return foreignowner;
+    }
+
+    public void setForeignowner(Byte foreignowner) {
+        this.foreignowner = foreignowner;
+    }
+
+    public Date getLatestdelivery() {
+        return latestdelivery;
+    }
+
+    public void setLatestdelivery(Date latestdelivery) {
+        this.latestdelivery = latestdelivery;
+    }
+
+    public Date getLatestremoval() {
+        return latestremoval;
+    }
+
+    public void setLatestremoval(Date latestremoval) {
+        this.latestremoval = latestremoval;
+    }
+
+    public String getExtrastockctlinfo1() {
+        return extrastockctlinfo1;
+    }
+
+    public void setExtrastockctlinfo1(String extrastockctlinfo1) {
+        this.extrastockctlinfo1 = extrastockctlinfo1;
+    }
+
+    public String getExtrastockctlinfo2() {
+        return extrastockctlinfo2;
+    }
+
+    public void setExtrastockctlinfo2(String extrastockctlinfo2) {
+        this.extrastockctlinfo2 = extrastockctlinfo2;
+    }
+
+    public String getExtrastockctlinfo3() {
+        return extrastockctlinfo3;
+    }
+
+    public void setExtrastockctlinfo3(String extrastockctlinfo3) {
+        this.extrastockctlinfo3 = extrastockctlinfo3;
+    }
+
+    public String getExtrastockctlinfo4() {
+        return extrastockctlinfo4;
+    }
+
+    public void setExtrastockctlinfo4(String extrastockctlinfo4) {
+        this.extrastockctlinfo4 = extrastockctlinfo4;
+    }
+
+    public String getExtrastockctlinfo5() {
+        return extrastockctlinfo5;
+    }
+
+    public void setExtrastockctlinfo5(String extrastockctlinfo5) {
+        this.extrastockctlinfo5 = extrastockctlinfo5;
+    }
+
+    public Date getPurchaseactivationdate() {
+        return purchaseactivationdate;
+    }
+
+    public void setPurchaseactivationdate(Date purchaseactivationdate) {
+        this.purchaseactivationdate = purchaseactivationdate;
+    }
+
+    public Integer getPurchaseactivationdelay() {
+        return purchaseactivationdelay;
+    }
+
+    public void setPurchaseactivationdelay(Integer purchaseactivationdelay) {
+        this.purchaseactivationdelay = purchaseactivationdelay;
+    }
+
+    public Byte getRepairitem() {
+        return repairitem;
+    }
+
+    public void setRepairitem(Byte repairitem) {
+        this.repairitem = repairitem;
+    }
+
+    public BigDecimal getQuantityprodrepair() {
+        return quantityprodrepair;
+    }
+
+    public void setQuantityprodrepair(BigDecimal quantityprodrepair) {
+        this.quantityprodrepair = quantityprodrepair;
+    }
+
+    public Byte getVirtualstockrecord() {
+        return virtualstockrecord;
+    }
+
+    public void setVirtualstockrecord(Byte virtualstockrecord) {
+        this.virtualstockrecord = virtualstockrecord;
+    }
+
+    public Integer getPlantid() {
+        return plantid;
+    }
+
+    public void setPlantid(Integer plantid) {
+        this.plantid = plantid;
+    }
+
+    public Integer getLegalunitid() {
+        return legalunitid;
+    }
+
+    public void setLegalunitid(Integer legalunitid) {
+        this.legalunitid = legalunitid;
+    }
+
+    public String getLegalunitcurrencykey() {
+        return legalunitcurrencykey;
+    }
+
+    public void setLegalunitcurrencykey(String legalunitcurrencykey) {
+        this.legalunitcurrencykey = legalunitcurrencykey;
+    }
+
+    public Integer getClassid() {
+        return classid;
+    }
+
+    public void setClassid(Integer classid) {
+        this.classid = classid;
+    }
+
+    public Date getLastchangedtz() {
+        return lastchangedtz;
+    }
+
+    public void setLastchangedtz(Date lastchangedtz) {
+        this.lastchangedtz = lastchangedtz;
+    }
+
+    public Date getLastexportdtz() {
+        return lastexportdtz;
+    }
+
+    public void setLastexportdtz(Date lastexportdtz) {
+        this.lastexportdtz = lastexportdtz;
+    }
+
+    public Date getLastimportdtz() {
+        return lastimportdtz;
+    }
+
+    public void setLastimportdtz(Date lastimportdtz) {
+        this.lastimportdtz = lastimportdtz;
+    }
+
+    public Date getLatestcountdtz() {
+        return latestcountdtz;
+    }
+
+    public void setLatestcountdtz(Date latestcountdtz) {
+        this.latestcountdtz = latestcountdtz;
+    }
+
+    public Date getLatestdeliverydtz() {
+        return latestdeliverydtz;
+    }
+
+    public void setLatestdeliverydtz(Date latestdeliverydtz) {
+        this.latestdeliverydtz = latestdeliverydtz;
+    }
+
+    public Date getLatestremovaldtz() {
+        return latestremovaldtz;
+    }
+
+    public void setLatestremovaldtz(Date latestremovaldtz) {
+        this.latestremovaldtz = latestremovaldtz;
+    }
+
+    public Integer getRecordlanguageid() {
+        return recordlanguageid;
+    }
+
+    public void setRecordlanguageid(Integer recordlanguageid) {
+        this.recordlanguageid = recordlanguageid;
+    }
+
+    public Date getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+
+    public Integer getCreateuserid() {
+        return createuserid;
+    }
+
+    public void setCreateuserid(Integer createuserid) {
+        this.createuserid = createuserid;
+    }
+
+    public Date getModificationdate() {
+        return modificationdate;
+    }
+
+    public void setModificationdate(Date modificationdate) {
+        this.modificationdate = modificationdate;
+    }
+
+    public Integer getModificationuserid() {
+        return modificationuserid;
+    }
+
+    public void setModificationuserid(Integer modificationuserid) {
+        this.modificationuserid = modificationuserid;
+    }
+
+    public String getPicpath() {
+        return picpath;
+    }
+
+    public void setPicpath(String picpath) {
+        this.picpath = picpath;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public Integer getOrgid() {
+        return orgid;
+    }
+
+    public void setOrgid(Integer orgid) {
+        this.orgid = orgid;
+    }
+
+	public String getSparepartkey() {
+		return sparepartkey;
+	}
+
+	public void setSparepartkey(String sparepartkey) {
+		this.sparepartkey = sparepartkey;
+	}
+
+	public String getSparepartname() {
+		return sparepartname;
+	}
+
+	public void setSparepartname(String sparepartname) {
+		this.sparepartname = sparepartname;
+	}
+
+	public String getStockkey() {
+		return stockkey;
+	}
+
+	public void setStockkey(String stockkey) {
+		this.stockkey = stockkey;
+	}
+
+	public String getStockname() {
+		return stockname;
+	}
+
+	public void setStockname(String stockname) {
+		this.stockname = stockname;
+	}
+
+	public String getStocklocationkey() {
+		return stocklocationkey;
+	}
+
+	public void setStocklocationkey(String stocklocationkey) {
+		this.stocklocationkey = stocklocationkey;
+	}
+
+	public String getStocklocationname() {
+		return stocklocationname;
+	}
+
+	public void setStocklocationname(String stocklocationname) {
+		this.stocklocationname = stocklocationname;
+	}
+
+	public String getCostcenterkey() {
+		return costcenterkey;
+	}
+
+	public void setCostcenterkey(String costcenterkey) {
+		this.costcenterkey = costcenterkey;
+	}
+
+	public String getCostcentername() {
+		return costcentername;
+	}
+
+	public void setCostcentername(String costcentername) {
+		this.costcentername = costcentername;
+	}
+
+	public String getCreateusername() {
+		return createusername;
+	}
+
+	public void setCreateusername(String createusername) {
+		this.createusername = createusername;
+	}
+
+	public String getModificationusername() {
+		return modificationusername;
+	}
+
+	public void setModificationusername(String modificationusername) {
+		this.modificationusername = modificationusername;
+	}
+	
+}

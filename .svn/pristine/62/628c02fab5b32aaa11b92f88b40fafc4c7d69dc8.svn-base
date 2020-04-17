@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.UseditemsMapper" >
+  <resultMap id="BaseResultMap" type="UseditemsEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="spid" property="spid" jdbcType="INTEGER" />
+    <result column="qty" property="qty" jdbcType="DECIMAL" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="accountid" property="accountid" jdbcType="INTEGER" />
+    <result column="registerdatetime" property="registerdatetime" jdbcType="TIMESTAMP" />
+    <result column="workorderid" property="workorderid" jdbcType="INTEGER" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="createuserid" property="createuserid" jdbcType="INTEGER" />
+    <result column="modificationdate" property="modificationdate" jdbcType="TIMESTAMP" />
+    <result column="modificationuserid" property="modificationuserid" jdbcType="INTEGER" />
+    <result column="picpath" property="picpath" jdbcType="VARCHAR" />
+    <result column="barcode" property="barcode" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="orgid" property="orgid" jdbcType="INTEGER" />
+    <result column="checkqty" property="checkqty" jdbcType="INTEGER" />
+    <result column="checked" property="checked" jdbcType="INTEGER" />
+    <result column="checkuserid" property="checkuserid" jdbcType="INTEGER" />
+    <result column="worktaskid" property="worktaskid" jdbcType="INTEGER" />
+    <result column="stockid" property="stockid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, spid, qty, price, amount, accountid, registerdatetime, workorderid, createdate,
+    createuserid, modificationdate, modificationuserid, picpath, barcode, memo, orgid,
+    checkqty, checked, checkuserid, worktaskid, stockid
+  </sql>
+
+    <sql id="dynamic_full_match_condition">
+        <trim prefix="WHERE" prefixOverrides="AND ">
+            <if test="id != null" >
+                AND id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="spid != null" >
+                AND spid = #{spid,jdbcType=INTEGER}
+            </if>
+            <if test="stockid != null" >
+                AND stockid = #{stockid,jdbcType=INTEGER}
+            </if>
+            <if test="workorderid != null" >
+                AND workorderid = #{workorderid,jdbcType=INTEGER}
+            </if>
+            <if test="qty != null" >
+                AND qty = #{qty,jdbcType=DECIMAL}
+            </if>
+        </trim>
+    </sql>
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from useditems
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from useditems
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="UseditemsEntity" >
+    insert into useditems (id, spid, qty, 
+      price, amount, accountid, 
+      registerdatetime, workorderid, createdate, 
+      createuserid, modificationdate, modificationuserid, 
+      picpath, barcode, memo, 
+      orgid, checkqty, checked, 
+      checkuserid, worktaskid, stockid
+      )
+    values (#{id,jdbcType=INTEGER}, #{spid,jdbcType=INTEGER}, #{qty,jdbcType=DECIMAL}, 
+      #{price,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL}, #{accountid,jdbcType=INTEGER}, 
+      #{registerdatetime,jdbcType=TIMESTAMP}, #{workorderid,jdbcType=INTEGER}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{createuserid,jdbcType=INTEGER}, #{modificationdate,jdbcType=TIMESTAMP}, #{modificationuserid,jdbcType=INTEGER}, 
+      #{picpath,jdbcType=VARCHAR}, #{barcode,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+      #{orgid,jdbcType=INTEGER}, #{checkqty,jdbcType=INTEGER}, #{checked,jdbcType=INTEGER}, 
+      #{checkuserid,jdbcType=INTEGER}, #{worktaskid,jdbcType=INTEGER}, #{stockid,jdbcType=INTEGER}
+      )
+  </insert>
+  
+  <update id="update" parameterType="UseditemsEntity" >
+    update useditems
+    <set >
+      <if test="qty != null" >
+        qty = #{qty,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="accountid != null" >
+        accountid = #{accountid,jdbcType=INTEGER},
+      </if>
+      <if test="registerdatetime != null" >
+        registerdatetime = #{registerdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuserid != null" >
+        createuserid = #{createuserid,jdbcType=INTEGER},
+      </if>
+      <if test="modificationdate != null" >
+        modificationdate = #{modificationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificationuserid != null" >
+        modificationuserid = #{modificationuserid,jdbcType=INTEGER},
+      </if>
+      <if test="picpath != null" >
+        picpath = #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        orgid = #{orgid,jdbcType=INTEGER},
+      </if>
+      <if test="checkqty != null" >
+        checkqty = #{checkqty,jdbcType=INTEGER},
+      </if>
+      <if test="checked != null" >
+        checked = #{checked,jdbcType=INTEGER},
+      </if>
+      <if test="checkuserid != null" >
+        checkuserid = #{checkuserid,jdbcType=INTEGER},
+      </if>
+      <if test="worktaskid != null" >
+        worktaskid = #{worktaskid,jdbcType=INTEGER},
+      </if>
+      <if test="stockid != null" >
+        stockid = #{stockid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where workorderid = #{workorderid,jdbcType=INTEGER} and spid = #{spid,jdbcType=INTEGER}
+  </update>
+
+  <select id="get" resultMap="BaseResultMap" parameterType="UseditemsEntity" >
+      SELECT
+        <include refid="Base_Column_List" />
+      FROM useditems
+      <include refid="dynamic_full_match_condition" />
+  </select>
+</mapper>

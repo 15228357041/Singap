@@ -1,0 +1,82 @@
+package com.mingcloud.proxy.logiclayer.userhandler;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.UsersMapper;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.UsersEntity;
+import com.mingcloud.proxy.util.DateHelper;
+import com.mingcloud.proxy.util.HttpRequestUtil;
+import com.mingcloud.proxy.util.PropertiesFileUtil;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.commons.lang.StringUtils;
+
+import java.util.*;
+
+/**
+ * 吉利用户停用接口
+ * 1.每天晚上11点调用用户中心
+ * http://gap-service-tenant-auth.prod.app-cloud.geely.com/tenant/user/cache/dimission
+ * 获取离职用户信息
+ * 2.保存已经离职的用户信息
+ * 3.停用EAM用户表中已经离职的用户
+ */
+public class UserDimissionThread implements Runnable {
+
+    private UsersMapper usersMapper = SpringContextUtil.getBean("usersMapper");
+
+    @Override
+    public void run() {
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                handleDimissionUsers();
+            }
+        };
+        // 设置执行时间
+        Date date = DateHelper.getTimeThread("T23:30:00.000");
+        // 设置为daemon线程，当程序只有daemon线程的时候，会自动终止运行
+        Timer timer = new Timer("UserDimissionTask");
+        // 每天的date时刻执行task
+        timer.schedule(task, date, 24 * 60 * 60 * 1000);
+    }
+
+
+
+    private void handleDimissionUsers(){
+        //获取接口url
+        String url = PropertiesFileUtil.getInstance("url").get("userDimissionUrl");
+        if (StringUtils.isNotBlank(url)) {
+            //获取离职人员信息
+            String userDimissionInfo = HttpRequestUtil.sendGet(url,"");
+            if (StringUtils.isNotBlank(userDimissionInfo)) {
+                JSONObject userJson = JSON.parseObject(userDimissionInfo);
+                JSONArray userArray = userJson.getJSONArray("data");
+                List<UsersEntity> usersList = new ArrayList<>();
+                List<String> userKeys = new ArrayList<>();
+                Date dimissionDate = new Date();
+                if (null != userArray && userArray.size() > 0) {
+                    for (int i=0; i<userArray.size(); i++) {
+                        UsersEntity usersEntity = new UsersEntity();
+                        String userKey = userArray.get(i).toString();
+                        usersEntity.setUserkey(userKey);
+                        usersEntity.setDimissionDate(dimissionDate);
+                        usersList.add(usersEntity);
+                        userKeys.add(userKey);
+                    }
+
+                    List<UsersEntity> usersEntityList = usersMapper.getUsersByKeys(userKeys);
+                    if (null != usersEntityList && usersEntityList.size() > 0) {
+                        //批量更新离职人员的状态为停用
+                        usersMapper.batchUpdateStatus(usersEntityList);
+                        //批量插入离职人员表
+                        usersMapper.batchInsertDimission(usersEntityList);
+
+                    }
+                }
+            }
+        }
+
+
+    }
+}

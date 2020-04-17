@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Class-Path: MingcloudProxy_lib/hamcrest-core-1.3.jar MingcloudProxy_lib/junit-4.12.jar MingcloudProxy_lib/fastjson-1.2.7.jar MingcloudProxy_lib/jn
+ a-4.1.0.jar MingcloudProxy_lib/spring-context-4.3.10.RELEASE.jar MingcloudProxy_lib/mybatis-3.2.4.jar MingcloudProxy_lib/httpc
+ lient-4.5.3.jar MingcloudProxy_lib/spring-beans-4.3.10.RELEASE.jar MingcloudProxy_lib/hamcrest-library-1.3.
+ jar MingcloudProxy_lib/mybatis-spring-1.2.3.jar MingcloudProxy_lib/spring-test-4.3.10.RELEASE.jar MingcloudProxy_lib/spring-co
+ re-4.3.10.RELEASE.jar MingcloudProxy_lib/spring-tx-4.3.10.RELEASE.jar MingcloudProxy_lib/commons-codec-1.9.
+ jar MingcloudProxy_lib/druid-1.0.31.jar MingcloudProxy_lib/httpcore-4.4.6.jar MingcloudProxy_lib/commons-lang3-3.3.2.jar MingcloudProxy_lib/jna-p
+ latform-4.1.0.jar MingcloudProxy_lib/commons-logging-1.2.jar MingcloudProxy_lib/mysql-connector-java-5.1.34
+ .jar MingcloudProxy_lib/log4j-1.2.17.jar MingcloudProxy_lib/spring-aop-4.3.10.RELEASE.jar MingcloudProxy_lib/httpmime-4.5.3.ja
+ r MingcloudProxy_lib/fluent-hc-4.5.3.jar MingcloudProxy_lib/spring-expression-4.3.10.RELEASE.jar MingcloudProxy_lib/httpclient
+ -win-4.5.3.jar MingcloudProxy_lib/spring-jdbc-4.3.10.RELEASE.jar MingcloudProxy_lib/mybatis-migrations-3.2.
+ 0.jar MingcloudProxy_lib/httpclient-cache-4.5.3.jar
+Main-Class: com.mingcloud.Proxy
+

@@ -1,0 +1,400 @@
+package com.mingcloud.proxy.logiclayer.vcomhandler;
+
+import com.alibaba.fastjson.JSONException;
+import com.mingcloud.proxy.common.CommonRecordTypeEnum;
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datacenter.PositionData;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.MaintenanceobjectMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.CommonrecodeexDto;
+import com.mingcloud.proxy.datalayer.dto.vcomapi.VcomApiDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.MaintenanceobjectEntity;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.PositionEntity;
+import com.mingcloud.proxy.util.DateHelper;
+import com.mingcloud.proxy.util.HttpRequestUtil;
+import com.mingcloud.proxy.util.JsonParser;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import net.sf.json.JSONObject;
+import org.apache.log4j.Logger;
+
+import java.io.FileNotFoundException;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+public class VcomApiDataInThread implements Runnable {
+	private static Logger logger = Logger.getLogger(VcomApiDataInThread.class);
+	private MaintenanceobjectMapper maintenanceobjectMapper = SpringContextUtil.getBean("maintenanceobjectMapper");
+	private DataCenter dataCenter = DataCenter.getInstance();
+	
+	private static PositionData positionData = PositionData.getInstance();
+	
+	private String VcomRootURL;
+	private String Authorization;
+	private String X_API_KEY;
+
+	public VcomApiDataInThread() {
+		VcomRootURL = "https://api.meteocontrol.cn/";
+		Authorization = "Basic YXBpLm9tOmFwaS5vbS0yMDE3";
+		//X_API_KEY = "404b228d8ceb308abdd6fd277a1e3051";//正式环境
+		X_API_KEY = "d1346bd11fb993054751a1671c3bcaf4";//测试环境
+	}
+
+	public void run() {
+		while (true) {
+			try {
+				if (dataCenter.getVcomApilistSize() < DataCenter.COMMONRECORDEXLIST_MAX_LENGTH) {
+					logger.info("VcomApiDataInThread running...");
+					GetAllPositionData();
+					logger.info("VcomApiDataInThread wait for 30 minutes...");
+					Thread.sleep(60 * 60 * 1000);
+				} else {
+					logger.info("VcomApiDataInThread wait for 10 minutes...");
+					Thread.sleep(10 * 60 * 1000);
+				}
+			} catch (InterruptedException e) {
+				logger.error("VcomApiDataInThread: " + e.getStackTrace());
+			}
+		}
+	}
+
+	// 获取所有厂站的Vcom数据
+	private void GetAllPositionData() {
+		positionData.resetPositionList();
+		List<PositionEntity> list = positionData.getPositionList();
+		if (list != null && !list.isEmpty()) {
+			for (PositionEntity curentity : list) {
+				Integer id = curentity.getId();
+				String systemkey = curentity.getExtravarchar32();
+/*				if(!(systemkey.equals("F9QJ5") || systemkey.equals("STE56")
+						|| systemkey.equals("BKJDZ") || systemkey.equals("Q9KAA")
+								|| systemkey.equals("1XBKY"))){
+					continue;
+				}*/
+/*			if(!(systemkey.equals("88Y7S") || systemkey.equals("6XLQK")
+                    || systemkey.equals("SPZMS") || systemkey.equals("JDRB1")
+                    || systemkey.equals("68132")|| systemkey.equals("5BZUZ")
+                    || systemkey.equals("YVY9J") || systemkey.equals("9QZE6")
+                    || systemkey.equals("XHT8R") || systemkey.equals("IL8ZM")
+                    || systemkey.equals("J4T3Z")||systemkey.equals("S9EPZ")
+					|| systemkey.equals("62VUH"))){
+					continue;
+				}*/
+
+				Date date = curentity.getExtradatetime2() == null ? 
+						DateHelper.getStartTimeOfDay() : curentity.getExtradatetime2();
+				
+				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+				String Startdate = df.format(date);
+				
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(date);
+				cal.add(Calendar.DATE, 1);
+				
+				String Enddate = df.format(cal.getTime());
+
+				MaintenanceobjectEntity moEntity = new MaintenanceobjectEntity();
+				List<MaintenanceobjectEntity> moList = new ArrayList<MaintenanceobjectEntity>();
+/*				if(curentity.getRootpath() != null && !curentity.getRootpath().isEmpty()) {
+					String rootpath = curentity.getRootpath() + ",P" + curentity.getId();
+					moEntity.setRootpath(rootpath);
+					moList = maintenanceobjectMapper.getByRootpath(moEntity);
+					ToVcomApiMaintenance(moList, id, systemkey, Startdate, Enddate);
+				} else {
+					moEntity.setMainposid(id);
+					moEntity.setOrgList("admin");
+					moList =  maintenanceobjectMapper.select(moEntity);
+					ToVcomApiMaintenance(moList, id, systemkey, Startdate, Enddate);
+				}*/
+				moEntity.setMainposid(id);
+				moEntity.setOrgList("admin");
+				moList =  maintenanceobjectMapper.select(moEntity);
+				ToVcomApiMaintenance(moList, id, systemkey, Startdate, Enddate);
+				
+				try {
+					Thread.sleep(10);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			logger.info("VcomApiDataInThread getData succeeded...");
+		}
+	}
+	
+	//访问场站设备API方法
+	private void ToVcomApiMaintenance(List<MaintenanceobjectEntity> moList, Integer id, String systemkey, 
+			String Startdate, String Enddate) {
+		
+		//获取整个场站设备信息
+		try {
+			//JSONObject apiJson = GetVcomApiData(id, systemkey, Startdate, Enddate);
+			
+			for (int i = 0; i < moList.size(); i++) {
+				MaintenanceobjectEntity curMoEntity = moList.get(i);
+				String moId = curMoEntity.getExtravarchar2();
+				int moType = 0;
+				if (curMoEntity.getExtraint1() != null && moId != null) {
+					moType = curMoEntity.getExtraint1();
+				
+					//逆变器查询
+                    if (moType == 1) {
+                  /*	GetVcomApiMaintenanceData(id, systemkey, moId,
+								CommonRecordTypeEnum.PACINT, Startdate, Enddate, curMoEntity, apiJson);
+                    	GetVcomApiMaintenanceData(id, systemkey, moId,
+								CommonRecordTypeEnum.EDAYINT, Startdate, Enddate, curMoEntity, apiJson);*/
+						GetVcomApiMOData(id, systemkey, moId,
+								CommonRecordTypeEnum.PACINT, Startdate, Enddate, curMoEntity,moType);
+						GetVcomApiMOData(id, systemkey, moId,
+								CommonRecordTypeEnum.EDAYINT, Startdate, Enddate, curMoEntity,moType);
+					}
+                    //电表查询
+                    if (moType == 2) {
+						GetVcomApiMOData(id, systemkey, moId,
+									CommonRecordTypeEnum.MACEIMP, Startdate, Enddate, curMoEntity,moType);
+						GetVcomApiMOData(id, systemkey, moId,
+									CommonRecordTypeEnum.MACEEXP, Startdate, Enddate, curMoEntity,moType);
+						GetVcomApiMOData(id, systemkey, moId,
+								CommonRecordTypeEnum.MACS, Startdate, Enddate, curMoEntity,moType);
+                    }
+                    //辐照仪查询
+                    if (moType == 3) {
+                 		GetVcomApiMOData(id, systemkey, moId,
+								CommonRecordTypeEnum.SRAD, Startdate, Enddate, curMoEntity,moType);
+                   		GetVcomApiMOData(id, systemkey, moId,
+								CommonRecordTypeEnum.T, Startdate, Enddate, curMoEntity,moType);
+					}
+                    //汇流箱查询
+                    if (moType == 4) {
+						/*GetVcomApiMOData(id, systemkey, moId,
+								CommonRecordTypeEnum.T, Startdate, Enddate, curMoEntity,moType);*/
+                    }
+				}
+				
+				Thread.sleep(50);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			logger.error("VcomApiDataInThread ToVcomApiMaintenance: " + e);
+		}
+	}
+
+	//场站设备ID及API访问
+	private void GetVcomApiMaintenanceData(Integer id, String systemkey, String moId, CommonRecordTypeEnum datatype, String Startdate,
+			String Enddate, MaintenanceobjectEntity entity, JSONObject apiJson) {
+		try {
+			
+			if (apiJson == null || apiJson.equals("")) {
+				return;
+			}
+			
+			List<VcomApiDto> listDto = new ArrayList<VcomApiDto>();
+			
+			String type = datatype.getCommonRecordUrlElement1();
+			String dateType = datatype.getCommonRecordUrlElement2();
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+			Date maxTime = df.parse(Startdate + "T00:00:00");
+			BigDecimal maxValue = new BigDecimal(0);
+			Date date = new Date();
+
+			@SuppressWarnings("rawtypes")
+			Iterator iterator = apiJson.keys();
+			while (iterator.hasNext()) {
+				String time = iterator.next().toString();
+				JSONObject secondJson = JSONObject.fromObject(apiJson.getString(time));
+				JSONObject moJson = JSONObject.fromObject(secondJson.getString(moId));
+				
+				String moValue = moJson.getString(type).trim();
+				String reg = "^[0-9]+(.[0-9]+)?$";
+				if (moValue == null || moValue.equals("") || !moValue.matches(reg)) {
+					continue;
+				}
+				BigDecimal value = new BigDecimal(moValue);
+				
+				Date timestamp = new Date();
+				
+				if (dateType.equals("day")) {
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					date = sdf.parse(time);
+					if (maxTime.getTime() < timestamp.getTime()) {
+						maxTime = timestamp;
+						maxValue = value;
+					}
+				} else {
+					timestamp = df.parse(time);
+					VcomApiDto dto = new VcomApiDto();
+					dto.setTimestamp(timestamp);
+					dto.setValue(value);
+					listDto.add(dto);
+				}
+			}
+			
+			if (dateType.equals("day")) {
+				VcomApiDto dto = new VcomApiDto();
+				dto.setTimestamp(date);
+				dto.setValue(maxValue);
+				listDto.add(dto);
+			}
+			
+			if (listDto == null || listDto.isEmpty()) {
+				return;
+			}
+			
+			for (VcomApiDto dto : listDto) {
+				BigDecimal value = dto.getValue();
+				if (value != null) {
+					CommonrecodeexDto curdto = new CommonrecodeexDto();
+					// 设置id
+					curdto.setExtraid1(id);
+
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(dto.getTimestamp());
+					// +8小时
+//					cal.add(Calendar.HOUR_OF_DAY, 8);
+					
+					curdto.setExtravarchar1(systemkey);
+					curdto.setExtradatetime1(cal.getTime());
+					curdto.setExtradecimal1(dto.getValue());
+					curdto.setNtype(datatype.getCommonRecordType());
+			        curdto.setExtravarchar2(moId);
+			        curdto.setExtraint1(entity.getExtraint1());
+			        curdto.setExtravarchar3(entity.getMoname());
+			        dataCenter.pushVcomApilist(curdto);
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			logger.error("VcomApiDataInThread GetVcomApiMaintenanceData: " + e);
+		}
+	}
+	
+	private JSONObject GetVcomApiData(Integer id, String systemkey, String Startdate,
+			String Enddate) throws FileNotFoundException {
+		String URL = getURL(systemkey);
+
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("from", Startdate + "T00%3A00%3A00%2B08%3A00");
+		param.put("to", Startdate + "T23%3A59%3A59%2B08%3A00");
+
+		Map<String, String> healderparam = new HashMap<String, String>();
+		healderparam.put("Authorization", Authorization);
+		healderparam.put("X-API-KEY", X_API_KEY);
+
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		String apidata = HttpRequestUtil.httpsend(URL, param, healderparam);
+
+		if (apidata == null || apidata.equals(""))
+			return null;
+
+		JSONObject json = JSONObject.fromObject(apidata);
+		
+		return json;
+	}
+	
+	public String getURL(String systemkey) {
+		String URL = null;
+		URL = VcomRootURL + "systems/" + systemkey + "/inverters/bulk/measurements";
+		return URL;
+	}
+
+	// 按厂站、类型、时间区间查询Vcom数据
+	private void GetVcomApiMOData(Integer id, String systemkey, String moId, CommonRecordTypeEnum datatype, String Startdate,
+										String Enddate,   MaintenanceobjectEntity entity,int moType) throws FileNotFoundException {
+
+
+		List<VcomApiDto> listDto = GetVcomApiData(id, systemkey, moId, datatype, Startdate, Enddate,moType);
+
+		if (listDto == null) {
+			return;
+		}
+
+		for (VcomApiDto dto : listDto) {
+			BigDecimal value = dto.getValue();
+			if(value != null) {
+				CommonrecodeexDto curdto = new CommonrecodeexDto();
+				curdto.setExtraid1(id);
+
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(dto.getTimestamp());
+				// +8小时
+//					cal.add(Calendar.HOUR_OF_DAY, 8);
+
+				curdto.setExtravarchar1(systemkey);
+				curdto.setExtradatetime1(cal.getTime());
+				curdto.setExtradecimal1(dto.getValue());
+				curdto.setNtype(datatype.getCommonRecordType());
+				curdto.setExtravarchar2(moId);
+				curdto.setExtraint1(entity.getExtraint1());
+				curdto.setExtravarchar3(entity.getMoname());
+				dataCenter.pushVcomApilist(curdto);
+				logger.info(curdto.toString());
+			}
+		}
+	}
+
+	private List<VcomApiDto> GetVcomApiData(Integer id, String systemkey, String moId, CommonRecordTypeEnum datatype, String Startdate,
+											String Enddate,int moType) throws FileNotFoundException {
+		String URL = getMOURL(systemkey, moId, datatype,moType);
+
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("from", Startdate + "T00%3A00%3A00%2B08%3A00");
+		param.put("to", Startdate + "T23%3A59%3A59%2B08%3A00");
+		param.put("resolution", datatype.getCommonRecordUrlElement2());
+
+		Map<String, String> healderparam = new HashMap<String, String>();
+		healderparam.put("Authorization", Authorization);
+		healderparam.put("X-API-KEY", X_API_KEY);
+
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		String apidata = HttpRequestUtil.httpsend(URL, param, healderparam);
+
+
+		if (apidata.equals("") || apidata == null)
+			return null;
+
+		String jsonstr = null;
+		if (datatype.getCommonRecordType() < 14){
+			jsonstr = apidata.substring(8, apidata.length() - 1);
+		} else {
+			int start = apidata.indexOf('[');
+			int end = apidata.indexOf(']');
+			jsonstr = apidata.substring(start, end +1);
+		}
+
+		List<VcomApiDto> listDto = null;
+		try {
+			listDto = JsonParser.parseJsonArray(jsonstr, VcomApiDto.class);
+		} catch (JSONException e) {
+			logger.error("Failed to parse VcomData to Json array: " + e + "  ApiData: " + apidata);
+		}
+		return listDto;
+	}
+
+	public String getMOURL(String systemkey, String moId, CommonRecordTypeEnum datatype,int motype) {
+		String URL = null;
+		if(moId == null){
+			URL = VcomRootURL + "systems/" + systemkey + datatype.getCommonRecordUrlElement1();
+		}else if(motype == 1){
+			URL = VcomRootURL + "systems/" + systemkey + "/inverters/" + moId + datatype.getCommonRecordUrlElement1();
+
+		}else if(motype == 2){
+			URL = VcomRootURL + "systems/" + systemkey + "/meters/" + moId + datatype.getCommonRecordUrlElement1();
+		}else if(motype == 3){
+			URL = VcomRootURL + "systems/" + systemkey + "/sensors/" + moId + datatype.getCommonRecordUrlElement1();
+		}/*else if(motype == 4){
+			URL = VcomRootURL + "systems/" + systemkey + "/stringboxes/" + moId + datatype.getCommonRecordUrlElement1();
+		}*/
+		return URL;
+	}
+
+}

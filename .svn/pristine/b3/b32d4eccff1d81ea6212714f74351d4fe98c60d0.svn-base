@@ -1,0 +1,63 @@
+package com.mingcloud.proxy.logiclayer.cheryhandler;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.MaintenanceobjectMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.MaintenanceobjectDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.MaintenanceobjectEntity;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.log4j.Logger;
+
+import java.util.List;
+
+public class CheryMaintenanceDataInThread implements Runnable{
+    private static Logger logger = Logger.getLogger(CheryMaintenanceDataInThread.class);
+
+    private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+
+    private DataCenter dataCenter = DataCenter.getInstance();
+
+    private MaintenanceobjectMapper maintenanceobjectMapper = SpringContextUtil.getBean("maintenanceobjectMapper");
+
+    @Override
+    public void run() {
+        logger.info("MaintenanceDataInThread begin");
+        jdbcChange.changeJdbc(JdbcChange.oracleDataSource);
+        while(true) {
+            try {
+                if(dataCenter.getMaintenancelistSize() < DataCenter.COMMONRECORDEXLIST_MAX_LENGTH) {
+                    getAllMaintenanceobjectData();
+                    logger.info("MaintenanceDataInThread wait for 1 day ...");
+                    Thread.sleep(24 * 60 * 60 * 1000);
+                } else {
+                    logger.info("MaintenanceDataInThread wait for 5 minutes...");
+                    Thread.sleep(5 * 60 * 1000);
+                }
+            } catch(Exception e) {
+                logger.error("MaintenanceDataInThread: " + e);
+            }
+        }
+    }
+
+    private void getAllMaintenanceobjectData() {
+        List<MaintenanceobjectEntity> list = null;
+        try {
+            list = maintenanceobjectMapper.selectAllChery();
+            if(null != list && list.size() > 0) {
+                for(MaintenanceobjectEntity entity : list) {
+                    MaintenanceobjectDto dto = new MaintenanceobjectDto();
+                    dto.setMokey(entity.getMokey());
+                    dto.setMoname(entity.getMoname());
+                    //posKey
+                    dto.setExtravarchar1(entity.getExtravarchar1());
+                    //root_mo_key
+                    dto.setExtravarchar3(entity.getExtravarchar3());
+                    dataCenter.pushMaintenancelist(dto);
+                }
+                logger.info("MaintenanceDataInThread getAllMaintenanceobjectData succeeded...");
+            }
+        } catch(Exception e) {
+            logger.error("MaintenanceDataInThread getAllMaintenanceobjectData: " + e);
+        }
+    }
+}

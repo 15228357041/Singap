@@ -1,0 +1,12 @@
+package com.mingcloud.proxy.datalayer.dao.archiveinfo;
+
+import com.mingcloud.proxy.datalayer.dao.BaseMapper;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.ChuanhuaEntity;
+
+import java.util.List;
+
+public interface ChuanhuaMapper extends BaseMapper<ChuanhuaEntity> {
+
+	public List<ChuanhuaEntity> selectAll();
+	
+}

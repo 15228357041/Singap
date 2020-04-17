@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper
+	namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.SIFATransferMapper">
+
+
+	<resultMap id="BaseResultMap" type="SIFATransferEntity">
+		<result column="mokey" property="mokey" jdbcType="VARCHAR" />
+		<result column="moname" property="moname" jdbcType="VARCHAR" />
+		<result column="extramoinfo1" property="extramoinfo1"
+			jdbcType="VARCHAR" />
+		<result column="assetkey" property="assetkey"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar20" property="extravarchar20"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar4" property="extravarchar4"
+			jdbcType="VARCHAR" />
+		<result column="extradatetime5" property="extradatetime5"
+			jdbcType="TIMESTAMP" />
+		<result column="originalvalue" property="originalvalue"
+			jdbcType="DOUBLE" />
+	</resultMap>
+
+
+	<sql id="Base_Column_List">
+		mokey,moname,extramoinfo1,assetkey,extravarchar20,originalvalue
+	</sql>
+
+	<update id="update" parameterType="SIFATransferEntity">
+		update maintenanceobject
+		<set>
+			<if test="extravarchar4 != null">
+				extravarchar4 = #{extravarchar4,jdbcType=VARCHAR},
+			</if>
+			<if test="extradatetime5 != null">
+				extradatetime5 = #{extradatetime5,jdbcType=TIMESTAMP},
+			</if>
+			<if test="originalvalue != null">
+				originalvalue = #{originalvalue,jdbcType=DOUBLE}
+			</if>
+		</set>
+		where assetkey = #{assetkey,jdbcType=VARCHAR}
+	</update>
+
+	<!-- List<SIFATransferEntity> selectAll -->
+	<select id="selectAll" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		maintenanceobject
+		WHERE
+		assetkey!='test-shield'
+	</select>
+
+	<update id="setStatusid">
+		UPDATE
+		maintenanceobject
+		SET
+		maintenanceobject.statusid=3
+		WHERE
+		maintenanceobject.assetkey is not null
+		AND
+		maintenanceobject.assetkey &lt;&gt; ""
+		AND
+		maintenanceobject.fixedassetflag=1
+	</update>
+
+</mapper>

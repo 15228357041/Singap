@@ -1,0 +1,783 @@
+package com.mingcloud.proxy.datalayer.entity.archiveinfo;
+
+import java.util.Date;
+
+import com.mingcloud.proxy.datalayer.entity.BaseEntity;
+
+public class StockEntity extends BaseEntity {
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5698134529895708942L;
+
+	private Integer id;
+
+    private String stockkey;
+
+    private String stockname;
+
+    private String address1;
+
+    private String address2;
+
+    private String address3;
+
+    private String address4;
+
+    private String address5;
+
+    private String emailaddress;
+
+    private String telephone;
+
+    private Integer accountid;
+
+    private Integer adjustmentaccountid;
+
+    private Integer scrappingaccountid;
+
+    private Integer beginaccountid;
+
+    private String defaultdeliveryaddress1;
+
+    private String defaultdeliveryaddress2;
+
+    private String defaultdeliveryaddress3;
+
+    private String defaultdeliveryaddress4;
+
+    private String defaultdeliveryaddress5;
+
+    private String defaultdeliveryemailaddress;
+
+    private String defaultinvoiceaddress1;
+
+    private String defaultinvoiceaddress2;
+
+    private String defaultinvoiceaddress3;
+
+    private String defaultinvoiceaddress4;
+
+    private String defaultinvoiceaddress5;
+
+    private String defaultinvoiceemailaddress;
+
+    private Long stockbarcode;
+
+    private Date lastchangedate;
+
+    private Integer lastchangetime;
+
+    private Date lastexportdate;
+
+    private Integer lastexporttime;
+
+    private Date lastimportdate;
+
+    private Integer lastimporttime;
+
+    private Integer costtypeid;
+
+    private Integer begincosttypeid;
+
+    private Integer scrappingcosttypeid;
+
+    private Integer adjustmentcosttypeid;
+
+    private Integer siteid;
+
+    private Byte recordactive;
+
+    private String custombarcode;
+
+    private Integer posid;
+
+    private Integer deliverylocationid;
+
+    private Integer invoicelocationid;
+
+    private Integer locationid;
+
+    private Integer contactpersonid;
+
+    private Byte foreignowner;
+
+    private String extrastockinfo1;
+
+    private String extrastockinfo2;
+
+    private String extrastockinfo3;
+
+    private String extrastockinfo4;
+
+    private String extrastockinfo5;
+
+    private Integer purchworksupplierid;
+
+    private Integer apprworksupplierid;
+
+    private Integer debitcosttypeid;
+
+    private Integer costcarrierid;
+
+    private String stocklocationkey;
+
+    private Integer rootstockid;
+
+    private Integer plantid;
+
+    private Integer legalunitid;
+
+    private String legalunitcurrencykey;
+
+    private Byte mainstock;
+
+    private Byte virtualstock;
+
+    private Date lastchangedtz;
+
+    private Date lastexportdtz;
+
+    private Date lastimportdtz;
+
+    private Integer recordlanguageid;
+
+    private Date createdate;
+
+    private Integer createuserid;
+
+    private Date modificationdate;
+
+    private Integer modificationuserid;
+
+    private String picpath;
+
+    private String barcode;
+
+    private String memo;
+
+    private Integer tombstone;
+
+    private Integer stationsid;
+
+    private Integer stocktype;
+
+    private Integer orgid;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getStockkey() {
+        return stockkey;
+    }
+
+    public void setStockkey(String stockkey) {
+        this.stockkey = stockkey == null ? null : stockkey.trim();
+    }
+
+    public String getStockname() {
+        return stockname;
+    }
+
+    public void setStockname(String stockname) {
+        this.stockname = stockname == null ? null : stockname.trim();
+    }
+
+    public String getAddress1() {
+        return address1;
+    }
+
+    public void setAddress1(String address1) {
+        this.address1 = address1 == null ? null : address1.trim();
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2 == null ? null : address2.trim();
+    }
+
+    public String getAddress3() {
+        return address3;
+    }
+
+    public void setAddress3(String address3) {
+        this.address3 = address3 == null ? null : address3.trim();
+    }
+
+    public String getAddress4() {
+        return address4;
+    }
+
+    public void setAddress4(String address4) {
+        this.address4 = address4 == null ? null : address4.trim();
+    }
+
+    public String getAddress5() {
+        return address5;
+    }
+
+    public void setAddress5(String address5) {
+        this.address5 = address5 == null ? null : address5.trim();
+    }
+
+    public String getEmailaddress() {
+        return emailaddress;
+    }
+
+    public void setEmailaddress(String emailaddress) {
+        this.emailaddress = emailaddress == null ? null : emailaddress.trim();
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone == null ? null : telephone.trim();
+    }
+
+    public Integer getAccountid() {
+        return accountid;
+    }
+
+    public void setAccountid(Integer accountid) {
+        this.accountid = accountid;
+    }
+
+    public Integer getAdjustmentaccountid() {
+        return adjustmentaccountid;
+    }
+
+    public void setAdjustmentaccountid(Integer adjustmentaccountid) {
+        this.adjustmentaccountid = adjustmentaccountid;
+    }
+
+    public Integer getScrappingaccountid() {
+        return scrappingaccountid;
+    }
+
+    public void setScrappingaccountid(Integer scrappingaccountid) {
+        this.scrappingaccountid = scrappingaccountid;
+    }
+
+    public Integer getBeginaccountid() {
+        return beginaccountid;
+    }
+
+    public void setBeginaccountid(Integer beginaccountid) {
+        this.beginaccountid = beginaccountid;
+    }
+
+    public String getDefaultdeliveryaddress1() {
+        return defaultdeliveryaddress1;
+    }
+
+    public void setDefaultdeliveryaddress1(String defaultdeliveryaddress1) {
+        this.defaultdeliveryaddress1 = defaultdeliveryaddress1 == null ? null : defaultdeliveryaddress1.trim();
+    }
+
+    public String getDefaultdeliveryaddress2() {
+        return defaultdeliveryaddress2;
+    }
+
+    public void setDefaultdeliveryaddress2(String defaultdeliveryaddress2) {
+        this.defaultdeliveryaddress2 = defaultdeliveryaddress2 == null ? null : defaultdeliveryaddress2.trim();
+    }
+
+    public String getDefaultdeliveryaddress3() {
+        return defaultdeliveryaddress3;
+    }
+
+    public void setDefaultdeliveryaddress3(String defaultdeliveryaddress3) {
+        this.defaultdeliveryaddress3 = defaultdeliveryaddress3 == null ? null : defaultdeliveryaddress3.trim();
+    }
+
+    public String getDefaultdeliveryaddress4() {
+        return defaultdeliveryaddress4;
+    }
+
+    public void setDefaultdeliveryaddress4(String defaultdeliveryaddress4) {
+        this.defaultdeliveryaddress4 = defaultdeliveryaddress4 == null ? null : defaultdeliveryaddress4.trim();
+    }
+
+    public String getDefaultdeliveryaddress5() {
+        return defaultdeliveryaddress5;
+    }
+
+    public void setDefaultdeliveryaddress5(String defaultdeliveryaddress5) {
+        this.defaultdeliveryaddress5 = defaultdeliveryaddress5 == null ? null : defaultdeliveryaddress5.trim();
+    }
+
+    public String getDefaultdeliveryemailaddress() {
+        return defaultdeliveryemailaddress;
+    }
+
+    public void setDefaultdeliveryemailaddress(String defaultdeliveryemailaddress) {
+        this.defaultdeliveryemailaddress = defaultdeliveryemailaddress == null ? null : defaultdeliveryemailaddress.trim();
+    }
+
+    public String getDefaultinvoiceaddress1() {
+        return defaultinvoiceaddress1;
+    }
+
+    public void setDefaultinvoiceaddress1(String defaultinvoiceaddress1) {
+        this.defaultinvoiceaddress1 = defaultinvoiceaddress1 == null ? null : defaultinvoiceaddress1.trim();
+    }
+
+    public String getDefaultinvoiceaddress2() {
+        return defaultinvoiceaddress2;
+    }
+
+    public void setDefaultinvoiceaddress2(String defaultinvoiceaddress2) {
+        this.defaultinvoiceaddress2 = defaultinvoiceaddress2 == null ? null : defaultinvoiceaddress2.trim();
+    }
+
+    public String getDefaultinvoiceaddress3() {
+        return defaultinvoiceaddress3;
+    }
+
+    public void setDefaultinvoiceaddress3(String defaultinvoiceaddress3) {
+        this.defaultinvoiceaddress3 = defaultinvoiceaddress3 == null ? null : defaultinvoiceaddress3.trim();
+    }
+
+    public String getDefaultinvoiceaddress4() {
+        return defaultinvoiceaddress4;
+    }
+
+    public void setDefaultinvoiceaddress4(String defaultinvoiceaddress4) {
+        this.defaultinvoiceaddress4 = defaultinvoiceaddress4 == null ? null : defaultinvoiceaddress4.trim();
+    }
+
+    public String getDefaultinvoiceaddress5() {
+        return defaultinvoiceaddress5;
+    }
+
+    public void setDefaultinvoiceaddress5(String defaultinvoiceaddress5) {
+        this.defaultinvoiceaddress5 = defaultinvoiceaddress5 == null ? null : defaultinvoiceaddress5.trim();
+    }
+
+    public String getDefaultinvoiceemailaddress() {
+        return defaultinvoiceemailaddress;
+    }
+
+    public void setDefaultinvoiceemailaddress(String defaultinvoiceemailaddress) {
+        this.defaultinvoiceemailaddress = defaultinvoiceemailaddress == null ? null : defaultinvoiceemailaddress.trim();
+    }
+
+    public Long getStockbarcode() {
+        return stockbarcode;
+    }
+
+    public void setStockbarcode(Long stockbarcode) {
+        this.stockbarcode = stockbarcode;
+    }
+
+    public Date getLastchangedate() {
+        return lastchangedate;
+    }
+
+    public void setLastchangedate(Date lastchangedate) {
+        this.lastchangedate = lastchangedate;
+    }
+
+    public Integer getLastchangetime() {
+        return lastchangetime;
+    }
+
+    public void setLastchangetime(Integer lastchangetime) {
+        this.lastchangetime = lastchangetime;
+    }
+
+    public Date getLastexportdate() {
+        return lastexportdate;
+    }
+
+    public void setLastexportdate(Date lastexportdate) {
+        this.lastexportdate = lastexportdate;
+    }
+
+    public Integer getLastexporttime() {
+        return lastexporttime;
+    }
+
+    public void setLastexporttime(Integer lastexporttime) {
+        this.lastexporttime = lastexporttime;
+    }
+
+    public Date getLastimportdate() {
+        return lastimportdate;
+    }
+
+    public void setLastimportdate(Date lastimportdate) {
+        this.lastimportdate = lastimportdate;
+    }
+
+    public Integer getLastimporttime() {
+        return lastimporttime;
+    }
+
+    public void setLastimporttime(Integer lastimporttime) {
+        this.lastimporttime = lastimporttime;
+    }
+
+    public Integer getCosttypeid() {
+        return costtypeid;
+    }
+
+    public void setCosttypeid(Integer costtypeid) {
+        this.costtypeid = costtypeid;
+    }
+
+    public Integer getBegincosttypeid() {
+        return begincosttypeid;
+    }
+
+    public void setBegincosttypeid(Integer begincosttypeid) {
+        this.begincosttypeid = begincosttypeid;
+    }
+
+    public Integer getScrappingcosttypeid() {
+        return scrappingcosttypeid;
+    }
+
+    public void setScrappingcosttypeid(Integer scrappingcosttypeid) {
+        this.scrappingcosttypeid = scrappingcosttypeid;
+    }
+
+    public Integer getAdjustmentcosttypeid() {
+        return adjustmentcosttypeid;
+    }
+
+    public void setAdjustmentcosttypeid(Integer adjustmentcosttypeid) {
+        this.adjustmentcosttypeid = adjustmentcosttypeid;
+    }
+
+    public Integer getSiteid() {
+        return siteid;
+    }
+
+    public void setSiteid(Integer siteid) {
+        this.siteid = siteid;
+    }
+
+    public Byte getRecordactive() {
+        return recordactive;
+    }
+
+    public void setRecordactive(Byte recordactive) {
+        this.recordactive = recordactive;
+    }
+
+    public String getCustombarcode() {
+        return custombarcode;
+    }
+
+    public void setCustombarcode(String custombarcode) {
+        this.custombarcode = custombarcode == null ? null : custombarcode.trim();
+    }
+
+    public Integer getPosid() {
+        return posid;
+    }
+
+    public void setPosid(Integer posid) {
+        this.posid = posid;
+    }
+
+    public Integer getDeliverylocationid() {
+        return deliverylocationid;
+    }
+
+    public void setDeliverylocationid(Integer deliverylocationid) {
+        this.deliverylocationid = deliverylocationid;
+    }
+
+    public Integer getInvoicelocationid() {
+        return invoicelocationid;
+    }
+
+    public void setInvoicelocationid(Integer invoicelocationid) {
+        this.invoicelocationid = invoicelocationid;
+    }
+
+    public Integer getLocationid() {
+        return locationid;
+    }
+
+    public void setLocationid(Integer locationid) {
+        this.locationid = locationid;
+    }
+
+    public Integer getContactpersonid() {
+        return contactpersonid;
+    }
+
+    public void setContactpersonid(Integer contactpersonid) {
+        this.contactpersonid = contactpersonid;
+    }
+
+    public Byte getForeignowner() {
+        return foreignowner;
+    }
+
+    public void setForeignowner(Byte foreignowner) {
+        this.foreignowner = foreignowner;
+    }
+
+    public String getExtrastockinfo1() {
+        return extrastockinfo1;
+    }
+
+    public void setExtrastockinfo1(String extrastockinfo1) {
+        this.extrastockinfo1 = extrastockinfo1 == null ? null : extrastockinfo1.trim();
+    }
+
+    public String getExtrastockinfo2() {
+        return extrastockinfo2;
+    }
+
+    public void setExtrastockinfo2(String extrastockinfo2) {
+        this.extrastockinfo2 = extrastockinfo2 == null ? null : extrastockinfo2.trim();
+    }
+
+    public String getExtrastockinfo3() {
+        return extrastockinfo3;
+    }
+
+    public void setExtrastockinfo3(String extrastockinfo3) {
+        this.extrastockinfo3 = extrastockinfo3 == null ? null : extrastockinfo3.trim();
+    }
+
+    public String getExtrastockinfo4() {
+        return extrastockinfo4;
+    }
+
+    public void setExtrastockinfo4(String extrastockinfo4) {
+        this.extrastockinfo4 = extrastockinfo4 == null ? null : extrastockinfo4.trim();
+    }
+
+    public String getExtrastockinfo5() {
+        return extrastockinfo5;
+    }
+
+    public void setExtrastockinfo5(String extrastockinfo5) {
+        this.extrastockinfo5 = extrastockinfo5 == null ? null : extrastockinfo5.trim();
+    }
+
+    public Integer getPurchworksupplierid() {
+        return purchworksupplierid;
+    }
+
+    public void setPurchworksupplierid(Integer purchworksupplierid) {
+        this.purchworksupplierid = purchworksupplierid;
+    }
+
+    public Integer getApprworksupplierid() {
+        return apprworksupplierid;
+    }
+
+    public void setApprworksupplierid(Integer apprworksupplierid) {
+        this.apprworksupplierid = apprworksupplierid;
+    }
+
+    public Integer getDebitcosttypeid() {
+        return debitcosttypeid;
+    }
+
+    public void setDebitcosttypeid(Integer debitcosttypeid) {
+        this.debitcosttypeid = debitcosttypeid;
+    }
+
+    public Integer getCostcarrierid() {
+        return costcarrierid;
+    }
+
+    public void setCostcarrierid(Integer costcarrierid) {
+        this.costcarrierid = costcarrierid;
+    }
+
+    public String getStocklocationkey() {
+        return stocklocationkey;
+    }
+
+    public void setStocklocationkey(String stocklocationkey) {
+        this.stocklocationkey = stocklocationkey == null ? null : stocklocationkey.trim();
+    }
+
+    public Integer getRootstockid() {
+        return rootstockid;
+    }
+
+    public void setRootstockid(Integer rootstockid) {
+        this.rootstockid = rootstockid;
+    }
+
+    public Integer getPlantid() {
+        return plantid;
+    }
+
+    public void setPlantid(Integer plantid) {
+        this.plantid = plantid;
+    }
+
+    public Integer getLegalunitid() {
+        return legalunitid;
+    }
+
+    public void setLegalunitid(Integer legalunitid) {
+        this.legalunitid = legalunitid;
+    }
+
+    public String getLegalunitcurrencykey() {
+        return legalunitcurrencykey;
+    }
+
+    public void setLegalunitcurrencykey(String legalunitcurrencykey) {
+        this.legalunitcurrencykey = legalunitcurrencykey == null ? null : legalunitcurrencykey.trim();
+    }
+
+    public Byte getMainstock() {
+        return mainstock;
+    }
+
+    public void setMainstock(Byte mainstock) {
+        this.mainstock = mainstock;
+    }
+
+    public Byte getVirtualstock() {
+        return virtualstock;
+    }
+
+    public void setVirtualstock(Byte virtualstock) {
+        this.virtualstock = virtualstock;
+    }
+
+    public Date getLastchangedtz() {
+        return lastchangedtz;
+    }
+
+    public void setLastchangedtz(Date lastchangedtz) {
+        this.lastchangedtz = lastchangedtz;
+    }
+
+    public Date getLastexportdtz() {
+        return lastexportdtz;
+    }
+
+    public void setLastexportdtz(Date lastexportdtz) {
+        this.lastexportdtz = lastexportdtz;
+    }
+
+    public Date getLastimportdtz() {
+        return lastimportdtz;
+    }
+
+    public void setLastimportdtz(Date lastimportdtz) {
+        this.lastimportdtz = lastimportdtz;
+    }
+
+    public Integer getRecordlanguageid() {
+        return recordlanguageid;
+    }
+
+    public void setRecordlanguageid(Integer recordlanguageid) {
+        this.recordlanguageid = recordlanguageid;
+    }
+
+    public Date getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+
+    public Integer getCreateuserid() {
+        return createuserid;
+    }
+
+    public void setCreateuserid(Integer createuserid) {
+        this.createuserid = createuserid;
+    }
+
+    public Date getModificationdate() {
+        return modificationdate;
+    }
+
+    public void setModificationdate(Date modificationdate) {
+        this.modificationdate = modificationdate;
+    }
+
+    public Integer getModificationuserid() {
+        return modificationuserid;
+    }
+
+    public void setModificationuserid(Integer modificationuserid) {
+        this.modificationuserid = modificationuserid;
+    }
+
+    public String getPicpath() {
+        return picpath;
+    }
+
+    public void setPicpath(String picpath) {
+        this.picpath = picpath == null ? null : picpath.trim();
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode == null ? null : barcode.trim();
+    }
+
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo == null ? null : memo.trim();
+    }
+
+    public Integer getTombstone() {
+        return tombstone;
+    }
+
+    public void setTombstone(Integer tombstone) {
+        this.tombstone = tombstone;
+    }
+
+    public Integer getStationsid() {
+        return stationsid;
+    }
+
+    public void setStationsid(Integer stationsid) {
+        this.stationsid = stationsid;
+    }
+
+    public Integer getStocktype() {
+        return stocktype;
+    }
+
+    public void setStocktype(Integer stocktype) {
+        this.stocktype = stocktype;
+    }
+
+    public Integer getOrgid() {
+        return orgid;
+    }
+
+    public void setOrgid(Integer orgid) {
+        this.orgid = orgid;
+    }
+}

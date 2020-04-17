@@ -1,0 +1,93 @@
+package com.mingcloud.proxy.logiclayer.apiprohandler;
+
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.InspectionMapper;
+import com.mingcloud.proxy.datalayer.dto.inspection.InspectionDto;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.axis2.AxisFault;
+import org.apache.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author zxf
+ * @desc mingcloud���ݴ���api
+ * @date 2018-11-20 18:48
+ */
+public class MingcloudDataUpdateDateToAPI implements Runnable {
+
+    private DataCenter dataCenter = DataCenter.getInstance();
+
+
+    private static Logger logger = Logger.getLogger(MingcloudDataUpdateDateToAPI.class);
+
+    private static InspectionMapper inspectionMapper = SpringContextUtil.getBean("inspectionMapper");
+
+    @Override
+    public void run() {
+        while(true){
+            try {
+                updateInspection();
+                Thread.sleep(10800000);
+                logger.info("MingcloudDatatoAPI wait for 3 hours...");
+            } catch (InterruptedException e) {
+                logger.error("MingcloudDatatoAPI: " + e);
+            }
+        }
+    }
+
+
+
+    //�쳣��Ѳ��
+    private String InspectionUpdate = "";
+
+    //Ѳ�����ڸ���
+    private String UPDATEDATEICF = "IF-IMP-POINT_DATE.icf";
+
+
+    //�豸̨��
+    private  List<InspectionDto> inspectionUpdateData = new ArrayList<>();
+
+
+    private void updateInspectionDate(InspectionDto dto) throws AxisFault {
+        String roundKey = "";
+        if (null != dto.getInspectionkey()) {
+            roundKey = dto.getInspectionkey();
+        }
+        String route = "";
+        if (null != dto.getRoute()) {
+            route = dto.getRoute();
+        }
+        String IntervalTimeNext = "";
+        if (null != dto.getPlanstartdate()) {
+            IntervalTimeNext = dto.getPlanstartdate();
+        }
+        InspectionUpdate += roundKey + "^" + route + "^" + IntervalTimeNext + "\n";
+        inspectionUpdateData.add(dto);
+        if (inspectionUpdateData.size() == 500){
+            List<String> stringList = ImportDate.webImport(UPDATEDATEICF, InspectionUpdate);
+            InspectionUpdate = "";
+            inspectionUpdateData.clear();
+        }
+        logger.info(InspectionUpdate);
+
+    }
+
+
+
+    public void updateInspection() {
+        try {
+            List<InspectionDto> inspectionDtoList = inspectionMapper.selectUpdateInspection();
+            InspectionUpdate = "";
+            for (InspectionDto obj : inspectionDtoList) {
+                updateInspectionDate(obj);
+            }
+        } catch (AxisFault axisFault) {
+            axisFault.printStackTrace();
+        } finally {
+            inspectionUpdateData.clear();
+        }
+    }
+}

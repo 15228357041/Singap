@@ -1,0 +1,151 @@
+package com.mingcloud.proxy.datalayer.dto.apipro;
+
+import com.mingcloud.proxy.datalayer.dto.BaseDto;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class GeSapMoDto extends BaseDto implements Serializable{
+
+    private static final long serialVersionUID = -1644492227722509464L;
+
+    private String moKey;
+
+    private String objectStatusKey;
+
+    private String serial;
+
+    private String extraMoInfo2;
+
+    private String extraMoInfo3;
+
+    private String extraMoInfo4;
+
+    private String extraMoInfo6;
+
+    private Date deliveryDate;
+
+    private Date enabledDate;
+
+    private String supplierKey;
+
+    private String moCode;
+
+    private String accountKey;
+
+    private String siteKey;
+
+    private String remark;
+
+    public String getMoKey() {
+        return moKey;
+    }
+
+    public void setMoKey(String moKey) {
+        this.moKey = moKey;
+    }
+
+    public String getObjectStatusKey() {
+        return objectStatusKey;
+    }
+
+    public void setObjectStatusKey(String objectStatusKey) {
+        this.objectStatusKey = objectStatusKey;
+    }
+
+    public String getSerial() {
+        return serial;
+    }
+
+    public void setSerial(String serial) {
+        this.serial = serial;
+    }
+
+    public String getExtraMoInfo2() {
+        return extraMoInfo2;
+    }
+
+    public void setExtraMoInfo2(String extraMoInfo2) {
+        this.extraMoInfo2 = extraMoInfo2;
+    }
+
+    public String getExtraMoInfo3() {
+        return extraMoInfo3;
+    }
+
+    public void setExtraMoInfo3(String extraMoInfo3) {
+        this.extraMoInfo3 = extraMoInfo3;
+    }
+
+    public String getExtraMoInfo4() {
+        return extraMoInfo4;
+    }
+
+    public void setExtraMoInfo4(String extraMoInfo4) {
+        this.extraMoInfo4 = extraMoInfo4;
+    }
+
+    public String getExtraMoInfo6() {
+        return extraMoInfo6;
+    }
+
+    public void setExtraMoInfo6(String extraMoInfo6) {
+        this.extraMoInfo6 = extraMoInfo6;
+    }
+
+    public Date getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
+    public Date getEnabledDate() {
+        return enabledDate;
+    }
+
+    public void setEnabledDate(Date enabledDate) {
+        this.enabledDate = enabledDate;
+    }
+
+    public String getSupplierKey() {
+        return supplierKey;
+    }
+
+    public void setSupplierKey(String supplierKey) {
+        this.supplierKey = supplierKey;
+    }
+
+    public String getMoCode() {
+        return moCode;
+    }
+
+    public void setMoCode(String moCode) {
+        this.moCode = moCode;
+    }
+
+    public String getAccountKey() {
+        return accountKey;
+    }
+
+    public void setAccountKey(String accountKey) {
+        this.accountKey = accountKey;
+    }
+
+    public String getSiteKey() {
+        return siteKey;
+    }
+
+    public void setSiteKey(String siteKey) {
+        this.siteKey = siteKey;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+}

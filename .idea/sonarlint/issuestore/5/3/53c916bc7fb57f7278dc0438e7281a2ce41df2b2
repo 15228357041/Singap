@@ -1,0 +1,9 @@
+
+¢%squid:RedundantThrowsDeclarationCheck"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(ÈƒíÙüÿÿÿÿ
+ƒ"squid:ClassVariableVisibilityCheck"PMake flag a static final constant or non-public and provide accessors if needed.(×Ùðåÿÿÿÿÿ
+­%squid:RedundantThrowsDeclarationCheck"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(ÈƒíÙüÿÿÿÿ
+bsquid:CommentedOutCodeLine5"<This block of commented-out lines of code should be removed.(¬ÛÌä
+Fsquid:S1444"*Make this "public static flag" field final(×Ùðåÿÿÿÿÿ
+bsquid:CommentedOutCodeLine."<This block of commented-out lines of code should be removed.(¬ÛÌä
+bsquid:CommentedOutCodeLine'"<This block of commented-out lines of code should be removed.(¬ÛÌä
+bsquid:CommentedOutCodeLine "<This block of commented-out lines of code should be removed.(¬ÛÌä

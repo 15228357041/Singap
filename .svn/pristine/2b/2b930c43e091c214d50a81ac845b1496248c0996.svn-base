@@ -1,0 +1,1537 @@
+package com.mingcloud.proxy.datalayer.dto.archiveinfo;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+import com.mingcloud.proxy.datalayer.dto.BaseDto;
+
+public class SparepartDto extends BaseDto {
+	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3820113509821758829L;
+
+	private Integer id;
+
+    private String sparepartkey;
+
+    private String sparepartname;
+
+    private Integer supplierid;
+
+    private Integer accountid;
+
+    private Integer costtypeid;
+
+    private Integer spcodeid;
+
+    private Integer spgroupid;
+
+    private String extraspinfo1;
+
+    private String brandinfo;
+
+    private String specinfo;
+
+    private Integer unitid;
+
+    private BigDecimal packsize;
+
+    private BigDecimal purchaseprice;
+
+    private BigDecimal profit;
+
+    private BigDecimal salesprice;
+
+    private Byte autospareupdate;
+
+    private BigDecimal quantityonstock;
+
+    private Date lasttransact;
+
+    private BigDecimal purchaseqtyly;
+
+    private BigDecimal purchvally;
+
+    private BigDecimal purchqtyytd;
+
+    private BigDecimal purchvalytd;
+
+    private BigDecimal consumpqtyly;
+
+    private BigDecimal consumpvally;
+
+    private BigDecimal consumpqtyytd;
+
+    private BigDecimal consumpvalytd;
+
+    private BigDecimal lastpurchprice;
+
+    private BigDecimal purchasevalue;
+
+    private BigDecimal purchaseqty;
+
+    private BigDecimal consumpvalue;
+
+    private BigDecimal consumpqty;
+
+    private Date lastcounted;
+
+    private BigDecimal qtyonorder;
+
+    private Long spbarcode;
+
+    private Byte repairable;
+
+    private Integer vattype;
+
+    private Integer vatmethod;
+
+    private String purchaseruuserid;
+
+    private String techrespuuserid;
+
+    private BigDecimal vatrate;
+
+    private Date lastchangedate;
+
+    private Integer lastchangetime;
+
+    private Date lastexportdate;
+
+    private Integer lastexporttime;
+
+    private Date lastimportdate;
+
+    private Integer lastimporttime;
+
+    private Integer profitcosttypeid;
+
+    private Integer siteid;
+
+    private Byte recordactive;
+
+    private String custombarcode;
+
+    private Byte qualitycheck;
+
+    private String spname2;
+
+    private String extraspinfo2;
+
+    private String extraspinfo3;
+
+    private String extraspinfo4;
+
+    private String extraspinfo5;
+
+    private Integer manufacturerid;
+
+    private Integer icon;
+
+    private Integer stockid;
+
+    private Integer rootspid;
+
+    private Byte foreignowner;
+
+    private String extraspinfo6;
+
+    private String extraspinfo7;
+
+    private String extraspinfo8;
+
+    private String extraspinfo9;
+
+    private String extraspinfo10;
+
+    private String eaninfo;
+
+    private Integer classid;
+
+    private String foreignownerid;
+
+    private String foreignownerlink;
+
+    private Integer vatcodeid;
+
+    private Byte approvedforpurchase;
+
+    private String stocklocationkey;
+
+    private Integer commoditycodeid;
+
+    private Byte onpartslist;
+
+    private Integer tiid;
+
+    private Date lastchangedtz;
+
+    private Date lastexportdtz;
+
+    private Date lastimportdtz;
+
+    private Date lastcounteddtz;
+
+    private Date lasttransactdtz;
+
+    private Integer recordlanguageid;
+
+    private Date createdate;
+
+    private Integer createuserid;
+
+    private Date modificationdate;
+
+    private Integer modificationuserid;
+
+    private String picpath;
+
+    private String barcode;
+
+    private String memo;
+
+    private Integer orgid;
+    
+    private String stockkey;
+    
+    private String stockname;
+    
+    private String unitname;
+    
+    private String sparepartgroupname;
+    
+    private String  costcentername;
+    
+    /**
+     * @see ƽ���۸�
+     */
+    private BigDecimal avgprice;
+    
+    /**
+     * @see �����
+     */
+    private BigDecimal upperlimitqty;
+    
+    /**
+     * @see ��С���
+     */
+    private BigDecimal lowerlimitqty;
+    
+    /**
+     * @see ���ӿ���Ƿ��ۼӣ�1 = �� 2 =��
+     */
+    private Integer isaddup;
+    
+    /**
+     * @see ����λ���
+     */
+    private String stocklocationid;
+    
+    /**
+     * @see �ñ����ڵ�ǰ�ֿ�Ĵ洢����
+     */
+    private Integer currstocknum;
+    
+    
+    private Integer tombstone;
+    /**
+     * @see �Ƿ���֤��Ӧ�̣�1������֤��2��δ��֤
+     */
+    private Integer ppap;
+    
+    //��������1 =������2 =���ߡ�3 =�滻��
+    private Integer spareparttype;
+    
+    private Integer stationsid;
+    
+    private Integer momodelid;
+    
+    private String stationname;
+    
+    private String momodelname;
+    
+    private Integer organizationid ;
+    
+    private String organizationname;
+    
+    /**
+     * ��������
+     * 1.����Ʒ 2.�滻��
+     * */
+    private Integer spareparttype1;
+    
+    private Integer extraid1;
+    
+    private Integer extraid2;
+    
+    private Integer extraid3;
+    
+    private Integer extraid4;
+    
+    private Integer extraid5;
+    
+    private String extravarchar1;
+    
+    /**
+     * Ԥ���ַ�����2
+     * */
+    private String extravarchar2;
+    
+    /**
+     * Ԥ���ַ�����3
+     * */
+    private String extravarchar3;
+    
+    /**
+     * Ԥ���ַ�����4
+     * */
+    private String extravarchar4;
+    
+    /**
+     * Ԥ���ַ�����5
+     * */
+    private String extravarchar5;
+
+    
+    private String extravarchar6;
+    
+    private String extravarchar7;
+    
+    private String extravarchar8;
+    
+    private String extravarchar9;
+    
+    private String extravarchar10;
+
+    /**
+     * Ԥ����������1
+     * */
+    private Integer extraint1;
+    
+    /**
+     * Ԥ����������2
+     * */
+    private Integer extraint2;
+    
+    /**
+     * Ԥ����������3
+     * */
+    private Integer extraint3;
+    
+    /**
+     * Ԥ����������4
+     * */
+    private Integer extraint4;
+    
+    /**
+     * Ԥ����������5
+     * */
+    private Integer extraint5;
+    /**
+     * Ԥ���߾�������1
+     * */
+    private BigDecimal extradecimal1;
+    
+    /**
+     * Ԥ���߾�������2
+     * */
+    private BigDecimal extradecimal2;
+    
+    /**
+     * Ԥ���߾�������3
+     * */
+    private BigDecimal extradecimal3;
+    
+    /**
+     * Ԥ���߾�������4
+     * */
+    private BigDecimal extradecimal4;
+    
+    /**
+     * Ԥ���߾�������5
+     * */
+    private BigDecimal extradecimal5;
+    
+    private Date extradatetime1;
+    
+    private Date extradatetime2;
+    
+    private Date extradatetime3;
+    
+    private Date extradatetime4;
+    
+    private Date extradatetime5;
+    
+    private Integer typeid;
+    
+    private Integer statusid;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getCostcentername() {
+		return costcentername;
+	}
+
+	public void setCostcentername(String costcentername) {
+		this.costcentername = costcentername;
+	}
+
+	public String getSparepartkey() {
+        return sparepartkey;
+    }
+
+    public void setSparepartkey(String sparepartkey) {
+        this.sparepartkey = sparepartkey;
+    }
+
+    public String getSparepartname() {
+        return sparepartname;
+    }
+
+    public void setSparepartname(String sparepartname) {
+        this.sparepartname = sparepartname;
+    }
+
+    public Integer getSupplierid() {
+        return supplierid;
+    }
+
+    public void setSupplierid(Integer supplierid) {
+        this.supplierid = supplierid;
+    }
+
+    public Integer getAccountid() {
+        return accountid;
+    }
+
+    public void setAccountid(Integer accountid) {
+        this.accountid = accountid;
+    }
+
+    public Integer getCosttypeid() {
+        return costtypeid;
+    }
+
+    public void setCosttypeid(Integer costtypeid) {
+        this.costtypeid = costtypeid;
+    }
+
+    public Integer getSpcodeid() {
+        return spcodeid;
+    }
+
+    public void setSpcodeid(Integer spcodeid) {
+        this.spcodeid = spcodeid;
+    }
+
+    public Integer getSpgroupid() {
+        return spgroupid;
+    }
+
+    public void setSpgroupid(Integer spgroupid) {
+        this.spgroupid = spgroupid;
+    }
+
+    public String getExtraspinfo1() {
+        return extraspinfo1;
+    }
+
+    public void setExtraspinfo1(String extraspinfo1) {
+        this.extraspinfo1 = extraspinfo1;
+    }
+
+    public String getBrandinfo() {
+        return brandinfo;
+    }
+
+    public void setBrandinfo(String brandinfo) {
+        this.brandinfo = brandinfo;
+    }
+
+    public String getSpecinfo() {
+        return specinfo;
+    }
+
+    public void setSpecinfo(String specinfo) {
+        this.specinfo = specinfo;
+    }
+
+    public Integer getUnitid() {
+        return unitid;
+    }
+
+    public void setUnitid(Integer unitid) {
+        this.unitid = unitid;
+    }
+
+    public BigDecimal getPacksize() {
+        return packsize;
+    }
+
+    public void setPacksize(BigDecimal packsize) {
+        this.packsize = packsize;
+    }
+
+    public BigDecimal getPurchaseprice() {
+        return purchaseprice;
+    }
+
+    public void setPurchaseprice(BigDecimal purchaseprice) {
+        this.purchaseprice = purchaseprice;
+    }
+
+    public BigDecimal getProfit() {
+        return profit;
+    }
+
+    public void setProfit(BigDecimal profit) {
+        this.profit = profit;
+    }
+
+    public BigDecimal getSalesprice() {
+        return salesprice;
+    }
+
+    public void setSalesprice(BigDecimal salesprice) {
+        this.salesprice = salesprice;
+    }
+
+    public Byte getAutospareupdate() {
+        return autospareupdate;
+    }
+
+    public void setAutospareupdate(Byte autospareupdate) {
+        this.autospareupdate = autospareupdate;
+    }
+
+    public BigDecimal getQuantityonstock() {
+        return quantityonstock;
+    }
+
+    public void setQuantityonstock(BigDecimal quantityonstock) {
+        this.quantityonstock = quantityonstock;
+    }
+
+    public Date getLasttransact() {
+        return lasttransact;
+    }
+
+    public void setLasttransact(Date lasttransact) {
+        this.lasttransact = lasttransact;
+    }
+
+    public BigDecimal getPurchaseqtyly() {
+        return purchaseqtyly;
+    }
+
+    public void setPurchaseqtyly(BigDecimal purchaseqtyly) {
+        this.purchaseqtyly = purchaseqtyly;
+    }
+
+    public BigDecimal getPurchvally() {
+        return purchvally;
+    }
+
+    public void setPurchvally(BigDecimal purchvally) {
+        this.purchvally = purchvally;
+    }
+
+    public BigDecimal getPurchqtyytd() {
+        return purchqtyytd;
+    }
+
+    public void setPurchqtyytd(BigDecimal purchqtyytd) {
+        this.purchqtyytd = purchqtyytd;
+    }
+
+    public BigDecimal getPurchvalytd() {
+        return purchvalytd;
+    }
+
+    public void setPurchvalytd(BigDecimal purchvalytd) {
+        this.purchvalytd = purchvalytd;
+    }
+
+    public BigDecimal getConsumpqtyly() {
+        return consumpqtyly;
+    }
+
+    public void setConsumpqtyly(BigDecimal consumpqtyly) {
+        this.consumpqtyly = consumpqtyly;
+    }
+
+    public BigDecimal getConsumpvally() {
+        return consumpvally;
+    }
+
+    public void setConsumpvally(BigDecimal consumpvally) {
+        this.consumpvally = consumpvally;
+    }
+
+    public BigDecimal getConsumpqtyytd() {
+        return consumpqtyytd;
+    }
+
+    public void setConsumpqtyytd(BigDecimal consumpqtyytd) {
+        this.consumpqtyytd = consumpqtyytd;
+    }
+
+    public BigDecimal getConsumpvalytd() {
+        return consumpvalytd;
+    }
+
+    public void setConsumpvalytd(BigDecimal consumpvalytd) {
+        this.consumpvalytd = consumpvalytd;
+    }
+
+    public BigDecimal getLastpurchprice() {
+        return lastpurchprice;
+    }
+
+    public void setLastpurchprice(BigDecimal lastpurchprice) {
+        this.lastpurchprice = lastpurchprice;
+    }
+
+    public BigDecimal getPurchasevalue() {
+        return purchasevalue;
+    }
+
+    public void setPurchasevalue(BigDecimal purchasevalue) {
+        this.purchasevalue = purchasevalue;
+    }
+
+    public BigDecimal getPurchaseqty() {
+        return purchaseqty;
+    }
+
+    public void setPurchaseqty(BigDecimal purchaseqty) {
+        this.purchaseqty = purchaseqty;
+    }
+
+    public BigDecimal getConsumpvalue() {
+        return consumpvalue;
+    }
+
+    public void setConsumpvalue(BigDecimal consumpvalue) {
+        this.consumpvalue = consumpvalue;
+    }
+
+    public BigDecimal getConsumpqty() {
+        return consumpqty;
+    }
+
+    public void setConsumpqty(BigDecimal consumpqty) {
+        this.consumpqty = consumpqty;
+    }
+
+    public Date getLastcounted() {
+        return lastcounted;
+    }
+
+    public void setLastcounted(Date lastcounted) {
+        this.lastcounted = lastcounted;
+    }
+
+    public BigDecimal getQtyonorder() {
+        return qtyonorder;
+    }
+
+    public void setQtyonorder(BigDecimal qtyonorder) {
+        this.qtyonorder = qtyonorder;
+    }
+
+    public Long getSpbarcode() {
+        return spbarcode;
+    }
+
+    public void setSpbarcode(Long spbarcode) {
+        this.spbarcode = spbarcode;
+    }
+
+    public Byte getRepairable() {
+        return repairable;
+    }
+
+    public void setRepairable(Byte repairable) {
+        this.repairable = repairable;
+    }
+
+    public Integer getVattype() {
+        return vattype;
+    }
+
+    public void setVattype(Integer vattype) {
+        this.vattype = vattype;
+    }
+
+    public Integer getVatmethod() {
+        return vatmethod;
+    }
+
+    public void setVatmethod(Integer vatmethod) {
+        this.vatmethod = vatmethod;
+    }
+
+    public String getPurchaseruuserid() {
+        return purchaseruuserid;
+    }
+
+    public void setPurchaseruuserid(String purchaseruuserid) {
+        this.purchaseruuserid = purchaseruuserid;
+    }
+
+    public String getTechrespuuserid() {
+        return techrespuuserid;
+    }
+
+    public void setTechrespuuserid(String techrespuuserid) {
+        this.techrespuuserid = techrespuuserid;
+    }
+
+    public BigDecimal getVatrate() {
+        return vatrate;
+    }
+
+    public void setVatrate(BigDecimal vatrate) {
+        this.vatrate = vatrate;
+    }
+
+    public Date getLastchangedate() {
+        return lastchangedate;
+    }
+
+    public void setLastchangedate(Date lastchangedate) {
+        this.lastchangedate = lastchangedate;
+    }
+
+    public Integer getLastchangetime() {
+        return lastchangetime;
+    }
+
+    public void setLastchangetime(Integer lastchangetime) {
+        this.lastchangetime = lastchangetime;
+    }
+
+    public Date getLastexportdate() {
+        return lastexportdate;
+    }
+
+    public void setLastexportdate(Date lastexportdate) {
+        this.lastexportdate = lastexportdate;
+    }
+
+    public Integer getLastexporttime() {
+        return lastexporttime;
+    }
+
+    public void setLastexporttime(Integer lastexporttime) {
+        this.lastexporttime = lastexporttime;
+    }
+
+    public Date getLastimportdate() {
+        return lastimportdate;
+    }
+
+    public void setLastimportdate(Date lastimportdate) {
+        this.lastimportdate = lastimportdate;
+    }
+
+    public Integer getLastimporttime() {
+        return lastimporttime;
+    }
+
+    public void setLastimporttime(Integer lastimporttime) {
+        this.lastimporttime = lastimporttime;
+    }
+
+    public Integer getProfitcosttypeid() {
+        return profitcosttypeid;
+    }
+
+    public void setProfitcosttypeid(Integer profitcosttypeid) {
+        this.profitcosttypeid = profitcosttypeid;
+    }
+
+    public Integer getSiteid() {
+        return siteid;
+    }
+
+    public void setSiteid(Integer siteid) {
+        this.siteid = siteid;
+    }
+
+    public Byte getRecordactive() {
+        return recordactive;
+    }
+
+    public void setRecordactive(Byte recordactive) {
+        this.recordactive = recordactive;
+    }
+
+    public String getCustombarcode() {
+        return custombarcode;
+    }
+
+    public void setCustombarcode(String custombarcode) {
+        this.custombarcode = custombarcode;
+    }
+
+    public Byte getQualitycheck() {
+        return qualitycheck;
+    }
+
+    public void setQualitycheck(Byte qualitycheck) {
+        this.qualitycheck = qualitycheck;
+    }
+
+    public String getSpname2() {
+        return spname2;
+    }
+
+    public void setSpname2(String spname2) {
+        this.spname2 = spname2;
+    }
+
+    public String getExtraspinfo2() {
+        return extraspinfo2;
+    }
+
+    public void setExtraspinfo2(String extraspinfo2) {
+        this.extraspinfo2 = extraspinfo2;
+    }
+
+    public String getExtraspinfo3() {
+        return extraspinfo3;
+    }
+
+    public void setExtraspinfo3(String extraspinfo3) {
+        this.extraspinfo3 = extraspinfo3;
+    }
+
+    public String getExtraspinfo4() {
+        return extraspinfo4;
+    }
+
+    public void setExtraspinfo4(String extraspinfo4) {
+        this.extraspinfo4 = extraspinfo4;
+    }
+
+    public String getExtraspinfo5() {
+        return extraspinfo5;
+    }
+
+    public void setExtraspinfo5(String extraspinfo5) {
+        this.extraspinfo5 = extraspinfo5;
+    }
+
+    public Integer getManufacturerid() {
+        return manufacturerid;
+    }
+
+    public void setManufacturerid(Integer manufacturerid) {
+        this.manufacturerid = manufacturerid;
+    }
+
+    public Integer getIcon() {
+        return icon;
+    }
+
+    public void setIcon(Integer icon) {
+        this.icon = icon;
+    }
+
+    public Integer getStockid() {
+        return stockid;
+    }
+
+    public void setStockid(Integer stockid) {
+        this.stockid = stockid;
+    }
+
+    public Integer getRootspid() {
+        return rootspid;
+    }
+
+    public void setRootspid(Integer rootspid) {
+        this.rootspid = rootspid;
+    }
+
+    public Byte getForeignowner() {
+        return foreignowner;
+    }
+
+    public void setForeignowner(Byte foreignowner) {
+        this.foreignowner = foreignowner;
+    }
+
+    public String getExtraspinfo6() {
+        return extraspinfo6;
+    }
+
+    public void setExtraspinfo6(String extraspinfo6) {
+        this.extraspinfo6 = extraspinfo6;
+    }
+
+    public String getExtraspinfo7() {
+        return extraspinfo7;
+    }
+
+    public void setExtraspinfo7(String extraspinfo7) {
+        this.extraspinfo7 = extraspinfo7;
+    }
+
+    public String getExtraspinfo8() {
+        return extraspinfo8;
+    }
+
+    public void setExtraspinfo8(String extraspinfo8) {
+        this.extraspinfo8 = extraspinfo8;
+    }
+
+    public String getExtraspinfo9() {
+        return extraspinfo9;
+    }
+
+    public void setExtraspinfo9(String extraspinfo9) {
+        this.extraspinfo9 = extraspinfo9;
+    }
+
+    public String getExtraspinfo10() {
+        return extraspinfo10;
+    }
+
+    public void setExtraspinfo10(String extraspinfo10) {
+        this.extraspinfo10 = extraspinfo10;
+    }
+
+    public String getEaninfo() {
+        return eaninfo;
+    }
+
+    public void setEaninfo(String eaninfo) {
+        this.eaninfo = eaninfo;
+    }
+
+    public Integer getClassid() {
+        return classid;
+    }
+
+    public void setClassid(Integer classid) {
+        this.classid = classid;
+    }
+
+    public String getForeignownerid() {
+        return foreignownerid;
+    }
+
+    public void setForeignownerid(String foreignownerid) {
+        this.foreignownerid = foreignownerid;
+    }
+
+    public String getForeignownerlink() {
+        return foreignownerlink;
+    }
+
+    public void setForeignownerlink(String foreignownerlink) {
+        this.foreignownerlink = foreignownerlink;
+    }
+
+    public Integer getVatcodeid() {
+        return vatcodeid;
+    }
+
+    public void setVatcodeid(Integer vatcodeid) {
+        this.vatcodeid = vatcodeid;
+    }
+
+    public Byte getApprovedforpurchase() {
+        return approvedforpurchase;
+    }
+
+    public void setApprovedforpurchase(Byte approvedforpurchase) {
+        this.approvedforpurchase = approvedforpurchase;
+    }
+
+    public String getStocklocationkey() {
+        return stocklocationkey;
+    }
+
+    public void setStocklocationkey(String stocklocationkey) {
+        this.stocklocationkey = stocklocationkey;
+    }
+
+    public Integer getCommoditycodeid() {
+        return commoditycodeid;
+    }
+
+    public void setCommoditycodeid(Integer commoditycodeid) {
+        this.commoditycodeid = commoditycodeid;
+    }
+
+    public Byte getOnpartslist() {
+        return onpartslist;
+    }
+
+    public void setOnpartslist(Byte onpartslist) {
+        this.onpartslist = onpartslist;
+    }
+
+    public Integer getTiid() {
+        return tiid;
+    }
+
+    public void setTiid(Integer tiid) {
+        this.tiid = tiid;
+    }
+
+    public Date getLastchangedtz() {
+        return lastchangedtz;
+    }
+
+    public void setLastchangedtz(Date lastchangedtz) {
+        this.lastchangedtz = lastchangedtz;
+    }
+
+    public Date getLastexportdtz() {
+        return lastexportdtz;
+    }
+
+    public void setLastexportdtz(Date lastexportdtz) {
+        this.lastexportdtz = lastexportdtz;
+    }
+
+    public Date getLastimportdtz() {
+        return lastimportdtz;
+    }
+
+    public void setLastimportdtz(Date lastimportdtz) {
+        this.lastimportdtz = lastimportdtz;
+    }
+
+    public Date getLastcounteddtz() {
+        return lastcounteddtz;
+    }
+
+    public void setLastcounteddtz(Date lastcounteddtz) {
+        this.lastcounteddtz = lastcounteddtz;
+    }
+
+    public Date getLasttransactdtz() {
+        return lasttransactdtz;
+    }
+
+    public void setLasttransactdtz(Date lasttransactdtz) {
+        this.lasttransactdtz = lasttransactdtz;
+    }
+
+    public Integer getRecordlanguageid() {
+        return recordlanguageid;
+    }
+
+    public void setRecordlanguageid(Integer recordlanguageid) {
+        this.recordlanguageid = recordlanguageid;
+    }
+
+    public Date getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+
+    public Integer getCreateuserid() {
+        return createuserid;
+    }
+
+    public void setCreateuserid(Integer createuserid) {
+        this.createuserid = createuserid;
+    }
+
+    public Date getModificationdate() {
+        return modificationdate;
+    }
+
+    public void setModificationdate(Date modificationdate) {
+        this.modificationdate = modificationdate;
+    }
+
+    public Integer getModificationuserid() {
+        return modificationuserid;
+    }
+
+    public void setModificationuserid(Integer modificationuserid) {
+        this.modificationuserid = modificationuserid;
+    }
+
+    public String getPicpath() {
+        return picpath;
+    }
+
+    public void setPicpath(String picpath) {
+        this.picpath = picpath;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public Integer getOrgid() {
+        return orgid;
+    }
+
+    public void setOrgid(Integer orgid) {
+        this.orgid = orgid;
+    }
+    
+    
+
+	public String getStockname() {
+		return stockname;
+	}
+
+	public void setStockname(String stockname) {
+		this.stockname = stockname;
+	}
+
+	public String getStockkey() {
+		return stockkey;
+	}
+
+	public void setStockkey(String stockkey) {
+		this.stockkey = stockkey;
+	}
+
+	public String getUnitname() {
+		return unitname;
+	}
+
+	public void setUnitname(String unitname) {
+		this.unitname = unitname;
+	}
+
+	public String getSparepartgroupname() {
+		return sparepartgroupname;
+	}
+
+	public void setSparepartgroupname(String sparepartgroupname) {
+		this.sparepartgroupname = sparepartgroupname;
+	}
+	
+	public BigDecimal getAvgprice() {
+		return avgprice;
+	}
+
+	public void setAvgprice(BigDecimal avgprice) {
+		this.avgprice = avgprice;
+	}
+
+	public BigDecimal getUpperlimitqty() {
+		return upperlimitqty;
+	}
+
+	public void setUpperlimitqty(BigDecimal upperlimitqty) {
+		this.upperlimitqty = upperlimitqty;
+	}
+
+	public BigDecimal getLowerlimitqty() {
+		return lowerlimitqty;
+	}
+
+	public void setLowerlimitqty(BigDecimal lowerlimitqty) {
+		this.lowerlimitqty = lowerlimitqty;
+	}
+
+	public Integer getIsaddup() {
+		return isaddup;
+	}
+
+	public void setIsaddup(Integer isaddup) {
+		this.isaddup = isaddup;
+	}
+
+	public String getStocklocationid() {
+		return stocklocationid;
+	}
+
+	public void setStocklocationid(String stocklocationid) {
+		this.stocklocationid = stocklocationid;
+	}
+
+	public Integer getCurrstocknum() {
+		return currstocknum;
+	}
+
+	public void setCurrstocknum(Integer currstocknum) {
+		this.currstocknum = currstocknum;
+	}
+
+	public Integer getTombstone() {
+		return tombstone;
+	}
+
+	public void setTombstone(Integer tombstone) {
+		this.tombstone = tombstone;
+	}
+
+	public Integer getPpap() {
+		return ppap;
+	}
+
+	public void setPpap(Integer ppap) {
+		this.ppap = ppap;
+	}
+
+	public Integer getSpareparttype() {
+		return spareparttype;
+	}
+
+	public void setSpareparttype(Integer spareparttype) {
+		this.spareparttype = spareparttype;
+	}
+
+	public SparepartDto(Integer id) {
+		super();
+		this.id = id;
+	}
+
+	public SparepartDto() {
+		super();
+	}
+
+	public Integer getStationsid() {
+		return stationsid;
+	}
+
+	public void setStationsid(Integer stationsid) {
+		this.stationsid = stationsid;
+	}
+
+	public Integer getMomodelid() {
+		return momodelid;
+	}
+
+	public void setMomodelid(Integer momodelid) {
+		this.momodelid = momodelid;
+	}
+
+	public String getStationname() {
+		return stationname;
+	}
+
+	public void setStationname(String stationname) {
+		this.stationname = stationname;
+	}
+
+	public String getMomodelname() {
+		return momodelname;
+	}
+
+	public void setMomodelname(String momodelname) {
+		this.momodelname = momodelname;
+	}
+
+	public Integer getOrganizationid() {
+		return organizationid;
+	}
+
+	public void setOrganizationid(Integer organizationid) {
+		this.organizationid = organizationid;
+	}
+
+	public String getOrganizationname() {
+		return organizationname;
+	}
+
+	public void setOrganizationname(String organizationname) {
+		this.organizationname = organizationname;
+	}
+
+	public Integer getSpareparttype1() {
+		return spareparttype1;
+	}
+
+	public void setSpareparttype1(Integer spareparttype1) {
+		this.spareparttype1 = spareparttype1;
+	}
+
+	public Integer getExtraid1() {
+		return extraid1;
+	}
+
+	public void setExtraid1(Integer extraid1) {
+		this.extraid1 = extraid1;
+	}
+
+	public Integer getExtraid2() {
+		return extraid2;
+	}
+
+	public void setExtraid2(Integer extraid2) {
+		this.extraid2 = extraid2;
+	}
+
+	public Integer getExtraid3() {
+		return extraid3;
+	}
+
+	public void setExtraid3(Integer extraid3) {
+		this.extraid3 = extraid3;
+	}
+
+	public Integer getExtraid4() {
+		return extraid4;
+	}
+
+	public void setExtraid4(Integer extraid4) {
+		this.extraid4 = extraid4;
+	}
+
+	public Integer getExtraid5() {
+		return extraid5;
+	}
+
+	public void setExtraid5(Integer extraid5) {
+		this.extraid5 = extraid5;
+	}
+
+	public String getExtravarchar1() {
+		return extravarchar1;
+	}
+
+	public void setExtravarchar1(String extravarchar1) {
+		this.extravarchar1 = extravarchar1;
+	}
+
+	public String getExtravarchar2() {
+		return extravarchar2;
+	}
+
+	public void setExtravarchar2(String extravarchar2) {
+		this.extravarchar2 = extravarchar2;
+	}
+
+	public String getExtravarchar3() {
+		return extravarchar3;
+	}
+
+	public void setExtravarchar3(String extravarchar3) {
+		this.extravarchar3 = extravarchar3;
+	}
+
+	public String getExtravarchar4() {
+		return extravarchar4;
+	}
+
+	public void setExtravarchar4(String extravarchar4) {
+		this.extravarchar4 = extravarchar4;
+	}
+
+	public String getExtravarchar5() {
+		return extravarchar5;
+	}
+
+	public void setExtravarchar5(String extravarchar5) {
+		this.extravarchar5 = extravarchar5;
+	}
+
+	public String getExtravarchar6() {
+		return extravarchar6;
+	}
+
+	public void setExtravarchar6(String extravarchar6) {
+		this.extravarchar6 = extravarchar6;
+	}
+
+	public String getExtravarchar7() {
+		return extravarchar7;
+	}
+
+	public void setExtravarchar7(String extravarchar7) {
+		this.extravarchar7 = extravarchar7;
+	}
+
+	public String getExtravarchar8() {
+		return extravarchar8;
+	}
+
+	public void setExtravarchar8(String extravarchar8) {
+		this.extravarchar8 = extravarchar8;
+	}
+
+	public String getExtravarchar9() {
+		return extravarchar9;
+	}
+
+	public void setExtravarchar9(String extravarchar9) {
+		this.extravarchar9 = extravarchar9;
+	}
+
+	public String getExtravarchar10() {
+		return extravarchar10;
+	}
+
+	public void setExtravarchar10(String extravarchar10) {
+		this.extravarchar10 = extravarchar10;
+	}
+
+	public Integer getExtraint1() {
+		return extraint1;
+	}
+
+	public void setExtraint1(Integer extraint1) {
+		this.extraint1 = extraint1;
+	}
+
+	public Integer getExtraint2() {
+		return extraint2;
+	}
+
+	public void setExtraint2(Integer extraint2) {
+		this.extraint2 = extraint2;
+	}
+
+	public Integer getExtraint3() {
+		return extraint3;
+	}
+
+	public void setExtraint3(Integer extraint3) {
+		this.extraint3 = extraint3;
+	}
+
+	public Integer getExtraint4() {
+		return extraint4;
+	}
+
+	public void setExtraint4(Integer extraint4) {
+		this.extraint4 = extraint4;
+	}
+
+	public Integer getExtraint5() {
+		return extraint5;
+	}
+
+	public void setExtraint5(Integer extraint5) {
+		this.extraint5 = extraint5;
+	}
+
+	public BigDecimal getExtradecimal1() {
+		return extradecimal1;
+	}
+
+	public void setExtradecimal1(BigDecimal extradecimal1) {
+		this.extradecimal1 = extradecimal1;
+	}
+
+	public BigDecimal getExtradecimal2() {
+		return extradecimal2;
+	}
+
+	public void setExtradecimal2(BigDecimal extradecimal2) {
+		this.extradecimal2 = extradecimal2;
+	}
+
+	public BigDecimal getExtradecimal3() {
+		return extradecimal3;
+	}
+
+	public void setExtradecimal3(BigDecimal extradecimal3) {
+		this.extradecimal3 = extradecimal3;
+	}
+
+	public BigDecimal getExtradecimal4() {
+		return extradecimal4;
+	}
+
+	public void setExtradecimal4(BigDecimal extradecimal4) {
+		this.extradecimal4 = extradecimal4;
+	}
+
+	public BigDecimal getExtradecimal5() {
+		return extradecimal5;
+	}
+
+	public void setExtradecimal5(BigDecimal extradecimal5) {
+		this.extradecimal5 = extradecimal5;
+	}
+
+	public Date getExtradatetime1() {
+		return extradatetime1;
+	}
+
+	public void setExtradatetime1(Date extradatetime1) {
+		this.extradatetime1 = extradatetime1;
+	}
+
+	public Date getExtradatetime2() {
+		return extradatetime2;
+	}
+
+	public void setExtradatetime2(Date extradatetime2) {
+		this.extradatetime2 = extradatetime2;
+	}
+
+	public Date getExtradatetime3() {
+		return extradatetime3;
+	}
+
+	public void setExtradatetime3(Date extradatetime3) {
+		this.extradatetime3 = extradatetime3;
+	}
+
+	public Date getExtradatetime4() {
+		return extradatetime4;
+	}
+
+	public void setExtradatetime4(Date extradatetime4) {
+		this.extradatetime4 = extradatetime4;
+	}
+
+	public Date getExtradatetime5() {
+		return extradatetime5;
+	}
+
+	public void setExtradatetime5(Date extradatetime5) {
+		this.extradatetime5 = extradatetime5;
+	}
+
+	public Integer getTypeid() {
+		return typeid;
+	}
+
+	public void setTypeid(Integer typeid) {
+		this.typeid = typeid;
+	}
+
+	public Integer getStatusid() {
+		return statusid;
+	}
+
+	public void setStatusid(Integer statusid) {
+		this.statusid = statusid;
+	}
+	
+	
+}
+

@@ -1,0 +1,30 @@
+package com.mingcloud.proxy.util;
+
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.OMNode;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class XmlUtil {
+
+    public  static List<String> getResults(OMElement element) {
+        if(element == null){
+            return null;
+        }
+        Iterator iterator = element.getChildElements();
+        List<String> list = new ArrayList<String>();
+        while (iterator.hasNext()) {
+            OMNode omNode = (OMNode) iterator.next();
+            if (omNode.getType() == OMNode.ELEMENT_NODE) {
+                OMElement omElement = (OMElement) omNode;
+                System.out.println(omElement.getLocalName());
+                String temp = omElement.getText().trim();
+                System.out.println(temp);
+                list.add(temp);
+            }
+        }
+        return list;
+    }
+}

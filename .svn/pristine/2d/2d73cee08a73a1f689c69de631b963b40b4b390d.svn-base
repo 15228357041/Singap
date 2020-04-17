@@ -1,0 +1,17 @@
+package com.mingcloud.proxy.datalayer.dao.archiveinfo;
+
+import com.mingcloud.proxy.datalayer.dao.BaseMapper;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.SIFATransferEntity;
+
+import java.util.List;
+
+
+public interface SIFATransferMapper extends BaseMapper<SIFATransferEntity> {
+
+	public List<SIFATransferEntity> selectAll();
+	
+	public int update(SIFATransferEntity entity);
+	
+	public int setStatusid();
+	
+}

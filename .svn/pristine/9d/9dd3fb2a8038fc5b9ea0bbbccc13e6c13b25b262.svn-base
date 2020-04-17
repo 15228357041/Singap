@@ -1,0 +1,574 @@
+package com.mingcloud.proxy.logiclayer.messagehandler;
+
+import com.mingcloud.proxy.common.Constants;
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datacenter.messageData.MessageSourceData;
+import com.mingcloud.proxy.datacenter.messageData.MessageconfigData;
+import com.mingcloud.proxy.datacenter.messageData.SucmessagelogData;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.LogMapper;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.MessageSourceMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.MessageSourceDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.LogEntity;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.MessageSourceEntity;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.MessageconfigEntity;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.SucmessagelogEntity;
+import com.mingcloud.proxy.logiclayer.messagehandler.messagedto.MessageDto;
+import com.mingcloud.proxy.util.*;
+import net.sf.json.JSONObject;
+import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.log4j.Logger;
+import org.springframework.transaction.annotation.Transactional;
+import redis.clients.jedis.Jedis;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.*;
+
+/**
+ * Demo class
+ *
+ * @author zxf
+ * @date 2018/11/31
+ */
+@SuppressWarnings("AlibabaCollectionInitShouldAssignCapacity")
+public final class MessageSourceDataOutByC3Thread implements Runnable {
+
+    private static Logger logger = Logger.getLogger(MessageSourceDataOutByC3Thread.class);
+
+    private DataCenter dataCenter = DataCenter.getInstance();
+
+    private static MessageSourceData messageSourceData = MessageSourceData.getInstance();
+
+    private static SucmessagelogData sucmessagelogData = SucmessagelogData.getInstance();
+
+    private static MessageconfigData messageconfigData = MessageconfigData.getInstance();
+
+    private static LogMapper logMapper= SpringContextUtil.getBean("logMapper");
+
+    private static MessageSourceMapper messageSourceMapper = SpringContextUtil.getBean("messageSourceMapper");
+
+    /**
+     * 企业微信配置
+     */
+    public static String officalwechatcorpid;
+
+    public static String officalwechatcorpsecret;
+
+    public static String officalwechatagentid;
+
+    /**
+     * 邮箱配置
+     */
+    public static String mtransportprotocol;
+
+    public static String msmtpserver;
+
+    public static String msmtpport;
+
+    public static String maccount;
+
+    public static String mpwd;
+
+    public static String msmtpauth;
+
+    public static String msmtpssl;
+
+    /**
+     * 吉利C3配置
+     */
+
+
+    /**
+     * redies
+     */
+    public static Jedis jedis;
+
+    /**
+     * 连接池设置
+     */
+    public static BasicDataSource ds;
+
+    /**
+     * 互斥锁
+     */
+    public static final Object LOCK = new Object();
+
+    public static Set<String> keySet = new HashSet<String>();
+
+    static {
+//        setJedis();
+ //       getMessageConfig();
+        setDataSource();
+//        cleanTempLog();
+    }
+
+    /**
+     * 设置redies
+     */
+    private static void setJedis() {
+        //连接服务器
+//        jedis = new Jedis("127.0.0.1", 6379);
+        //权限认证
+//      jedis.auth("");
+    }
+
+    /**
+     * 设置连接池
+     */
+    private static void setDataSource() {
+        try {
+            //读取db.properties文件
+            Properties props = new Properties();
+            //使用类路径的读取方式
+            InputStream in = MessageSourceDataInThread.class.getResourceAsStream("/jdbc.properties");
+            //加载文件
+            props.load(in);
+            //读取信息
+            String driver = props.getProperty("jdbc.mysql.driver");
+            String url = props.getProperty("jdbc.mysql.url");
+            String username = props.getProperty("jdbc.mysql.username");
+            String password = props.getProperty("jdbc.mysql.password");
+            int initialSize = 3;
+            int maxActive = 3;
+            ds = new BasicDataSource();
+            //设置连接池参数
+            ds.setDriverClassName(driver);
+            ds.setUrl(url);
+            ds.setUsername(username);
+            ds.setPassword(password);
+            ds.setInitialSize(initialSize);
+            ds.setMaxActive(maxActive);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取连接对象
+     *
+     * @return
+     */
+    private static Connection getConn() {
+        logger.info("getConnection");
+        Connection conn = null;
+        try {
+            conn = ds.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+
+    /**
+     * 获取配置
+     */
+    private static void getMessageConfig() {
+        messageconfigData.resetMessageconfigList();
+        MessageconfigEntity messageconfigEntity = messageconfigData.getSucmessagelogList().get(0);
+        //企业微信号
+        officalwechatcorpid = messageconfigEntity.getOfficalwechatcorpid();
+        officalwechatcorpsecret = messageconfigEntity.getOfficalwechatcorpsecret();
+        officalwechatagentid = messageconfigEntity.getOfficalwechatagentid();
+        //邮箱
+        mtransportprotocol = messageconfigEntity.getMtransportprotocol();
+        msmtpserver = messageconfigEntity.getMsmtpserver();
+        msmtpport = messageconfigEntity.getMsmtpport();
+        maccount = messageconfigEntity.getMaccount();
+        mpwd = messageconfigEntity.getMpwd();
+        msmtpauth = messageconfigEntity.getMsmtpauth();
+        msmtpssl = messageconfigEntity.getMsmtpssl();
+    }
+
+    /**
+     * 清理暂存数据
+     */
+    private static void cleanTempLog() {
+        jedis.del("keys");
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                while (true) {
+                    if (dataCenter.getMessageSourceListSize() == 0) {
+                        break;
+                    }
+                }
+                GetAllMessageSourceData();
+                Thread.sleep(1 * 1000);
+            } catch (Exception e) {
+                logger.error("MessageSourceDataOutByC3Thread: " + e);
+            }
+        }
+    }
+
+    @Transactional()
+    public void GetAllMessageSourceData() {
+        Connection conn = getConn();
+        Date now = new Date();
+        List<Map<String, String>> sqlRealResultList = null;
+        try {
+            messageSourceData.resetMessageSourceList();
+            List<MessageSourceEntity> messageSourceList = messageSourceData.getMessageSourceList();
+            for (MessageSourceEntity entity : messageSourceList) {
+                //检验执行时间
+                if (entity.getNextexecutedate() == null || now.getTime() > entity.getNextexecutedate().getTime()) {
+                    entity.setLastexecutedate(now);
+                    if (entity.getMessagedatetype() != null && entity.getMessagedatetype() == 50){
+                        //如果以月份为单位直接获取下个月的
+                        Date nextDate = DateHelper.afterDays(DateHelper.getPreMonth(now, 1));
+                        entity.setNextexecutedate(nextDate);
+                    }else{
+                        entity.setNextexecutedate(new Date(now.getTime() + entity.getMessageinterval()));
+                    }
+                } else {
+                    continue;
+                }
+                String querySql = entity.getQuerysql();
+                List<Map<String, String>> sqlResultList = null;
+                try {
+                    sqlResultList = execute(conn, querySql);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                sqlRealResultList = new LinkedList<Map<String, String>>();
+                /*sucmessagelogTmepList = new LinkedList<SucmessagelogEntity>();*/
+                List<String> isAcceptorsExistList = this.getAcceptorList(entity);
+                for (Map<String, String> sqlResultMap : sqlResultList) {
+                    //是否需要加入
+                    boolean acceptorExistListflg = false;
+                    for (int i = 0; i < isAcceptorsExistList.size(); i++) {
+                        if (!"".equals(sqlResultMap.get(isAcceptorsExistList.get(i)))) {
+                            acceptorExistListflg = true;
+                        }
+                    }
+                    if (!acceptorExistListflg) {
+                        continue;
+                    }
+                    SucmessagelogEntity sucmessagelogEntity = new SucmessagelogEntity();
+                    sucmessagelogEntity.setMessagesourceid(entity.getId());
+                    sucmessagelogEntity.setKeyword(entity.getKeyword());
+                    sucmessagelogEntity.setKeywordvalue(sqlResultMap.get(sucmessagelogEntity.getKeyword()));
+                    String key = new StringBuilder(entity.getId().toString()).append(":").
+                            append(entity.getKeyword()).append(sqlResultMap.get(entity.getKeyword())).toString();
+                    boolean jedisflag;
+                    synchronized (LOCK) {
+                        if (/*jedisflag = jedis.sismember("keys", key)*/ jedisflag = keySet.contains(key) || sucmessagelogData.isSucmessagelogExist(sucmessagelogEntity)) {
+                            if (!jedisflag) {
+                                /*jedis.sadd("keys", key);*/
+                                keySet.add(key);
+                            }
+                            continue;
+                        } else {
+                            //存入临时日志池
+                            /*jedis.sadd("keys", key);*/
+                            keySet.add(key);
+                            //存入结果池
+                            sqlRealResultList.add(sqlResultMap);
+                        }
+                    }
+                }
+                /*this.setSucmessagelogTmepList(sucmessagelogTmepList);*/
+                this.pushMessageSourceList(entity, sqlRealResultList, querySql);
+                sendMessageByC3(sqlRealResultList,isAcceptorsExistList.toString());
+            }
+            if (messageSourceList != null && messageSourceList.size() > 0) {
+                messageSourceData.updateBatchMessageSourceInterval(messageSourceList);
+            }
+            /*logger.info("InThread.GetDataSucceeded:" + dataCenter.getMessageSourceList().toString());*/
+        } catch (Exception e) {
+            logger.error("In.GetAllMessagesourceData(): " + e);
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 存放临时日志集合
+     *
+     * @param sucmessagelogTmepList
+     */
+    private void setSucmessagelogTmepList(List<SucmessagelogEntity> sucmessagelogTmepList) {
+        if (sucmessagelogTmepList.size() > 0) {
+            sucmessagelogData.addSucmessagelogDataList(sucmessagelogTmepList);
+            logger.info("sucmessagelogTmepList:" + sucmessagelogTmepList.toString());
+        }
+    }
+
+    /**
+     * 解析接收用户
+     *
+     * @param entity
+     * @return
+     */
+    private List<String> getAcceptorList(MessageSourceEntity entity) {
+        List<String> isAcceptorsExistList = new ArrayList<String>();
+        String acceptors = entity.getAcceptor();
+        String[] acceptorArray = null;
+        logger.info("acceptorsA:" + acceptors);
+        if (acceptors.indexOf("|") == -1) {
+            acceptorArray = new String[]{acceptors};
+        } else {
+            acceptorArray = acceptors.split("\\|");
+        }
+        for (int i = 0; i < acceptorArray.length; i++) {
+            StringBuilder acceptorbuilder = new StringBuilder(acceptorArray[i].trim());
+            int lastbracket;
+            if ((lastbracket = acceptorArray[i].indexOf("}")) != -1) {
+                isAcceptorsExistList.add(acceptorbuilder.delete(lastbracket, lastbracket + 1).
+                        deleteCharAt(0).toString());
+            } else {
+                isAcceptorsExistList.add(acceptorArray[i]);
+            }
+        }
+        return isAcceptorsExistList;
+    }
+
+
+    /**
+     * 将dto封装放入数据中心
+     *
+     * @param entity
+     * @param sqlRealResultList
+     * @param querySql
+     */
+    private void pushMessageSourceList(MessageSourceEntity entity, List<Map<String, String>> sqlRealResultList, String querySql) {
+        if (sqlRealResultList.size() > 0) {
+            logger.info("push>>>>>>>>>>>>>>>>>");
+            MessageSourceDto dto = new MessageSourceDto();
+            dto.setId(entity.getId());
+            dto.setMessagesourcekey(entity.getMessagesourcekey());
+            dto.setMessagesourcename(entity.getMessagesourcename());
+            dto.setQuerysql(querySql);
+            dto.setContent(entity.getContent());
+            dto.setSqlResultList(sqlRealResultList);
+            dto.setKeyword(entity.getKeyword());
+            dto.setType(entity.getType());
+            dto.setEmailtitle(entity.getEmailtitle());
+            dto.setAcceptor(entity.getAcceptor());
+            dataCenter.pushMessageSourceList(dto);
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            Connection conn = getConn();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * 解析sql语句
+     *
+     * @param conn
+     * @param querySql
+     * @return
+     * @throws Exception
+     */
+    public static List<Map<String, String>> execute(Connection conn, String querySql) throws Exception {
+        List<Map<String, String>> listAll;
+        java.sql.Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            if (conn.isClosed() || conn == null) {
+                getConn();
+            }
+            Map<String, String> map = null;
+            listAll = new LinkedList<Map<String, String>>();
+            stmt = conn.createStatement();
+            querySql = querySql.trim();
+            if (querySql != null && !"".equals(querySql)) {
+                rs = stmt.executeQuery(querySql);
+                java.sql.ResultSetMetaData rsmd = rs.getMetaData();
+                int columnCount = rsmd.getColumnCount();
+                while (rs.next()) {
+                    map = new HashMap<String, String>(16);
+                    for (int i = 1; i <= columnCount; i++) {
+                        Object column = rs.getObject(i);
+                        if (column != null) {
+                            String columString = column.toString();
+                            if (rsmd.getColumnType(i) == 3) {
+                                columString = columString.substring(0, columString.lastIndexOf("."));
+                            }
+                            map.put(rsmd.getColumnLabel(i), columString);
+                        } else {
+                            map.put(rsmd.getColumnName(i), "");
+                        }
+                    }
+                    listAll.add(map);
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return listAll;
+    }
+
+
+/*    public static List<Map<String, String>> execute(String querySql) throws Exception {
+        List<Map<String, String>> listAll;
+        Map<String,String> map = new HashMap<>(16);
+        map = messageSourceMapper.checkSql(querySql);
+        return listAll;
+    }*/
+
+
+    public  void sendMessageByC3(List<Map<String, String>> sqlRealResultList, String isAcceptorsExistLise) throws Exception{
+        if (dataCenter.getMessageSourceListSize() > 0) {
+            handleMessage();
+            /*logger.info("MessageSourceDataCenter size: " + dataCenter.getMessageSourceListSize());*/
+        }
+    }
+
+    /**
+     * 消息发送主方法
+     */
+    @Transactional()
+    private void handleMessage() {
+        try {
+            if (dataCenter.getMessageSourceListSize() > 0) {
+                MessageSourceDto dto = dataCenter.popMessageSourceList();
+                List<Map<String, String>> sqlResultList = dto.getSqlResultList();
+                for (int i = 0; i < sqlResultList.size(); i++) {
+                    //是否需要清理临时数据，默认false不需要，true需要
+                    boolean cleanflag = false;
+                    //解析acceptor
+                    cleanflag = parseAcceptors(dto.getAcceptor(), sqlResultList.get(i), cleanflag, dto);
+                    synchronized (LOCK) {
+                        if (cleanflag) {
+                            String key = new StringBuilder(dto.getId().toString()).append(":").
+                                    append(dto.getKeyword()).append(":").append(sqlResultList.get(i).get(dto.getKeyword())).toString();
+                            /*MessageSourceDataInThread.jedis.del("keys", key);*/
+                            MessageSourceDataInThread.keySet.remove(key);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            logger.error("MessageSourceOutThread.Exception: " + e);
+        }
+    }
+
+    /**
+     * @tiele 解析接收用户,发送消息
+     * @param acceptors
+     * @param resultMap
+     * @param cleanflag
+     * @param dto
+     * @return
+     */
+    private boolean parseAcceptors(String acceptors, Map<String, String> resultMap, boolean cleanflag, MessageSourceDto dto) {
+        String message = null;
+        String content = dto.getContent();
+        String title = dto.getMessagesourcename();
+        String[] acceptorArray = null;
+        String acceptor = acceptors;
+        if (acceptors.indexOf("|") == -1) {
+            acceptorArray = new String[]{acceptors};
+        } else {
+            acceptorArray = acceptors.split("\\|");
+        }
+        for (String str : acceptorArray){
+            if (str.contains("{") || str.contains("}")){
+                acceptor = acceptor.replace(str, resultMap.get(str.substring(1, str.length()-1)));
+            }
+        }
+         acceptor = acceptor.replace("|",",");
+         acceptor = acceptor.replaceAll("^,*|,*$", "");
+        if (message == null) {
+            message = this.parseMessage(resultMap, content);
+        }
+        MessageDto messageDto = new MessageDto(dto, sucmessagelogData, resultMap, message, acceptor);
+        String messageData = "{'type':'10004','textType':false, 'content':'" + message +
+                "'}";
+        //try {
+        messageData = messageData.replace("\r\n","\\n");
+            //messageData = encode(messageData, "UTF-8");
+       /* }catch (UnsupportedEncodingException e){
+            logger.error("转化异常");
+        }*/
+        Map<String, Object> param = new TreeMap<>();
+        param.put("source", "EAM");
+        param.put("receiver_type", "0");
+        param.put("receiver", acceptor);
+        //param.put("organizationIds", "");
+        param.put("title", title);
+        param.put("content", message);
+        param.put("messageData", messageData);
+ /*       param.put("message", message);
+        param.put("channel", "SUBSCRIPTION");
+        param.put("sender", "EAM");
+        param.put("sender_type", "S");*/
+        String requestParams = com.alibaba.fastjson.JSONObject.toJSONString(param);
+        String privateKey = PropertiesFileUtil.getInstance("url").get("privateKey");
+        try {
+            String verifySignature = RSAUtils.sign(requestParams.getBytes(),privateKey);
+            param.put("verifySignature", verifySignature);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        //测试专用
+    /*    {
+            String c3testUrl = (PropertiesFileUtil.getInstance("url").get("tomcatURL"));
+            try {
+                PropertiesFileUtil.writeFileContent(c3testUrl, DateHelper.dateToString(new Date(),"yyyy-MM-dd HH:mm:ss"));
+                PropertiesFileUtil.writeFileContent(c3testUrl, message);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }*/
+        String c3Url = PropertiesFileUtil.getInstance("url").get("c3Url");
+        String apidata = HttpRequestUtil.mapPost(c3Url, param, "utf-8");
+        //判断接口是否调用成功插入日志
+        JSONObject jsonObject = JSONObject.fromObject(apidata);
+        String isSuccess = jsonObject.getString("code");
+        LogEntity logDto = new LogEntity();
+        logDto.setExtravarchar1("messagesource");
+        logDto.setCreatedate(new Date());
+        logDto.setExtraid2(Constants.LOG_EXTRAID2_OUT);
+        logDto.setExtravarchar2(apidata);
+        logDto.setExtravarchar3(param.toString());
+        if ("success".equals(isSuccess)){
+            logDto.setExtraid3(Constants.LOG_EXTRAID3_SUCCESS);
+            logDto.setTypeid(9);
+        }else{
+            logDto.setExtraid3(Constants.LOG_EXTRAID3_ERROR);
+            logDto.setTypeid(9);
+        }
+        logMapper.insert(logDto);
+        return cleanflag;
+    }
+
+    /**
+     * @tiele解析正文
+     * @param resultMap
+     * @param content
+     * @return
+     */
+    private String parseMessage(Map<String, String> resultMap, String content) {
+        StringBuilder message = new StringBuilder(content);
+        for (Map.Entry<String, String> resultEntry : resultMap.entrySet()) {
+            String replaceKey = new StringBuffer("{").append(resultEntry.getKey()).append("}").toString();
+            int startIndex;
+            while ((startIndex = message.indexOf(replaceKey)) != -1) {
+                message = message.replace(startIndex, startIndex + replaceKey.length(), resultEntry.getValue());
+            }
+        }
+        return message.toString();
+    }
+}

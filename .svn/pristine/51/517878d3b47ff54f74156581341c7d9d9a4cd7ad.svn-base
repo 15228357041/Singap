@@ -1,0 +1,11 @@
+package com.mingcloud.proxy.datalayer.dao.archiveinfo;
+
+import java.util.List;
+
+import com.mingcloud.proxy.datalayer.dao.BaseMapper;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.MorelationtdEntity;
+
+public interface MorelationtdMapper extends BaseMapper<MorelationtdEntity> {
+	
+	public List<MorelationtdEntity> selectAllApi();
+}

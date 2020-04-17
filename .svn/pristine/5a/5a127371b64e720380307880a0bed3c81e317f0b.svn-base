@@ -1,0 +1,121 @@
+package com.mingcloud.proxy.logiclayer.beiqifamdhandler;
+
+import com.mingcloud.proxy.datacenter.BeiqiTransferData;
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.CommonrecodeexMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.CommonrecodeexDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.BeiqiTransferEntity;
+import com.mingcloud.proxy.logiclayer.beiqifamdhandler.webservice.DTFAMDREQ;
+import com.mingcloud.proxy.logiclayer.beiqifamdhandler.webservice.DTFAMDRES;
+import com.mingcloud.proxy.logiclayer.beiqifamdhandler.webservice.SIFAMDOutEAM2SAPSYN;
+import com.mingcloud.proxy.logiclayer.beiqifamdhandler.webservice.SIFAMDOutEAM2SAPSYNService;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.log4j.Logger;
+
+import javax.xml.namespace.QName;
+import javax.xml.ws.BindingProvider;
+import java.util.List;
+
+
+
+/*
+ * 北汽数据插入线程
+ */
+class BeiqiFamdOutDataOutThread implements Runnable {
+	private static Logger logger = Logger.getLogger(BeiqiFamdOutDataOutThread.class);
+
+	private static final QName SERVICE_NAME = new QName("http://eam.baicmotor.com", "SI_FAMD_Out_EAM2SAP_SYNService");
+
+	private CommonrecodeexMapper commonrecodeexMapper = SpringContextUtil.getBean("commonrecodeexMapper");
+
+	private DataCenter dataCenter = DataCenter.getInstance();
+
+	private static BeiqiTransferData beiqiTransferData = BeiqiTransferData.getInstance();
+
+	public void run() {
+		while (true) {
+			if (dataCenter.getWeatherCommonrecodeexlistSize() > 0) {
+				InsertCommonrecodeex();
+				logger.info("WeatherDataCenter size: " + dataCenter.getWeatherCommonrecodeexlistSize());
+			}
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				logger.error("WeatherDataOutThread: " + e);
+			}
+		}
+	}
+
+	private void InsertCommonrecodeex() {
+		try {
+			if (dataCenter.getWeatherCommonrecodeexlistSize() > 0) {
+				CommonrecodeexDto dto = dataCenter.popWeatherCommonrecodeexlist();
+
+				SIFAMDOutEAM2SAPSYNService ss = new SIFAMDOutEAM2SAPSYNService(SIFAMDOutEAM2SAPSYNService.WSDL_LOCATION, SERVICE_NAME);
+				SIFAMDOutEAM2SAPSYN port = ss.getHTTPPort();
+
+				((BindingProvider) port).getRequestContext().put(BindingProvider.USERNAME_PROPERTY, "SAP_MES_ZZ2");
+				((BindingProvider) port).getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, "Sap123456");
+
+				System.out.println("Invoking siFAMDOutEAM2SAPSYN...");
+				DTFAMDREQ siFAM = new DTFAMDREQ();
+
+				List<DTFAMDREQ.FAMDREQ> siFAMList = siFAM.getFAMDREQ();
+
+				DTFAMDREQ.FAMDREQ siFAMEntity = new DTFAMDREQ.FAMDREQ();
+				
+//				curdto.setExtravarchar1(curentity.getMokey());
+//				curdto.setExtravarchar2(curentity.getExtravarchar18());
+//				curdto.setExtravarchar3(curentity.getMoname());
+//				curdto.setExtravarchar4(curentity.getExtramoinfo1());
+//				curdto.setExtravarchar5(curentity.getCostcenterkey1());
+//				curdto.setExtravarchar6(curentity.getExtravarchar20());
+//				curdto.setExtravarchar7(curentity.getCostcenterkey2());
+//				curdto.setExtravarchar8(curentity.getContractno());
+
+				siFAMEntity.setANLANO(parseInput(dto.getExtravarchar1()));
+				siFAMEntity.setANLAANLKL(parseInput(dto.getExtravarchar2()));
+				siFAMEntity.setANLABUKRS(parseInput(dto.getExtravarchar6()));
+				siFAMEntity.setANLATXT50(parseInput(dto.getExtravarchar3()));
+				siFAMEntity.setANLHTXT(parseInput(dto.getExtravarchar4()));
+				siFAMEntity.setANLAINVNR(parseInput(dto.getExtravarchar8()));
+				siFAMEntity.setANLZKOSTL(parseInput(dto.getExtravarchar5()));
+				siFAMEntity.setANLZKOSTL1(parseInput(dto.getExtravarchar7()));
+				System.out.println(siFAMEntity.toString());
+				siFAMList.add(siFAMEntity);
+
+				DTFAMDRES siFAMreturn = port.siFAMDOutEAM2SAPSYN(siFAM);
+
+				List<DTFAMDRES.FAMDRES> siFAMresultList = siFAMreturn.getFAMDRES();
+				
+				if(siFAMresultList==null) {
+					logger.info("BeiqiDataOutThread.noResultReturn");
+					return;
+				}
+				
+				for (DTFAMDRES.FAMDRES siFAMresultEntity : siFAMresultList) {
+					
+					System.out.println(siFAMresultEntity.toString());
+					BeiqiTransferEntity en = new BeiqiTransferEntity();
+
+					en.setMokey(siFAMresultEntity.getANLANO());
+					en.setAssetkey(siFAMresultEntity.getANLAANLN1());
+
+					if (siFAMresultEntity.getANLANO() == null) {
+						logger.info("BeiqiDataOutThread.noUselessDate ");
+					} else {
+						beiqiTransferData.updateBeiqiTransferData(en);// update
+						logger.info("BeiqiDataOutThread.updateCommonrecodeexSucced ");
+					}
+				}
+			}
+		} catch (Exception e) {
+			logger.error("WeatherDataOutThread.InsertCommonrecodeex: " + e);
+		}
+	}
+	
+	private String parseInput(String input) {
+		return input==null?"?":input;
+	}
+
+}

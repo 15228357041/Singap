@@ -1,0 +1,4567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.MaintenanceobjectMapper">
+	<resultMap id="BaseResultMap" type="MaintenanceobjectEntity">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="mokey" property="mokey" jdbcType="VARCHAR" />
+		<result column="moname" property="moname" jdbcType="VARCHAR" />
+		<result column="rootmoid" property="rootmoid" jdbcType="VARCHAR" />
+		<result column="posid" property="posid" jdbcType="INTEGER" />
+		<result column="tiid" property="tiid" jdbcType="VARCHAR" />
+		<result column="supplierid" property="supplierid" jdbcType="VARCHAR" />
+		<result column="mocodeid" property="mocodeid" jdbcType="VARCHAR" />
+		<result column="mogroupid" property="mogroupid" jdbcType="VARCHAR" />
+		<result column="extramoinfo1" property="extramoinfo1" jdbcType="VARCHAR" />
+		<result column="spid" property="spid" jdbcType="VARCHAR" />
+		<result column="stockid" property="stockid" jdbcType="VARCHAR" />
+		<result column="accountid" property="accountid" jdbcType="VARCHAR" />
+		<result column="costtypeid" property="costtypeid" jdbcType="VARCHAR" />
+		<result column="holidayid" property="holidayid" jdbcType="VARCHAR" />
+		<result column="shiftcalendarid" property="shiftcalendarid"
+			jdbcType="VARCHAR" />
+		<result column="okforuse" property="okforuse" jdbcType="TINYINT" />
+		<result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+		<result column="serial" property="serial" jdbcType="VARCHAR" />
+		<result column="year" property="year" jdbcType="VARCHAR" />
+		<result column="deliverydate" property="deliverydate" jdbcType="DATE" />
+		<result column="guarantytime" property="guarantytime" jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+		<result column="totalinvestment" property="totalinvestment"
+			jdbcType="DECIMAL" />
+		<result column="spflag" property="spflag" jdbcType="TINYINT" />
+		<result column="mosubflag" property="mosubflag" jdbcType="TINYINT" />
+		<result column="woflag" property="woflag" jdbcType="TINYINT" />
+		<result column="pointflag" property="pointflag" jdbcType="TINYINT" />
+		<result column="histflag" property="histflag" jdbcType="TINYINT" />
+		<result column="drawingflag" property="drawingflag" jdbcType="TINYINT" />
+		<result column="fixedassetflag" property="fixedassetflag"
+			jdbcType="TINYINT" />
+		<result column="tdmflag" property="tdmflag" jdbcType="TINYINT" />
+		<result column="sumstoptime" property="sumstoptime" jdbcType="DECIMAL" />
+		<result column="sumwaittime" property="sumwaittime" jdbcType="DECIMAL" />
+		<result column="sumspartime" property="sumspartime" jdbcType="DECIMAL" />
+		<result column="sumworktime" property="sumworktime" jdbcType="DECIMAL" />
+		<result column="sumstops" property="sumstops" jdbcType="INTEGER" />
+		<result column="sumworkcost" property="sumworkcost" jdbcType="DECIMAL" />
+		<result column="sumsparcost" property="sumsparcost" jdbcType="DECIMAL" />
+		<result column="sumcosts" property="sumcosts" jdbcType="DECIMAL" />
+		<result column="costprice" property="costprice" jdbcType="DECIMAL" />
+		<result column="sumpreventivejobs" property="sumpreventivejobs" jdbcType="INTEGER" />
+		<result column="sumunpljobs" property="sumunpljobs" jdbcType="INTEGER" />
+		<result column="sumcorrjobs" property="sumcorrjobs" jdbcType="INTEGER" />
+		<result column="calibrationflag" property="calibrationflag" jdbcType="TINYINT" />
+		<result column="calibrationstatus" property="calibrationstatus" jdbcType="VARCHAR" />
+		<result column="calibrationexternal" property="calibrationexternal" jdbcType="TINYINT" />
+		<result column="calibrationokrequired" property="calibrationokrequired" jdbcType="TINYINT" />
+		<result column="calirespworksupplierid" property="calirespworksupplierid"
+			jdbcType="VARCHAR" />
+		<result column="calibrationusefornorm" property="calibrationusefornorm"
+			jdbcType="TINYINT" />
+		<result column="calibrationnormvalue" property="calibrationnormvalue"
+			jdbcType="DECIMAL" />
+		<result column="calibrationnormformat" property="calibrationnormformat"
+			jdbcType="VARCHAR" />
+		<result column="calibrationnormunit" property="calibrationnormunit"
+			jdbcType="VARCHAR" />
+		<result column="calibrationnormexpiredate" property="calibrationnormexpiredate"
+			jdbcType="DATE" />
+		<result column="instrumentid" property="instrumentid" jdbcType="VARCHAR" />
+		<result column="calilastdate" property="calilastdate" jdbcType="DATE" />
+		<result column="calisumcost" property="calisumcost" jdbcType="DECIMAL" />
+		<result column="caliworknoteid" property="caliworknoteid"
+			jdbcType="VARCHAR" />
+		<result column="calijobcodeid" property="calijobcodeid"
+			jdbcType="VARCHAR" />
+		<result column="caliinstrumentid" property="caliinstrumentid"
+			jdbcType="VARCHAR" />
+		<result column="caliinstrumentmoid" property="caliinstrumentmoid"
+			jdbcType="VARCHAR" />
+		<result column="caliintervaltime" property="caliintervaltime"
+			jdbcType="INTEGER" />
+		<result column="caliintervaltimeunit" property="caliintervaltimeunit"
+			jdbcType="VARCHAR" />
+		<result column="caliintervaltimenext" property="caliintervaltimenext"
+			jdbcType="DATE" />
+		<result column="calicounterid" property="calicounterid"
+			jdbcType="VARCHAR" />
+		<result column="caliintervalcount" property="caliintervalcount"
+			jdbcType="DECIMAL" />
+		<result column="caliintervalcountnext" property="caliintervalcountnext"
+			jdbcType="DECIMAL" />
+		<result column="caliplantime" property="caliplantime" jdbcType="DECIMAL" />
+		<result column="caliplancost" property="caliplancost" jdbcType="DECIMAL" />
+		<result column="califreetext" property="califreetext" jdbcType="VARCHAR" />
+		<result column="contlastdate" property="contlastdate" jdbcType="DATE" />
+		<result column="contsumcost" property="contsumcost" jdbcType="DECIMAL" />
+		<result column="contworknoteid" property="contworknoteid"
+			jdbcType="VARCHAR" />
+		<result column="contjobcodeid" property="contjobcodeid"
+			jdbcType="VARCHAR" />
+		<result column="continstrumentid" property="continstrumentid"
+			jdbcType="VARCHAR" />
+		<result column="continstrumentmoid" property="continstrumentmoid"
+			jdbcType="VARCHAR" />
+		<result column="contintervaltime" property="contintervaltime"
+			jdbcType="INTEGER" />
+		<result column="contintervaltimeunit" property="contintervaltimeunit"
+			jdbcType="VARCHAR" />
+		<result column="contintervaltimenext" property="contintervaltimenext"
+			jdbcType="DATE" />
+		<result column="contcounterid" property="contcounterid"
+			jdbcType="VARCHAR" />
+		<result column="contintervalcount" property="contintervalcount"
+			jdbcType="DECIMAL" />
+		<result column="contintervalcountnext" property="contintervalcountnext"
+			jdbcType="DECIMAL" />
+		<result column="contplantime" property="contplantime" jdbcType="DECIMAL" />
+		<result column="contplancost" property="contplancost" jdbcType="DECIMAL" />
+		<result column="contfreetext" property="contfreetext" jdbcType="VARCHAR" />
+		<result column="mobarcode" property="mobarcode" jdbcType="BIGINT" />
+		<result column="priorityid" property="priorityid" jdbcType="INTEGER" />
+		<result column="guarantyexpiredate" property="guarantyexpiredate"
+			jdbcType="DATE" />
+		<result column="lastchangedate" property="lastchangedate"
+			jdbcType="DATE" />
+		<result column="lastchangetime" property="lastchangetime"
+			jdbcType="INTEGER" />
+		<result column="lastexportdate" property="lastexportdate"
+			jdbcType="DATE" />
+		<result column="lastexporttime" property="lastexporttime"
+			jdbcType="INTEGER" />
+		<result column="lastimportdate" property="lastimportdate"
+			jdbcType="DATE" />
+		<result column="lastimporttime" property="lastimporttime"
+			jdbcType="INTEGER" />
+		<result column="yearlyoperationalhours" property="yearlyoperationalhours"
+			jdbcType="DECIMAL" />
+		<result column="techrespuuserid" property="techrespuuserid"
+			jdbcType="VARCHAR" />
+		<result column="siteid" property="siteid" jdbcType="VARCHAR" />
+		<result column="recordactive" property="recordactive" jdbcType="TINYINT" />
+		<result column="custombarcode" property="custombarcode"
+			jdbcType="VARCHAR" />
+		<result column="wopassive" property="wopassive" jdbcType="TINYINT" />
+		<result column="worksupplierid" property="worksupplierid"
+			jdbcType="VARCHAR" />
+		<result column="extramoinfo2" property="extramoinfo2" jdbcType="VARCHAR" />
+		<result column="extramoinfo3" property="extramoinfo3" jdbcType="VARCHAR" />
+		<result column="objectstatusid" property="objectstatusid"
+			jdbcType="VARCHAR" />
+		<result column="budget" property="budget" jdbcType="DECIMAL" />
+		<result column="usedcost" property="usedcost" jdbcType="DECIMAL" />
+		<result column="resetcost" property="resetcost" jdbcType="TINYINT" />
+		<result column="icon" property="icon" jdbcType="INTEGER" />
+		<result column="extramoinfo4" property="extramoinfo4" jdbcType="VARCHAR" />
+		<result column="extramoinfo5" property="extramoinfo5" jdbcType="VARCHAR" />
+		<result column="uuserid" property="uuserid" jdbcType="VARCHAR" />
+		<result column="customerid" property="customerid" jdbcType="VARCHAR" />
+		<result column="mostatus" property="mostatus" jdbcType="VARCHAR" />
+		<result column="sumcbmjobs" property="sumcbmjobs" jdbcType="INTEGER" />
+		<result column="suminspjobs" property="suminspjobs" jdbcType="INTEGER" />
+		<result column="sumothjobs" property="sumothjobs" jdbcType="INTEGER" />
+		<result column="manufacturerid" property="manufacturerid"
+			jdbcType="INTEGER" />
+		<result column="counterid" property="counterid" jdbcType="VARCHAR" />
+		<result column="calstatusid" property="calstatusid" jdbcType="VARCHAR" />
+		<result column="calstatuschangedate" property="calstatuschangedate"
+			jdbcType="DATE" />
+		<result column="calstatuschangetime" property="calstatuschangetime"
+			jdbcType="INTEGER" />
+		<result column="caliskiptimes" property="caliskiptimes"
+			jdbcType="INTEGER" />
+		<result column="contskiptimes" property="contskiptimes"
+			jdbcType="INTEGER" />
+		<result column="hourlyproduction" property="hourlyproduction"
+			jdbcType="DECIMAL" />
+		<result column="extramoinfo6" property="extramoinfo6" jdbcType="VARCHAR" />
+		<result column="extramoinfo7" property="extramoinfo7" jdbcType="VARCHAR" />
+		<result column="extramoinfo8" property="extramoinfo8" jdbcType="VARCHAR" />
+		<result column="extramoinfo9" property="extramoinfo9" jdbcType="VARCHAR" />
+		<result column="extramoinfo10" property="extramoinfo10"
+			jdbcType="VARCHAR" />
+		<result column="prodworksupplierid" property="prodworksupplierid"
+			jdbcType="VARCHAR" />
+		<result column="maintworksupplierid" property="maintworksupplierid"
+			jdbcType="VARCHAR" />
+		<result column="planworksupplierid" property="planworksupplierid"
+			jdbcType="VARCHAR" />
+		<result column="apprworksupplierid" property="apprworksupplierid"
+			jdbcType="VARCHAR" />
+		<result column="rfid" property="rfid" jdbcType="VARCHAR" />
+		<result column="fdalogging" property="fdalogging" jdbcType="TINYINT" />
+		<result column="locationposid" property="locationposid"
+			jdbcType="VARCHAR" />
+		<result column="costcarrierid" property="costcarrierid"
+			jdbcType="VARCHAR" />
+		<result column="debitcosttypeid" property="debitcosttypeid"
+			jdbcType="VARCHAR" />
+		<result column="calistarttime" property="calistarttime"
+			jdbcType="INTEGER" />
+		<result column="calienddate" property="calienddate" jdbcType="DATE" />
+		<result column="caliendtime" property="caliendtime" jdbcType="INTEGER" />
+		<result column="caliinprogress" property="caliinprogress"
+			jdbcType="TINYINT" />
+		<result column="contstarttime" property="contstarttime"
+			jdbcType="INTEGER" />
+		<result column="contenddate" property="contenddate" jdbcType="DATE" />
+		<result column="contendtime" property="contendtime" jdbcType="INTEGER" />
+		<result column="continprogress" property="continprogress"
+			jdbcType="TINYINT" />
+		<result column="mo1approvedbyuuserid" property="mo1approvedbyuuserid"
+			jdbcType="VARCHAR" />
+		<result column="mo1approveddate" property="mo1approveddate"
+			jdbcType="DATE" />
+		<result column="mo1approvedtime" property="mo1approvedtime"
+			jdbcType="INTEGER" />
+		<result column="mo1approvedstatus" property="mo1approvedstatus"
+			jdbcType="VARCHAR" />
+		<result column="mo2approvedbyuuserid" property="mo2approvedbyuuserid"
+			jdbcType="VARCHAR" />
+		<result column="mo2approveddate" property="mo2approveddate"
+			jdbcType="DATE" />
+		<result column="mo2approvedtime" property="mo2approvedtime"
+			jdbcType="INTEGER" />
+		<result column="mo2approvedstatus" property="mo2approvedstatus"
+			jdbcType="VARCHAR" />
+		<result column="mo3approvedbyuuserid" property="mo3approvedbyuuserid"
+			jdbcType="VARCHAR" />
+		<result column="mo3approveddate" property="mo3approveddate"
+			jdbcType="DATE" />
+		<result column="mo3approvedtime" property="mo3approvedtime"
+			jdbcType="INTEGER" />
+		<result column="mo3approvedstatus" property="mo3approvedstatus"
+			jdbcType="VARCHAR" />
+		<result column="calipassive" property="calipassive" jdbcType="TINYINT" />
+		<result column="contpassive" property="contpassive" jdbcType="TINYINT" />
+		<result column="stocklocationid" property="stocklocationid"
+			jdbcType="VARCHAR" />
+		<result column="shiftrespareaid" property="shiftrespareaid"
+			jdbcType="VARCHAR" />
+		<result column="mocounterid" property="mocounterid" jdbcType="VARCHAR" />
+		<result column="mocounterunit" property="mocounterunit"
+			jdbcType="VARCHAR" />
+		<result column="mototalreading" property="mototalreading"
+			jdbcType="DECIMAL" />
+		<result column="molastreadingdate" property="molastreadingdate"
+			jdbcType="DATE" />
+		<result column="molastreadingtime" property="molastreadingtime"
+			jdbcType="INTEGER" />
+		<result column="plantid" property="plantid" jdbcType="VARCHAR" />
+		<result column="legalunitid" property="legalunitid" jdbcType="VARCHAR" />
+		<result column="legalunitcurrencyid" property="legalunitcurrencyid"
+			jdbcType="VARCHAR" />
+		<result column="caliinprogresscalregid" property="caliinprogresscalregid"
+			jdbcType="VARCHAR" />
+		<result column="caliinprogressdate" property="caliinprogressdate"
+			jdbcType="DATE" />
+		<result column="caliinprogresstime" property="caliinprogresstime"
+			jdbcType="INTEGER" />
+		<result column="continprogresscalregid" property="continprogresscalregid"
+			jdbcType="VARCHAR" />
+		<result column="continprogressdate" property="continprogressdate"
+			jdbcType="DATE" />
+		<result column="continprogresstime" property="continprogresstime"
+			jdbcType="INTEGER" />
+		<result column="mo1approveddtz" property="mo1approveddtz"
+			jdbcType="TIMESTAMP" />
+		<result column="mo2approveddtz" property="mo2approveddtz"
+			jdbcType="TIMESTAMP" />
+		<result column="mo3approveddtz" property="mo3approveddtz"
+			jdbcType="TIMESTAMP" />
+		<result column="lastchangedtz" property="lastchangedtz"
+			jdbcType="TIMESTAMP" />
+		<result column="lastexportdtz" property="lastexportdtz"
+			jdbcType="TIMESTAMP" />
+		<result column="lastimportdtz" property="lastimportdtz"
+			jdbcType="TIMESTAMP" />
+		<result column="calstatuschangedtz" property="calstatuschangedtz"
+			jdbcType="TIMESTAMP" />
+		<result column="caliinprogressdtz" property="caliinprogressdtz"
+			jdbcType="TIMESTAMP" />
+		<result column="calilastdtz" property="calilastdtz" jdbcType="TIMESTAMP" />
+		<result column="calibrationnormexpiredtz" property="calibrationnormexpiredtz"
+			jdbcType="TIMESTAMP" />
+		<result column="continprogressdtz" property="continprogressdtz"
+			jdbcType="TIMESTAMP" />
+		<result column="contlastdtz" property="contlastdtz" jdbcType="TIMESTAMP" />
+		<result column="molastreadingdtz" property="molastreadingdtz"
+			jdbcType="TIMESTAMP" />
+		<result column="recordlanguageid" property="recordlanguageid"
+			jdbcType="VARCHAR" />
+		<result column="specinfo" property="specinfo" jdbcType="VARCHAR" />
+		<result column="mainthumanid" property="mainthumanid" jdbcType="INTEGER" />
+		<result column="prodhumanid" property="prodhumanid" jdbcType="INTEGER" />
+		<result column="inspectionhumanid" property="inspectionhumanid"
+			jdbcType="INTEGER" />
+		<result column="fixedassetskey" property="fixedassetskey"
+			jdbcType="VARCHAR" />
+		<result column="ismainmo" property="ismainmo" jdbcType="INTEGER" />
+		<result column="isrepairmo" property="isrepairmo" jdbcType="INTEGER" />
+		<result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+		<result column="createuserid" property="createuserid" jdbcType="INTEGER" />
+		<result column="modificationdate" property="modificationdate"
+			jdbcType="TIMESTAMP" />
+		<result column="modificationuserid" property="modificationuserid"
+			jdbcType="INTEGER" />
+		<result column="picpath" property="picpath" jdbcType="VARCHAR" />
+		<result column="barcode" property="barcode" jdbcType="VARCHAR" />
+		<result column="memo" property="memo" jdbcType="VARCHAR" />
+		<result column="orgid" property="orgid" jdbcType="INTEGER" />
+		<result column="tombstone" property="tombstone" jdbcType="INTEGER" />
+		<result column="stationsid" property="stationsid" jdbcType="INTEGER" />
+		<result column="maintenanceobjectmodelid" property="maintenanceobjectmodelid"
+			jdbcType="INTEGER" />
+		<result column="picpath1" property="picpath1" jdbcType="VARCHAR" />
+		<result column="picpath2" property="picpath2" jdbcType="VARCHAR" />
+		<result column="productiondate" property="productiondate"
+			jdbcType="TIMESTAMP" />
+		<result column="putintooperationdate" property="putintooperationdate"
+			jdbcType="TIMESTAMP" />
+		<result column="qualityguaranteedate" property="qualityguaranteedate"
+			jdbcType="TIMESTAMP" />
+		<result column="mainposid" property="mainposid" jdbcType="INTEGER" />
+		<result column="extraid1" property="extraid1" jdbcType="INTEGER" />
+		<result column="extraid2" property="extraid2" jdbcType="INTEGER" />
+		<result column="extraid3" property="extraid3" jdbcType="INTEGER" />
+		<result column="extraid4" property="extraid4" jdbcType="INTEGER" />
+		<result column="extraid5" property="extraid5" jdbcType="INTEGER" />
+		<result column="extravarchar1" property="extravarchar1"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar2" property="extravarchar2"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar3" property="extravarchar3"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar4" property="extravarchar4"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar5" property="extravarchar5"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar6" property="extravarchar6"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar7" property="extravarchar7"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar8" property="extravarchar8"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar9" property="extravarchar9"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar10" property="extravarchar10"
+			jdbcType="VARCHAR" />
+		<result column="extradecimal1" property="extradecimal1"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal2" property="extradecimal2"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal3" property="extradecimal3"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal4" property="extradecimal4"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal5" property="extradecimal5"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal6" property="extradecimal6"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal7" property="extradecimal7"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal8" property="extradecimal8"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal9" property="extradecimal9"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal10" property="extradecimal10"
+			jdbcType="DECIMAL" />
+		<result column="extraint1" property="extraint1" jdbcType="INTEGER" />
+		<result column="extraint2" property="extraint2" jdbcType="INTEGER" />
+		<result column="extraint3" property="extraint3" jdbcType="INTEGER" />
+		<result column="extraint4" property="extraint4" jdbcType="INTEGER" />
+		<result column="extraint5" property="extraint5" jdbcType="INTEGER" />
+		<result column="extradatetime1" property="extradatetime1"
+			jdbcType="TIMESTAMP" />
+		<result column="extradatetime2" property="extradatetime2"
+			jdbcType="TIMESTAMP" />
+		<result column="extradatetime3" property="extradatetime3"
+			jdbcType="TIMESTAMP" />
+		<result column="extradatetime4" property="extradatetime4"
+			jdbcType="TIMESTAMP" />
+		<result column="extradatetime5" property="extradatetime5"
+			jdbcType="TIMESTAMP" />
+		<result column="extravarchar11" property="extravarchar11"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar12" property="extravarchar12"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar13" property="extravarchar13"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar14" property="extravarchar14"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar15" property="extravarchar15"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar16" property="extravarchar16"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar17" property="extravarchar17"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar18" property="extravarchar18"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar19" property="extravarchar19"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar20" property="extravarchar20"
+			jdbcType="VARCHAR" />
+		<result column="posname" property="posname" jdbcType="VARCHAR" />
+		<result column="statusid" property="statusid" jdbcType="INTEGER" />
+		<result column="typeid" property="typeid" jdbcType="INTEGER" />
+		<result column="assetgroupkey" property="assetgroupkey"
+			jdbcType="VARCHAR" />
+		<result column="assetkey" property="assetkey" jdbcType="VARCHAR" />
+		<result column="purchaseprice" property="purchaseprice"
+			jdbcType="DECIMAL" />
+		<result column="contractno" property="contractno" jdbcType="VARCHAR" />
+		<result column="originalvalue" property="originalvalue"
+			jdbcType="DECIMAL" />
+		<result column="netvalue" property="netvalue" jdbcType="DECIMAL" />
+		<result column="forproduct" property="forproduct" jdbcType="VARCHAR" />
+		<result column="projectkey" property="projectkey" jdbcType="VARCHAR" />
+		<result column="purchasedate" property="purchasedate" jdbcType="TIMESTAMP" />
+		<result column="costcenterid" property="costcenterid" jdbcType="INTEGER" />
+		<result column="rootpath" property="rootpath" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="table_name">
+		maintenanceobject
+	</sql>
+
+	<sql id="table_id">
+		id
+	</sql>
+
+	<!-- table columns -->
+	<sql id="database_table_columns">
+		id, mokey, moname, rootmoid, posid, tiid, supplierid, mocodeid, mogroupid, extramoinfo1, 
+    	spid, stockid, accountid, costtypeid, holidayid, shiftcalendarid, okforuse, manufacturer, 
+    	serial, year, deliverydate, guarantytime, price, totalinvestment, spflag, mosubflag, 
+   		woflag, pointflag, histflag, drawingflag, fixedassetflag, tdmflag, sumstoptime, sumwaittime, 
+    	sumspartime, sumworktime, sumstops, sumworkcost, sumsparcost, sumcosts, costprice, 
+    	sumpreventivejobs, sumunpljobs, sumcorrjobs, calibrationflag, calibrationstatus, 
+    	calibrationexternal, calibrationokrequired, calirespworksupplierid, calibrationusefornorm, 
+    	calibrationnormvalue, calibrationnormformat, calibrationnormunit, calibrationnormexpiredate, 
+    	instrumentid, calilastdate, calisumcost, caliworknoteid, calijobcodeid, caliinstrumentid, 
+    	caliinstrumentmoid, caliintervaltime, caliintervaltimeunit, caliintervaltimenext, 
+    	calicounterid, caliintervalcount, caliintervalcountnext, caliplantime, caliplancost, 
+    	califreetext, contlastdate, contsumcost, contworknoteid, contjobcodeid, continstrumentid, 
+    	continstrumentmoid, contintervaltime, contintervaltimeunit, contintervaltimenext, 
+    	contcounterid, contintervalcount, contintervalcountnext, contplantime, contplancost, 
+    	contfreetext, mobarcode, priorityid, guarantyexpiredate, lastchangedate, lastchangetime, 
+    	lastexportdate, lastexporttime, lastimportdate, lastimporttime, yearlyoperationalhours, 
+    	techrespuuserid, siteid, recordactive, custombarcode, wopassive, worksupplierid, 
+    	extramoinfo2, extramoinfo3, objectstatusid, budget, usedcost, resetcost, icon, extramoinfo4, 
+    	extramoinfo5, uuserid, customerid, mostatus, sumcbmjobs, suminspjobs, sumothjobs, 
+    	manufacturerid, counterid, calstatusid, calstatuschangedate, calstatuschangetime, 
+    	caliskiptimes, contskiptimes, hourlyproduction, extramoinfo6, extramoinfo7, extramoinfo8, 
+    	extramoinfo9, extramoinfo10, prodworksupplierid, maintworksupplierid, planworksupplierid, 
+    	apprworksupplierid, rfid, fdalogging, locationposid, costcarrierid, debitcosttypeid, 
+    	calistarttime, calienddate, caliendtime, caliinprogress, contstarttime, contenddate, 
+    	contendtime, continprogress, mo1approvedbyuuserid, mo1approveddate, mo1approvedtime, 
+    	mo1approvedstatus, mo2approvedbyuuserid, mo2approveddate, mo2approvedtime, mo2approvedstatus, 
+    	mo3approvedbyuuserid, mo3approveddate, mo3approvedtime, mo3approvedstatus, calipassive, 
+    	contpassive, stocklocationid, shiftrespareaid, mocounterid, mocounterunit, mototalreading, 
+    	molastreadingdate, molastreadingtime, plantid, legalunitid, legalunitcurrencyid, 
+    	caliinprogresscalregid, caliinprogressdate, caliinprogresstime, continprogresscalregid, 
+    	continprogressdate, continprogresstime, mo1approveddtz, mo2approveddtz, mo3approveddtz, 
+    	lastchangedtz, lastexportdtz, lastimportdtz, calstatuschangedtz, caliinprogressdtz, 
+    	calilastdtz, calibrationnormexpiredtz, continprogressdtz, contlastdtz, molastreadingdtz, 
+    	recordlanguageid, specinfo, mainthumanid, prodhumanid, inspectionhumanid, fixedassetskey, 
+    	ismainmo, isrepairmo, createdate, createuserid, modificationdate, modificationuserid, 
+    	picpath, barcode, memo, orgid, tombstone, stationsid, maintenanceobjectmodelid, picpath1, 
+    	picpath2, productiondate, putintooperationdate, qualityguaranteedate, mainposid, 
+    	extraid1, extraid2, extraid3, extraid4, extraid5, extravarchar1, extravarchar2, extravarchar3, 
+    	extravarchar4, extravarchar5, extravarchar6, extravarchar7, extravarchar8, extravarchar9, 
+    	extravarchar10, extradecimal1, extradecimal2, extradecimal3, extradecimal4, extradecimal5, 
+    	extradecimal6, extradecimal7, extradecimal8, extradecimal9, extradecimal10, extraint1, 
+    	extraint2, extraint3, extraint4, extraint5, extradatetime1, extradatetime2, extradatetime3, 
+    	extradatetime4, extradatetime5, extravarchar11, extravarchar12, extravarchar13, extravarchar14, 
+    	extravarchar15, extravarchar16, extravarchar17, extravarchar18, extravarchar19, extravarchar20, 
+    	posname, statusid, typeid, assetgroupkey, assetkey, purchaseprice, contractno, originalvalue, 
+    	netvalue, forproduct, projectkey, purchasedate, costcenterid, rootpath
+	</sql>
+
+	<!-- dynamic full match -->
+	<sql id="dynamic_full_match_condition">
+		WHERE 1=1 
+			<if test="id != null">
+				AND
+				<include refid="table_name" />
+				.id = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="mokey != null">
+				AND
+				<include refid="table_name" />
+				.mokey = #{mokey,jdbcType=VARCHAR}
+			</if>
+			<if test="moname != null">
+				AND
+				<include refid="table_name" />
+				.moname = #{moname,jdbcType=VARCHAR}
+			</if>
+			<if test="rootmoid != null">
+				AND
+				<include refid="table_name" />
+				.rootmoid = #{rootmoid,jdbcType=VARCHAR}
+			</if>
+			<if test="posid != null">
+				AND
+				<include refid="table_name" />
+				.posid = #{posid,jdbcType=INTEGER}
+			</if>
+			<if test="tiid != null">
+				AND
+				<include refid="table_name" />
+				.tiid = #{tiid,jdbcType=VARCHAR}
+			</if>
+			<if test="supplierid != null">
+				AND
+				<include refid="table_name" />
+				.supplierid = #{supplierid,jdbcType=VARCHAR}
+			</if>
+			<if test="mocodeid != null">
+				AND
+				<include refid="table_name" />
+				.mocodeid = #{mocodeid,jdbcType=VARCHAR}
+			</if>
+			<if test="mogroupid != null">
+				AND
+				<include refid="table_name" />
+				.mogroupid = #{mogroupid,jdbcType=VARCHAR}
+			</if>
+			<if test="extramoinfo1 != null">
+				AND
+				<include refid="table_name" />
+				.extramoinfo1 = #{extramoinfo1,jdbcType=VARCHAR}
+			</if>
+			<if test="spid != null">
+				AND
+				<include refid="table_name" />
+				.spid = #{spid,jdbcType=VARCHAR}
+			</if>
+			<if test="stockid != null">
+				AND
+				<include refid="table_name" />
+				.stockid = #{stockid,jdbcType=VARCHAR}
+			</if>
+			<if test="accountid != null">
+				AND
+				<include refid="table_name" />
+				.accountid = #{accountid,jdbcType=VARCHAR}
+			</if>
+			<if test="costtypeid != null">
+				AND
+				<include refid="table_name" />
+				.costtypeid = #{costtypeid,jdbcType=VARCHAR}
+			</if>
+			<if test="holidayid != null">
+				AND
+				<include refid="table_name" />
+				.holidayid = #{holidayid,jdbcType=VARCHAR}
+			</if>
+			<if test="shiftcalendarid != null">
+				AND
+				<include refid="table_name" />
+				.shiftcalendarid = #{shiftcalendarid,jdbcType=VARCHAR}
+			</if>
+			<if test="okforuse != null">
+				AND
+				<include refid="table_name" />
+				.okforuse = #{okforuse,jdbcType=TINYINT}
+			</if>
+			<if test="manufacturer != null">
+				AND
+				<include refid="table_name" />
+				.manufacturer = #{manufacturer,jdbcType=VARCHAR}
+			</if>
+			<if test="serial != null">
+				AND
+				<include refid="table_name" />
+				.serial = #{serial,jdbcType=VARCHAR}
+			</if>
+			<if test="year != null">
+				AND
+				<include refid="table_name" />
+				.`year` = #{year,jdbcType=VARCHAR}
+			</if>
+			<if test="deliverydate != null">
+				AND
+				<include refid="table_name" />
+				.deliverydate = #{deliverydate,jdbcType=DATE}
+			</if>
+			<if test="guarantytime != null">
+				AND
+				<include refid="table_name" />
+				.guarantytime = #{guarantytime,jdbcType=VARCHAR}
+			</if>
+			<if test="price != null">
+				AND
+				<include refid="table_name" />
+				.price = #{price,jdbcType=DECIMAL}
+			</if>
+			<if test="totalinvestment != null">
+				AND
+				<include refid="table_name" />
+				.totalinvestment = #{totalinvestment,jdbcType=DECIMAL}
+			</if>
+			<if test="spflag != null">
+				AND
+				<include refid="table_name" />
+				.spflag = #{spflag,jdbcType=TINYINT}
+			</if>
+			<if test="mosubflag != null">
+				AND
+				<include refid="table_name" />
+				.mosubflag = #{mosubflag,jdbcType=TINYINT}
+			</if>
+			<if test="woflag != null">
+				AND
+				<include refid="table_name" />
+				.woflag = #{woflag,jdbcType=TINYINT}
+			</if>
+			<if test="pointflag != null">
+				AND
+				<include refid="table_name" />
+				.pointflag = #{pointflag,jdbcType=TINYINT}
+			</if>
+			<if test="histflag != null">
+				AND
+				<include refid="table_name" />
+				.histflag = #{histflag,jdbcType=TINYINT}
+			</if>
+			<if test="drawingflag != null">
+				AND
+				<include refid="table_name" />
+				.drawingflag = #{drawingflag,jdbcType=TINYINT}
+			</if>
+			<if test="fixedassetflag != null">
+				AND
+				<include refid="table_name" />
+				.fixedassetflag = #{fixedassetflag,jdbcType=TINYINT}
+			</if>
+			<if test="tdmflag != null">
+				AND
+				<include refid="table_name" />
+				.tdmflag = #{tdmflag,jdbcType=TINYINT}
+			</if>
+			<if test="sumstoptime != null">
+				AND
+				<include refid="table_name" />
+				.sumstoptime = #{sumstoptime,jdbcType=DECIMAL}
+			</if>
+			<if test="sumwaittime != null">
+				AND
+				<include refid="table_name" />
+				.sumwaittime = #{sumwaittime,jdbcType=DECIMAL}
+			</if>
+			<if test="sumspartime != null">
+				AND
+				<include refid="table_name" />
+				.sumspartime = #{sumspartime,jdbcType=DECIMAL}
+			</if>
+			<if test="sumworktime != null">
+				AND
+				<include refid="table_name" />
+				.sumworktime = #{sumworktime,jdbcType=DECIMAL}
+			</if>
+			<if test="sumstops != null">
+				AND
+				<include refid="table_name" />
+				.sumstops = #{sumstops,jdbcType=INTEGER}
+			</if>
+			<if test="sumworkcost != null">
+				AND
+				<include refid="table_name" />
+				.sumworkcost = #{sumworkcost,jdbcType=DECIMAL}
+			</if>
+			<if test="sumsparcost != null">
+				AND
+				<include refid="table_name" />
+				.sumsparcost = #{sumsparcost,jdbcType=DECIMAL}
+			</if>
+			<if test="sumcosts != null">
+				AND
+				<include refid="table_name" />
+				.sumcosts = #{sumcosts,jdbcType=DECIMAL}
+			</if>
+			<if test="costprice != null">
+				AND
+				<include refid="table_name" />
+				.costprice = #{costprice,jdbcType=DECIMAL}
+			</if>
+			<if test="sumpreventivejobs != null">
+				AND
+				<include refid="table_name" />
+				.sumpreventivejobs = #{sumpreventivejobs,jdbcType=INTEGER}
+			</if>
+			<if test="sumunpljobs != null">
+				AND
+				<include refid="table_name" />
+				.sumunpljobs = #{sumunpljobs,jdbcType=INTEGER}
+			</if>
+			<if test="sumcorrjobs != null">
+				AND
+				<include refid="table_name" />
+				.sumcorrjobs = #{sumcorrjobs,jdbcType=INTEGER}
+			</if>
+			<if test="calibrationflag != null">
+				AND
+				<include refid="table_name" />
+				.calibrationflag = #{calibrationflag,jdbcType=TINYINT}
+			</if>
+			<if test="calibrationstatus != null">
+				AND
+				<include refid="table_name" />
+				.calibrationstatus = #{calibrationstatus,jdbcType=VARCHAR}
+			</if>
+			<if test="calibrationexternal != null">
+				AND
+				<include refid="table_name" />
+				.calibrationexternal = #{calibrationexternal,jdbcType=TINYINT}
+			</if>
+			<if test="calibrationokrequired != null">
+				AND
+				<include refid="table_name" />
+				.calibrationokrequired = #{calibrationokrequired,jdbcType=TINYINT}
+			</if>
+			<if test="calirespworksupplierid != null">
+				AND
+				<include refid="table_name" />
+				.calirespworksupplierid =
+				#{calirespworksupplierid,jdbcType=VARCHAR}
+			</if>
+			<if test="calibrationusefornorm != null">
+				AND
+				<include refid="table_name" />
+				.calibrationusefornorm = #{calibrationusefornorm,jdbcType=TINYINT}
+			</if>
+			<if test="calibrationnormvalue != null">
+				AND
+				<include refid="table_name" />
+				.calibrationnormvalue = #{calibrationnormvalue,jdbcType=DECIMAL}
+			</if>
+			<if test="calibrationnormformat != null">
+				AND
+				<include refid="table_name" />
+				.calibrationnormformat = #{calibrationnormformat,jdbcType=VARCHAR}
+			</if>
+			<if test="calibrationnormunit != null">
+				AND
+				<include refid="table_name" />
+				.calibrationnormunit = #{calibrationnormunit,jdbcType=VARCHAR}
+			</if>
+			<if test="calibrationnormexpiredate != null">
+				AND
+				<include refid="table_name" />
+				.calibrationnormexpiredate =
+				#{calibrationnormexpiredate,jdbcType=DATE}
+			</if>
+			<if test="instrumentid != null">
+				AND
+				<include refid="table_name" />
+				.instrumentid = #{instrumentid,jdbcType=VARCHAR}
+			</if>
+			<if test="calilastdate != null">
+				AND
+				<include refid="table_name" />
+				.calilastdate = #{calilastdate,jdbcType=DATE}
+			</if>
+			<if test="calisumcost != null">
+				AND
+				<include refid="table_name" />
+				.calisumcost = #{calisumcost,jdbcType=DECIMAL}
+			</if>
+			<if test="caliworknoteid != null">
+				AND
+				<include refid="table_name" />
+				.caliworknoteid = #{caliworknoteid,jdbcType=VARCHAR}
+			</if>
+			<if test="calijobcodeid != null">
+				AND
+				<include refid="table_name" />
+				.calijobcodeid = #{calijobcodeid,jdbcType=VARCHAR}
+			</if>
+			<if test="caliinstrumentid != null">
+				AND
+				<include refid="table_name" />
+				.caliinstrumentid = #{caliinstrumentid,jdbcType=VARCHAR}
+			</if>
+			<if test="caliinstrumentmoid != null">
+				AND
+				<include refid="table_name" />
+				.caliinstrumentmoid = #{caliinstrumentmoid,jdbcType=VARCHAR}
+			</if>
+			<if test="caliintervaltime != null">
+				AND caliintervaltime =
+				#{caliintervaltime,jdbcType=INTEGER}
+			</if>
+			<if test="caliintervaltimeunit != null">
+				AND
+				<include refid="table_name" />
+				.caliintervaltimeunit = #{caliintervaltimeunit,jdbcType=VARCHAR}
+			</if>
+			<if test="caliintervaltimenext != null">
+				AND
+				<include refid="table_name" />
+				.caliintervaltimenext = #{caliintervaltimenext,jdbcType=DATE}
+			</if>
+			<if test="calicounterid != null">
+				AND
+				<include refid="table_name" />
+				.calicounterid = #{calicounterid,jdbcType=VARCHAR}
+			</if>
+			<if test="caliintervalcount != null">
+				AND
+				<include refid="table_name" />
+				.caliintervalcount = #{caliintervalcount,jdbcType=DECIMAL}
+			</if>
+			<if test="caliintervalcountnext != null">
+				AND
+				<include refid="table_name" />
+				.caliintervalcountnext = #{caliintervalcountnext,jdbcType=DECIMAL}
+			</if>
+			<if test="caliplantime != null">
+				AND
+				<include refid="table_name" />
+				.caliplantime = #{caliplantime,jdbcType=DECIMAL}
+			</if>
+			<if test="caliplancost != null">
+				AND
+				<include refid="table_name" />
+				.caliplancost = #{caliplancost,jdbcType=DECIMAL}
+			</if>
+			<if test="califreetext != null">
+				AND
+				<include refid="table_name" />
+				.califreetext = #{califreetext,jdbcType=VARCHAR}
+			</if>
+			<if test="contlastdate != null">
+				AND
+				<include refid="table_name" />
+				.contlastdate = #{contlastdate,jdbcType=DATE}
+			</if>
+			<if test="contsumcost != null">
+				AND
+				<include refid="table_name" />
+				.contsumcost = #{contsumcost,jdbcType=DECIMAL}
+			</if>
+			<if test="contworknoteid != null">
+				AND
+				<include refid="table_name" />
+				.contworknoteid = #{contworknoteid,jdbcType=VARCHAR}
+			</if>
+			<if test="contjobcodeid != null">
+				AND
+				<include refid="table_name" />
+				.contjobcodeid = #{contjobcodeid,jdbcType=VARCHAR}
+			</if>
+			<if test="continstrumentid != null">
+				AND
+				<include refid="table_name" />
+				.continstrumentid = #{continstrumentid,jdbcType=VARCHAR}
+			</if>
+			<if test="continstrumentmoid != null">
+				AND
+				<include refid="table_name" />
+				.continstrumentmoid = #{continstrumentmoid,jdbcType=VARCHAR}
+			</if>
+			<if test="contintervaltime != null">
+				AND
+				<include refid="table_name" />
+				.contintervaltime = #{contintervaltime,jdbcType=INTEGER}
+			</if>
+			<if test="contintervaltimeunit != null">
+				AND
+				<include refid="table_name" />
+				.contintervaltimeunit = #{contintervaltimeunit,jdbcType=VARCHAR}
+			</if>
+			<if test="contintervaltimenext != null">
+				AND
+				<include refid="table_name" />
+				.contintervaltimenext = #{contintervaltimenext,jdbcType=DATE}
+			</if>
+			<if test="contcounterid != null">
+				AND
+				<include refid="table_name" />
+				.contcounterid = #{contcounterid,jdbcType=VARCHAR}
+			</if>
+			<if test="contintervalcount != null">
+				AND
+				<include refid="table_name" />
+				.contintervalcount = #{contintervalcount,jdbcType=DECIMAL}
+			</if>
+			<if test="contintervalcountnext != null">
+				AND
+				<include refid="table_name" />
+				.contintervalcountnext = #{contintervalcountnext,jdbcType=DECIMAL}
+			</if>
+			<if test="contplantime != null">
+				AND
+				<include refid="table_name" />
+				.contplantime = #{contplantime,jdbcType=DECIMAL}
+			</if>
+			<if test="contplancost != null">
+				AND
+				<include refid="table_name" />
+				.contplancost = #{contplancost,jdbcType=DECIMAL}
+			</if>
+			<if test="contfreetext != null">
+				AND
+				<include refid="table_name" />
+				.contfreetext = #{contfreetext,jdbcType=VARCHAR}
+			</if>
+			<if test="mobarcode != null">
+				AND
+				<include refid="table_name" />
+				.mobarcode = #{mobarcode,jdbcType=BIGINT}
+			</if>
+			<if test="priorityid != null">
+				AND
+				<include refid="table_name" />
+				.priorityid = #{priorityid,jdbcType=INTEGER}
+			</if>
+			<if test="guarantyexpiredate != null">
+				AND
+				<include refid="table_name" />
+				.guarantyexpiredate = #{guarantyexpiredate,jdbcType=DATE}
+			</if>
+			<if test="lastchangedate != null">
+				AND
+				<include refid="table_name" />
+				.lastchangedate = #{lastchangedate,jdbcType=DATE}
+			</if>
+			<if test="lastchangetime != null">
+				AND
+				<include refid="table_name" />
+				.lastchangetime = #{lastchangetime,jdbcType=INTEGER}
+			</if>
+			<if test="lastexportdate != null">
+				AND
+				<include refid="table_name" />
+				.lastexportdate = #{lastexportdate,jdbcType=DATE}
+			</if>
+			<if test="lastexporttime != null">
+				AND
+				<include refid="table_name" />
+				.lastexporttime = #{lastexporttime,jdbcType=INTEGER}
+			</if>
+			<if test="lastimportdate != null">
+				AND
+				<include refid="table_name" />
+				.lastimportdate = #{lastimportdate,jdbcType=DATE}
+			</if>
+			<if test="lastimporttime != null">
+				AND
+				<include refid="table_name" />
+				.lastimporttime = #{lastimporttime,jdbcType=INTEGER}
+			</if>
+			<if test="yearlyoperationalhours != null">
+				AND
+				<include refid="table_name" />
+				.yearlyoperationalhours =
+				#{yearlyoperationalhours,jdbcType=DECIMAL}
+			</if>
+			<if test="techrespuuserid != null">
+				AND
+				<include refid="table_name" />
+				.techrespuuserid = #{techrespuuserid,jdbcType=VARCHAR}
+			</if>
+			<if test="siteid != null">
+				AND
+				<include refid="table_name" />
+				.siteid = #{siteid,jdbcType=VARCHAR}
+			</if>
+			<if test="recordactive != null">
+				AND
+				<include refid="table_name" />
+				.recordactive = #{recordactive,jdbcType=TINYINT}
+			</if>
+			<if test="custombarcode != null">
+				AND
+				<include refid="table_name" />
+				.custombarcode = #{custombarcode,jdbcType=VARCHAR}
+			</if>
+			<if test="wopassive != null">
+				AND
+				<include refid="table_name" />
+				.wopassive = #{wopassive,jdbcType=TINYINT}
+			</if>
+			<if test="worksupplierid != null">
+				AND
+				<include refid="table_name" />
+				.worksupplierid = #{worksupplierid,jdbcType=VARCHAR}
+			</if>
+			<if test="extramoinfo2 != null">
+				AND
+				<include refid="table_name" />
+				.extramoinfo2 = #{extramoinfo2,jdbcType=VARCHAR}
+			</if>
+			<if test="extramoinfo3 != null">
+				AND
+				<include refid="table_name" />
+				.extramoinfo3 = #{extramoinfo3,jdbcType=VARCHAR}
+			</if>
+			<if test="objectstatusid != null">
+				AND
+				<include refid="table_name" />
+				.objectstatusid = #{objectstatusid,jdbcType=VARCHAR}
+			</if>
+			<if test="budget != null">
+				AND
+				<include refid="table_name" />
+				.budget = #{budget,jdbcType=DECIMAL}
+			</if>
+			<if test="usedcost != null">
+				AND
+				<include refid="table_name" />
+				.usedcost = #{usedcost,jdbcType=DECIMAL}
+			</if>
+			<if test="resetcost != null">
+				AND
+				<include refid="table_name" />
+				.resetcost = #{resetcost,jdbcType=TINYINT}
+			</if>
+			<if test="icon != null">
+				AND
+				<include refid="table_name" />
+				.icon = #{icon,jdbcType=INTEGER}
+			</if>
+			<if test="extramoinfo4 != null">
+				AND
+				<include refid="table_name" />
+				.extramoinfo4 = #{extramoinfo4,jdbcType=VARCHAR}
+			</if>
+			<if test="extramoinfo5 != null">
+				AND
+				<include refid="table_name" />
+				.extramoinfo5 = #{extramoinfo5,jdbcType=VARCHAR}
+			</if>
+			<if test="uuserid != null">
+				AND
+				<include refid="table_name" />
+				.uuserid = #{uuserid,jdbcType=VARCHAR}
+			</if>
+			<if test="customerid != null">
+				AND
+				<include refid="table_name" />
+				.customerid = #{customerid,jdbcType=VARCHAR}
+			</if>
+			<if test="mostatus != null">
+				AND
+				<include refid="table_name" />
+				.mostatus = #{mostatus,jdbcType=VARCHAR}
+			</if>
+			<if test="sumcbmjobs != null">
+				AND
+				<include refid="table_name" />
+				.sumcbmjobs = #{sumcbmjobs,jdbcType=INTEGER}
+			</if>
+			<if test="suminspjobs != null">
+				AND
+				<include refid="table_name" />
+				.suminspjobs = #{suminspjobs,jdbcType=INTEGER}
+			</if>
+			<if test="sumothjobs != null">
+				AND
+				<include refid="table_name" />
+				.sumothjobs = #{sumothjobs,jdbcType=INTEGER}
+			</if>
+			<if test="manufacturerid != null">
+				AND
+				<include refid="table_name" />
+				.manufacturerid = #{manufacturerid,jdbcType=INTEGER}
+			</if>
+			<if test="counterid != null">
+				AND
+				<include refid="table_name" />
+				.counterid = #{counterid,jdbcType=VARCHAR}
+			</if>
+			<if test="calstatusid != null">
+				AND
+				<include refid="table_name" />
+				.calstatusid = #{calstatusid,jdbcType=VARCHAR}
+			</if>
+			<if test="calstatuschangedate != null">
+				AND
+				<include refid="table_name" />
+				.calstatuschangedate = #{calstatuschangedate,jdbcType=DATE}
+			</if>
+			<if test="calstatuschangetime != null">
+				AND
+				<include refid="table_name" />
+				.calstatuschangetime = #{calstatuschangetime,jdbcType=INTEGER}
+			</if>
+			<if test="caliskiptimes != null">
+				AND
+				<include refid="table_name" />
+				.caliskiptimes = #{caliskiptimes,jdbcType=INTEGER}
+			</if>
+			<if test="contskiptimes != null">
+				AND
+				<include refid="table_name" />
+				.contskiptimes = #{contskiptimes,jdbcType=INTEGER}
+			</if>
+			<if test="hourlyproduction != null">
+				AND
+				<include refid="table_name" />
+				.hourlyproduction = #{hourlyproduction,jdbcType=DECIMAL}
+			</if>
+			<if test="extramoinfo6 != null">
+				AND
+				<include refid="table_name" />
+				.extramoinfo6 = #{extramoinfo6,jdbcType=VARCHAR}
+			</if>
+			<if test="extramoinfo7 != null">
+				AND
+				<include refid="table_name" />
+				.extramoinfo7 = #{extramoinfo7,jdbcType=VARCHAR}
+			</if>
+			<if test="extramoinfo8 != null">
+				AND
+				<include refid="table_name" />
+				.extramoinfo8 = #{extramoinfo8,jdbcType=VARCHAR}
+			</if>
+			<if test="extramoinfo9 != null">
+				AND
+				<include refid="table_name" />
+				.extramoinfo9 = #{extramoinfo9,jdbcType=VARCHAR}
+			</if>
+			<if test="extramoinfo10 != null">
+				AND
+				<include refid="table_name" />
+				.extramoinfo10 = #{extramoinfo10,jdbcType=VARCHAR}
+			</if>
+			<if test="prodworksupplierid != null">
+				AND
+				<include refid="table_name" />
+				.prodworksupplierid = #{prodworksupplierid,jdbcType=VARCHAR}
+			</if>
+			<if test="maintworksupplierid != null">
+				AND
+				<include refid="table_name" />
+				.maintworksupplierid = #{maintworksupplierid,jdbcType=VARCHAR}
+			</if>
+			<if test="planworksupplierid != null">
+				AND
+				<include refid="table_name" />
+				.planworksupplierid = #{planworksupplierid,jdbcType=VARCHAR}
+			</if>
+			<if test="apprworksupplierid != null">
+				AND
+				<include refid="table_name" />
+				.apprworksupplierid = #{apprworksupplierid,jdbcType=VARCHAR}
+			</if>
+			<if test="rfid != null">
+				AND
+				<include refid="table_name" />
+				.rfid = #{rfid,jdbcType=VARCHAR}
+			</if>
+			<if test="fdalogging != null">
+				AND
+				<include refid="table_name" />
+				.fdalogging = #{fdalogging,jdbcType=TINYINT}
+			</if>
+			<if test="locationposid != null">
+				AND
+				<include refid="table_name" />
+				.locationposid = #{locationposid,jdbcType=VARCHAR}
+			</if>
+			<if test="costcarrierid != null">
+				AND
+				<include refid="table_name" />
+				.costcarrierid = #{costcarrierid,jdbcType=VARCHAR}
+			</if>
+			<if test="debitcosttypeid != null">
+				AND
+				<include refid="table_name" />
+				.debitcosttypeid = #{debitcosttypeid,jdbcType=VARCHAR}
+			</if>
+			<if test="calistarttime != null">
+				AND
+				<include refid="table_name" />
+				.calistarttime = #{calistarttime,jdbcType=INTEGER}
+			</if>
+			<if test="calienddate != null">
+				AND
+				<include refid="table_name" />
+				.calienddate = #{calienddate,jdbcType=DATE}
+			</if>
+			<if test="caliendtime != null">
+				AND
+				<include refid="table_name" />
+				.caliendtime = #{caliendtime,jdbcType=INTEGER}
+			</if>
+			<if test="caliinprogress != null">
+				AND
+				<include refid="table_name" />
+				.caliinprogress = #{caliinprogress,jdbcType=TINYINT}
+			</if>
+			<if test="contstarttime != null">
+				AND
+				<include refid="table_name" />
+				.contstarttime = #{contstarttime,jdbcType=INTEGER}
+			</if>
+			<if test="contenddate != null">
+				AND
+				<include refid="table_name" />
+				.contenddate = #{contenddate,jdbcType=DATE}
+			</if>
+			<if test="contendtime != null">
+				AND
+				<include refid="table_name" />
+				.contendtime = #{contendtime,jdbcType=INTEGER}
+			</if>
+			<if test="continprogress != null">
+				AND
+				<include refid="table_name" />
+				.continprogress = #{continprogress,jdbcType=TINYINT}
+			</if>
+			<if test="mo1approvedbyuuserid != null">
+				AND
+				<include refid="table_name" />
+				.mo1approvedbyuuserid = #{mo1approvedbyuuserid,jdbcType=VARCHAR}
+			</if>
+			<if test="mo1approveddate != null">
+				AND
+				<include refid="table_name" />
+				.mo1approveddate = #{mo1approveddate,jdbcType=DATE}
+			</if>
+			<if test="mo1approvedtime != null">
+				AND
+				<include refid="table_name" />
+				.mo1approvedtime = #{mo1approvedtime,jdbcType=INTEGER}
+			</if>
+			<if test="mo1approvedstatus != null">
+				AND
+				<include refid="table_name" />
+				.mo1approvedstatus = #{mo1approvedstatus,jdbcType=VARCHAR}
+			</if>
+			<if test="mo2approvedbyuuserid != null">
+				AND
+				<include refid="table_name" />
+				.mo2approvedbyuuserid = #{mo2approvedbyuuserid,jdbcType=VARCHAR}
+			</if>
+			<if test="mo2approveddate != null">
+				AND
+				<include refid="table_name" />
+				.mo2approveddate = #{mo2approveddate,jdbcType=DATE}
+			</if>
+			<if test="mo2approvedtime != null">
+				AND
+				<include refid="table_name" />
+				.mo2approvedtime = #{mo2approvedtime,jdbcType=INTEGER}
+			</if>
+			<if test="mo2approvedstatus != null">
+				AND
+				<include refid="table_name" />
+				.mo2approvedstatus = #{mo2approvedstatus,jdbcType=VARCHAR}
+			</if>
+			<if test="mo3approvedbyuuserid != null">
+				AND
+				<include refid="table_name" />
+				.mo3approvedbyuuserid = #{mo3approvedbyuuserid,jdbcType=VARCHAR}
+			</if>
+			<if test="mo3approveddate != null">
+				AND
+				<include refid="table_name" />
+				.mo3approveddate = #{mo3approveddate,jdbcType=DATE}
+			</if>
+			<if test="mo3approvedtime != null">
+				AND
+				<include refid="table_name" />
+				.mo3approvedtime = #{mo3approvedtime,jdbcType=INTEGER}
+			</if>
+			<if test="mo3approvedstatus != null">
+				AND
+				<include refid="table_name" />
+				.mo3approvedstatus = #{mo3approvedstatus,jdbcType=VARCHAR}
+			</if>
+			<if test="calipassive != null">
+				AND
+				<include refid="table_name" />
+				.calipassive = #{calipassive,jdbcType=TINYINT}
+			</if>
+			<if test="contpassive != null">
+				AND
+				<include refid="table_name" />
+				.contpassive = #{contpassive,jdbcType=TINYINT}
+			</if>
+			<if test="stocklocationid != null">
+				AND
+				<include refid="table_name" />
+				.stocklocationid = #{stocklocationid,jdbcType=VARCHAR}
+			</if>
+			<if test="shiftrespareaid != null">
+				AND
+				<include refid="table_name" />
+				.shiftrespareaid = #{shiftrespareaid,jdbcType=VARCHAR}
+			</if>
+			<if test="mocounterid != null">
+				AND
+				<include refid="table_name" />
+				.mocounterid = #{mocounterid,jdbcType=VARCHAR}
+			</if>
+			<if test="mocounterunit != null">
+				AND
+				<include refid="table_name" />
+				.mocounterunit = #{mocounterunit,jdbcType=VARCHAR}
+			</if>
+			<if test="mototalreading != null">
+				AND
+				<include refid="table_name" />
+				.mototalreading = #{mototalreading,jdbcType=DECIMAL}
+			</if>
+			<if test="molastreadingdate != null">
+				AND
+				<include refid="table_name" />
+				.molastreadingdate = #{molastreadingdate,jdbcType=DATE}
+			</if>
+			<if test="molastreadingtime != null">
+				AND
+				<include refid="table_name" />
+				.molastreadingtime = #{molastreadingtime,jdbcType=INTEGER}
+			</if>
+			<if test="plantid != null">
+				AND
+				<include refid="table_name" />
+				.plantid = #{plantid,jdbcType=VARCHAR}
+			</if>
+			<if test="legalunitid != null">
+				AND
+				<include refid="table_name" />
+				.legalunitid = #{legalunitid,jdbcType=VARCHAR}
+			</if>
+			<if test="legalunitcurrencyid != null">
+				AND
+				<include refid="table_name" />
+				.legalunitcurrencyid = #{legalunitcurrencyid,jdbcType=VARCHAR}
+			</if>
+			<if test="caliinprogresscalregid != null">
+				AND
+				<include refid="table_name" />
+				.caliinprogresscalregid =
+				#{caliinprogresscalregid,jdbcType=VARCHAR}
+			</if>
+			<if test="caliinprogressdate != null">
+				AND
+				<include refid="table_name" />
+				.caliinprogressdate = #{caliinprogressdate,jdbcType=DATE}
+			</if>
+			<if test="caliinprogresstime != null">
+				AND
+				<include refid="table_name" />
+				.caliinprogresstime = #{caliinprogresstime,jdbcType=INTEGER}
+			</if>
+			<if test="continprogresscalregid != null">
+				AND
+				<include refid="table_name" />
+				.continprogresscalregid =
+				#{continprogresscalregid,jdbcType=VARCHAR}
+			</if>
+			<if test="continprogressdate != null">
+				AND
+				<include refid="table_name" />
+				.continprogressdate = #{continprogressdate,jdbcType=DATE}
+			</if>
+			<if test="continprogresstime != null">
+				AND
+				<include refid="table_name" />
+				.continprogresstime = #{continprogresstime,jdbcType=INTEGER}
+			</if>
+			<if test="mo1approveddtz != null">
+				AND
+				<include refid="table_name" />
+				.mo1approveddtz = #{mo1approveddtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="mo2approveddtz != null">
+				AND
+				<include refid="table_name" />
+				.mo2approveddtz = #{mo2approveddtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="mo3approveddtz != null">
+				AND
+				<include refid="table_name" />
+				.mo3approveddtz = #{mo3approveddtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="lastchangedtz != null">
+				AND
+				<include refid="table_name" />
+				.lastchangedtz = #{lastchangedtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="lastexportdtz != null">
+				AND
+				<include refid="table_name" />
+				.lastexportdtz = #{lastexportdtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="lastimportdtz != null">
+				AND
+				<include refid="table_name" />
+				.lastimportdtz = #{lastimportdtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="calstatuschangedtz != null">
+				AND
+				<include refid="table_name" />
+				.calstatuschangedtz = #{calstatuschangedtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="caliinprogressdtz != null">
+				AND
+				<include refid="table_name" />
+				.caliinprogressdtz = #{caliinprogressdtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="calilastdtz != null">
+				AND
+				<include refid="table_name" />
+				.calilastdtz = #{calilastdtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="calibrationnormexpiredtz != null">
+				AND
+				<include refid="table_name" />
+				.calibrationnormexpiredtz =
+				#{calibrationnormexpiredtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="continprogressdtz != null">
+				AND
+				<include refid="table_name" />
+				.continprogressdtz = #{continprogressdtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="contlastdtz != null">
+				AND
+				<include refid="table_name" />
+				.contlastdtz = #{contlastdtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="molastreadingdtz != null">
+				AND
+				<include refid="table_name" />
+				.molastreadingdtz = #{molastreadingdtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="recordlanguageid != null">
+				AND
+				<include refid="table_name" />
+				.recordlanguageid = #{recordlanguageid,jdbcType=VARCHAR}
+			</if>
+			<if test="specinfo != null">
+				AND
+				<include refid="table_name" />
+				.specinfo = #{specinfo,jdbcType=VARCHAR}
+			</if>
+			<if test="mainthumanid != null">
+				AND
+				<include refid="table_name" />
+				.mainthumanid = #{mainthumanid,jdbcType=INTEGER}
+			</if>
+			<if test="prodhumanid != null">
+				AND
+				<include refid="table_name" />
+				.prodhumanid = #{prodhumanid,jdbcType=INTEGER}
+			</if>
+			<if test="inspectionhumanid != null">
+				AND
+				<include refid="table_name" />
+				.inspectionhumanid = #{inspectionhumanid,jdbcType=INTEGER}
+			</if>
+			<if test="fixedassetskey != null">
+				AND
+				<include refid="table_name" />
+				.fixedassetskey = #{fixedassetskey,jdbcType=VARCHAR}
+			</if>
+			<if test="ismainmo != null">
+				AND
+				<include refid="table_name" />
+				.ismainmo = #{ismainmo,jdbcType=INTEGER}
+			</if>
+			<if test="isrepairmo != null">
+				AND
+				<include refid="table_name" />
+				.isrepairmo = #{isrepairmo,jdbcType=INTEGER}
+			</if>
+			<if test="createdate != null">
+				AND
+				<include refid="table_name" />
+				.createdate = #{createdate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="createuserid != null">
+				AND
+				<include refid="table_name" />
+				.createuserid = #{createuserid,jdbcType=INTEGER}
+			</if>
+			<if test="modificationdate != null">
+				AND
+				<include refid="table_name" />
+				.modificationdate = #{modificationdate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="modificationuserid != null">
+				AND
+				<include refid="table_name" />
+				.modificationuserid = #{modificationuserid,jdbcType=INTEGER}
+			</if>
+			<if test="picpath != null">
+				AND
+				<include refid="table_name" />
+				.picpath = #{picpath,jdbcType=VARCHAR}
+			</if>
+			<if test="barcode != null">
+				AND
+				<include refid="table_name" />
+				.barcode = #{barcode,jdbcType=VARCHAR}
+			</if>
+			<if test="memo != null">
+				AND
+				<include refid="table_name" />
+				.memo = #{memo,jdbcType=VARCHAR}
+			</if>
+			<if test="orgid != null">
+				AND
+				<include refid="table_name" />
+				.orgid = #{orgid,jdbcType=INTEGER}
+			</if>
+			<if test="tombstone != null">
+				AND
+				<include refid="table_name" />
+				.tombstone = #{tombstone,jdbcType=INTEGER}
+			</if>
+			<if test="stationsid != null">
+				AND
+				<include refid="table_name" />
+				.stationsid = #{stationsid,jdbcType=INTEGER}
+			</if>
+			<if test="maintenanceobjectmodelid != null">
+				AND
+				<include refid="table_name" />
+				.maintenanceobjectmodelid =
+				#{maintenanceobjectmodelid,jdbcType=INTEGER}
+			</if>
+			<if test="picpath1 != null">
+				AND
+				<include refid="table_name" />
+				.picpath1 = #{picpath1,jdbcType=VARCHAR}
+			</if>
+			<if test="picpath2 != null">
+				AND
+				<include refid="table_name" />
+				.picpath2 = #{picpath2,jdbcType=VARCHAR}
+			</if>
+			<if test="productiondate != null">
+				AND
+				<include refid="table_name" />
+				.productiondate = #{productiondate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="putintooperationdate != null">
+				AND
+				<include refid="table_name" />
+				.putintooperationdate = #{putintooperationdate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="qualityguaranteedate != null">
+				AND
+				<include refid="table_name" />
+				.qualityguaranteedate = #{qualityguaranteedate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="mainposid != null">
+				AND
+				<include refid="table_name" />
+				.mainposid = #{mainposid,jdbcType=INTEGER}
+			</if>
+			<!-- <if test='orgList !="admin"'> AND (<include refid="table_name"/>.orgid 
+				is null <if test="orgList !=null"> or <include refid="table_name"/>.orgid 
+				in(${orgList}) </if> ) </if> -->
+			<if test="extraid1 != null">
+				AND
+				<include refid="table_name" />
+				.extraid1 = #{extraid1,jdbcType=INTEGER}
+			</if>
+			<if test="extraid2 != null">
+				AND
+				<include refid="table_name" />
+				.extraid2 = #{extraid2,jdbcType=INTEGER}
+			</if>
+			<if test="extraid3 != null">
+				AND
+				<include refid="table_name" />
+				.extraid3 = #{extraid3,jdbcType=INTEGER}
+			</if>
+			<if test="extraid4 != null">
+				AND
+				<include refid="table_name" />
+				.extraid4 = #{extraid4,jdbcType=INTEGER}
+			</if>
+			<if test="extraid5 != null">
+				AND
+				<include refid="table_name" />
+				.extraid5 = #{extraid5,jdbcType=INTEGER}
+			</if>
+			<if test="extravarchar1 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar1 = #{extravarchar1,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar2 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar2 = #{extravarchar2,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar3 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar3 = #{extravarchar3,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar4 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar4 = #{extravarchar4,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar5 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar5 = #{extravarchar5,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar6 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar6 = #{extravarchar6,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar7 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar7 = #{extravarchar7,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar8 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar8 = #{extravarchar8,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar9 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar9 = #{extravarchar9,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar10 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar10 = #{extravarchar10,jdbcType=VARCHAR}
+			</if>
+			<if test="extradecimal1 != null">
+				AND
+				<include refid="table_name" />
+				.extradecimal1 = #{extradecimal1,jdbcType=DECIMAL}
+			</if>
+			<if test="extradecimal2 != null">
+				AND
+				<include refid="table_name" />
+				.extradecimal2 = #{extradecimal2,jdbcType=DECIMAL}
+			</if>
+			<if test="extradecimal3 != null">
+				AND
+				<include refid="table_name" />
+				.extradecimal3 = #{extradecimal3,jdbcType=DECIMAL}
+			</if>
+			<if test="extradecimal4 != null">
+				AND
+				<include refid="table_name" />
+				.extradecimal4 = #{extradecimal4,jdbcType=DECIMAL}
+			</if>
+			<if test="extradecimal5 != null">
+				AND
+				<include refid="table_name" />
+				.extradecimal5 = #{extradecimal5,jdbcType=DECIMAL}
+			</if>
+			<if test="extradecimal6 != null">
+				AND
+				<include refid="table_name" />
+				.extradecimal6 = #{extradecimal6,jdbcType=DECIMAL}
+			</if>
+			<if test="extradecimal7 != null">
+				AND
+				<include refid="table_name" />
+				.extradecimal7 = #{extradecimal7,jdbcType=DECIMAL}
+			</if>
+			<if test="extradecimal8 != null">
+				AND
+				<include refid="table_name" />
+				.extradecimal8 = #{extradecimal8,jdbcType=DECIMAL}
+			</if>
+			<if test="extradecimal9 != null">
+				AND
+				<include refid="table_name" />
+				.extradecimal9 = #{extradecimal9,jdbcType=DECIMAL}
+			</if>
+			<if test="extradecimal10 != null">
+				AND
+				<include refid="table_name" />
+				.extradecimal10 = #{extradecimal10,jdbcType=DECIMAL}
+			</if>
+			<if test="extraint1 != null">
+				AND
+				<include refid="table_name" />
+				.extraint1 = #{extraint1,jdbcType=INTEGER}
+			</if>
+			<if test="extraint2 != null">
+				AND
+				<include refid="table_name" />
+				.extraint2 = #{extraint2,jdbcType=INTEGER}
+			</if>
+			<if test="extraint3 != null">
+				AND
+				<include refid="table_name" />
+				.extraint3 = #{extraint3,jdbcType=INTEGER}
+			</if>
+			<if test="extraint4 != null">
+				AND
+				<include refid="table_name" />
+				.extraint4 = #{extraint4,jdbcType=INTEGER}
+			</if>
+			<if test="extraint5 != null">
+				AND
+				<include refid="table_name" />
+				.extraint5 = #{extraint5,jdbcType=INTEGER}
+			</if>
+			<if test="extradatetime1 != null">
+				AND
+				<include refid="table_name" />
+				.extradatetime1 = #{extradatetime1,jdbcType=TIMESTAMP}
+			</if>
+			<if test="extradatetime2 != null">
+				AND
+				<include refid="table_name" />
+				.extradatetime2 = #{extradatetime2,jdbcType=TIMESTAMP}
+			</if>
+			<if test="extradatetime3 != null">
+				AND
+				<include refid="table_name" />
+				.extradatetime3 = #{extradatetime3,jdbcType=TIMESTAMP}
+			</if>
+			<if test="extradatetime4 != null">
+				AND
+				<include refid="table_name" />
+				.extradatetime4 = #{extradatetime4,jdbcType=TIMESTAMP}
+			</if>
+			<if test="extradatetime5 != null">
+				AND
+				<include refid="table_name" />
+				.extradatetime5 = #{extradatetime5,jdbcType=TIMESTAMP}
+			</if>
+			<if test="extravarchar11 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar11 = #{extravarchar11,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar12 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar12 = #{extravarchar12,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar13 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar13 = #{extravarchar13,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar14 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar14 = #{extravarchar14,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar15 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar15 = #{extravarchar15,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar16 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar16 = #{extravarchar16,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar17 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar17 = #{extravarchar17,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar18 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar18 = #{extravarchar18,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar19 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar19 = #{extravarchar19,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar20 != null">
+				AND
+				<include refid="table_name" />
+				.extravarchar20 = #{extravarchar20,jdbcType=VARCHAR}
+			</if>
+
+			<!-- 标准化字段 -->
+			<if test="posname != null">
+				AND
+				<include refid="table_name" />
+				.posname = #{posname,jdbcType=VARCHAR}
+			</if>
+			<if test="statusid != null">
+				AND
+				<include refid="table_name" />
+				.statusid = #{statusid,jdbcType=INTEGER}
+			</if>
+			<if test="typeid != null">
+				AND
+				<include refid="table_name" />
+				.typeid = #{typeid,jdbcType=INTEGER}
+			</if>
+			<if test="assetgroupkey != null">
+				AND
+				<include refid="table_name" />
+				.assetgroupkey = #{assetgroupkey,jdbcType=VARCHAR}
+			</if>
+			<if test="assetkey != null">
+				AND
+				<include refid="table_name" />
+				.assetkey = #{assetkey,jdbcType=VARCHAR}
+			</if>
+			<if test="purchaseprice != null">
+				AND
+				<include refid="table_name" />
+				.purchaseprice = #{purchaseprice,jdbcType=DECIMAL}
+			</if>
+			<if test="contractno != null">
+				AND
+				<include refid="table_name" />
+				.contractno = #{contractno,jdbcType=DECIMAL}
+			</if>
+			<if test="originalvalue != null">
+				AND
+				<include refid="table_name" />
+				.originalvalue = #{originalvalue,jdbcType=DECIMAL}
+			</if>
+			<if test="netvalue != null">
+				AND
+				<include refid="table_name" />
+				.netvalue = #{netvalue,jdbcType=DECIMAL}
+			</if>
+			<if test="forproduct != null">
+				AND
+				<include refid="table_name" />
+				.forproduct = #{netvalue,jdbcType=VARCHAR}
+			</if>
+			<if test="projectkey != null">
+				AND
+				<include refid="table_name" />
+				.projectkey = #{projectkey,jdbcType=VARCHAR}
+			</if>
+			<if test="purchasedate != null">
+				AND
+				<include refid="table_name" />
+				.purchasedate = #{purchasedate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="costcenterid != null">
+				AND
+				<include refid="table_name" />
+				.costcenterid = #{costcenterid,jdbcType=INTEGER}
+			</if>
+			<if test="rootpath != null">
+				AND
+				<include refid="table_name" />
+				.rootpath = #{rootpath,jdbcType=VARCHAR}
+			</if>
+	</sql>
+
+	<sql id="dynamic_like_match_condition">
+		WHERE  tombstone = 1
+		<if test="moname != null">
+			AND <include refid="table_name" />.moname like "%"#{moname,jdbcType=VARCHAR}"%"
+		</if>
+		<if test="posid != null">
+			AND
+			<include refid="table_name" />
+			.posid = #{posid,jdbcType=INTEGER}
+		</if>
+	</sql>
+
+	<resultMap id="entityBeanResult" type="MaintenanceobjectEntity">
+		<!--********** 标准化列start************ -->
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="mokey" property="mokey" jdbcType="VARCHAR" />
+		<result column="moname" property="moname" jdbcType="VARCHAR" />
+		<result column="putintooperationdate" property="putintooperationdate"
+			jdbcType="TIMESTAMP" />
+		<result column="qualityguaranteedate" property="qualityguaranteedate"
+			jdbcType="TIMESTAMP" />
+		<result column="posname" property="posname" jdbcType="VARCHAR" />
+		<result column="statusid" property="statusid" jdbcType="INTEGER" />
+		<result column="typeid" property="typeid" jdbcType="INTEGER" />
+		<result column="assetgroupkey" property="assetgroupkey"
+			jdbcType="VARCHAR" />
+		<result column="assetkey" property="assetkey" jdbcType="VARCHAR" />
+		<result column="purchaseprice" property="purchaseprice"
+			jdbcType="DECIMAL" />
+		<result column="contractno" property="contractno" jdbcType="VARCHAR" />
+		<result column="originalvalue" property="originalvalue"
+			jdbcType="DECIMAL" />
+		<result column="netvalue" property="netvalue" jdbcType="DECIMAL" />
+		<result column="forproduct" property="forproduct" jdbcType="VARCHAR" />
+		<result column="projectkey" property="projectkey" jdbcType="VARCHAR" />
+		<result column="purchasedate" property="purchasedate" jdbcType="TIMESTAMP" />
+		<result column="costcenterid" property="costcenterid" jdbcType="INTEGER" />
+		<result column="mainposid" property="mainposid" jdbcType="INTEGER" />
+		<result column="extraid1" property="extraid1" jdbcType="INTEGER" />
+		<result column="extraid2" property="extraid2" jdbcType="INTEGER" />
+		<result column="extraid3" property="extraid3" jdbcType="INTEGER" />
+		<result column="extraid4" property="extraid4" jdbcType="INTEGER" />
+		<result column="extraid5" property="extraid5" jdbcType="INTEGER" />
+		<result column="extravarchar1" property="extravarchar1"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar2" property="extravarchar2"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar3" property="extravarchar3"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar4" property="extravarchar4"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar5" property="extravarchar5"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar6" property="extravarchar6"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar7" property="extravarchar7"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar8" property="extravarchar8"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar9" property="extravarchar9"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar10" property="extravarchar10"
+			jdbcType="VARCHAR" />
+		<result column="extradecimal1" property="extradecimal1"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal2" property="extradecimal2"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal3" property="extradecimal3"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal4" property="extradecimal4"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal5" property="extradecimal5"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal6" property="extradecimal6"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal7" property="extradecimal7"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal8" property="extradecimal8"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal9" property="extradecimal9"
+			jdbcType="DECIMAL" />
+		<result column="extradecimal10" property="extradecimal10"
+			jdbcType="DECIMAL" />
+		<result column="extraint1" property="extraint1" jdbcType="INTEGER" />
+		<result column="extraint2" property="extraint2" jdbcType="INTEGER" />
+		<result column="extraint3" property="extraint3" jdbcType="INTEGER" />
+		<result column="extraint4" property="extraint4" jdbcType="INTEGER" />
+		<result column="extraint5" property="extraint5" jdbcType="INTEGER" />
+		<result column="extradatetime1" property="extradatetime1"
+			jdbcType="TIMESTAMP" />
+		<result column="extradatetime2" property="extradatetime2"
+			jdbcType="TIMESTAMP" />
+		<result column="extradatetime3" property="extradatetime3"
+			jdbcType="TIMESTAMP" />
+		<result column="extradatetime4" property="extradatetime4"
+			jdbcType="TIMESTAMP" />
+		<result column="extradatetime5" property="extradatetime5"
+			jdbcType="TIMESTAMP" />
+		<result column="extravarchar11" property="extravarchar11"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar12" property="extravarchar12"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar13" property="extravarchar13"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar14" property="extravarchar14"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar15" property="extravarchar15"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar16" property="extravarchar16"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar17" property="extravarchar17"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar18" property="extravarchar18"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar19" property="extravarchar19"
+			jdbcType="VARCHAR" />
+		<result column="extravarchar20" property="extravarchar20"
+			jdbcType="VARCHAR" />
+		<result column="posid" property="posid" jdbcType="INTEGER" />
+		<result column="maintenanceobjectmodelid" property="maintenanceobjectmodelid"
+			jdbcType="INTEGER" />
+		<result column="specinfo" property="specinfo" jdbcType="VARCHAR" />
+		<result column="supplierid" property="supplierid" jdbcType="VARCHAR" />
+		<result column="manufacturerid" property="manufacturerid"
+			jdbcType="INTEGER" />
+		<result column="priorityid" property="priorityid" jdbcType="INTEGER" />
+		<result column="mainthumanid" property="mainthumanid" jdbcType="INTEGER" />
+		<result column="prodhumanid" property="prodhumanid" jdbcType="INTEGER" />
+		<result column="inspectionhumanid" property="inspectionhumanid"
+			jdbcType="INTEGER" />
+		<result column="rfid" property="rfid" jdbcType="VARCHAR" />
+		<result column="ismainmo" property="ismainmo" jdbcType="INTEGER" />
+		<result column="isrepairmo" property="isrepairmo" jdbcType="INTEGER" />
+		<result column="productiondate" property="productiondate"
+			jdbcType="TIMESTAMP" />
+		<result column="tombstone" property="tombstone" jdbcType="INTEGER" />
+		<result column="orgid" property="orgid" jdbcType="INTEGER" />
+		<result column="barcode" property="barcode" jdbcType="VARCHAR" />
+		<result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+		<result column="createuserid" property="createuserid" jdbcType="INTEGER" />
+		<result column="modificationdate" property="modificationdate"
+			jdbcType="TIMESTAMP" />
+		<result column="modificationuserid" property="modificationuserid"
+			jdbcType="INTEGER" />
+		<result column="picpath" property="picpath" jdbcType="VARCHAR" />
+		<result column="memo" property="memo" jdbcType="VARCHAR" />
+		<result column="picpath1" property="picpath1" jdbcType="VARCHAR" />
+		<result column="picpath2" property="picpath2" jdbcType="VARCHAR" />
+		<result column="rootpath" property="rootpath" jdbcType="VARCHAR" />
+		<!--********* 标准列end********* -->
+	</resultMap>
+
+	<resultMap id="ApiBeanResult" type="MaintenanceobjectEntity">
+		<result column="mo_key" property="mokey" jdbcType="VARCHAR" />
+		<result column="mo_name" property="moname" jdbcType="VARCHAR" />
+		<result column="pos_key" property="extravarchar1" jdbcType="VARCHAR" />
+		<result column="TI_key" property="extravarchar2" jdbcType="VARCHAR" />
+		<result column="Root_MO_key" property="extravarchar3" jdbcType="VARCHAR" />
+		<result column="extra_mo_info1" property="extramoinfo1"
+			jdbcType="VARCHAR" />
+		<result column="extra_mo_info2" property="extramoinfo2"
+			jdbcType="VARCHAR" />
+		<result column="extra_mo_info3" property="extramoinfo3"
+			jdbcType="VARCHAR" />
+		<result column="extra_mo_info4" property="extramoinfo4"
+			jdbcType="VARCHAR" />
+		<result column="guaranty_expire_date" property="guarantyexpiredate"
+			jdbcType="DATE" />
+		<result column="delivery_date" property="deliverydate"
+			jdbcType="DATE" />
+		<result column="account_key" property="accountid" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getByRootpath" parameterType="MaintenanceobjectEntity"
+		resultMap="entityBeanResult">
+		SELECT
+		<include refid="database_table_columns" />
+		from
+		<include refid="table_name" />
+		where
+		rootpath like #{rootpath,jdbcType=VARCHAR}"%"
+	</select>
+
+	<select id="select" parameterType="MaintenanceobjectEntity"
+		resultMap="entityBeanResult">
+		SELECT
+		<include refid="database_table_columns" />
+		FROM
+		<include refid="table_name" />
+		<include refid="dynamic_full_match_condition" />
+	</select>
+
+	<select id="selectAllInverter" parameterType="MaintenanceobjectEntity"
+		resultMap="entityBeanResult">
+		SELECT
+		<include refid="database_table_columns" />
+		FROM
+		<include refid="table_name" />
+		<include refid="dynamic_like_match_condition" />
+	</select>
+
+	<select id="get" parameterType="MaintenanceobjectEntity"
+		resultMap="entityBeanResult">
+		SELECT
+		<include refid="database_table_columns" />
+		FROM
+		<include refid="table_name" />
+		where mokey = #{mokey,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectAllApi" resultMap="ApiBeanResult">
+		SELECT t.mo_key, t.mo_name, t.pos_key, t.TI_key, t.Root_MO_key, t.extra_mo_info1, t.extra_mo_info2, t.extra_mo_info3, t.extra_mo_info4, t.guaranty_expire_date, t.delivery_date, t.account_key
+		FROM APIPRO.MAINTENANCE_OBJECT T
+		<![CDATA[ 
+		WHERE T.Pos_Key<>' '
+		]]>
+	</select>
+
+	<insert id="insert" parameterType="MaintenanceobjectEntity">
+		insert into maintenanceobject
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="mokey != null">
+				mokey,
+			</if>
+			<if test="moname != null">
+				moname,
+			</if>
+			<if test="rootmoid != null">
+				rootmoid,
+			</if>
+			<if test="posid != null">
+				posid,
+			</if>
+			<if test="tiid != null">
+				tiid,
+			</if>
+			<if test="supplierid != null">
+				supplierid,
+			</if>
+			<if test="mocodeid != null">
+				mocodeid,
+			</if>
+			<if test="mogroupid != null">
+				mogroupid,
+			</if>
+			<if test="extramoinfo1 != null">
+				extramoinfo1,
+			</if>
+			<if test="spid != null">
+				spid,
+			</if>
+			<if test="stockid != null">
+				stockid,
+			</if>
+			<if test="accountid != null">
+				accountid,
+			</if>
+			<if test="costtypeid != null">
+				costtypeid,
+			</if>
+			<if test="holidayid != null">
+				holidayid,
+			</if>
+			<if test="shiftcalendarid != null">
+				shiftcalendarid,
+			</if>
+			<if test="okforuse != null">
+				okforuse,
+			</if>
+			<if test="manufacturer != null">
+				manufacturer,
+			</if>
+			<if test="serial != null">
+				serial,
+			</if>
+			<if test="year != null">
+				year,
+			</if>
+			<if test="deliverydate != null">
+				deliverydate,
+			</if>
+			<if test="guarantytime != null">
+				guarantytime,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="totalinvestment != null">
+				totalinvestment,
+			</if>
+			<if test="spflag != null">
+				spflag,
+			</if>
+			<if test="mosubflag != null">
+				mosubflag,
+			</if>
+			<if test="woflag != null">
+				woflag,
+			</if>
+			<if test="pointflag != null">
+				pointflag,
+			</if>
+			<if test="histflag != null">
+				histflag,
+			</if>
+			<if test="drawingflag != null">
+				drawingflag,
+			</if>
+			<if test="fixedassetflag != null">
+				fixedassetflag,
+			</if>
+			<if test="tdmflag != null">
+				tdmflag,
+			</if>
+			<if test="sumstoptime != null">
+				sumstoptime,
+			</if>
+			<if test="sumwaittime != null">
+				sumwaittime,
+			</if>
+			<if test="sumspartime != null">
+				sumspartime,
+			</if>
+			<if test="sumworktime != null">
+				sumworktime,
+			</if>
+			<if test="sumstops != null">
+				sumstops,
+			</if>
+			<if test="sumworkcost != null">
+				sumworkcost,
+			</if>
+			<if test="sumsparcost != null">
+				sumsparcost,
+			</if>
+			<if test="sumcosts != null">
+				sumcosts,
+			</if>
+			<if test="costprice != null">
+				costprice,
+			</if>
+			<if test="sumpreventivejobs != null">
+				sumpreventivejobs,
+			</if>
+			<if test="sumunpljobs != null">
+				sumunpljobs,
+			</if>
+			<if test="sumcorrjobs != null">
+				sumcorrjobs,
+			</if>
+			<if test="calibrationflag != null">
+				calibrationflag,
+			</if>
+			<if test="calibrationstatus != null">
+				calibrationstatus,
+			</if>
+			<if test="calibrationexternal != null">
+				calibrationexternal,
+			</if>
+			<if test="calibrationokrequired != null">
+				calibrationokrequired,
+			</if>
+			<if test="calirespworksupplierid != null">
+				calirespworksupplierid,
+			</if>
+			<if test="calibrationusefornorm != null">
+				calibrationusefornorm,
+			</if>
+			<if test="calibrationnormvalue != null">
+				calibrationnormvalue,
+			</if>
+			<if test="calibrationnormformat != null">
+				calibrationnormformat,
+			</if>
+			<if test="calibrationnormunit != null">
+				calibrationnormunit,
+			</if>
+			<if test="calibrationnormexpiredate != null">
+				calibrationnormexpiredate,
+			</if>
+			<if test="instrumentid != null">
+				instrumentid,
+			</if>
+			<if test="calilastdate != null">
+				calilastdate,
+			</if>
+			<if test="calisumcost != null">
+				calisumcost,
+			</if>
+			<if test="caliworknoteid != null">
+				caliworknoteid,
+			</if>
+			<if test="calijobcodeid != null">
+				calijobcodeid,
+			</if>
+			<if test="caliinstrumentid != null">
+				caliinstrumentid,
+			</if>
+			<if test="caliinstrumentmoid != null">
+				caliinstrumentmoid,
+			</if>
+			<if test="caliintervaltime != null">
+				caliintervaltime,
+			</if>
+			<if test="caliintervaltimeunit != null">
+				caliintervaltimeunit,
+			</if>
+			<if test="caliintervaltimenext != null">
+				caliintervaltimenext,
+			</if>
+			<if test="calicounterid != null">
+				calicounterid,
+			</if>
+			<if test="caliintervalcount != null">
+				caliintervalcount,
+			</if>
+			<if test="caliintervalcountnext != null">
+				caliintervalcountnext,
+			</if>
+			<if test="caliplantime != null">
+				caliplantime,
+			</if>
+			<if test="caliplancost != null">
+				caliplancost,
+			</if>
+			<if test="califreetext != null">
+				califreetext,
+			</if>
+			<if test="contlastdate != null">
+				contlastdate,
+			</if>
+			<if test="contsumcost != null">
+				contsumcost,
+			</if>
+			<if test="contworknoteid != null">
+				contworknoteid,
+			</if>
+			<if test="contjobcodeid != null">
+				contjobcodeid,
+			</if>
+			<if test="continstrumentid != null">
+				continstrumentid,
+			</if>
+			<if test="continstrumentmoid != null">
+				continstrumentmoid,
+			</if>
+			<if test="contintervaltime != null">
+				contintervaltime,
+			</if>
+			<if test="contintervaltimeunit != null">
+				contintervaltimeunit,
+			</if>
+			<if test="contintervaltimenext != null">
+				contintervaltimenext,
+			</if>
+			<if test="contcounterid != null">
+				contcounterid,
+			</if>
+			<if test="contintervalcount != null">
+				contintervalcount,
+			</if>
+			<if test="contintervalcountnext != null">
+				contintervalcountnext,
+			</if>
+			<if test="contplantime != null">
+				contplantime,
+			</if>
+			<if test="contplancost != null">
+				contplancost,
+			</if>
+			<if test="contfreetext != null">
+				contfreetext,
+			</if>
+			<if test="mobarcode != null">
+				mobarcode,
+			</if>
+			<if test="priorityid != null">
+				priorityid,
+			</if>
+			<if test="guarantyexpiredate != null">
+				guarantyexpiredate,
+			</if>
+			<if test="lastchangedate != null">
+				lastchangedate,
+			</if>
+			<if test="lastchangetime != null">
+				lastchangetime,
+			</if>
+			<if test="lastexportdate != null">
+				lastexportdate,
+			</if>
+			<if test="lastexporttime != null">
+				lastexporttime,
+			</if>
+			<if test="lastimportdate != null">
+				lastimportdate,
+			</if>
+			<if test="lastimporttime != null">
+				lastimporttime,
+			</if>
+			<if test="yearlyoperationalhours != null">
+				yearlyoperationalhours,
+			</if>
+			<if test="techrespuuserid != null">
+				techrespuuserid,
+			</if>
+			<if test="siteid != null">
+				siteid,
+			</if>
+			<if test="recordactive != null">
+				recordactive,
+			</if>
+			<if test="custombarcode != null">
+				custombarcode,
+			</if>
+			<if test="wopassive != null">
+				wopassive,
+			</if>
+			<if test="worksupplierid != null">
+				worksupplierid,
+			</if>
+			<if test="extramoinfo2 != null">
+				extramoinfo2,
+			</if>
+			<if test="extramoinfo3 != null">
+				extramoinfo3,
+			</if>
+			<if test="objectstatusid != null">
+				objectstatusid,
+			</if>
+			<if test="budget != null">
+				budget,
+			</if>
+			<if test="usedcost != null">
+				usedcost,
+			</if>
+			<if test="resetcost != null">
+				resetcost,
+			</if>
+			<if test="icon != null">
+				icon,
+			</if>
+			<if test="extramoinfo4 != null">
+				extramoinfo4,
+			</if>
+			<if test="extramoinfo5 != null">
+				extramoinfo5,
+			</if>
+			<if test="uuserid != null">
+				uuserid,
+			</if>
+			<if test="customerid != null">
+				customerid,
+			</if>
+			<if test="mostatus != null">
+				mostatus,
+			</if>
+			<if test="sumcbmjobs != null">
+				sumcbmjobs,
+			</if>
+			<if test="suminspjobs != null">
+				suminspjobs,
+			</if>
+			<if test="sumothjobs != null">
+				sumothjobs,
+			</if>
+			<if test="manufacturerid != null">
+				manufacturerid,
+			</if>
+			<if test="counterid != null">
+				counterid,
+			</if>
+			<if test="calstatusid != null">
+				calstatusid,
+			</if>
+			<if test="calstatuschangedate != null">
+				calstatuschangedate,
+			</if>
+			<if test="calstatuschangetime != null">
+				calstatuschangetime,
+			</if>
+			<if test="caliskiptimes != null">
+				caliskiptimes,
+			</if>
+			<if test="contskiptimes != null">
+				contskiptimes,
+			</if>
+			<if test="hourlyproduction != null">
+				hourlyproduction,
+			</if>
+			<if test="extramoinfo6 != null">
+				extramoinfo6,
+			</if>
+			<if test="extramoinfo7 != null">
+				extramoinfo7,
+			</if>
+			<if test="extramoinfo8 != null">
+				extramoinfo8,
+			</if>
+			<if test="extramoinfo9 != null">
+				extramoinfo9,
+			</if>
+			<if test="extramoinfo10 != null">
+				extramoinfo10,
+			</if>
+			<if test="prodworksupplierid != null">
+				prodworksupplierid,
+			</if>
+			<if test="maintworksupplierid != null">
+				maintworksupplierid,
+			</if>
+			<if test="planworksupplierid != null">
+				planworksupplierid,
+			</if>
+			<if test="apprworksupplierid != null">
+				apprworksupplierid,
+			</if>
+			<if test="rfid != null">
+				rfid,
+			</if>
+			<if test="fdalogging != null">
+				fdalogging,
+			</if>
+			<if test="locationposid != null">
+				locationposid,
+			</if>
+			<if test="costcarrierid != null">
+				costcarrierid,
+			</if>
+			<if test="debitcosttypeid != null">
+				debitcosttypeid,
+			</if>
+			<if test="calistarttime != null">
+				calistarttime,
+			</if>
+			<if test="calienddate != null">
+				calienddate,
+			</if>
+			<if test="caliendtime != null">
+				caliendtime,
+			</if>
+			<if test="caliinprogress != null">
+				caliinprogress,
+			</if>
+			<if test="contstarttime != null">
+				contstarttime,
+			</if>
+			<if test="contenddate != null">
+				contenddate,
+			</if>
+			<if test="contendtime != null">
+				contendtime,
+			</if>
+			<if test="continprogress != null">
+				continprogress,
+			</if>
+			<if test="mo1approvedbyuuserid != null">
+				mo1approvedbyuuserid,
+			</if>
+			<if test="mo1approveddate != null">
+				mo1approveddate,
+			</if>
+			<if test="mo1approvedtime != null">
+				mo1approvedtime,
+			</if>
+			<if test="mo1approvedstatus != null">
+				mo1approvedstatus,
+			</if>
+			<if test="mo2approvedbyuuserid != null">
+				mo2approvedbyuuserid,
+			</if>
+			<if test="mo2approveddate != null">
+				mo2approveddate,
+			</if>
+			<if test="mo2approvedtime != null">
+				mo2approvedtime,
+			</if>
+			<if test="mo2approvedstatus != null">
+				mo2approvedstatus,
+			</if>
+			<if test="mo3approvedbyuuserid != null">
+				mo3approvedbyuuserid,
+			</if>
+			<if test="mo3approveddate != null">
+				mo3approveddate,
+			</if>
+			<if test="mo3approvedtime != null">
+				mo3approvedtime,
+			</if>
+			<if test="mo3approvedstatus != null">
+				mo3approvedstatus,
+			</if>
+			<if test="calipassive != null">
+				calipassive,
+			</if>
+			<if test="contpassive != null">
+				contpassive,
+			</if>
+			<if test="stocklocationid != null">
+				stocklocationid,
+			</if>
+			<if test="shiftrespareaid != null">
+				shiftrespareaid,
+			</if>
+			<if test="mocounterid != null">
+				mocounterid,
+			</if>
+			<if test="mocounterunit != null">
+				mocounterunit,
+			</if>
+			<if test="mototalreading != null">
+				mototalreading,
+			</if>
+			<if test="molastreadingdate != null">
+				molastreadingdate,
+			</if>
+			<if test="molastreadingtime != null">
+				molastreadingtime,
+			</if>
+			<if test="plantid != null">
+				plantid,
+			</if>
+			<if test="legalunitid != null">
+				legalunitid,
+			</if>
+			<if test="legalunitcurrencyid != null">
+				legalunitcurrencyid,
+			</if>
+			<if test="caliinprogresscalregid != null">
+				caliinprogresscalregid,
+			</if>
+			<if test="caliinprogressdate != null">
+				caliinprogressdate,
+			</if>
+			<if test="caliinprogresstime != null">
+				caliinprogresstime,
+			</if>
+			<if test="continprogresscalregid != null">
+				continprogresscalregid,
+			</if>
+			<if test="continprogressdate != null">
+				continprogressdate,
+			</if>
+			<if test="continprogresstime != null">
+				continprogresstime,
+			</if>
+			<if test="mo1approveddtz != null">
+				mo1approveddtz,
+			</if>
+			<if test="mo2approveddtz != null">
+				mo2approveddtz,
+			</if>
+			<if test="mo3approveddtz != null">
+				mo3approveddtz,
+			</if>
+			<if test="lastchangedtz != null">
+				lastchangedtz,
+			</if>
+			<if test="lastexportdtz != null">
+				lastexportdtz,
+			</if>
+			<if test="lastimportdtz != null">
+				lastimportdtz,
+			</if>
+			<if test="calstatuschangedtz != null">
+				calstatuschangedtz,
+			</if>
+			<if test="caliinprogressdtz != null">
+				caliinprogressdtz,
+			</if>
+			<if test="calilastdtz != null">
+				calilastdtz,
+			</if>
+			<if test="calibrationnormexpiredtz != null">
+				calibrationnormexpiredtz,
+			</if>
+			<if test="continprogressdtz != null">
+				continprogressdtz,
+			</if>
+			<if test="contlastdtz != null">
+				contlastdtz,
+			</if>
+			<if test="molastreadingdtz != null">
+				molastreadingdtz,
+			</if>
+			<if test="recordlanguageid != null">
+				recordlanguageid,
+			</if>
+			<if test="specinfo != null">
+				specinfo,
+			</if>
+			<if test="mainthumanid != null">
+				mainthumanid,
+			</if>
+			<if test="prodhumanid != null">
+				prodhumanid,
+			</if>
+			<if test="inspectionhumanid != null">
+				inspectionhumanid,
+			</if>
+			<if test="fixedassetskey != null">
+				fixedassetskey,
+			</if>
+			<if test="ismainmo != null">
+				ismainmo,
+			</if>
+			<if test="isrepairmo != null">
+				isrepairmo,
+			</if>
+			<if test="createdate != null">
+				createdate,
+			</if>
+			<if test="createuserid != null">
+				createuserid,
+			</if>
+			<if test="modificationdate != null">
+				modificationdate,
+			</if>
+			<if test="modificationuserid != null">
+				modificationuserid,
+			</if>
+			<if test="picpath != null">
+				picpath,
+			</if>
+			<if test="barcode != null">
+				barcode,
+			</if>
+			<if test="memo != null">
+				memo,
+			</if>
+			<if test="orgid != null">
+				orgid,
+			</if>
+			<if test="tombstone != null">
+				tombstone,
+			</if>
+			<if test="stationsid != null">
+				stationsid,
+			</if>
+			<if test="maintenanceobjectmodelid != null">
+				maintenanceobjectmodelid,
+			</if>
+			<if test="picpath1 != null">
+				picpath1,
+			</if>
+			<if test="picpath2 != null">
+				picpath2,
+			</if>
+			<if test="productiondate != null">
+				productiondate,
+			</if>
+			<if test="putintooperationdate != null">
+				putintooperationdate,
+			</if>
+			<if test="qualityguaranteedate != null">
+				qualityguaranteedate,
+			</if>
+			<if test="mainposid != null">
+				mainposid,
+			</if>
+			<if test="extraid1 != null">
+				extraid1,
+			</if>
+			<if test="extraid2 != null">
+				extraid2,
+			</if>
+			<if test="extraid3 != null">
+				extraid3,
+			</if>
+			<if test="extraid4 != null">
+				extraid4,
+			</if>
+			<if test="extraid5 != null">
+				extraid5,
+			</if>
+			<if test="extravarchar1 != null">
+				extravarchar1,
+			</if>
+			<if test="extravarchar2 != null">
+				extravarchar2,
+			</if>
+			<if test="extravarchar3 != null">
+				extravarchar3,
+			</if>
+			<if test="extravarchar4 != null">
+				extravarchar4,
+			</if>
+			<if test="extravarchar5 != null">
+				extravarchar5,
+			</if>
+			<if test="extravarchar6 != null">
+				extravarchar6,
+			</if>
+			<if test="extravarchar7 != null">
+				extravarchar7,
+			</if>
+			<if test="extravarchar8 != null">
+				extravarchar8,
+			</if>
+			<if test="extravarchar9 != null">
+				extravarchar9,
+			</if>
+			<if test="extravarchar10 != null">
+				extravarchar10,
+			</if>
+			<if test="extradecimal1 != null">
+				extradecimal1,
+			</if>
+			<if test="extradecimal2 != null">
+				extradecimal2,
+			</if>
+			<if test="extradecimal3 != null">
+				extradecimal3,
+			</if>
+			<if test="extradecimal4 != null">
+				extradecimal4,
+			</if>
+			<if test="extradecimal5 != null">
+				extradecimal5,
+			</if>
+			<if test="extradecimal6 != null">
+				extradecimal6,
+			</if>
+			<if test="extradecimal7 != null">
+				extradecimal7,
+			</if>
+			<if test="extradecimal8 != null">
+				extradecimal8,
+			</if>
+			<if test="extradecimal9 != null">
+				extradecimal9,
+			</if>
+			<if test="extradecimal10 != null">
+				extradecimal10,
+			</if>
+			<if test="extraint1 != null">
+				extraint1,
+			</if>
+			<if test="extraint2 != null">
+				extraint2,
+			</if>
+			<if test="extraint3 != null">
+				extraint3,
+			</if>
+			<if test="extraint4 != null">
+				extraint4,
+			</if>
+			<if test="extraint5 != null">
+				extraint5,
+			</if>
+			<if test="extradatetime1 != null">
+				extradatetime1,
+			</if>
+			<if test="extradatetime2 != null">
+				extradatetime2,
+			</if>
+			<if test="extradatetime3 != null">
+				extradatetime3,
+			</if>
+			<if test="extradatetime4 != null">
+				extradatetime4,
+			</if>
+			<if test="extradatetime5 != null">
+				extradatetime5,
+			</if>
+			<if test="extravarchar11 != null">
+				extravarchar11,
+			</if>
+			<if test="extravarchar12 != null">
+				extravarchar12,
+			</if>
+			<if test="extravarchar13 != null">
+				extravarchar13,
+			</if>
+			<if test="extravarchar14 != null">
+				extravarchar14,
+			</if>
+			<if test="extravarchar15 != null">
+				extravarchar15,
+			</if>
+			<if test="extravarchar16 != null">
+				extravarchar16,
+			</if>
+			<if test="extravarchar17 != null">
+				extravarchar17,
+			</if>
+			<if test="extravarchar18 != null">
+				extravarchar18,
+			</if>
+			<if test="extravarchar19 != null">
+				extravarchar19,
+			</if>
+			<if test="extravarchar20 != null">
+				extravarchar20,
+			</if>
+			<if test="posname != null">
+				posname,
+			</if>
+			<if test="statusid != null">
+				statusid,
+			</if>
+			<if test="typeid != null">
+				typeid,
+			</if>
+			<if test="assetgroupkey != null">
+				assetgroupkey,
+			</if>
+			<if test="assetkey != null">
+				assetkey,
+			</if>
+			<if test="purchaseprice != null">
+				purchaseprice,
+			</if>
+			<if test="contractno != null">
+				contractno,
+			</if>
+			<if test="originalvalue != null">
+				originalvalue,
+			</if>
+			<if test="netvalue != null">
+				netvalue,
+			</if>
+			<if test="forproduct != null">
+				forproduct,
+			</if>
+			<if test="projectkey != null">
+				projectkey,
+			</if>
+			<if test="purchasedate != null">
+				purchasedate,
+			</if>
+			<if test="costcenterid != null">
+				costcenterid,
+			</if>
+			<if test="rootpath != null">
+				rootpath,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="mokey != null">
+				#{mokey,jdbcType=VARCHAR},
+			</if>
+			<if test="moname != null">
+				#{moname,jdbcType=VARCHAR},
+			</if>
+			<if test="rootmoid != null">
+				#{rootmoid,jdbcType=VARCHAR},
+			</if>
+			<if test="posid != null">
+				#{posid,jdbcType=INTEGER},
+			</if>
+			<if test="tiid != null">
+				#{tiid,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierid != null">
+				#{supplierid,jdbcType=VARCHAR},
+			</if>
+			<if test="mocodeid != null">
+				#{mocodeid,jdbcType=VARCHAR},
+			</if>
+			<if test="mogroupid != null">
+				#{mogroupid,jdbcType=VARCHAR},
+			</if>
+			<if test="extramoinfo1 != null">
+				#{extramoinfo1,jdbcType=VARCHAR},
+			</if>
+			<if test="spid != null">
+				#{spid,jdbcType=VARCHAR},
+			</if>
+			<if test="stockid != null">
+				#{stockid,jdbcType=VARCHAR},
+			</if>
+			<if test="accountid != null">
+				#{accountid,jdbcType=VARCHAR},
+			</if>
+			<if test="costtypeid != null">
+				#{costtypeid,jdbcType=VARCHAR},
+			</if>
+			<if test="holidayid != null">
+				#{holidayid,jdbcType=VARCHAR},
+			</if>
+			<if test="shiftcalendarid != null">
+				#{shiftcalendarid,jdbcType=VARCHAR},
+			</if>
+			<if test="okforuse != null">
+				#{okforuse,jdbcType=TINYINT},
+			</if>
+			<if test="manufacturer != null">
+				#{manufacturer,jdbcType=VARCHAR},
+			</if>
+			<if test="serial != null">
+				#{serial,jdbcType=VARCHAR},
+			</if>
+			<if test="year != null">
+				#{year,jdbcType=VARCHAR},
+			</if>
+			<if test="deliverydate != null">
+				#{deliverydate,jdbcType=DATE},
+			</if>
+			<if test="guarantytime != null">
+				#{guarantytime,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DECIMAL},
+			</if>
+			<if test="totalinvestment != null">
+				#{totalinvestment,jdbcType=DECIMAL},
+			</if>
+			<if test="spflag != null">
+				#{spflag,jdbcType=TINYINT},
+			</if>
+			<if test="mosubflag != null">
+				#{mosubflag,jdbcType=TINYINT},
+			</if>
+			<if test="woflag != null">
+				#{woflag,jdbcType=TINYINT},
+			</if>
+			<if test="pointflag != null">
+				#{pointflag,jdbcType=TINYINT},
+			</if>
+			<if test="histflag != null">
+				#{histflag,jdbcType=TINYINT},
+			</if>
+			<if test="drawingflag != null">
+				#{drawingflag,jdbcType=TINYINT},
+			</if>
+			<if test="fixedassetflag != null">
+				#{fixedassetflag,jdbcType=TINYINT},
+			</if>
+			<if test="tdmflag != null">
+				#{tdmflag,jdbcType=TINYINT},
+			</if>
+			<if test="sumstoptime != null">
+				#{sumstoptime,jdbcType=DECIMAL},
+			</if>
+			<if test="sumwaittime != null">
+				#{sumwaittime,jdbcType=DECIMAL},
+			</if>
+			<if test="sumspartime != null">
+				#{sumspartime,jdbcType=DECIMAL},
+			</if>
+			<if test="sumworktime != null">
+				#{sumworktime,jdbcType=DECIMAL},
+			</if>
+			<if test="sumstops != null">
+				#{sumstops,jdbcType=INTEGER},
+			</if>
+			<if test="sumworkcost != null">
+				#{sumworkcost,jdbcType=DECIMAL},
+			</if>
+			<if test="sumsparcost != null">
+				#{sumsparcost,jdbcType=DECIMAL},
+			</if>
+			<if test="sumcosts != null">
+				#{sumcosts,jdbcType=DECIMAL},
+			</if>
+			<if test="costprice != null">
+				#{costprice,jdbcType=DECIMAL},
+			</if>
+			<if test="sumpreventivejobs != null">
+				#{sumpreventivejobs,jdbcType=INTEGER},
+			</if>
+			<if test="sumunpljobs != null">
+				#{sumunpljobs,jdbcType=INTEGER},
+			</if>
+			<if test="sumcorrjobs != null">
+				#{sumcorrjobs,jdbcType=INTEGER},
+			</if>
+			<if test="calibrationflag != null">
+				#{calibrationflag,jdbcType=TINYINT},
+			</if>
+			<if test="calibrationstatus != null">
+				#{calibrationstatus,jdbcType=VARCHAR},
+			</if>
+			<if test="calibrationexternal != null">
+				#{calibrationexternal,jdbcType=TINYINT},
+			</if>
+			<if test="calibrationokrequired != null">
+				#{calibrationokrequired,jdbcType=TINYINT},
+			</if>
+			<if test="calirespworksupplierid != null">
+				#{calirespworksupplierid,jdbcType=VARCHAR},
+			</if>
+			<if test="calibrationusefornorm != null">
+				#{calibrationusefornorm,jdbcType=TINYINT},
+			</if>
+			<if test="calibrationnormvalue != null">
+				#{calibrationnormvalue,jdbcType=DECIMAL},
+			</if>
+			<if test="calibrationnormformat != null">
+				#{calibrationnormformat,jdbcType=VARCHAR},
+			</if>
+			<if test="calibrationnormunit != null">
+				#{calibrationnormunit,jdbcType=VARCHAR},
+			</if>
+			<if test="calibrationnormexpiredate != null">
+				#{calibrationnormexpiredate,jdbcType=DATE},
+			</if>
+			<if test="instrumentid != null">
+				#{instrumentid,jdbcType=VARCHAR},
+			</if>
+			<if test="calilastdate != null">
+				#{calilastdate,jdbcType=DATE},
+			</if>
+			<if test="calisumcost != null">
+				#{calisumcost,jdbcType=DECIMAL},
+			</if>
+			<if test="caliworknoteid != null">
+				#{caliworknoteid,jdbcType=VARCHAR},
+			</if>
+			<if test="calijobcodeid != null">
+				#{calijobcodeid,jdbcType=VARCHAR},
+			</if>
+			<if test="caliinstrumentid != null">
+				#{caliinstrumentid,jdbcType=VARCHAR},
+			</if>
+			<if test="caliinstrumentmoid != null">
+				#{caliinstrumentmoid,jdbcType=VARCHAR},
+			</if>
+			<if test="caliintervaltime != null">
+				#{caliintervaltime,jdbcType=INTEGER},
+			</if>
+			<if test="caliintervaltimeunit != null">
+				#{caliintervaltimeunit,jdbcType=VARCHAR},
+			</if>
+			<if test="caliintervaltimenext != null">
+				#{caliintervaltimenext,jdbcType=DATE},
+			</if>
+			<if test="calicounterid != null">
+				#{calicounterid,jdbcType=VARCHAR},
+			</if>
+			<if test="caliintervalcount != null">
+				#{caliintervalcount,jdbcType=DECIMAL},
+			</if>
+			<if test="caliintervalcountnext != null">
+				#{caliintervalcountnext,jdbcType=DECIMAL},
+			</if>
+			<if test="caliplantime != null">
+				#{caliplantime,jdbcType=DECIMAL},
+			</if>
+			<if test="caliplancost != null">
+				#{caliplancost,jdbcType=DECIMAL},
+			</if>
+			<if test="califreetext != null">
+				#{califreetext,jdbcType=VARCHAR},
+			</if>
+			<if test="contlastdate != null">
+				#{contlastdate,jdbcType=DATE},
+			</if>
+			<if test="contsumcost != null">
+				#{contsumcost,jdbcType=DECIMAL},
+			</if>
+			<if test="contworknoteid != null">
+				#{contworknoteid,jdbcType=VARCHAR},
+			</if>
+			<if test="contjobcodeid != null">
+				#{contjobcodeid,jdbcType=VARCHAR},
+			</if>
+			<if test="continstrumentid != null">
+				#{continstrumentid,jdbcType=VARCHAR},
+			</if>
+			<if test="continstrumentmoid != null">
+				#{continstrumentmoid,jdbcType=VARCHAR},
+			</if>
+			<if test="contintervaltime != null">
+				#{contintervaltime,jdbcType=INTEGER},
+			</if>
+			<if test="contintervaltimeunit != null">
+				#{contintervaltimeunit,jdbcType=VARCHAR},
+			</if>
+			<if test="contintervaltimenext != null">
+				#{contintervaltimenext,jdbcType=DATE},
+			</if>
+			<if test="contcounterid != null">
+				#{contcounterid,jdbcType=VARCHAR},
+			</if>
+			<if test="contintervalcount != null">
+				#{contintervalcount,jdbcType=DECIMAL},
+			</if>
+			<if test="contintervalcountnext != null">
+				#{contintervalcountnext,jdbcType=DECIMAL},
+			</if>
+			<if test="contplantime != null">
+				#{contplantime,jdbcType=DECIMAL},
+			</if>
+			<if test="contplancost != null">
+				#{contplancost,jdbcType=DECIMAL},
+			</if>
+			<if test="contfreetext != null">
+				#{contfreetext,jdbcType=VARCHAR},
+			</if>
+			<if test="mobarcode != null">
+				#{mobarcode,jdbcType=BIGINT},
+			</if>
+			<if test="priorityid != null">
+				#{priorityid,jdbcType=INTEGER},
+			</if>
+			<if test="guarantyexpiredate != null">
+				#{guarantyexpiredate,jdbcType=DATE},
+			</if>
+			<if test="lastchangedate != null">
+				#{lastchangedate,jdbcType=DATE},
+			</if>
+			<if test="lastchangetime != null">
+				#{lastchangetime,jdbcType=INTEGER},
+			</if>
+			<if test="lastexportdate != null">
+				#{lastexportdate,jdbcType=DATE},
+			</if>
+			<if test="lastexporttime != null">
+				#{lastexporttime,jdbcType=INTEGER},
+			</if>
+			<if test="lastimportdate != null">
+				#{lastimportdate,jdbcType=DATE},
+			</if>
+			<if test="lastimporttime != null">
+				#{lastimporttime,jdbcType=INTEGER},
+			</if>
+			<if test="yearlyoperationalhours != null">
+				#{yearlyoperationalhours,jdbcType=DECIMAL},
+			</if>
+			<if test="techrespuuserid != null">
+				#{techrespuuserid,jdbcType=VARCHAR},
+			</if>
+			<if test="siteid != null">
+				#{siteid,jdbcType=VARCHAR},
+			</if>
+			<if test="recordactive != null">
+				#{recordactive,jdbcType=TINYINT},
+			</if>
+			<if test="custombarcode != null">
+				#{custombarcode,jdbcType=VARCHAR},
+			</if>
+			<if test="wopassive != null">
+				#{wopassive,jdbcType=TINYINT},
+			</if>
+			<if test="worksupplierid != null">
+				#{worksupplierid,jdbcType=VARCHAR},
+			</if>
+			<if test="extramoinfo2 != null">
+				#{extramoinfo2,jdbcType=VARCHAR},
+			</if>
+			<if test="extramoinfo3 != null">
+				#{extramoinfo3,jdbcType=VARCHAR},
+			</if>
+			<if test="objectstatusid != null">
+				#{objectstatusid,jdbcType=VARCHAR},
+			</if>
+			<if test="budget != null">
+				#{budget,jdbcType=DECIMAL},
+			</if>
+			<if test="usedcost != null">
+				#{usedcost,jdbcType=DECIMAL},
+			</if>
+			<if test="resetcost != null">
+				#{resetcost,jdbcType=TINYINT},
+			</if>
+			<if test="icon != null">
+				#{icon,jdbcType=INTEGER},
+			</if>
+			<if test="extramoinfo4 != null">
+				#{extramoinfo4,jdbcType=VARCHAR},
+			</if>
+			<if test="extramoinfo5 != null">
+				#{extramoinfo5,jdbcType=VARCHAR},
+			</if>
+			<if test="uuserid != null">
+				#{uuserid,jdbcType=VARCHAR},
+			</if>
+			<if test="customerid != null">
+				#{customerid,jdbcType=VARCHAR},
+			</if>
+			<if test="mostatus != null">
+				#{mostatus,jdbcType=VARCHAR},
+			</if>
+			<if test="sumcbmjobs != null">
+				#{sumcbmjobs,jdbcType=INTEGER},
+			</if>
+			<if test="suminspjobs != null">
+				#{suminspjobs,jdbcType=INTEGER},
+			</if>
+			<if test="sumothjobs != null">
+				#{sumothjobs,jdbcType=INTEGER},
+			</if>
+			<if test="manufacturerid != null">
+				#{manufacturerid,jdbcType=INTEGER},
+			</if>
+			<if test="counterid != null">
+				#{counterid,jdbcType=VARCHAR},
+			</if>
+			<if test="calstatusid != null">
+				#{calstatusid,jdbcType=VARCHAR},
+			</if>
+			<if test="calstatuschangedate != null">
+				#{calstatuschangedate,jdbcType=DATE},
+			</if>
+			<if test="calstatuschangetime != null">
+				#{calstatuschangetime,jdbcType=INTEGER},
+			</if>
+			<if test="caliskiptimes != null">
+				#{caliskiptimes,jdbcType=INTEGER},
+			</if>
+			<if test="contskiptimes != null">
+				#{contskiptimes,jdbcType=INTEGER},
+			</if>
+			<if test="hourlyproduction != null">
+				#{hourlyproduction,jdbcType=DECIMAL},
+			</if>
+			<if test="extramoinfo6 != null">
+				#{extramoinfo6,jdbcType=VARCHAR},
+			</if>
+			<if test="extramoinfo7 != null">
+				#{extramoinfo7,jdbcType=VARCHAR},
+			</if>
+			<if test="extramoinfo8 != null">
+				#{extramoinfo8,jdbcType=VARCHAR},
+			</if>
+			<if test="extramoinfo9 != null">
+				#{extramoinfo9,jdbcType=VARCHAR},
+			</if>
+			<if test="extramoinfo10 != null">
+				#{extramoinfo10,jdbcType=VARCHAR},
+			</if>
+			<if test="prodworksupplierid != null">
+				#{prodworksupplierid,jdbcType=VARCHAR},
+			</if>
+			<if test="maintworksupplierid != null">
+				#{maintworksupplierid,jdbcType=VARCHAR},
+			</if>
+			<if test="planworksupplierid != null">
+				#{planworksupplierid,jdbcType=VARCHAR},
+			</if>
+			<if test="apprworksupplierid != null">
+				#{apprworksupplierid,jdbcType=VARCHAR},
+			</if>
+			<if test="rfid != null">
+				#{rfid,jdbcType=VARCHAR},
+			</if>
+			<if test="fdalogging != null">
+				#{fdalogging,jdbcType=TINYINT},
+			</if>
+			<if test="locationposid != null">
+				#{locationposid,jdbcType=VARCHAR},
+			</if>
+			<if test="costcarrierid != null">
+				#{costcarrierid,jdbcType=VARCHAR},
+			</if>
+			<if test="debitcosttypeid != null">
+				#{debitcosttypeid,jdbcType=VARCHAR},
+			</if>
+			<if test="calistarttime != null">
+				#{calistarttime,jdbcType=INTEGER},
+			</if>
+			<if test="calienddate != null">
+				#{calienddate,jdbcType=DATE},
+			</if>
+			<if test="caliendtime != null">
+				#{caliendtime,jdbcType=INTEGER},
+			</if>
+			<if test="caliinprogress != null">
+				#{caliinprogress,jdbcType=TINYINT},
+			</if>
+			<if test="contstarttime != null">
+				#{contstarttime,jdbcType=INTEGER},
+			</if>
+			<if test="contenddate != null">
+				#{contenddate,jdbcType=DATE},
+			</if>
+			<if test="contendtime != null">
+				#{contendtime,jdbcType=INTEGER},
+			</if>
+			<if test="continprogress != null">
+				#{continprogress,jdbcType=TINYINT},
+			</if>
+			<if test="mo1approvedbyuuserid != null">
+				#{mo1approvedbyuuserid,jdbcType=VARCHAR},
+			</if>
+			<if test="mo1approveddate != null">
+				#{mo1approveddate,jdbcType=DATE},
+			</if>
+			<if test="mo1approvedtime != null">
+				#{mo1approvedtime,jdbcType=INTEGER},
+			</if>
+			<if test="mo1approvedstatus != null">
+				#{mo1approvedstatus,jdbcType=VARCHAR},
+			</if>
+			<if test="mo2approvedbyuuserid != null">
+				#{mo2approvedbyuuserid,jdbcType=VARCHAR},
+			</if>
+			<if test="mo2approveddate != null">
+				#{mo2approveddate,jdbcType=DATE},
+			</if>
+			<if test="mo2approvedtime != null">
+				#{mo2approvedtime,jdbcType=INTEGER},
+			</if>
+			<if test="mo2approvedstatus != null">
+				#{mo2approvedstatus,jdbcType=VARCHAR},
+			</if>
+			<if test="mo3approvedbyuuserid != null">
+				#{mo3approvedbyuuserid,jdbcType=VARCHAR},
+			</if>
+			<if test="mo3approveddate != null">
+				#{mo3approveddate,jdbcType=DATE},
+			</if>
+			<if test="mo3approvedtime != null">
+				#{mo3approvedtime,jdbcType=INTEGER},
+			</if>
+			<if test="mo3approvedstatus != null">
+				#{mo3approvedstatus,jdbcType=VARCHAR},
+			</if>
+			<if test="calipassive != null">
+				#{calipassive,jdbcType=TINYINT},
+			</if>
+			<if test="contpassive != null">
+				#{contpassive,jdbcType=TINYINT},
+			</if>
+			<if test="stocklocationid != null">
+				#{stocklocationid,jdbcType=VARCHAR},
+			</if>
+			<if test="shiftrespareaid != null">
+				#{shiftrespareaid,jdbcType=VARCHAR},
+			</if>
+			<if test="mocounterid != null">
+				#{mocounterid,jdbcType=VARCHAR},
+			</if>
+			<if test="mocounterunit != null">
+				#{mocounterunit,jdbcType=VARCHAR},
+			</if>
+			<if test="mototalreading != null">
+				#{mototalreading,jdbcType=DECIMAL},
+			</if>
+			<if test="molastreadingdate != null">
+				#{molastreadingdate,jdbcType=DATE},
+			</if>
+			<if test="molastreadingtime != null">
+				#{molastreadingtime,jdbcType=INTEGER},
+			</if>
+			<if test="plantid != null">
+				#{plantid,jdbcType=VARCHAR},
+			</if>
+			<if test="legalunitid != null">
+				#{legalunitid,jdbcType=VARCHAR},
+			</if>
+			<if test="legalunitcurrencyid != null">
+				#{legalunitcurrencyid,jdbcType=VARCHAR},
+			</if>
+			<if test="caliinprogresscalregid != null">
+				#{caliinprogresscalregid,jdbcType=VARCHAR},
+			</if>
+			<if test="caliinprogressdate != null">
+				#{caliinprogressdate,jdbcType=DATE},
+			</if>
+			<if test="caliinprogresstime != null">
+				#{caliinprogresstime,jdbcType=INTEGER},
+			</if>
+			<if test="continprogresscalregid != null">
+				#{continprogresscalregid,jdbcType=VARCHAR},
+			</if>
+			<if test="continprogressdate != null">
+				#{continprogressdate,jdbcType=DATE},
+			</if>
+			<if test="continprogresstime != null">
+				#{continprogresstime,jdbcType=INTEGER},
+			</if>
+			<if test="mo1approveddtz != null">
+				#{mo1approveddtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mo2approveddtz != null">
+				#{mo2approveddtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mo3approveddtz != null">
+				#{mo3approveddtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastchangedtz != null">
+				#{lastchangedtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastexportdtz != null">
+				#{lastexportdtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastimportdtz != null">
+				#{lastimportdtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="calstatuschangedtz != null">
+				#{calstatuschangedtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="caliinprogressdtz != null">
+				#{caliinprogressdtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="calilastdtz != null">
+				#{calilastdtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="calibrationnormexpiredtz != null">
+				#{calibrationnormexpiredtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="continprogressdtz != null">
+				#{continprogressdtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="contlastdtz != null">
+				#{contlastdtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="molastreadingdtz != null">
+				#{molastreadingdtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="recordlanguageid != null">
+				#{recordlanguageid,jdbcType=VARCHAR},
+			</if>
+			<if test="specinfo != null">
+				#{specinfo,jdbcType=VARCHAR},
+			</if>
+			<if test="mainthumanid != null">
+				#{mainthumanid,jdbcType=INTEGER},
+			</if>
+			<if test="prodhumanid != null">
+				#{prodhumanid,jdbcType=INTEGER},
+			</if>
+			<if test="inspectionhumanid != null">
+				#{inspectionhumanid,jdbcType=INTEGER},
+			</if>
+			<if test="fixedassetskey != null">
+				#{fixedassetskey,jdbcType=VARCHAR},
+			</if>
+			<if test="ismainmo != null">
+				#{ismainmo,jdbcType=INTEGER},
+			</if>
+			<if test="isrepairmo != null">
+				#{isrepairmo,jdbcType=INTEGER},
+			</if>
+			<if test="createdate != null">
+				#{createdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createuserid != null">
+				#{createuserid,jdbcType=INTEGER},
+			</if>
+			<if test="modificationdate != null">
+				#{modificationdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modificationuserid != null">
+				#{modificationuserid,jdbcType=INTEGER},
+			</if>
+			<if test="picpath != null">
+				#{picpath,jdbcType=VARCHAR},
+			</if>
+			<if test="barcode != null">
+				#{barcode,jdbcType=VARCHAR},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="orgid != null">
+				#{orgid,jdbcType=INTEGER},
+			</if>
+			<if test="tombstone != null">
+				#{tombstone,jdbcType=INTEGER},
+			</if>
+			<if test="stationsid != null">
+				#{stationsid,jdbcType=INTEGER},
+			</if>
+			<if test="maintenanceobjectmodelid != null">
+				#{maintenanceobjectmodelid,jdbcType=INTEGER},
+			</if>
+			<if test="picpath1 != null">
+				#{picpath1,jdbcType=VARCHAR},
+			</if>
+			<if test="picpath2 != null">
+				#{picpath2,jdbcType=VARCHAR},
+			</if>
+			<if test="productiondate != null">
+				#{productiondate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="putintooperationdate != null">
+				#{putintooperationdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="qualityguaranteedate != null">
+				#{qualityguaranteedate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mainposid != null">
+				#{mainposid,jdbcType=INTEGER},
+			</if>
+			<if test="extraid1 != null">
+				#{extraid1,jdbcType=INTEGER},
+			</if>
+			<if test="extraid2 != null">
+				#{extraid2,jdbcType=INTEGER},
+			</if>
+			<if test="extraid3 != null">
+				#{extraid3,jdbcType=INTEGER},
+			</if>
+			<if test="extraid4 != null">
+				#{extraid4,jdbcType=INTEGER},
+			</if>
+			<if test="extraid5 != null">
+				#{extraid5,jdbcType=INTEGER},
+			</if>
+			<if test="extravarchar1 != null">
+				#{extravarchar1,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar2 != null">
+				#{extravarchar2,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar3 != null">
+				#{extravarchar3,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar4 != null">
+				#{extravarchar4,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar5 != null">
+				#{extravarchar5,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar6 != null">
+				#{extravarchar6,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar7 != null">
+				#{extravarchar7,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar8 != null">
+				#{extravarchar8,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar9 != null">
+				#{extravarchar9,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar10 != null">
+				#{extravarchar10,jdbcType=VARCHAR},
+			</if>
+			<if test="extradecimal1 != null">
+				#{extradecimal1,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal2 != null">
+				#{extradecimal2,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal3 != null">
+				#{extradecimal3,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal4 != null">
+				#{extradecimal4,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal5 != null">
+				#{extradecimal5,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal6 != null">
+				#{extradecimal6,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal7 != null">
+				#{extradecimal7,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal8 != null">
+				#{extradecimal8,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal9 != null">
+				#{extradecimal9,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal10 != null">
+				#{extradecimal10,jdbcType=DECIMAL},
+			</if>
+			<if test="extraint1 != null">
+				#{extraint1,jdbcType=INTEGER},
+			</if>
+			<if test="extraint2 != null">
+				#{extraint2,jdbcType=INTEGER},
+			</if>
+			<if test="extraint3 != null">
+				#{extraint3,jdbcType=INTEGER},
+			</if>
+			<if test="extraint4 != null">
+				#{extraint4,jdbcType=INTEGER},
+			</if>
+			<if test="extraint5 != null">
+				#{extraint5,jdbcType=INTEGER},
+			</if>
+			<if test="extradatetime1 != null">
+				#{extradatetime1,jdbcType=TIMESTAMP},
+			</if>
+			<if test="extradatetime2 != null">
+				#{extradatetime2,jdbcType=TIMESTAMP},
+			</if>
+			<if test="extradatetime3 != null">
+				#{extradatetime3,jdbcType=TIMESTAMP},
+			</if>
+			<if test="extradatetime4 != null">
+				#{extradatetime4,jdbcType=TIMESTAMP},
+			</if>
+			<if test="extradatetime5 != null">
+				#{extradatetime5,jdbcType=TIMESTAMP},
+			</if>
+			<if test="extravarchar11 != null">
+				#{extravarchar11,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar12 != null">
+				#{extravarchar12,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar13 != null">
+				#{extravarchar13,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar14 != null">
+				#{extravarchar14,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar15 != null">
+				#{extravarchar15,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar16 != null">
+				#{extravarchar16,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar17 != null">
+				#{extravarchar17,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar18 != null">
+				#{extravarchar18,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar19 != null">
+				#{extravarchar19,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar20 != null">
+				#{extravarchar20,jdbcType=VARCHAR},
+			</if>
+			<if test="posname != null">
+				#{posname,jdbcType=VARCHAR},
+			</if>
+			<if test="statusid != null">
+				#{statusid,jdbcType=INTEGER},
+			</if>
+			<if test="typeid != null">
+				#{typeid,jdbcType=INTEGER},
+			</if>
+			<if test="assetgroupkey != null">
+				#{assetgroupkey,jdbcType=VARCHAR},
+			</if>
+			<if test="assetkey != null">
+				#{assetkey,jdbcType=VARCHAR},
+			</if>
+			<if test="purchaseprice != null">
+				#{purchaseprice,jdbcType=DECIMAL},
+			</if>
+			<if test="contractno != null">
+				#{contractno,jdbcType=VARCHAR},
+			</if>
+			<if test="originalvalue != null">
+				#{originalvalue,jdbcType=DECIMAL},
+			</if>
+			<if test="netvalue != null">
+				#{netvalue,jdbcType=DECIMAL},
+			</if>
+			<if test="forproduct != null">
+				#{forproduct,jdbcType=VARCHAR},
+			</if>
+			<if test="projectkey != null">
+				#{projectkey,jdbcType=VARCHAR},
+			</if>
+			<if test="purchasedate != null">
+				#{purchasedate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="costcenterid != null">
+				#{costcenterid,jdbcType=INTEGER},
+			</if>
+			<if test="rootpath != null">
+				#{rootpath,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="MaintenanceobjectEntity">
+		update maintenanceobject
+		<set>
+			<if test="mokey != null">
+				mokey = #{mokey,jdbcType=VARCHAR},
+			</if>
+			<if test="moname != null">
+				moname = #{moname,jdbcType=VARCHAR},
+			</if>
+			<if test="rootmoid != null">
+				rootmoid = #{rootmoid,jdbcType=VARCHAR},
+			</if>
+			<if test="posid != null">
+				posid = #{posid,jdbcType=INTEGER},
+			</if>
+			<if test="tiid != null">
+				tiid = #{tiid,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierid != null">
+				supplierid = #{supplierid,jdbcType=VARCHAR},
+			</if>
+			<if test="mocodeid != null">
+				mocodeid = #{mocodeid,jdbcType=VARCHAR},
+			</if>
+			<if test="mogroupid != null">
+				mogroupid = #{mogroupid,jdbcType=VARCHAR},
+			</if>
+			<if test="extramoinfo1 != null">
+				extramoinfo1 = #{extramoinfo1,jdbcType=VARCHAR},
+			</if>
+			<if test="spid != null">
+				spid = #{spid,jdbcType=VARCHAR},
+			</if>
+			<if test="stockid != null">
+				stockid = #{stockid,jdbcType=VARCHAR},
+			</if>
+			<if test="accountid != null">
+				accountid = #{accountid,jdbcType=VARCHAR},
+			</if>
+			<if test="costtypeid != null">
+				costtypeid = #{costtypeid,jdbcType=VARCHAR},
+			</if>
+			<if test="holidayid != null">
+				holidayid = #{holidayid,jdbcType=VARCHAR},
+			</if>
+			<if test="shiftcalendarid != null">
+				shiftcalendarid = #{shiftcalendarid,jdbcType=VARCHAR},
+			</if>
+			<if test="okforuse != null">
+				okforuse = #{okforuse,jdbcType=TINYINT},
+			</if>
+			<if test="manufacturer != null">
+				manufacturer = #{manufacturer,jdbcType=VARCHAR},
+			</if>
+			<if test="serial != null">
+				serial = #{serial,jdbcType=VARCHAR},
+			</if>
+			<if test="year != null">
+				year = #{year,jdbcType=VARCHAR},
+			</if>
+			<if test="deliverydate != null">
+				deliverydate = #{deliverydate,jdbcType=DATE},
+			</if>
+			<if test="guarantytime != null">
+				guarantytime = #{guarantytime,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=DECIMAL},
+			</if>
+			<if test="totalinvestment != null">
+				totalinvestment = #{totalinvestment,jdbcType=DECIMAL},
+			</if>
+			<if test="spflag != null">
+				spflag = #{spflag,jdbcType=TINYINT},
+			</if>
+			<if test="mosubflag != null">
+				mosubflag = #{mosubflag,jdbcType=TINYINT},
+			</if>
+			<if test="woflag != null">
+				woflag = #{woflag,jdbcType=TINYINT},
+			</if>
+			<if test="pointflag != null">
+				pointflag = #{pointflag,jdbcType=TINYINT},
+			</if>
+			<if test="histflag != null">
+				histflag = #{histflag,jdbcType=TINYINT},
+			</if>
+			<if test="drawingflag != null">
+				drawingflag = #{drawingflag,jdbcType=TINYINT},
+			</if>
+			<if test="fixedassetflag != null">
+				fixedassetflag = #{fixedassetflag,jdbcType=TINYINT},
+			</if>
+			<if test="tdmflag != null">
+				tdmflag = #{tdmflag,jdbcType=TINYINT},
+			</if>
+			<if test="sumstoptime != null">
+				sumstoptime = #{sumstoptime,jdbcType=DECIMAL},
+			</if>
+			<if test="sumwaittime != null">
+				sumwaittime = #{sumwaittime,jdbcType=DECIMAL},
+			</if>
+			<if test="sumspartime != null">
+				sumspartime = #{sumspartime,jdbcType=DECIMAL},
+			</if>
+			<if test="sumworktime != null">
+				sumworktime = #{sumworktime,jdbcType=DECIMAL},
+			</if>
+			<if test="sumstops != null">
+				sumstops = #{sumstops,jdbcType=INTEGER},
+			</if>
+			<if test="sumworkcost != null">
+				sumworkcost = #{sumworkcost,jdbcType=DECIMAL},
+			</if>
+			<if test="sumsparcost != null">
+				sumsparcost = #{sumsparcost,jdbcType=DECIMAL},
+			</if>
+			<if test="sumcosts != null">
+				sumcosts = #{sumcosts,jdbcType=DECIMAL},
+			</if>
+			<if test="costprice != null">
+				costprice = #{costprice,jdbcType=DECIMAL},
+			</if>
+			<if test="sumpreventivejobs != null">
+				sumpreventivejobs = #{sumpreventivejobs,jdbcType=INTEGER},
+			</if>
+			<if test="sumunpljobs != null">
+				sumunpljobs = #{sumunpljobs,jdbcType=INTEGER},
+			</if>
+			<if test="sumcorrjobs != null">
+				sumcorrjobs = #{sumcorrjobs,jdbcType=INTEGER},
+			</if>
+			<if test="calibrationflag != null">
+				calibrationflag = #{calibrationflag,jdbcType=TINYINT},
+			</if>
+			<if test="calibrationstatus != null">
+				calibrationstatus = #{calibrationstatus,jdbcType=VARCHAR},
+			</if>
+			<if test="calibrationexternal != null">
+				calibrationexternal = #{calibrationexternal,jdbcType=TINYINT},
+			</if>
+			<if test="calibrationokrequired != null">
+				calibrationokrequired = #{calibrationokrequired,jdbcType=TINYINT},
+			</if>
+			<if test="calirespworksupplierid != null">
+				calirespworksupplierid = #{calirespworksupplierid,jdbcType=VARCHAR},
+			</if>
+			<if test="calibrationusefornorm != null">
+				calibrationusefornorm = #{calibrationusefornorm,jdbcType=TINYINT},
+			</if>
+			<if test="calibrationnormvalue != null">
+				calibrationnormvalue = #{calibrationnormvalue,jdbcType=DECIMAL},
+			</if>
+			<if test="calibrationnormformat != null">
+				calibrationnormformat = #{calibrationnormformat,jdbcType=VARCHAR},
+			</if>
+			<if test="calibrationnormunit != null">
+				calibrationnormunit = #{calibrationnormunit,jdbcType=VARCHAR},
+			</if>
+			<if test="calibrationnormexpiredate != null">
+				calibrationnormexpiredate =
+				#{calibrationnormexpiredate,jdbcType=DATE},
+			</if>
+			<if test="instrumentid != null">
+				instrumentid = #{instrumentid,jdbcType=VARCHAR},
+			</if>
+			<if test="calilastdate != null">
+				calilastdate = #{calilastdate,jdbcType=DATE},
+			</if>
+			<if test="calisumcost != null">
+				calisumcost = #{calisumcost,jdbcType=DECIMAL},
+			</if>
+			<if test="caliworknoteid != null">
+				caliworknoteid = #{caliworknoteid,jdbcType=VARCHAR},
+			</if>
+			<if test="calijobcodeid != null">
+				calijobcodeid = #{calijobcodeid,jdbcType=VARCHAR},
+			</if>
+			<if test="caliinstrumentid != null">
+				caliinstrumentid = #{caliinstrumentid,jdbcType=VARCHAR},
+			</if>
+			<if test="caliinstrumentmoid != null">
+				caliinstrumentmoid = #{caliinstrumentmoid,jdbcType=VARCHAR},
+			</if>
+			<if test="caliintervaltime != null">
+				caliintervaltime = #{caliintervaltime,jdbcType=INTEGER},
+			</if>
+			<if test="caliintervaltimeunit != null">
+				caliintervaltimeunit = #{caliintervaltimeunit,jdbcType=VARCHAR},
+			</if>
+			<if test="caliintervaltimenext != null">
+				caliintervaltimenext = #{caliintervaltimenext,jdbcType=DATE},
+			</if>
+			<if test="calicounterid != null">
+				calicounterid = #{calicounterid,jdbcType=VARCHAR},
+			</if>
+			<if test="caliintervalcount != null">
+				caliintervalcount = #{caliintervalcount,jdbcType=DECIMAL},
+			</if>
+			<if test="caliintervalcountnext != null">
+				caliintervalcountnext = #{caliintervalcountnext,jdbcType=DECIMAL},
+			</if>
+			<if test="caliplantime != null">
+				caliplantime = #{caliplantime,jdbcType=DECIMAL},
+			</if>
+			<if test="caliplancost != null">
+				caliplancost = #{caliplancost,jdbcType=DECIMAL},
+			</if>
+			<if test="califreetext != null">
+				califreetext = #{califreetext,jdbcType=VARCHAR},
+			</if>
+			<if test="contlastdate != null">
+				contlastdate = #{contlastdate,jdbcType=DATE},
+			</if>
+			<if test="contsumcost != null">
+				contsumcost = #{contsumcost,jdbcType=DECIMAL},
+			</if>
+			<if test="contworknoteid != null">
+				contworknoteid = #{contworknoteid,jdbcType=VARCHAR},
+			</if>
+			<if test="contjobcodeid != null">
+				contjobcodeid = #{contjobcodeid,jdbcType=VARCHAR},
+			</if>
+			<if test="continstrumentid != null">
+				continstrumentid = #{continstrumentid,jdbcType=VARCHAR},
+			</if>
+			<if test="continstrumentmoid != null">
+				continstrumentmoid = #{continstrumentmoid,jdbcType=VARCHAR},
+			</if>
+			<if test="contintervaltime != null">
+				contintervaltime = #{contintervaltime,jdbcType=INTEGER},
+			</if>
+			<if test="contintervaltimeunit != null">
+				contintervaltimeunit = #{contintervaltimeunit,jdbcType=VARCHAR},
+			</if>
+			<if test="contintervaltimenext != null">
+				contintervaltimenext = #{contintervaltimenext,jdbcType=DATE},
+			</if>
+			<if test="contcounterid != null">
+				contcounterid = #{contcounterid,jdbcType=VARCHAR},
+			</if>
+			<if test="contintervalcount != null">
+				contintervalcount = #{contintervalcount,jdbcType=DECIMAL},
+			</if>
+			<if test="contintervalcountnext != null">
+				contintervalcountnext = #{contintervalcountnext,jdbcType=DECIMAL},
+			</if>
+			<if test="contplantime != null">
+				contplantime = #{contplantime,jdbcType=DECIMAL},
+			</if>
+			<if test="contplancost != null">
+				contplancost = #{contplancost,jdbcType=DECIMAL},
+			</if>
+			<if test="contfreetext != null">
+				contfreetext = #{contfreetext,jdbcType=VARCHAR},
+			</if>
+			<if test="mobarcode != null">
+				mobarcode = #{mobarcode,jdbcType=BIGINT},
+			</if>
+			<if test="priorityid != null">
+				priorityid = #{priorityid,jdbcType=INTEGER},
+			</if>
+			<if test="guarantyexpiredate != null">
+				guarantyexpiredate = #{guarantyexpiredate,jdbcType=DATE},
+			</if>
+			<if test="lastchangedate != null">
+				lastchangedate = #{lastchangedate,jdbcType=DATE},
+			</if>
+			<if test="lastchangetime != null">
+				lastchangetime = #{lastchangetime,jdbcType=INTEGER},
+			</if>
+			<if test="lastexportdate != null">
+				lastexportdate = #{lastexportdate,jdbcType=DATE},
+			</if>
+			<if test="lastexporttime != null">
+				lastexporttime = #{lastexporttime,jdbcType=INTEGER},
+			</if>
+			<if test="lastimportdate != null">
+				lastimportdate = #{lastimportdate,jdbcType=DATE},
+			</if>
+			<if test="lastimporttime != null">
+				lastimporttime = #{lastimporttime,jdbcType=INTEGER},
+			</if>
+			<if test="yearlyoperationalhours != null">
+				yearlyoperationalhours = #{yearlyoperationalhours,jdbcType=DECIMAL},
+			</if>
+			<if test="techrespuuserid != null">
+				techrespuuserid = #{techrespuuserid,jdbcType=VARCHAR},
+			</if>
+			<if test="siteid != null">
+				siteid = #{siteid,jdbcType=VARCHAR},
+			</if>
+			<if test="recordactive != null">
+				recordactive = #{recordactive,jdbcType=TINYINT},
+			</if>
+			<if test="custombarcode != null">
+				custombarcode = #{custombarcode,jdbcType=VARCHAR},
+			</if>
+			<if test="wopassive != null">
+				wopassive = #{wopassive,jdbcType=TINYINT},
+			</if>
+			<if test="worksupplierid != null">
+				worksupplierid = #{worksupplierid,jdbcType=VARCHAR},
+			</if>
+			<if test="extramoinfo2 != null">
+				extramoinfo2 = #{extramoinfo2,jdbcType=VARCHAR},
+			</if>
+			<if test="extramoinfo3 != null">
+				extramoinfo3 = #{extramoinfo3,jdbcType=VARCHAR},
+			</if>
+			<if test="objectstatusid != null">
+				objectstatusid = #{objectstatusid,jdbcType=VARCHAR},
+			</if>
+			<if test="budget != null">
+				budget = #{budget,jdbcType=DECIMAL},
+			</if>
+			<if test="usedcost != null">
+				usedcost = #{usedcost,jdbcType=DECIMAL},
+			</if>
+			<if test="resetcost != null">
+				resetcost = #{resetcost,jdbcType=TINYINT},
+			</if>
+			<if test="icon != null">
+				icon = #{icon,jdbcType=INTEGER},
+			</if>
+			<if test="extramoinfo4 != null">
+				extramoinfo4 = #{extramoinfo4,jdbcType=VARCHAR},
+			</if>
+			<if test="extramoinfo5 != null">
+				extramoinfo5 = #{extramoinfo5,jdbcType=VARCHAR},
+			</if>
+			<if test="uuserid != null">
+				uuserid = #{uuserid,jdbcType=VARCHAR},
+			</if>
+			<if test="customerid != null">
+				customerid = #{customerid,jdbcType=VARCHAR},
+			</if>
+			<if test="mostatus != null">
+				mostatus = #{mostatus,jdbcType=VARCHAR},
+			</if>
+			<if test="sumcbmjobs != null">
+				sumcbmjobs = #{sumcbmjobs,jdbcType=INTEGER},
+			</if>
+			<if test="suminspjobs != null">
+				suminspjobs = #{suminspjobs,jdbcType=INTEGER},
+			</if>
+			<if test="sumothjobs != null">
+				sumothjobs = #{sumothjobs,jdbcType=INTEGER},
+			</if>
+			<if test="manufacturerid != null">
+				manufacturerid = #{manufacturerid,jdbcType=INTEGER},
+			</if>
+			<if test="counterid != null">
+				counterid = #{counterid,jdbcType=VARCHAR},
+			</if>
+			<if test="calstatusid != null">
+				calstatusid = #{calstatusid,jdbcType=VARCHAR},
+			</if>
+			<if test="calstatuschangedate != null">
+				calstatuschangedate = #{calstatuschangedate,jdbcType=DATE},
+			</if>
+			<if test="calstatuschangetime != null">
+				calstatuschangetime = #{calstatuschangetime,jdbcType=INTEGER},
+			</if>
+			<if test="caliskiptimes != null">
+				caliskiptimes = #{caliskiptimes,jdbcType=INTEGER},
+			</if>
+			<if test="contskiptimes != null">
+				contskiptimes = #{contskiptimes,jdbcType=INTEGER},
+			</if>
+			<if test="hourlyproduction != null">
+				hourlyproduction = #{hourlyproduction,jdbcType=DECIMAL},
+			</if>
+			<if test="extramoinfo6 != null">
+				extramoinfo6 = #{extramoinfo6,jdbcType=VARCHAR},
+			</if>
+			<if test="extramoinfo7 != null">
+				extramoinfo7 = #{extramoinfo7,jdbcType=VARCHAR},
+			</if>
+			<if test="extramoinfo8 != null">
+				extramoinfo8 = #{extramoinfo8,jdbcType=VARCHAR},
+			</if>
+			<if test="extramoinfo9 != null">
+				extramoinfo9 = #{extramoinfo9,jdbcType=VARCHAR},
+			</if>
+			<if test="extramoinfo10 != null">
+				extramoinfo10 = #{extramoinfo10,jdbcType=VARCHAR},
+			</if>
+			<if test="prodworksupplierid != null">
+				prodworksupplierid = #{prodworksupplierid,jdbcType=VARCHAR},
+			</if>
+			<if test="maintworksupplierid != null">
+				maintworksupplierid = #{maintworksupplierid,jdbcType=VARCHAR},
+			</if>
+			<if test="planworksupplierid != null">
+				planworksupplierid = #{planworksupplierid,jdbcType=VARCHAR},
+			</if>
+			<if test="apprworksupplierid != null">
+				apprworksupplierid = #{apprworksupplierid,jdbcType=VARCHAR},
+			</if>
+			<if test="rfid != null">
+				rfid = #{rfid,jdbcType=VARCHAR},
+			</if>
+			<if test="fdalogging != null">
+				fdalogging = #{fdalogging,jdbcType=TINYINT},
+			</if>
+			<if test="locationposid != null">
+				locationposid = #{locationposid,jdbcType=VARCHAR},
+			</if>
+			<if test="costcarrierid != null">
+				costcarrierid = #{costcarrierid,jdbcType=VARCHAR},
+			</if>
+			<if test="debitcosttypeid != null">
+				debitcosttypeid = #{debitcosttypeid,jdbcType=VARCHAR},
+			</if>
+			<if test="calistarttime != null">
+				calistarttime = #{calistarttime,jdbcType=INTEGER},
+			</if>
+			<if test="calienddate != null">
+				calienddate = #{calienddate,jdbcType=DATE},
+			</if>
+			<if test="caliendtime != null">
+				caliendtime = #{caliendtime,jdbcType=INTEGER},
+			</if>
+			<if test="caliinprogress != null">
+				caliinprogress = #{caliinprogress,jdbcType=TINYINT},
+			</if>
+			<if test="contstarttime != null">
+				contstarttime = #{contstarttime,jdbcType=INTEGER},
+			</if>
+			<if test="contenddate != null">
+				contenddate = #{contenddate,jdbcType=DATE},
+			</if>
+			<if test="contendtime != null">
+				contendtime = #{contendtime,jdbcType=INTEGER},
+			</if>
+			<if test="continprogress != null">
+				continprogress = #{continprogress,jdbcType=TINYINT},
+			</if>
+			<if test="mo1approvedbyuuserid != null">
+				mo1approvedbyuuserid = #{mo1approvedbyuuserid,jdbcType=VARCHAR},
+			</if>
+			<if test="mo1approveddate != null">
+				mo1approveddate = #{mo1approveddate,jdbcType=DATE},
+			</if>
+			<if test="mo1approvedtime != null">
+				mo1approvedtime = #{mo1approvedtime,jdbcType=INTEGER},
+			</if>
+			<if test="mo1approvedstatus != null">
+				mo1approvedstatus = #{mo1approvedstatus,jdbcType=VARCHAR},
+			</if>
+			<if test="mo2approvedbyuuserid != null">
+				mo2approvedbyuuserid = #{mo2approvedbyuuserid,jdbcType=VARCHAR},
+			</if>
+			<if test="mo2approveddate != null">
+				mo2approveddate = #{mo2approveddate,jdbcType=DATE},
+			</if>
+			<if test="mo2approvedtime != null">
+				mo2approvedtime = #{mo2approvedtime,jdbcType=INTEGER},
+			</if>
+			<if test="mo2approvedstatus != null">
+				mo2approvedstatus = #{mo2approvedstatus,jdbcType=VARCHAR},
+			</if>
+			<if test="mo3approvedbyuuserid != null">
+				mo3approvedbyuuserid = #{mo3approvedbyuuserid,jdbcType=VARCHAR},
+			</if>
+			<if test="mo3approveddate != null">
+				mo3approveddate = #{mo3approveddate,jdbcType=DATE},
+			</if>
+			<if test="mo3approvedtime != null">
+				mo3approvedtime = #{mo3approvedtime,jdbcType=INTEGER},
+			</if>
+			<if test="mo3approvedstatus != null">
+				mo3approvedstatus = #{mo3approvedstatus,jdbcType=VARCHAR},
+			</if>
+			<if test="calipassive != null">
+				calipassive = #{calipassive,jdbcType=TINYINT},
+			</if>
+			<if test="contpassive != null">
+				contpassive = #{contpassive,jdbcType=TINYINT},
+			</if>
+			<if test="stocklocationid != null">
+				stocklocationid = #{stocklocationid,jdbcType=VARCHAR},
+			</if>
+			<if test="shiftrespareaid != null">
+				shiftrespareaid = #{shiftrespareaid,jdbcType=VARCHAR},
+			</if>
+			<if test="mocounterid != null">
+				mocounterid = #{mocounterid,jdbcType=VARCHAR},
+			</if>
+			<if test="mocounterunit != null">
+				mocounterunit = #{mocounterunit,jdbcType=VARCHAR},
+			</if>
+			<if test="mototalreading != null">
+				mototalreading = #{mototalreading,jdbcType=DECIMAL},
+			</if>
+			<if test="molastreadingdate != null">
+				molastreadingdate = #{molastreadingdate,jdbcType=DATE},
+			</if>
+			<if test="molastreadingtime != null">
+				molastreadingtime = #{molastreadingtime,jdbcType=INTEGER},
+			</if>
+			<if test="plantid != null">
+				plantid = #{plantid,jdbcType=VARCHAR},
+			</if>
+			<if test="legalunitid != null">
+				legalunitid = #{legalunitid,jdbcType=VARCHAR},
+			</if>
+			<if test="legalunitcurrencyid != null">
+				legalunitcurrencyid = #{legalunitcurrencyid,jdbcType=VARCHAR},
+			</if>
+			<if test="caliinprogresscalregid != null">
+				caliinprogresscalregid = #{caliinprogresscalregid,jdbcType=VARCHAR},
+			</if>
+			<if test="caliinprogressdate != null">
+				caliinprogressdate = #{caliinprogressdate,jdbcType=DATE},
+			</if>
+			<if test="caliinprogresstime != null">
+				caliinprogresstime = #{caliinprogresstime,jdbcType=INTEGER},
+			</if>
+			<if test="continprogresscalregid != null">
+				continprogresscalregid = #{continprogresscalregid,jdbcType=VARCHAR},
+			</if>
+			<if test="continprogressdate != null">
+				continprogressdate = #{continprogressdate,jdbcType=DATE},
+			</if>
+			<if test="continprogresstime != null">
+				continprogresstime = #{continprogresstime,jdbcType=INTEGER},
+			</if>
+			<if test="mo1approveddtz != null">
+				mo1approveddtz = #{mo1approveddtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mo2approveddtz != null">
+				mo2approveddtz = #{mo2approveddtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mo3approveddtz != null">
+				mo3approveddtz = #{mo3approveddtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastchangedtz != null">
+				lastchangedtz = #{lastchangedtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastexportdtz != null">
+				lastexportdtz = #{lastexportdtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastimportdtz != null">
+				lastimportdtz = #{lastimportdtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="calstatuschangedtz != null">
+				calstatuschangedtz = #{calstatuschangedtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="caliinprogressdtz != null">
+				caliinprogressdtz = #{caliinprogressdtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="calilastdtz != null">
+				calilastdtz = #{calilastdtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="calibrationnormexpiredtz != null">
+				calibrationnormexpiredtz =
+				#{calibrationnormexpiredtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="continprogressdtz != null">
+				continprogressdtz = #{continprogressdtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="contlastdtz != null">
+				contlastdtz = #{contlastdtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="molastreadingdtz != null">
+				molastreadingdtz = #{molastreadingdtz,jdbcType=TIMESTAMP},
+			</if>
+			<if test="recordlanguageid != null">
+				recordlanguageid = #{recordlanguageid,jdbcType=VARCHAR},
+			</if>
+			<if test="specinfo != null">
+				specinfo = #{specinfo,jdbcType=VARCHAR},
+			</if>
+			<if test="mainthumanid != null">
+				mainthumanid = #{mainthumanid,jdbcType=INTEGER},
+			</if>
+			<if test="prodhumanid != null">
+				prodhumanid = #{prodhumanid,jdbcType=INTEGER},
+			</if>
+			<if test="inspectionhumanid != null">
+				inspectionhumanid = #{inspectionhumanid,jdbcType=INTEGER},
+			</if>
+			<if test="fixedassetskey != null">
+				fixedassetskey = #{fixedassetskey,jdbcType=VARCHAR},
+			</if>
+			<if test="ismainmo != null">
+				ismainmo = #{ismainmo,jdbcType=INTEGER},
+			</if>
+			<if test="isrepairmo != null">
+				isrepairmo = #{isrepairmo,jdbcType=INTEGER},
+			</if>
+			<if test="createdate != null">
+				createdate = #{createdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createuserid != null">
+				createuserid = #{createuserid,jdbcType=INTEGER},
+			</if>
+			<if test="modificationdate != null">
+				modificationdate = #{modificationdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modificationuserid != null">
+				modificationuserid = #{modificationuserid,jdbcType=INTEGER},
+			</if>
+			<if test="picpath != null">
+				picpath = #{picpath,jdbcType=VARCHAR},
+			</if>
+			<if test="barcode != null">
+				barcode = #{barcode,jdbcType=VARCHAR},
+			</if>
+			<if test="memo != null">
+				memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="orgid != null">
+				orgid = #{orgid,jdbcType=INTEGER},
+			</if>
+			<if test="tombstone != null">
+				tombstone = #{tombstone,jdbcType=INTEGER},
+			</if>
+			<if test="stationsid != null">
+				stationsid = #{stationsid,jdbcType=INTEGER},
+			</if>
+			<if test="maintenanceobjectmodelid != null">
+				maintenanceobjectmodelid =
+				#{maintenanceobjectmodelid,jdbcType=INTEGER},
+			</if>
+			<if test="picpath1 != null">
+				picpath1 = #{picpath1,jdbcType=VARCHAR},
+			</if>
+			<if test="picpath2 != null">
+				picpath2 = #{picpath2,jdbcType=VARCHAR},
+			</if>
+			<if test="productiondate != null">
+				productiondate = #{productiondate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="putintooperationdate != null">
+				putintooperationdate = #{putintooperationdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="qualityguaranteedate != null">
+				qualityguaranteedate = #{qualityguaranteedate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mainposid != null">
+				mainposid = #{mainposid,jdbcType=INTEGER},
+			</if>
+			<if test="extraid1 != null">
+				extraid1 = #{extraid1,jdbcType=INTEGER},
+			</if>
+			<if test="extraid2 != null">
+				extraid2 = #{extraid2,jdbcType=INTEGER},
+			</if>
+			<if test="extraid3 != null">
+				extraid3 = #{extraid3,jdbcType=INTEGER},
+			</if>
+			<if test="extraid4 != null">
+				extraid4 = #{extraid4,jdbcType=INTEGER},
+			</if>
+			<if test="extraid5 != null">
+				extraid5 = #{extraid5,jdbcType=INTEGER},
+			</if>
+			<if test="extravarchar1 != null">
+				extravarchar1 = #{extravarchar1,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar2 != null">
+				extravarchar2 = #{extravarchar2,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar3 != null">
+				extravarchar3 = #{extravarchar3,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar4 != null">
+				extravarchar4 = #{extravarchar4,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar5 != null">
+				extravarchar5 = #{extravarchar5,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar6 != null">
+				extravarchar6 = #{extravarchar6,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar7 != null">
+				extravarchar7 = #{extravarchar7,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar8 != null">
+				extravarchar8 = #{extravarchar8,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar9 != null">
+				extravarchar9 = #{extravarchar9,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar10 != null">
+				extravarchar10 = #{extravarchar10,jdbcType=VARCHAR},
+			</if>
+			<if test="extradecimal1 != null">
+				extradecimal1 = #{extradecimal1,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal2 != null">
+				extradecimal2 = #{extradecimal2,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal3 != null">
+				extradecimal3 = #{extradecimal3,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal4 != null">
+				extradecimal4 = #{extradecimal4,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal5 != null">
+				extradecimal5 = #{extradecimal5,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal6 != null">
+				extradecimal6 = #{extradecimal6,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal7 != null">
+				extradecimal7 = #{extradecimal7,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal8 != null">
+				extradecimal8 = #{extradecimal8,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal9 != null">
+				extradecimal9 = #{extradecimal9,jdbcType=DECIMAL},
+			</if>
+			<if test="extradecimal10 != null">
+				extradecimal10 = #{extradecimal10,jdbcType=DECIMAL},
+			</if>
+			<if test="extraint1 != null">
+				extraint1 = #{extraint1,jdbcType=INTEGER},
+			</if>
+			<if test="extraint2 != null">
+				extraint2 = #{extraint2,jdbcType=INTEGER},
+			</if>
+			<if test="extraint3 != null">
+				extraint3 = #{extraint3,jdbcType=INTEGER},
+			</if>
+			<if test="extraint4 != null">
+				extraint4 = #{extraint4,jdbcType=INTEGER},
+			</if>
+			<if test="extraint5 != null">
+				extraint5 = #{extraint5,jdbcType=INTEGER},
+			</if>
+			<if test="extradatetime1 != null">
+				extradatetime1 = #{extradatetime1,jdbcType=TIMESTAMP},
+			</if>
+			<if test="extradatetime2 != null">
+				extradatetime2 = #{extradatetime2,jdbcType=TIMESTAMP},
+			</if>
+			<if test="extradatetime3 != null">
+				extradatetime3 = #{extradatetime3,jdbcType=TIMESTAMP},
+			</if>
+			<if test="extradatetime4 != null">
+				extradatetime4 = #{extradatetime4,jdbcType=TIMESTAMP},
+			</if>
+			<if test="extradatetime5 != null">
+				extradatetime5 = #{extradatetime5,jdbcType=TIMESTAMP},
+			</if>
+			<if test="extravarchar11 != null">
+				extravarchar11 = #{extravarchar11,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar12 != null">
+				extravarchar12 = #{extravarchar12,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar13 != null">
+				extravarchar13 = #{extravarchar13,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar14 != null">
+				extravarchar14 = #{extravarchar14,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar15 != null">
+				extravarchar15 = #{extravarchar15,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar16 != null">
+				extravarchar16 = #{extravarchar16,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar17 != null">
+				extravarchar17 = #{extravarchar17,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar18 != null">
+				extravarchar18 = #{extravarchar18,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar19 != null">
+				extravarchar19 = #{extravarchar19,jdbcType=VARCHAR},
+			</if>
+			<if test="extravarchar20 != null">
+				extravarchar20 = #{extravarchar20,jdbcType=VARCHAR},
+			</if>
+			<if test="posname != null">
+				posname = #{posname,jdbcType=VARCHAR},
+			</if>
+			<if test="statusid != null">
+				statusid = #{statusid,jdbcType=INTEGER},
+			</if>
+			<if test="typeid != null">
+				typeid = #{typeid,jdbcType=INTEGER},
+			</if>
+			<if test="assetgroupkey != null">
+				assetgroupkey = #{assetgroupkey,jdbcType=VARCHAR},
+			</if>
+			<if test="assetkey != null">
+				assetkey = #{assetkey,jdbcType=VARCHAR},
+			</if>
+			<if test="purchaseprice != null">
+				purchaseprice = #{purchaseprice,jdbcType=DECIMAL},
+			</if>
+			<if test="contractno != null">
+				contractno = #{contractno,jdbcType=VARCHAR},
+			</if>
+			<if test="originalvalue != null">
+				originalvalue = #{originalvalue,jdbcType=DECIMAL},
+			</if>
+			<if test="netvalue != null">
+				netvalue = #{netvalue,jdbcType=DECIMAL},
+			</if>
+			<if test="forproduct != null">
+				forproduct = #{forproduct,jdbcType=VARCHAR},
+			</if>
+			<if test="projectkey != null">
+				projectkey = #{projectkey,jdbcType=VARCHAR},
+			</if>
+			<if test="purchasedate != null">
+				purchasedate = #{purchasedate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="costcenterid != null">
+				costcenterid = #{costcenterid,jdbcType=INTEGER},
+			</if>
+			<if test="rootpath != null">
+				rootpath = #{rootpath,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectAllChery" resultMap="ApiBeanResult">
+		SELECT
+			mo_key,mo_name,pos_key,root_mo_key
+		FROM
+			MAINTENANCE_OBJECT
+	</select>
+
+	<select id="selectByMoKey" parameterType="java.lang.String" resultMap="entityBeanResult">
+		SELECT
+		<include refid="database_table_columns" />
+		FROM
+		<include refid="table_name" />
+		where mokey = #{mokey,jdbcType=VARCHAR}
+	</select>
+</mapper>

@@ -1,0 +1,65 @@
+package com.mingcloud.proxy.common;
+
+import com.mingcloud.Proxy;
+import com.sap.conn.jco.JCoDestination;
+import com.sap.conn.jco.JCoDestinationManager;
+import com.sap.conn.jco.JCoException;
+import org.apache.log4j.Logger;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+public class SAPConn {
+    private static final String ABAP_AS_POOLED = "ABAP_AS_WITH_POOL";
+
+    public static Properties loadProperties() {// 加载配置文件
+
+        SAPConn manager = new SAPConn();
+        Properties prop = new Properties();
+        try {
+            prop.load(manager.getClass().getResourceAsStream("/configSapUrl-" + Proxy.sapNum + ".properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return prop;
+    }
+
+    /**
+     * 创建SAP接口属性文件。
+     * @param name  ABAP管道名称
+     * @param suffix    属性文件后缀
+     * @param properties    属性文件内容
+     */
+    private static void createDataFile(String name, String suffix, Properties properties){
+        File cfg = new File(name+"."+suffix);
+        if(cfg.exists()){
+            cfg.deleteOnExit();
+        }
+        try{
+            FileOutputStream fos = new FileOutputStream(cfg, false);
+            properties.store(fos, "for tests only !");
+            fos.close();
+        }catch (Exception e){
+            log.info("Create Data file fault, error msg: " + e.toString());
+            throw new RuntimeException("Unable to create the destination file " + cfg.getName(), e);
+        }
+    }
+
+    /**
+     * 获取SAP连接
+     * @return  SAP连接对象
+     */
+    public static JCoDestination connect(){
+        JCoDestination destination =null;
+        try {
+            createDataFile(ABAP_AS_POOLED, "jcoDestination", SAPConn.loadProperties());
+            destination = JCoDestinationManager.getDestination(ABAP_AS_POOLED);
+        } catch (JCoException e) {
+            log.error("Connect SAP fault, error msg: " + e.toString());
+        }
+        return destination;
+    }
+    private static Logger log = Logger.getLogger(SAPConn.class); // 初始化日志对象
+}

@@ -1,0 +1,2284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.PositionMapper">
+
+	<sql id="table_name">
+		position
+	</sql>
+
+	<sql id="table_id">
+		<include refid="table_name"/>.id
+	</sql>
+	
+	<sql id="database_table_ex">
+		organization.organizationname,
+		costcenter.costcentername,
+	</sql>
+	
+	<!-- table columns -->
+	<sql id="database_table_columns">
+		id, poskey, posname, rootposid, poscodeid, posgroupid, holidayid, shiftcalendarid, 
+	    accountid, costtypeid, priorityid, moresubmo, possubflag, mosubflag, woflag, pointflag, 
+	    histflag, drawingflag, tdmflag, posbarcode, lastchangedate, lastchangetime, lastexportdate, 
+	    lastexporttime, lastimportdate, lastimporttime, yearlyoperationalhours, techrespuuserid, 
+	    siteid, recordactive, custombarcode, wopassive, worksupplierid, extraposinfo1, extraposinfo2, 
+	    icon, extraposinfo3, extraposinfo4, extraposinfo5, userid, customerid, extraposinfo6, 
+	    extraposinfo7, extraposinfo8, extraposinfo9, extraposinfo10, prodworksupplierid, 
+	    maintworksupplierid, planworksupplierid, apprworksupplierid, fdalogging, locationposid, 
+	    costcarrierid, debitcosttypeid, shiftrespareaid, plantid, legalunitid, legalunitcurrencyid, 
+	    lastchangedtz, lastexportdtz, lastimportdtz, recordlanguageid, createdate, createuserid, 
+	    modificationdate, modificationuserid, picpath, barcode, memo, orgid, tombstone, positiontype, 
+	    stockid, extraposdecimal1, extraposdecimal2, extraposdecimal3, extraposdecimal4, 
+	    extraposdecimal5, extraposint1, extraposint2, extraposint3, extraposint4, extraposint5, 
+	    extraid1, extraid2, extraid3, extraid4, extraid5, extravarchar1, extravarchar2, extravarchar3, 
+	    extravarchar4, extravarchar5, extravarchar6, extravarchar7, extravarchar8, extravarchar9, 
+	    extravarchar10, extradecimal1, extradecimal2, extradecimal3, extradecimal4, extradecimal5, 
+	    extraint1, extraint2, extraint3, extraint4, extraint5, extradatetime1, extradatetime2, 
+	    extradatetime3, extradatetime4, extradatetime5, basetypeid, extradecimal6, extradecimal7, 
+	    extradecimal8, extradecimal9, extradecimal10, extravarchar11, extravarchar12, extravarchar13, 
+	    extravarchar14, extravarchar15, extravarchar16, extravarchar17, extravarchar18, extravarchar19, 
+	    extravarchar20, extravarchar21, extravarchar22, extravarchar23, extravarchar24, extravarchar25, 
+	    extravarchar26, extravarchar27, extravarchar28, extravarchar29, extravarchar30, extravarchar32, typeid,
+	    statusid, costcenterid, rootpath
+	</sql>
+
+
+	<!-- 仓库的关联信息 -->
+	<sql id="releation_stock_table_name">
+		stock
+	</sql>
+
+	<sql id="releation_stock_table_id">
+		<include refid="releation_stock_table_name"/>.id
+	</sql>
+	
+	<sql id="releation_stock_columns">
+		<include refid="releation_stock_table_name"/>.id as stockid
+	</sql>
+	
+	
+	<!-- dynamic full match -->
+	<sql id="dynamic_full_match_condition">
+		WHERE 1=1
+			<if test="id != null">
+				AND id = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="poskey != null">
+				AND poskey = #{poskey,jdbcType=VARCHAR}
+			</if>
+			<if test="posname != null">
+				AND posname = #{posname,jdbcType=VARCHAR}
+			</if>
+			<if test="rootposid != null">
+				AND rootposid = #{rootposid,jdbcType=INTEGER}
+			</if>
+			<if test="poscodeid != null">
+				AND poscodeid = #{poscodeid,jdbcType=INTEGER}
+			</if>
+			<if test="posgroupid != null">
+				AND posgroupid = #{posgroupid,jdbcType=INTEGER}
+			</if>
+			<if test="holidayid != null">
+				AND holidayid = #{holidayid,jdbcType=INTEGER}
+			</if>
+			<if test="shiftcalendarid != null">
+				AND shiftcalendarid = #{shiftcalendarid,jdbcType=INTEGER}
+			</if>
+			<if test="accountid != null">
+				AND accountid = #{accountid,jdbcType=INTEGER}
+			</if>
+			<if test="costtypeid != null">
+				AND costtypeid = #{costtypeid,jdbcType=INTEGER}
+			</if>
+			<if test="priorityid != null">
+				AND priorityid = #{priorityid,jdbcType=INTEGER}
+			</if>
+			<if test="moresubmo != null">
+				AND moresubmo = #{moresubmo,jdbcType=TINYINT}
+			</if>
+			<if test="possubflag != null">
+				AND possubflag = #{possubflag,jdbcType=TINYINT}
+			</if>
+			<if test="mosubflag != null">
+				AND mosubflag = #{mosubflag,jdbcType=TINYINT}
+			</if>
+			<if test="woflag != null">
+				AND woflag = #{woflag,jdbcType=TINYINT}
+			</if>
+			<if test="pointflag != null">
+				AND pointflag = #{pointflag,jdbcType=TINYINT}
+			</if>
+			<if test="histflag != null">
+				AND histflag = #{histflag,jdbcType=TINYINT}
+			</if>
+			<if test="drawingflag != null">
+				AND drawingflag = #{drawingflag,jdbcType=TINYINT}
+			</if>
+			<if test="tdmflag != null">
+				AND tdmflag = #{tdmflag,jdbcType=TINYINT}
+			</if>
+			<if test="posbarcode != null">
+				AND posbarcode = #{posbarcode,jdbcType=BIGINT}
+			</if>
+			<if test="lastchangedate != null">
+				AND lastchangedate = #{lastchangedate,jdbcType=DATE}
+			</if>
+			<if test="lastchangetime != null">
+				AND lastchangetime = #{lastchangetime,jdbcType=INTEGER}
+			</if>
+			<if test="lastexportdate != null">
+				AND lastexportdate = #{lastexportdate,jdbcType=DATE}
+			</if>
+			<if test="lastexporttime != null">
+				AND lastexporttime = #{lastexporttime,jdbcType=INTEGER}
+			</if>
+			<if test="lastimportdate != null">
+				AND lastimportdate = #{lastimportdate,jdbcType=DATE}
+			</if>
+			<if test="lastimporttime != null">
+				AND lastimporttime = #{lastimporttime,jdbcType=INTEGER}
+			</if>
+			<if test="yearlyoperationalhours != null">
+				AND yearlyoperationalhours =#{yearlyoperationalhours,jdbcType=DECIMAL}
+			</if>
+			<if test="techrespuuserid != null">
+				AND techrespuuserid = #{techrespuuserid,jdbcType=INTEGER}
+			</if>
+			<if test="siteid != null">
+				AND siteid = #{siteid,jdbcType=INTEGER}
+			</if>
+			<if test="recordactive != null">
+				AND recordactive = #{recordactive,jdbcType=TINYINT}
+			</if>
+			<if test="custombarcode != null">
+				AND custombarcode = #{custombarcode,jdbcType=VARCHAR}
+			</if>
+			<if test="wopassive != null">
+				AND wopassive = #{wopassive,jdbcType=TINYINT}
+			</if>
+			<if test="worksupplierid != null">
+				AND worksupplierid = #{worksupplierid,jdbcType=INTEGER}
+			</if>
+			<if test="extravarchar1 != null">
+				AND extravarchar1 = #{extravarchar1,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar2 != null">
+				AND extravarchar2 = #{extravarchar2,jdbcType=VARCHAR}
+			</if>
+			<if test="icon != null">
+				AND icon = #{icon,jdbcType=INTEGER}
+			</if>
+			<if test="extravarchar3 != null">
+				AND extravarchar3 = #{extravarchar3,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar4 != null">
+				AND extravarchar4 = #{extravarchar4,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar5 != null">
+				AND extravarchar5 = #{extravarchar5,jdbcType=VARCHAR}
+			</if>
+			<if test="userid != null">
+				AND userid = #{userid,jdbcType=VARCHAR}
+			</if>
+			<if test="customerid != null">
+				AND customerid = #{customerid,jdbcType=INTEGER}
+			</if>
+			<if test="extravarchar6 != null">
+				AND extravarchar6 = #{extravarchar6,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar7 != null">
+				AND extravarchar7 = #{extravarchar7,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar8 != null">
+				AND extravarchar8 = #{extravarchar8,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar9 != null">
+				AND extravarchar9 = #{extravarchar9,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar10 != null">
+				AND extravarchar10 = #{extravarchar10,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar11 != null">
+				AND extravarchar11 = #{extravarchar11,jdbcType=VARCHAR}
+			</if>
+			<if test="prodworksupplierid != null">
+				AND prodworksupplierid = #{prodworksupplierid,jdbcType=INTEGER}
+			</if>
+			<if test="maintworksupplierid != null">
+				AND maintworksupplierid = #{maintworksupplierid,jdbcType=INTEGER}
+			</if>
+			<if test="planworksupplierid != null">
+				AND planworksupplierid = #{planworksupplierid,jdbcType=INTEGER}
+			</if>
+			<if test="apprworksupplierid != null">
+				AND apprworksupplierid = #{apprworksupplierid,jdbcType=INTEGER}
+			</if>
+			<if test="fdalogging != null">
+				AND fdalogging = #{fdalogging,jdbcType=TINYINT}
+			</if>
+			<if test="locationposid != null">
+				AND locationposid = #{locationposid,jdbcType=INTEGER}
+			</if>
+			<if test="costcarrierid != null">
+				AND costcarrierid = #{costcarrierid,jdbcType=INTEGER}
+			</if>
+			<if test="debitcosttypeid != null">
+				AND debitcosttypeid = #{debitcosttypeid,jdbcType=INTEGER}
+			</if>
+			<if test="shiftrespareaid != null">
+				AND shiftrespareaid = #{shiftrespareaid,jdbcType=INTEGER}
+			</if>
+			<if test="plantid != null">
+				AND plantid = #{plantid,jdbcType=INTEGER}
+			</if>
+			<if test="legalunitid != null">
+				AND legalunitid = #{legalunitid,jdbcType=INTEGER}
+			</if>
+			<if test="legalunitcurrencyid != null">
+				AND legalunitcurrencyid =#{legalunitcurrencyid,jdbcType=INTEGER}
+			</if>
+			<if test="lastchangedtz != null">
+				AND lastchangedtz = #{lastchangedtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="lastexportdtz != null">
+				AND lastexportdtz = #{lastexportdtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="lastimportdtz != null">
+				AND lastimportdtz = #{lastimportdtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="recordlanguageid != null">
+				AND recordlanguageid = #{recordlanguageid,jdbcType=INTEGER}
+			</if>
+			<if test="createdate != null">
+				AND createdate = #{createdate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="createuserid != null">
+				AND createuserid = #{createuserid,jdbcType=INTEGER}
+			</if>
+			<if test="modificationdate != null">
+				AND modificationdate = #{modificationdate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="modificationuserid != null">
+				AND modificationuserid = #{modificationuserid,jdbcType=INTEGER}
+			</if>
+			<if test="picpath != null">
+				AND picpath = #{picpath,jdbcType=VARCHAR}
+			</if>
+			<if test="barcode != null">
+				AND barcode = #{barcode,jdbcType=VARCHAR}
+			</if>
+			<if test="memo != null">
+				AND memo = #{memo,jdbcType=VARCHAR}
+			</if>
+			<if test="orgid != null">
+				AND orgid = #{orgid,jdbcType=INTEGER}
+			</if>
+			<if test="positiontype != null">
+				AND positiontype = #{positiontype,jdbcType=INTEGER}
+			</if>
+			<if test="stockid != null">
+				AND stockid = #{stockid,jdbcType=INTEGER}
+			</if>
+			<if test="extraposdecimal1 != null">
+				AND extraposdecimal1 =#{extraposdecimal1,jdbcType=DECIMAL}
+			</if>
+			<if test="extraposdecimal2 != null">
+				AND extraposdecimal2 =#{extraposdecimal2,jdbcType=DECIMAL}
+			</if>
+			<if test="extraposdecimal3 != null">
+				AND extraposdecimal3 =#{extraposdecimal3,jdbcType=DECIMAL}
+			</if>
+			<if test="extraposdecimal4 != null">
+				AND extraposdecimal4 =#{extraposdecimal4,jdbcType=DECIMAL}
+			</if>
+			<if test="extraposdecimal5 != null">
+				AND extraposdecimal5 =#{extraposdecimal5,jdbcType=DECIMAL}
+			</if>
+			<if test="extraposint1 != null">
+				AND extraposint1 = #{extraposint1,jdbcType=INTEGER}
+			</if>
+			<if test="extraposint2 != null">
+				AND extraposint2 = #{extraposint2,jdbcType=INTEGER}
+			</if>
+			<if test="extraposint3 != null">
+				AND extraposint3 = #{extraposint3,jdbcType=INTEGER}
+			</if>
+			<if test="extraposint4 != null">
+				AND extraposint4 = #{extraposint4,jdbcType=INTEGER}
+			</if>
+			<if test="extraposint5 != null">
+				AND extraposint5 = #{extraposint5,jdbcType=INTEGER}
+			</if>
+			<if test="extradatetime1 != null">
+				AND extradatetime1 = #{extradatetime1,jdbcType=TIMESTAMP}
+			</if>
+			<if test="extradatetime2 != null">
+				AND extradatetime2 = #{extradatetime2,jdbcType=TIMESTAMP}
+			</if>
+			<if test="extradatetime3 != null">
+				AND extradatetime3 = #{extradatetime3,jdbcType=TIMESTAMP}
+			</if>
+			<if test="extradatetime4 != null">
+				AND extradatetime4 = #{extradatetime4,jdbcType=TIMESTAMP}
+			</if>
+			<if test="extradatetime5 != null">
+				AND extradatetime5 = #{extradatetime5,jdbcType=TIMESTAMP}
+			</if>
+			<if test="tombstone != null">
+	       		AND tombstone = #{tombstone,jdbcType=INTEGER}
+	      </if>   
+	      <if test="basetypeid != null">
+	       		AND basetypeid = #{basetypeid,jdbcType=INTEGER}
+	      </if>
+<!-- 	      <if test='orgList =="admin"'>
+	      </if>
+	      <if test='orgList !="admin"'>
+	      		AND <include refid="table_name"/>.orgid in(#{orgList})
+	      </if> -->
+	      <if test="extradecimal6 != null">
+				AND extradecimal6 =#{extradecimal6,jdbcType=DECIMAL}
+		  </if>
+		  <if test="extradecimal7 != null">
+				AND extradecimal7 =#{extradecimal7,jdbcType=DECIMAL}
+		  </if>
+		  <if test="extradecimal8 != null">
+				AND extradecimal8 =#{extradecimal8,jdbcType=DECIMAL}
+		  </if>
+		  <if test="extradecimal9 != null">
+				AND extradecimal9 =#{extradecimal9,jdbcType=DECIMAL}
+		  </if>
+		  <if test="extradecimal10 != null">
+				AND extradecimal10 =#{extradecimal10,jdbcType=DECIMAL}
+		  </if>
+		  <if test="extraid1 != null">
+	       		AND extraid1 = #{extraid1,jdbcType=INTEGER}
+	      </if>
+	      <if test="extraid2 != null">
+	       		AND extraid2 = #{extraid2,jdbcType=INTEGER}
+	      </if>
+	      <if test="extraid3 != null">
+	       		AND extraid3 = #{extraid3,jdbcType=INTEGER}
+	      </if>
+	      <if test="extraid4 != null">
+	       		AND extraid4 = #{extraid5,jdbcType=INTEGER}
+	      </if>
+	      <if test="extraid5 != null">
+	       		AND extraid5 = #{extraid5,jdbcType=INTEGER}
+	      </if>
+	      <if test="rootpath != null">
+	       		AND rootpath = #{rootpath,jdbcType=VARCHAR}
+	      </if>
+		<if test="extravarchar32 != null">
+			AND extravarchar32 = #{extravarchar32,jdbcType=VARCHAR}
+		</if>
+	</sql>
+	
+	<!-- dynamic like match -->
+	<sql id="dynamic_like_match_condition">
+				WHERE 1=1 
+			<trim prefix=" AND (" prefixOverrides="OR " suffix=") ">
+				<if test="poskey != null">
+					OR poskey like "%"#{poskey,jdbcType=VARCHAR}"%"
+				</if>
+				<if test="posname != null">
+					OR posname like "%"#{posname,jdbcType=VARCHAR}"%"
+				</if>
+				<if test="barcode != null">
+					OR barcode like "%"#{barcode,jdbcType=VARCHAR}"%"
+				</if>
+				<if test="memo != null">
+					OR memo like "%"#{memo,jdbcType=VARCHAR}"%"
+				</if>
+			</trim>
+			<if test="id != null">
+				AND id = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="rootposid != null">
+				AND rootposid = #{rootposid,jdbcType=INTEGER}
+			</if>
+			<if test="poscodeid != null">
+				AND poscodeid = #{poscodeid,jdbcType=INTEGER}
+			</if>
+			<if test="posgroupid != null">
+				AND posgroupid = #{posgroupid,jdbcType=INTEGER}
+			</if>
+			<if test="holidayid != null">
+				AND holidayid = #{holidayid,jdbcType=INTEGER}
+			</if>
+			<if test="shiftcalendarid != null">
+				AND shiftcalendarid = #{shiftcalendarid,jdbcType=INTEGER}
+			</if>
+			<if test="accountid != null">
+				AND accountid = #{accountid,jdbcType=INTEGER}
+			</if>
+			<if test="costtypeid != null">
+				AND costtypeid = #{costtypeid,jdbcType=INTEGER}
+			</if>
+			<if test="priorityid != null">
+				AND priorityid = #{priorityid,jdbcType=INTEGER}
+			</if>
+			<if test="moresubmo != null">
+				AND moresubmo = #{moresubmo,jdbcType=TINYINT}
+			</if>
+			<if test="possubflag != null">
+				AND possubflag = #{possubflag,jdbcType=TINYINT}
+			</if>
+			<if test="mosubflag != null">
+				AND mosubflag = #{mosubflag,jdbcType=TINYINT}
+			</if>
+			<if test="woflag != null">
+				AND woflag = #{woflag,jdbcType=TINYINT}
+			</if>
+			<if test="pointflag != null">
+				AND pointflag = #{pointflag,jdbcType=TINYINT}
+			</if>
+			<if test="histflag != null">
+				AND histflag = #{histflag,jdbcType=TINYINT}
+			</if>
+			<if test="drawingflag != null">
+				AND drawingflag = #{drawingflag,jdbcType=TINYINT}
+			</if>
+			<if test="tdmflag != null">
+				AND tdmflag = #{tdmflag,jdbcType=TINYINT}
+			</if>
+			<if test="posbarcode != null">
+				AND posbarcode = #{posbarcode,jdbcType=BIGINT}
+			</if>
+			<if test="lastchangedate != null">
+				AND lastchangedate = #{lastchangedate,jdbcType=DATE}
+			</if>
+			<if test="lastchangetime != null">
+				AND lastchangetime = #{lastchangetime,jdbcType=INTEGER}
+			</if>
+			<if test="lastexportdate != null">
+				AND lastexportdate = #{lastexportdate,jdbcType=DATE}
+			</if>
+			<if test="lastexporttime != null">
+				AND lastexporttime = #{lastexporttime,jdbcType=INTEGER}
+			</if>
+			<if test="lastimportdate != null">
+				AND lastimportdate = #{lastimportdate,jdbcType=DATE}
+			</if>
+			<if test="lastimporttime != null">
+				AND lastimporttime = #{lastimporttime,jdbcType=INTEGER}
+			</if>
+			<if test="yearlyoperationalhours != null">
+				AND yearlyoperationalhours =
+				#{yearlyoperationalhours,jdbcType=DECIMAL}
+			</if>
+			<if test="techrespuuserid != null">
+				AND techrespuuserid = #{techrespuuserid,jdbcType=INTEGER}
+			</if>
+			<if test="siteid != null">
+				AND siteid = #{siteid,jdbcType=INTEGER}
+			</if>
+			<if test="recordactive != null">
+				AND recordactive = #{recordactive,jdbcType=TINYINT}
+			</if>
+			<if test="custombarcode != null">
+				AND custombarcode = #{custombarcode,jdbcType=VARCHAR}
+			</if>
+			<if test="wopassive != null">
+				AND wopassive = #{wopassive,jdbcType=TINYINT}
+			</if>
+			<if test="worksupplierid != null">
+				AND worksupplierid = #{worksupplierid,jdbcType=INTEGER}
+			</if>
+			<if test="extravarchar1 != null">
+				AND extravarchar1 = #{extravarchar1,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar2 != null">
+				AND extravarchar2 = #{extravarchar2,jdbcType=VARCHAR}
+			</if>
+			<if test="icon != null">
+				AND icon = #{icon,jdbcType=INTEGER}
+			</if>
+			<if test="extravarchar3 != null">
+				AND extravarchar3 = #{extravarchar3,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar4 != null">
+				AND extravarchar4 = #{extravarchar4,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar5 != null">
+				AND extravarchar5 = #{extravarchar5,jdbcType=VARCHAR}
+			</if>
+			<if test="userid != null">
+				AND userid = #{userid,jdbcType=VARCHAR}
+			</if>
+			<if test="customerid != null">
+				AND customerid = #{customerid,jdbcType=INTEGER}
+			</if>
+			<if test="extravarchar6 != null">
+				AND extravarchar6 = #{extravarchar6,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar7 != null">
+				AND extravarchar7 = #{extravarchar7,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar8 != null">
+				AND extravarchar8 = #{extravarchar8,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar9 != null">
+				AND extravarchar9 = #{extravarchar9,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar10 != null">
+				AND extravarchar10 = #{extravarchar10,jdbcType=VARCHAR}
+			</if>
+			<if test="extravarchar11 != null">
+				AND extravarchar11 = #{extravarchar11,jdbcType=VARCHAR}
+			</if>
+			<if test="prodworksupplierid != null">
+				AND prodworksupplierid = #{prodworksupplierid,jdbcType=INTEGER}
+			</if>
+			<if test="maintworksupplierid != null">
+				AND maintworksupplierid = #{maintworksupplierid,jdbcType=INTEGER}
+			</if>
+			<if test="planworksupplierid != null">
+				AND planworksupplierid = #{planworksupplierid,jdbcType=INTEGER}
+			</if>
+			<if test="apprworksupplierid != null">
+				AND apprworksupplierid = #{apprworksupplierid,jdbcType=INTEGER}
+			</if>
+			<if test="fdalogging != null">
+				AND fdalogging = #{fdalogging,jdbcType=TINYINT}
+			</if>
+			<if test="locationposid != null">
+				AND locationposid = #{locationposid,jdbcType=INTEGER}
+			</if>
+			<if test="costcarrierid != null">
+				AND costcarrierid = #{costcarrierid,jdbcType=INTEGER}
+			</if>
+			<if test="debitcosttypeid != null">
+				AND debitcosttypeid = #{debitcosttypeid,jdbcType=INTEGER}
+			</if>
+			<if test="shiftrespareaid != null">
+				AND shiftrespareaid = #{shiftrespareaid,jdbcType=INTEGER}
+			</if>
+			<if test="plantid != null">
+				AND plantid = #{plantid,jdbcType=INTEGER}
+			</if>
+			<if test="legalunitid != null">
+				AND legalunitid = #{legalunitid,jdbcType=INTEGER}
+			</if>
+			<if test="legalunitcurrencyid != null">
+				AND legalunitcurrencyid =#{legalunitcurrencyid,jdbcType=INTEGER}
+			</if>
+			<if test="lastchangedtz != null">
+				AND lastchangedtz = #{lastchangedtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="lastexportdtz != null">
+				AND lastexportdtz = #{lastexportdtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="lastimportdtz != null">
+				AND lastimportdtz = #{lastimportdtz,jdbcType=TIMESTAMP}
+			</if>
+			<if test="recordlanguageid != null">
+				AND recordlanguageid = #{recordlanguageid,jdbcType=INTEGER}
+			</if>
+			<if test="createdate != null">
+				AND createdate = #{createdate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="createuserid != null">
+				AND createuserid = #{createuserid,jdbcType=INTEGER}
+			</if>
+			<if test="modificationdate != null">
+				AND modificationdate = #{modificationdate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="modificationuserid != null">
+				AND modificationuserid = #{modificationuserid,jdbcType=INTEGER}
+			</if>
+			<if test="picpath != null">
+				AND picpath = #{picpath,jdbcType=VARCHAR}
+			</if>
+			<if test="orgid != null">
+				AND orgid = #{orgid,jdbcType=INTEGER}
+			</if>
+			<if test="positiontype != null">
+				AND positiontype = #{positiontype,jdbcType=INTEGER}
+			</if>
+			<if test="stockid != null">
+				AND stockid = #{stockid,jdbcType=INTEGER}
+			</if>
+			<if test="extraposdecimal1 != null">
+				AND extraposdecimal1 =#{extraposdecimal1,jdbcType=DECIMAL}
+			</if>
+			<if test="extraposdecimal2 != null">
+				AND extraposdecimal2 =#{extraposdecimal2,jdbcType=DECIMAL}
+			</if>
+			<if test="extraposdecimal3 != null">
+				AND extraposdecimal3 =#{extraposdecimal3,jdbcType=DECIMAL}
+			</if>
+			<if test="extraposdecimal4 != null">
+				AND extraposdecimal4 =#{extraposdecimal4,jdbcType=DECIMAL}
+			</if>
+			<if test="extraposdecimal5 != null">
+				AND extraposdecimal5 =#{extraposdecimal5,jdbcType=DECIMAL}
+			</if>
+			<if test="extraposint1 != null">
+				AND extraposint1 = #{extraposint1,jdbcType=INTEGER}
+			</if>
+			<if test="extraposint2 != null">
+				AND extraposint2 = #{extraposint2,jdbcType=INTEGER}
+			</if>
+			<if test="extraposint3 != null">
+				AND extraposint3 = #{extraposint3,jdbcType=INTEGER}
+			</if>
+			<if test="extraposint4 != null">
+				AND extraposint4 = #{extraposint4,jdbcType=INTEGER}
+			</if>
+			<if test="extraposint5 != null">
+				AND extraposint5 = #{extraposint5,jdbcType=INTEGER}
+			</if>
+			<if test="extradatetime1 != null">
+				AND extradatetime1 = #{extradatetime1,jdbcType=TIMESTAMP}
+			</if>
+			<if test="extradatetime2 != null">
+				AND extradatetime2 = #{extradatetime2,jdbcType=TIMESTAMP}
+			</if>
+			<if test="extradatetime3 != null">
+				AND extradatetime3 = #{extradatetime3,jdbcType=TIMESTAMP}
+			</if>
+			<if test="extradatetime4 != null">
+				AND extradatetime4 = #{extradatetime4,jdbcType=TIMESTAMP}
+			</if>
+			<if test="extradatetime5 != null">
+				AND extradatetime5 = #{extradatetime5,jdbcType=TIMESTAMP}
+			</if>
+			<if test="tombstone != null">
+	      		AND tombstone = #{tombstone,jdbcType=INTEGER}
+	     	</if>  
+	     	<if test="basetypeid != null">
+	      		AND basetypeid = #{basetypeid,jdbcType=INTEGER}
+	     	</if>
+	     	<if test='orgList =="admin"'>
+	        </if>
+	        <if test='orgList !="admin"'>
+	      		AND <include refid="table_name"/>.orgid in(#{orgList})
+	        </if>
+	     	<if test="orgidlist != null">
+	      		AND orgid in(#{orgidlist})
+	     	</if>
+	     	<if test="orgidlist != null">
+	      		AND orgid in(#{orgidlist})
+	     	</if>
+	     	<if test="extradecimal6 != null">
+				AND extradecimal6 =#{extradecimal6,jdbcType=DECIMAL}
+			</if>
+			<if test="extradecimal7 != null">
+				AND extradecimal7 =#{extradecimal7,jdbcType=DECIMAL}
+			</if>
+			<if test="extradecimal8 != null">
+				AND extradecimal8 =#{extradecimal8,jdbcType=DECIMAL}
+			</if>
+			<if test="extradecimal9 != null">
+				AND extradecimal9 =#{extradecimal9,jdbcType=DECIMAL}
+			</if>
+			<if test="extradecimal10 != null">
+				AND extradecimal10 =#{extradecimal10,jdbcType=DECIMAL}
+			</if>
+			<if test="extraid1 != null">
+	       		AND extraid1 = #{extraid1,jdbcType=INTEGER}
+	        </if>
+	        <if test="extraid2 != null">
+	       		AND extraid2 = #{extraid2,jdbcType=INTEGER}
+	        </if>
+	        <if test="extraid3 != null">
+	       		AND extraid3 = #{extraid3,jdbcType=INTEGER}
+	        </if>
+	        <if test="extraid4 != null">
+	       		AND extraid4 = #{extraid5,jdbcType=INTEGER}
+	        </if>
+	        <if test="extraid5 != null">
+	       		AND extraid5 = #{extraid5,jdbcType=INTEGER}
+	       </if>
+	        <if test="rootpath != null">
+	       		AND rootpath = #{rootpath,jdbcType=VARCHAR}
+	       </if>
+		<if test="extravarchar32 != null">
+			AND extravarchar32 = #{extravarchar32,jdbcType=VARCHAR}
+		</if>
+	</sql>
+	
+
+	<resultMap id="entityBeanResult" type="PositionEntity">
+		<id column="id" property="id" jdbcType="INTEGER" />
+	    <result column="poskey" property="poskey" jdbcType="VARCHAR" />
+	    <result column="posname" property="posname" jdbcType="VARCHAR" />
+	    <result column="rootposid" property="rootposid" jdbcType="INTEGER" />
+	    <result column="poscodeid" property="poscodeid" jdbcType="INTEGER" />
+	    <result column="posgroupid" property="posgroupid" jdbcType="INTEGER" />
+	    <result column="holidayid" property="holidayid" jdbcType="INTEGER" />
+	    <result column="shiftcalendarid" property="shiftcalendarid" jdbcType="INTEGER" />
+	    <result column="accountid" property="accountid" jdbcType="INTEGER" />
+	    <result column="costtypeid" property="costtypeid" jdbcType="INTEGER" />
+	    <result column="priorityid" property="priorityid" jdbcType="INTEGER" />
+	    <result column="moresubmo" property="moresubmo" jdbcType="TINYINT" />
+	    <result column="possubflag" property="possubflag" jdbcType="TINYINT" />
+	    <result column="mosubflag" property="mosubflag" jdbcType="TINYINT" />
+	    <result column="woflag" property="woflag" jdbcType="TINYINT" />
+	    <result column="pointflag" property="pointflag" jdbcType="TINYINT" />
+	    <result column="histflag" property="histflag" jdbcType="TINYINT" />
+	    <result column="drawingflag" property="drawingflag" jdbcType="TINYINT" />
+	    <result column="tdmflag" property="tdmflag" jdbcType="TINYINT" />
+	    <result column="posbarcode" property="posbarcode" jdbcType="BIGINT" />
+	    <result column="lastchangedate" property="lastchangedate" jdbcType="DATE" />
+	    <result column="lastchangetime" property="lastchangetime" jdbcType="INTEGER" />
+	    <result column="lastexportdate" property="lastexportdate" jdbcType="DATE" />
+	    <result column="lastexporttime" property="lastexporttime" jdbcType="INTEGER" />
+	    <result column="lastimportdate" property="lastimportdate" jdbcType="DATE" />
+	    <result column="lastimporttime" property="lastimporttime" jdbcType="INTEGER" />
+	    <result column="yearlyoperationalhours" property="yearlyoperationalhours" jdbcType="DECIMAL" />
+	    <result column="techrespuuserid" property="techrespuuserid" jdbcType="INTEGER" />
+	    <result column="siteid" property="siteid" jdbcType="INTEGER" />
+	    <result column="recordactive" property="recordactive" jdbcType="TINYINT" />
+	    <result column="custombarcode" property="custombarcode" jdbcType="VARCHAR" />
+	    <result column="wopassive" property="wopassive" jdbcType="TINYINT" />
+	    <result column="worksupplierid" property="worksupplierid" jdbcType="INTEGER" />
+	    <result column="extraposinfo1" property="extraposinfo1" jdbcType="VARCHAR" />
+	    <result column="extraposinfo2" property="extraposinfo2" jdbcType="VARCHAR" />
+	    <result column="icon" property="icon" jdbcType="INTEGER" />
+	    <result column="extraposinfo3" property="extraposinfo3" jdbcType="VARCHAR" />
+	    <result column="extraposinfo4" property="extraposinfo4" jdbcType="VARCHAR" />
+	    <result column="extraposinfo5" property="extraposinfo5" jdbcType="VARCHAR" />
+	    <result column="userid" property="userid" jdbcType="VARCHAR" />
+	    <result column="customerid" property="customerid" jdbcType="INTEGER" />
+	    <result column="extraposinfo6" property="extraposinfo6" jdbcType="VARCHAR" />
+	    <result column="extraposinfo7" property="extraposinfo7" jdbcType="VARCHAR" />
+	    <result column="extraposinfo8" property="extraposinfo8" jdbcType="VARCHAR" />
+	    <result column="extraposinfo9" property="extraposinfo9" jdbcType="VARCHAR" />
+	    <result column="extraposinfo10" property="extraposinfo10" jdbcType="VARCHAR" />
+	    <result column="prodworksupplierid" property="prodworksupplierid" jdbcType="INTEGER" />
+	    <result column="maintworksupplierid" property="maintworksupplierid" jdbcType="INTEGER" />
+	    <result column="planworksupplierid" property="planworksupplierid" jdbcType="INTEGER" />
+	    <result column="apprworksupplierid" property="apprworksupplierid" jdbcType="INTEGER" />
+	    <result column="fdalogging" property="fdalogging" jdbcType="TINYINT" />
+	    <result column="locationposid" property="locationposid" jdbcType="INTEGER" />
+	    <result column="costcarrierid" property="costcarrierid" jdbcType="INTEGER" />
+	    <result column="debitcosttypeid" property="debitcosttypeid" jdbcType="INTEGER" />
+	    <result column="shiftrespareaid" property="shiftrespareaid" jdbcType="INTEGER" />
+	    <result column="plantid" property="plantid" jdbcType="INTEGER" />
+	    <result column="legalunitid" property="legalunitid" jdbcType="INTEGER" />
+	    <result column="legalunitcurrencyid" property="legalunitcurrencyid" jdbcType="INTEGER" />
+	    <result column="lastchangedtz" property="lastchangedtz" jdbcType="TIMESTAMP" />
+	    <result column="lastexportdtz" property="lastexportdtz" jdbcType="TIMESTAMP" />
+	    <result column="lastimportdtz" property="lastimportdtz" jdbcType="TIMESTAMP" />
+	    <result column="recordlanguageid" property="recordlanguageid" jdbcType="INTEGER" />
+	    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+	    <result column="createuserid" property="createuserid" jdbcType="INTEGER" />
+	    <result column="modificationdate" property="modificationdate" jdbcType="TIMESTAMP" />
+	    <result column="modificationuserid" property="modificationuserid" jdbcType="INTEGER" />
+	    <result column="picpath" property="picpath" jdbcType="VARCHAR" />
+	    <result column="barcode" property="barcode" jdbcType="VARCHAR" />
+	    <result column="memo" property="memo" jdbcType="VARCHAR" />
+	    <result column="orgid" property="orgid" jdbcType="INTEGER" />
+	    <result column="tombstone" property="tombstone" jdbcType="INTEGER" />
+	    <result column="positiontype" property="positiontype" jdbcType="INTEGER" />
+	    <result column="stockid" property="stockid" jdbcType="INTEGER" />
+	    <result column="extraposdecimal1" property="extraposdecimal1" jdbcType="DECIMAL" />
+	    <result column="extraposdecimal2" property="extraposdecimal2" jdbcType="DECIMAL" />
+	    <result column="extraposdecimal3" property="extraposdecimal3" jdbcType="DECIMAL" />
+	    <result column="extraposdecimal4" property="extraposdecimal4" jdbcType="DECIMAL" />
+	    <result column="extraposdecimal5" property="extraposdecimal5" jdbcType="DECIMAL" />
+	    <result column="extraposint1" property="extraposint1" jdbcType="INTEGER" />
+	    <result column="extraposint2" property="extraposint2" jdbcType="INTEGER" />
+	    <result column="extraposint3" property="extraposint3" jdbcType="INTEGER" />
+	    <result column="extraposint4" property="extraposint4" jdbcType="INTEGER" />
+	    <result column="extraposint5" property="extraposint5" jdbcType="INTEGER" />
+	    <result column="extraid1" property="extraid1" jdbcType="INTEGER" />
+	    <result column="extraid2" property="extraid2" jdbcType="INTEGER" />
+	    <result column="extraid3" property="extraid3" jdbcType="INTEGER" />
+	    <result column="extraid4" property="extraid4" jdbcType="INTEGER" />
+	    <result column="extraid5" property="extraid5" jdbcType="INTEGER" />
+	    <result column="extravarchar1" property="extravarchar1" jdbcType="VARCHAR" />
+	    <result column="extravarchar2" property="extravarchar2" jdbcType="VARCHAR" />
+	    <result column="extravarchar3" property="extravarchar3" jdbcType="VARCHAR" />
+	    <result column="extravarchar4" property="extravarchar4" jdbcType="VARCHAR" />
+	    <result column="extravarchar5" property="extravarchar5" jdbcType="VARCHAR" />
+	    <result column="extravarchar6" property="extravarchar6" jdbcType="VARCHAR" />
+	    <result column="extravarchar7" property="extravarchar7" jdbcType="VARCHAR" />
+	    <result column="extravarchar8" property="extravarchar8" jdbcType="VARCHAR" />
+	    <result column="extravarchar9" property="extravarchar9" jdbcType="VARCHAR" />
+	    <result column="extravarchar10" property="extravarchar10" jdbcType="VARCHAR" />
+	    <result column="extradecimal1" property="extradecimal1" jdbcType="DECIMAL" />
+	    <result column="extradecimal2" property="extradecimal2" jdbcType="DECIMAL" />
+	    <result column="extradecimal3" property="extradecimal3" jdbcType="DECIMAL" />
+	    <result column="extradecimal4" property="extradecimal4" jdbcType="DECIMAL" />
+	    <result column="extradecimal5" property="extradecimal5" jdbcType="DECIMAL" />
+	    <result column="extraint1" property="extraint1" jdbcType="INTEGER" />
+	    <result column="extraint2" property="extraint2" jdbcType="INTEGER" />
+	    <result column="extraint3" property="extraint3" jdbcType="INTEGER" />
+	    <result column="extraint4" property="extraint4" jdbcType="INTEGER" />
+	    <result column="extraint5" property="extraint5" jdbcType="INTEGER" />
+	    <result column="extradatetime1" property="extradatetime1" jdbcType="TIMESTAMP" />
+	    <result column="extradatetime2" property="extradatetime2" jdbcType="TIMESTAMP" />
+	    <result column="extradatetime3" property="extradatetime3" jdbcType="TIMESTAMP" />
+	    <result column="extradatetime4" property="extradatetime4" jdbcType="TIMESTAMP" />
+	    <result column="extradatetime5" property="extradatetime5" jdbcType="TIMESTAMP" />
+	    <result column="basetypeid" property="basetypeid" jdbcType="INTEGER" />
+	    <result column="extradecimal6" property="extradecimal6" jdbcType="DECIMAL" />
+	    <result column="extradecimal7" property="extradecimal7" jdbcType="DECIMAL" />
+	    <result column="extradecimal8" property="extradecimal8" jdbcType="DECIMAL" />
+	    <result column="extradecimal9" property="extradecimal9" jdbcType="DECIMAL" />
+	    <result column="extradecimal10" property="extradecimal10" jdbcType="DECIMAL" />
+	    <result column="extravarchar11" property="extravarchar11" jdbcType="VARCHAR" />
+	    <result column="extravarchar12" property="extravarchar12" jdbcType="VARCHAR" />
+	    <result column="extravarchar13" property="extravarchar13" jdbcType="VARCHAR" />
+	    <result column="extravarchar14" property="extravarchar14" jdbcType="VARCHAR" />
+	    <result column="extravarchar15" property="extravarchar15" jdbcType="VARCHAR" />
+	    <result column="extravarchar16" property="extravarchar16" jdbcType="VARCHAR" />
+	    <result column="extravarchar17" property="extravarchar17" jdbcType="VARCHAR" />
+	    <result column="extravarchar18" property="extravarchar18" jdbcType="VARCHAR" />
+	    <result column="extravarchar19" property="extravarchar19" jdbcType="VARCHAR" />
+	    <result column="extravarchar20" property="extravarchar20" jdbcType="VARCHAR" />
+	    <result column="extravarchar21" property="extravarchar21" jdbcType="VARCHAR" />
+	    <result column="extravarchar22" property="extravarchar22" jdbcType="VARCHAR" />
+	    <result column="extravarchar23" property="extravarchar23" jdbcType="VARCHAR" />
+	    <result column="extravarchar24" property="extravarchar24" jdbcType="VARCHAR" />
+	    <result column="extravarchar25" property="extravarchar25" jdbcType="VARCHAR" />
+	    <result column="extravarchar26" property="extravarchar26" jdbcType="VARCHAR" />
+	    <result column="extravarchar27" property="extravarchar27" jdbcType="VARCHAR" />
+	    <result column="extravarchar28" property="extravarchar28" jdbcType="VARCHAR" />
+	    <result column="extravarchar29" property="extravarchar29" jdbcType="VARCHAR" />
+	    <result column="extravarchar30" property="extravarchar30" jdbcType="VARCHAR" />
+	    <result column="typeid" property="typeid" jdbcType="INTEGER" />
+	    <result column="statusid" property="statusid" jdbcType="INTEGER" />
+	    <result column="costcenterid" property="costcenterid" jdbcType="INTEGER" />
+	    <result column="rootpath" property="rootpath" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="ApiBeanResult" type="PositionEntity">
+		<result column="POS_KEY" property="poskey" jdbcType="VARCHAR" />
+		<result column="POS_NAME" property="posname" jdbcType="VARCHAR" />
+		<result column="Root_Pos_key" property="extravarchar1" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<insert id="insert" parameterType="PositionEntity" >
+		insert into position
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="id != null" >
+	        id,
+	      </if>
+	      <if test="poskey != null" >
+	        poskey,
+	      </if>
+	      <if test="posname != null" >
+	        posname,
+	      </if>
+	      <if test="rootposid != null" >
+	        rootposid,
+	      </if>
+	      <if test="poscodeid != null" >
+	        poscodeid,
+	      </if>
+	      <if test="posgroupid != null" >
+	        posgroupid,
+	      </if>
+	      <if test="holidayid != null" >
+	        holidayid,
+	      </if>
+	      <if test="shiftcalendarid != null" >
+	        shiftcalendarid,
+	      </if>
+	      <if test="accountid != null" >
+	        accountid,
+	      </if>
+	      <if test="costtypeid != null" >
+	        costtypeid,
+	      </if>
+	      <if test="priorityid != null" >
+	        priorityid,
+	      </if>
+	      <if test="moresubmo != null" >
+	        moresubmo,
+	      </if>
+	      <if test="possubflag != null" >
+	        possubflag,
+	      </if>
+	      <if test="mosubflag != null" >
+	        mosubflag,
+	      </if>
+	      <if test="woflag != null" >
+	        woflag,
+	      </if>
+	      <if test="pointflag != null" >
+	        pointflag,
+	      </if>
+	      <if test="histflag != null" >
+	        histflag,
+	      </if>
+	      <if test="drawingflag != null" >
+	        drawingflag,
+	      </if>
+	      <if test="tdmflag != null" >
+	        tdmflag,
+	      </if>
+	      <if test="posbarcode != null" >
+	        posbarcode,
+	      </if>
+	      <if test="lastchangedate != null" >
+	        lastchangedate,
+	      </if>
+	      <if test="lastchangetime != null" >
+	        lastchangetime,
+	      </if>
+	      <if test="lastexportdate != null" >
+	        lastexportdate,
+	      </if>
+	      <if test="lastexporttime != null" >
+	        lastexporttime,
+	      </if>
+	      <if test="lastimportdate != null" >
+	        lastimportdate,
+	      </if>
+	      <if test="lastimporttime != null" >
+	        lastimporttime,
+	      </if>
+	      <if test="yearlyoperationalhours != null" >
+	        yearlyoperationalhours,
+	      </if>
+	      <if test="techrespuuserid != null" >
+	        techrespuuserid,
+	      </if>
+	      <if test="siteid != null" >
+	        siteid,
+	      </if>
+	      <if test="recordactive != null" >
+	        recordactive,
+	      </if>
+	      <if test="custombarcode != null" >
+	        custombarcode,
+	      </if>
+	      <if test="wopassive != null" >
+	        wopassive,
+	      </if>
+	      <if test="worksupplierid != null" >
+	        worksupplierid,
+	      </if>
+	      <if test="extraposinfo1 != null" >
+	        extraposinfo1,
+	      </if>
+	      <if test="extraposinfo2 != null" >
+	        extraposinfo2,
+	      </if>
+	      <if test="icon != null" >
+	        icon,
+	      </if>
+	      <if test="extraposinfo3 != null" >
+	        extraposinfo3,
+	      </if>
+	      <if test="extraposinfo4 != null" >
+	        extraposinfo4,
+	      </if>
+	      <if test="extraposinfo5 != null" >
+	        extraposinfo5,
+	      </if>
+	      <if test="userid != null" >
+	        userid,
+	      </if>
+	      <if test="customerid != null" >
+	        customerid,
+	      </if>
+	      <if test="extraposinfo6 != null" >
+	        extraposinfo6,
+	      </if>
+	      <if test="extraposinfo7 != null" >
+	        extraposinfo7,
+	      </if>
+	      <if test="extraposinfo8 != null" >
+	        extraposinfo8,
+	      </if>
+	      <if test="extraposinfo9 != null" >
+	        extraposinfo9,
+	      </if>
+	      <if test="extraposinfo10 != null" >
+	        extraposinfo10,
+	      </if>
+	      <if test="prodworksupplierid != null" >
+	        prodworksupplierid,
+	      </if>
+	      <if test="maintworksupplierid != null" >
+	        maintworksupplierid,
+	      </if>
+	      <if test="planworksupplierid != null" >
+	        planworksupplierid,
+	      </if>
+	      <if test="apprworksupplierid != null" >
+	        apprworksupplierid,
+	      </if>
+	      <if test="fdalogging != null" >
+	        fdalogging,
+	      </if>
+	      <if test="locationposid != null" >
+	        locationposid,
+	      </if>
+	      <if test="costcarrierid != null" >
+	        costcarrierid,
+	      </if>
+	      <if test="debitcosttypeid != null" >
+	        debitcosttypeid,
+	      </if>
+	      <if test="shiftrespareaid != null" >
+	        shiftrespareaid,
+	      </if>
+	      <if test="plantid != null" >
+	        plantid,
+	      </if>
+	      <if test="legalunitid != null" >
+	        legalunitid,
+	      </if>
+	      <if test="legalunitcurrencyid != null" >
+	        legalunitcurrencyid,
+	      </if>
+	      <if test="lastchangedtz != null" >
+	        lastchangedtz,
+	      </if>
+	      <if test="lastexportdtz != null" >
+	        lastexportdtz,
+	      </if>
+	      <if test="lastimportdtz != null" >
+	        lastimportdtz,
+	      </if>
+	      <if test="recordlanguageid != null" >
+	        recordlanguageid,
+	      </if>
+	      <if test="createdate != null" >
+	        createdate,
+	      </if>
+	      <if test="createuserid != null" >
+	        createuserid,
+	      </if>
+	      <if test="modificationdate != null" >
+	        modificationdate,
+	      </if>
+	      <if test="modificationuserid != null" >
+	        modificationuserid,
+	      </if>
+	      <if test="picpath != null" >
+	        picpath,
+	      </if>
+	      <if test="barcode != null" >
+	        barcode,
+	      </if>
+	      <if test="memo != null" >
+	        memo,
+	      </if>
+	      <if test="orgid != null" >
+	        orgid,
+	      </if>
+	      <if test="tombstone != null" >
+	        tombstone,
+	      </if>
+	      <if test="positiontype != null" >
+	        positiontype,
+	      </if>
+	      <if test="stockid != null" >
+	        stockid,
+	      </if>
+	      <if test="extraposdecimal1 != null" >
+	        extraposdecimal1,
+	      </if>
+	      <if test="extraposdecimal2 != null" >
+	        extraposdecimal2,
+	      </if>
+	      <if test="extraposdecimal3 != null" >
+	        extraposdecimal3,
+	      </if>
+	      <if test="extraposdecimal4 != null" >
+	        extraposdecimal4,
+	      </if>
+	      <if test="extraposdecimal5 != null" >
+	        extraposdecimal5,
+	      </if>
+	      <if test="extraposint1 != null" >
+	        extraposint1,
+	      </if>
+	      <if test="extraposint2 != null" >
+	        extraposint2,
+	      </if>
+	      <if test="extraposint3 != null" >
+	        extraposint3,
+	      </if>
+	      <if test="extraposint4 != null" >
+	        extraposint4,
+	      </if>
+	      <if test="extraposint5 != null" >
+	        extraposint5,
+	      </if>
+	      <if test="extraid1 != null" >
+	        extraid1,
+	      </if>
+	      <if test="extraid2 != null" >
+	        extraid2,
+	      </if>
+	      <if test="extraid3 != null" >
+	        extraid3,
+	      </if>
+	      <if test="extraid4 != null" >
+	        extraid4,
+	      </if>
+	      <if test="extraid5 != null" >
+	        extraid5,
+	      </if>
+	      <if test="extravarchar1 != null" >
+	        extravarchar1,
+	      </if>
+	      <if test="extravarchar2 != null" >
+	        extravarchar2,
+	      </if>
+	      <if test="extravarchar3 != null" >
+	        extravarchar3,
+	      </if>
+	      <if test="extravarchar4 != null" >
+	        extravarchar4,
+	      </if>
+	      <if test="extravarchar5 != null" >
+	        extravarchar5,
+	      </if>
+	      <if test="extravarchar6 != null" >
+	        extravarchar6,
+	      </if>
+	      <if test="extravarchar7 != null" >
+	        extravarchar7,
+	      </if>
+	      <if test="extravarchar8 != null" >
+	        extravarchar8,
+	      </if>
+	      <if test="extravarchar9 != null" >
+	        extravarchar9,
+	      </if>
+	      <if test="extravarchar10 != null" >
+	        extravarchar10,
+	      </if>
+	      <if test="extradecimal1 != null" >
+	        extradecimal1,
+	      </if>
+	      <if test="extradecimal2 != null" >
+	        extradecimal2,
+	      </if>
+	      <if test="extradecimal3 != null" >
+	        extradecimal3,
+	      </if>
+	      <if test="extradecimal4 != null" >
+	        extradecimal4,
+	      </if>
+	      <if test="extradecimal5 != null" >
+	        extradecimal5,
+	      </if>
+	      <if test="extraint1 != null" >
+	        extraint1,
+	      </if>
+	      <if test="extraint2 != null" >
+	        extraint2,
+	      </if>
+	      <if test="extraint3 != null" >
+	        extraint3,
+	      </if>
+	      <if test="extraint4 != null" >
+	        extraint4,
+	      </if>
+	      <if test="extraint5 != null" >
+	        extraint5,
+	      </if>
+	      <if test="extradatetime1 != null" >
+	        extradatetime1,
+	      </if>
+	      <if test="extradatetime2 != null" >
+	        extradatetime2,
+	      </if>
+	      <if test="extradatetime3 != null" >
+	        extradatetime3,
+	      </if>
+	      <if test="extradatetime4 != null" >
+	        extradatetime4,
+	      </if>
+	      <if test="extradatetime5 != null" >
+	        extradatetime5,
+	      </if>
+	      <if test="basetypeid != null" >
+	        basetypeid,
+	      </if>
+	      <if test="extradecimal6 != null" >
+	        extradecimal6,
+	      </if>
+	      <if test="extradecimal7 != null" >
+	        extradecimal7,
+	      </if>
+	      <if test="extradecimal8 != null" >
+	        extradecimal8,
+	      </if>
+	      <if test="extradecimal9 != null" >
+	        extradecimal9,
+	      </if>
+	      <if test="extradecimal10 != null" >
+	        extradecimal10,
+	      </if>
+	      <if test="extravarchar11 != null" >
+	        extravarchar11,
+	      </if>
+	      <if test="extravarchar12 != null" >
+	        extravarchar12,
+	      </if>
+	      <if test="extravarchar13 != null" >
+	        extravarchar13,
+	      </if>
+	      <if test="extravarchar14 != null" >
+	        extravarchar14,
+	      </if>
+	      <if test="extravarchar15 != null" >
+	        extravarchar15,
+	      </if>
+	      <if test="extravarchar16 != null" >
+	        extravarchar16,
+	      </if>
+	      <if test="extravarchar17 != null" >
+	        extravarchar17,
+	      </if>
+	      <if test="extravarchar18 != null" >
+	        extravarchar18,
+	      </if>
+	      <if test="extravarchar19 != null" >
+	        extravarchar19,
+	      </if>
+	      <if test="extravarchar20 != null" >
+	        extravarchar20,
+	      </if>
+	      <if test="extravarchar21 != null" >
+	        extravarchar21,
+	      </if>
+	      <if test="extravarchar22 != null" >
+	        extravarchar22,
+	      </if>
+	      <if test="extravarchar23 != null" >
+	        extravarchar23,
+	      </if>
+	      <if test="extravarchar24 != null" >
+	        extravarchar24,
+	      </if>
+	      <if test="extravarchar25 != null" >
+	        extravarchar25,
+	      </if>
+	      <if test="extravarchar26 != null" >
+	        extravarchar26,
+	      </if>
+	      <if test="extravarchar27 != null" >
+	        extravarchar27,
+	      </if>
+	      <if test="extravarchar28 != null" >
+	        extravarchar28,
+	      </if>
+	      <if test="extravarchar29 != null" >
+	        extravarchar29,
+	      </if>
+	      <if test="extravarchar30 != null" >
+	        extravarchar30,
+	      </if>
+	      <if test="typeid != null" >
+	        typeid,
+	      </if>
+	      <if test="statusid != null" >
+	        statusid,
+	      </if>
+	      <if test="costcenterid != null" >
+	        costcenterid,
+	      </if>
+	      <if test="rootpath != null" >
+	        rootpath,
+	      </if>
+			<if test="extravarchar32 != null" >
+				extravarchar32,
+			</if>
+
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="id != null" >
+	        #{id,jdbcType=INTEGER},
+	      </if>
+	      <if test="poskey != null" >
+	        #{poskey,jdbcType=VARCHAR},
+	      </if>
+	      <if test="posname != null" >
+	        #{posname,<if test="extravarchar32 != null" >
+			  extravarchar32,
+		  </if>jdbcType=VARCHAR},
+	      </if>
+	      <if test="rootposid != null" >
+	        #{rootposid,jdbcType=INTEGER},
+	      </if>
+	      <if test="poscodeid != null" >
+	        #{poscodeid,jdbcType=INTEGER},
+	      </if>
+	      <if test="posgroupid != null" >
+	        #{posgroupid,jdbcType=INTEGER},
+	      </if>
+	      <if test="holidayid != null" >
+	        #{holidayid,jdbcType=INTEGER},
+	      </if>
+	      <if test="shiftcalendarid != null" >
+	        #{shiftcalendarid,jdbcType=INTEGER},
+	      </if>
+	      <if test="accountid != null" >
+	        #{accountid,jdbcType=INTEGER},
+	      </if>
+	      <if test="costtypeid != null" >
+	        #{costtypeid,jdbcType=INTEGER},
+	      </if>
+	      <if test="priorityid != null" >
+	        #{priorityid,jdbcType=INTEGER},
+	      </if>
+	      <if test="moresubmo != null" >
+	        #{moresubmo,jdbcType=TINYINT},
+	      </if>
+	      <if test="possubflag != null" >
+	        #{possubflag,jdbcType=TINYINT},
+	      </if>
+	      <if test="mosubflag != null" >
+	        #{mosubflag,jdbcType=TINYINT},
+	      </if>
+	      <if test="woflag != null" >
+	        #{woflag,jdbcType=TINYINT},
+	      </if>
+	      <if test="pointflag != null" >
+	        #{pointflag,jdbcType=TINYINT},
+	      </if>
+	      <if test="histflag != null" >
+	        #{histflag,jdbcType=TINYINT},
+	      </if>
+	      <if test="drawingflag != null" >
+	        #{drawingflag,jdbcType=TINYINT},
+	      </if>
+	      <if test="tdmflag != null" >
+	        #{tdmflag,jdbcType=TINYINT},
+	      </if>
+	      <if test="posbarcode != null" >
+	        #{posbarcode,jdbcType=BIGINT},
+	      </if>
+	      <if test="lastchangedate != null" >
+	        #{lastchangedate,jdbcType=DATE},
+	      </if>
+	      <if test="lastchangetime != null" >
+	        #{lastchangetime,jdbcType=INTEGER},
+	      </if>
+	      <if test="lastexportdate != null" >
+	        #{lastexportdate,jdbcType=DATE},
+	      </if>
+	      <if test="lastexporttime != null" >
+	        #{lastexporttime,jdbcType=INTEGER},
+	      </if>
+	      <if test="lastimportdate != null" >
+	        #{lastimportdate,jdbcType=DATE},
+	      </if>
+	      <if test="lastimporttime != null" >
+	        #{lastimporttime,jdbcType=INTEGER},
+	      </if>
+	      <if test="yearlyoperationalhours != null" >
+	        #{yearlyoperationalhours,jdbcType=DECIMAL},
+	      </if>
+	      <if test="techrespuuserid != null" >
+	        #{techrespuuserid,jdbcType=INTEGER},
+	      </if>
+	      <if test="siteid != null" >
+	        #{siteid,jdbcType=INTEGER},
+	      </if>
+	      <if test="recordactive != null" >
+	        #{recordactive,jdbcType=TINYINT},
+	      </if>
+	      <if test="custombarcode != null" >
+	        #{custombarcode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="wopassive != null" >
+	        #{wopassive,jdbcType=TINYINT},
+	      </if>
+	      <if test="worksupplierid != null" >
+	        #{worksupplierid,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraposinfo1 != null" >
+	        #{extraposinfo1,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extraposinfo2 != null" >
+	        #{extraposinfo2,jdbcType=VARCHAR},
+	      </if>
+	      <if test="icon != null" >
+	        #{icon,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraposinfo3 != null" >
+	        #{extraposinfo3,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extraposinfo4 != null" >
+	        #{extraposinfo4,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extraposinfo5 != null" >
+	        #{extraposinfo5,jdbcType=VARCHAR},
+	      </if>
+	      <if test="userid != null" >
+	        #{userid,jdbcType=VARCHAR},
+	      </if>
+	      <if test="customerid != null" >
+	        #{customerid,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraposinfo6 != null" >
+	        #{extraposinfo6,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extraposinfo7 != null" >
+	        #{extraposinfo7,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extraposinfo8 != null" >
+	        #{extraposinfo8,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extraposinfo9 != null" >
+	        #{extraposinfo9,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extraposinfo10 != null" >
+	        #{extraposinfo10,jdbcType=VARCHAR},
+	      </if>
+	      <if test="prodworksupplierid != null" >
+	        #{prodworksupplierid,jdbcType=INTEGER},
+	      </if>
+	      <if test="maintworksupplierid != null" >
+	        #{maintworksupplierid,jdbcType=INTEGER},
+	      </if>
+	      <if test="planworksupplierid != null" >
+	        #{planworksupplierid,jdbcType=INTEGER},
+	      </if>
+	      <if test="apprworksupplierid != null" >
+	        #{apprworksupplierid,jdbcType=INTEGER},
+	      </if>
+	      <if test="fdalogging != null" >
+	        #{fdalogging,jdbcType=TINYINT},
+	      </if>
+	      <if test="locationposid != null" >
+	        #{locationposid,jdbcType=INTEGER},
+	      </if>
+	      <if test="costcarrierid != null" >
+	        #{costcarrierid,jdbcType=INTEGER},
+	      </if>
+	      <if test="debitcosttypeid != null" >
+	        #{debitcosttypeid,jdbcType=INTEGER},
+	      </if>
+	      <if test="shiftrespareaid != null" >
+	        #{shiftrespareaid,jdbcType=INTEGER},
+	      </if>
+	      <if test="plantid != null" >
+	        #{plantid,jdbcType=INTEGER},
+	      </if>
+	      <if test="legalunitid != null" >
+	        #{legalunitid,jdbcType=INTEGER},
+	      </if>
+	      <if test="legalunitcurrencyid != null" >
+	        #{legalunitcurrencyid,jdbcType=INTEGER},
+	      </if>
+	      <if test="lastchangedtz != null" >
+	        #{lastchangedtz,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="lastexportdtz != null" >
+	        #{lastexportdtz,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="lastimportdtz != null" >
+	        #{lastimportdtz,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="recordlanguageid != null" >
+	        #{recordlanguageid,jdbcType=INTEGER},
+	      </if>
+	      <if test="createdate != null" >
+	        #{createdate,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="createuserid != null" >
+	        #{createuserid,jdbcType=INTEGER},
+	      </if>
+	      <if test="modificationdate != null" >
+	        #{modificationdate,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="modificationuserid != null" >
+	        #{modificationuserid,jdbcType=INTEGER},
+	      </if>
+	      <if test="picpath != null" >
+	        #{picpath,jdbcType=VARCHAR},
+	      </if>
+	      <if test="barcode != null" >
+	        #{barcode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="memo != null" >
+	        #{memo,jdbcType=VARCHAR},
+	      </if>
+	      <if test="orgid != null" >
+	        #{orgid,jdbcType=INTEGER},
+	      </if>
+	      <if test="tombstone != null" >
+	        #{tombstone,jdbcType=INTEGER},
+	      </if>
+	      <if test="positiontype != null" >
+	        #{positiontype,jdbcType=INTEGER},
+	      </if>
+	      <if test="stockid != null" >
+	        #{stockid,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraposdecimal1 != null" >
+	        #{extraposdecimal1,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extraposdecimal2 != null" >
+	        #{extraposdecimal2,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extraposdecimal3 != null" >
+	        #{extraposdecimal3,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extraposdecimal4 != null" >
+	        #{extraposdecimal4,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extraposdecimal5 != null" >
+	        #{extraposdecimal5,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extraposint1 != null" >
+	        #{extraposint1,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraposint2 != null" >
+	        #{extraposint2,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraposint3 != null" >
+	        #{extraposint3,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraposint4 != null" >
+	        #{extraposint4,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraposint5 != null" >
+	        #{extraposint5,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraid1 != null" >
+	        #{extraid1,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraid2 != null" >
+	        #{extraid2,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraid3 != null" >
+	        #{extraid3,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraid4 != null" >
+	        #{extraid4,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraid5 != null" >
+	        #{extraid5,jdbcType=INTEGER},
+	      </if>
+	      <if test="extravarchar1 != null" >
+	        #{extravarchar1,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar2 != null" >
+	        #{extravarchar2,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar3 != null" >
+	        #{extravarchar3,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar4 != null" >
+	        #{extravarchar4,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar5 != null" >
+	        #{extravarchar5,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar6 != null" >
+	        #{extravarchar6,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar7 != null" >
+	        #{extravarchar7,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar8 != null" >
+	        #{extravarchar8,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar9 != null" >
+	        #{extravarchar9,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar10 != null" >
+	        #{extravarchar10,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extradecimal1 != null" >
+	        #{extradecimal1,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extradecimal2 != null" >
+	        #{extradecimal2,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extradecimal3 != null" >
+	        #{extradecimal3,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extradecimal4 != null" >
+	        #{extradecimal4,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extradecimal5 != null" >
+	        #{extradecimal5,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extraint1 != null" >
+	        #{extraint1,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraint2 != null" >
+	        #{extraint2,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraint3 != null" >
+	        #{extraint3,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraint4 != null" >
+	        #{extraint4,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraint5 != null" >
+	        #{extraint5,jdbcType=INTEGER},
+	      </if>
+	      <if test="extradatetime1 != null" >
+	        #{extradatetime1,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="extradatetime2 != null" >
+	        #{extradatetime2,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="extradatetime3 != null" >
+	        #{extradatetime3,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="extradatetime4 != null" >
+	        #{extradatetime4,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="extradatetime5 != null" >
+	        #{extradatetime5,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="basetypeid != null" >
+	        #{basetypeid,jdbcType=INTEGER},
+	      </if>
+	      <if test="extradecimal6 != null" >
+	        #{extradecimal6,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extradecimal7 != null" >
+	        #{extradecimal7,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extradecimal8 != null" >
+	        #{extradecimal8,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extradecimal9 != null" >
+	        #{extradecimal9,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extradecimal10 != null" >
+	        #{extradecimal10,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extravarchar11 != null" >
+	        #{extravarchar11,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar12 != null" >
+	        #{extravarchar12,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar13 != null" >
+	        #{extravarchar13,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar14 != null" >
+	        #{extravarchar14,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar15 != null" >
+	        #{extravarchar15,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar16 != null" >
+	        #{extravarchar16,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar17 != null" >
+	        #{extravarchar17,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar18 != null" >
+	        #{extravarchar18,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar19 != null" >
+	        #{extravarchar19,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar20 != null" >
+	        #{extravarchar20,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar21 != null" >
+	        #{extravarchar21,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar22 != null" >
+	        #{extravarchar22,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar23 != null" >
+	        #{extravarchar23,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar24 != null" >
+	        #{extravarchar24,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar25 != null" >
+	        #{extravarchar25,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar26 != null" >
+	        #{extravarchar26,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar27 != null" >
+	        #{extravarchar27,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar28 != null" >
+	        #{extravarchar28,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar29 != null" >
+	        #{extravarchar29,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar30 != null" >
+	        #{extravarchar30,jdbcType=VARCHAR},
+	      </if>
+	      <if test="typeid != null" >
+	        #{typeid,jdbcType=INTEGER},
+	      </if>
+	      <if test="statusid != null" >
+	        #{statusid,jdbcType=INTEGER},
+	      </if>
+	      <if test="costcenterid != null" >
+	        #{costcenterid,jdbcType=INTEGER},
+	      </if>
+	      <if test="rootpath != null" >
+	        #{rootpath,jdbcType=VARCHAR},
+	      </if>
+			<if test="extravarchar32 != null" >
+				#{extravarchar32,jdbcType=VARCHAR},
+			</if>
+	    </trim>
+	</insert>
+	
+	<sql id="update_table_where">
+		<trim prefix="" suffix="" suffixOverrides=",">
+		  <if test="poskey != null" >
+	        poskey = #{poskey,jdbcType=VARCHAR},
+	      </if>
+	      <if test="posname != null" >
+	        posname = #{posname,jdbcType=VARCHAR},
+	      </if>
+	      <if test="rootposid != null" >
+	        rootposid = #{rootposid,jdbcType=INTEGER},
+	      </if>
+	      <if test="poscodeid != null" >
+	        poscodeid = #{poscodeid,jdbcType=INTEGER},
+	      </if>
+	      <if test="posgroupid != null" >
+	        posgroupid = #{posgroupid,jdbcType=INTEGER},
+	      </if>
+	      <if test="holidayid != null" >
+	        holidayid = #{holidayid,jdbcType=INTEGER},
+	      </if>
+	      <if test="shiftcalendarid != null" >
+	        shiftcalendarid = #{shiftcalendarid,jdbcType=INTEGER},
+	      </if>
+	      <if test="accountid != null" >
+	        accountid = #{accountid,jdbcType=INTEGER},
+	      </if>
+	      <if test="costtypeid != null" >
+	        costtypeid = #{costtypeid,jdbcType=INTEGER},
+	      </if>
+	      <if test="priorityid != null" >
+	        priorityid = #{priorityid,jdbcType=INTEGER},
+	      </if>
+	      <if test="moresubmo != null" >
+	        moresubmo = #{moresubmo,jdbcType=TINYINT},
+	      </if>
+	      <if test="possubflag != null" >
+	        possubflag = #{possubflag,jdbcType=TINYINT},
+	      </if>
+	      <if test="mosubflag != null" >
+	        mosubflag = #{mosubflag,jdbcType=TINYINT},
+	      </if>
+	      <if test="woflag != null" >
+	        woflag = #{woflag,jdbcType=TINYINT},
+	      </if>
+	      <if test="pointflag != null" >
+	        pointflag = #{pointflag,jdbcType=TINYINT},
+	      </if>
+	      <if test="histflag != null" >
+	        histflag = #{histflag,jdbcType=TINYINT},
+	      </if>
+	      <if test="drawingflag != null" >
+	        drawingflag = #{drawingflag,jdbcType=TINYINT},
+	      </if>
+	      <if test="tdmflag != null" >
+	        tdmflag = #{tdmflag,jdbcType=TINYINT},
+	      </if>
+	      <if test="posbarcode != null" >
+	        posbarcode = #{posbarcode,jdbcType=BIGINT},
+	      </if>
+	      <if test="lastchangedate != null" >
+	        lastchangedate = #{lastchangedate,jdbcType=DATE},
+	      </if>
+	      <if test="lastchangetime != null" >
+	        lastchangetime = #{lastchangetime,jdbcType=INTEGER},
+	      </if>
+	      <if test="lastexportdate != null" >
+	        lastexportdate = #{lastexportdate,jdbcType=DATE},
+	      </if>
+	      <if test="lastexporttime != null" >
+	        lastexporttime = #{lastexporttime,jdbcType=INTEGER},
+	      </if>
+	      <if test="lastimportdate != null" >
+	        lastimportdate = #{lastimportdate,jdbcType=DATE},
+	      </if>
+	      <if test="lastimporttime != null" >
+	        lastimporttime = #{lastimporttime,jdbcType=INTEGER},
+	      </if>
+	      <if test="yearlyoperationalhours != null" >
+	        yearlyoperationalhours = #{yearlyoperationalhours,jdbcType=DECIMAL},
+	      </if>
+	      <if test="techrespuuserid != null" >
+	        techrespuuserid = #{techrespuuserid,jdbcType=INTEGER},
+	      </if>
+	      <if test="siteid != null" >
+	        siteid = #{siteid,jdbcType=INTEGER},
+	      </if>
+	      <if test="recordactive != null" >
+	        recordactive = #{recordactive,jdbcType=TINYINT},
+	      </if>
+	      <if test="custombarcode != null" >
+	        custombarcode = #{custombarcode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="wopassive != null" >
+	        wopassive = #{wopassive,jdbcType=TINYINT},
+	      </if>
+	      <if test="worksupplierid != null" >
+	        worksupplierid = #{worksupplierid,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraposinfo1 != null" >
+	        extraposinfo1 = #{extraposinfo1,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extraposinfo2 != null" >
+	        extraposinfo2 = #{extraposinfo2,jdbcType=VARCHAR},
+	      </if>
+	      <if test="icon != null" >
+	        icon = #{icon,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraposinfo3 != null" >
+	        extraposinfo3 = #{extraposinfo3,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extraposinfo4 != null" >
+	        extraposinfo4 = #{extraposinfo4,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extraposinfo5 != null" >
+	        extraposinfo5 = #{extraposinfo5,jdbcType=VARCHAR},
+	      </if>
+	      <if test="userid != null" >
+	        userid = #{userid,jdbcType=VARCHAR},
+	      </if>
+	      <if test="customerid != null" >
+	        customerid = #{customerid,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraposinfo6 != null" >
+	        extraposinfo6 = #{extraposinfo6,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extraposinfo7 != null" >
+	        extraposinfo7 = #{extraposinfo7,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extraposinfo8 != null" >
+	        extraposinfo8 = #{extraposinfo8,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extraposinfo9 != null" >
+	        extraposinfo9 = #{extraposinfo9,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extraposinfo10 != null" >
+	        extraposinfo10 = #{extraposinfo10,jdbcType=VARCHAR},
+	      </if>
+	      <if test="prodworksupplierid != null" >
+	        prodworksupplierid = #{prodworksupplierid,jdbcType=INTEGER},
+	      </if>
+	      <if test="maintworksupplierid != null" >
+	        maintworksupplierid = #{maintworksupplierid,jdbcType=INTEGER},
+	      </if>
+	      <if test="planworksupplierid != null" >
+	        planworksupplierid = #{planworksupplierid,jdbcType=INTEGER},
+	      </if>
+	      <if test="apprworksupplierid != null" >
+	        apprworksupplierid = #{apprworksupplierid,jdbcType=INTEGER},
+	      </if>
+	      <if test="fdalogging != null" >
+	        fdalogging = #{fdalogging,jdbcType=TINYINT},
+	      </if>
+	      <if test="locationposid != null" >
+	        locationposid = #{locationposid,jdbcType=INTEGER},
+	      </if>
+	      <if test="costcarrierid != null" >
+	        costcarrierid = #{costcarrierid,jdbcType=INTEGER},
+	      </if>
+	      <if test="debitcosttypeid != null" >
+	        debitcosttypeid = #{debitcosttypeid,jdbcType=INTEGER},
+	      </if>
+	      <if test="shiftrespareaid != null" >
+	        shiftrespareaid = #{shiftrespareaid,jdbcType=INTEGER},
+	      </if>
+	      <if test="plantid != null" >
+	        plantid = #{plantid,jdbcType=INTEGER},
+	      </if>
+	      <if test="legalunitid != null" >
+	        legalunitid = #{legalunitid,jdbcType=INTEGER},
+	      </if>
+	      <if test="legalunitcurrencyid != null" >
+	        legalunitcurrencyid = #{legalunitcurrencyid,jdbcType=INTEGER},
+	      </if>
+	      <if test="lastchangedtz != null" >
+	        lastchangedtz = #{lastchangedtz,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="lastexportdtz != null" >
+	        lastexportdtz = #{lastexportdtz,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="lastimportdtz != null" >
+	        lastimportdtz = #{lastimportdtz,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="recordlanguageid != null" >
+	        recordlanguageid = #{recordlanguageid,jdbcType=INTEGER},
+	      </if>
+	      <if test="createdate != null" >
+	        createdate = #{createdate,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="createuserid != null" >
+	        createuserid = #{createuserid,jdbcType=INTEGER},
+	      </if>
+	      <if test="modificationdate != null" >
+	        modificationdate = #{modificationdate,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="modificationuserid != null" >
+	        modificationuserid = #{modificationuserid,jdbcType=INTEGER},
+	      </if>
+	      <if test="picpath != null" >
+	        picpath = #{picpath,jdbcType=VARCHAR},
+	      </if>
+	      <if test="barcode != null" >
+	        barcode = #{barcode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="memo != null" >
+	        memo = #{memo,jdbcType=VARCHAR},
+	      </if>
+	      <if test="orgid != null" >
+	        orgid = #{orgid,jdbcType=INTEGER},
+	      </if>
+	      <if test="tombstone != null" >
+	        tombstone = #{tombstone,jdbcType=INTEGER},
+	      </if>
+	      <if test="positiontype != null" >
+	        positiontype = #{positiontype,jdbcType=INTEGER},
+	      </if>
+	      <if test="stockid != null" >
+	        stockid = #{stockid,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraposdecimal1 != null" >
+	        extraposdecimal1 = #{extraposdecimal1,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extraposdecimal2 != null" >
+	        extraposdecimal2 = #{extraposdecimal2,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extraposdecimal3 != null" >
+	        extraposdecimal3 = #{extraposdecimal3,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extraposdecimal4 != null" >
+	        extraposdecimal4 = #{extraposdecimal4,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extraposdecimal5 != null" >
+	        extraposdecimal5 = #{extraposdecimal5,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extraposint1 != null" >
+	        extraposint1 = #{extraposint1,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraposint2 != null" >
+	        extraposint2 = #{extraposint2,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraposint3 != null" >
+	        extraposint3 = #{extraposint3,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraposint4 != null" >
+	        extraposint4 = #{extraposint4,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraposint5 != null" >
+	        extraposint5 = #{extraposint5,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraid1 != null" >
+	        extraid1 = #{extraid1,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraid2 != null" >
+	        extraid2 = #{extraid2,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraid3 != null" >
+	        extraid3 = #{extraid3,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraid4 != null" >
+	        extraid4 = #{extraid4,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraid5 != null" >
+	        extraid5 = #{extraid5,jdbcType=INTEGER},
+	      </if>
+	      <if test="extravarchar1 != null" >
+	        extravarchar1 = #{extravarchar1,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar2 != null" >
+	        extravarchar2 = #{extravarchar2,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar3 != null" >
+	        extravarchar3 = #{extravarchar3,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar4 != null" >
+	        extravarchar4 = #{extravarchar4,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar5 != null" >
+	        extravarchar5 = #{extravarchar5,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar6 != null" >
+	        extravarchar6 = #{extravarchar6,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar7 != null" >
+	        extravarchar7 = #{extravarchar7,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar8 != null" >
+	        extravarchar8 = #{extravarchar8,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar9 != null" >
+	        extravarchar9 = #{extravarchar9,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar10 != null" >
+	        extravarchar10 = #{extravarchar10,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extradecimal1 != null" >
+	        extradecimal1 = #{extradecimal1,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extradecimal2 != null" >
+	        extradecimal2 = #{extradecimal2,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extradecimal3 != null" >
+	        extradecimal3 = #{extradecimal3,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extradecimal4 != null" >
+	        extradecimal4 = #{extradecimal4,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extradecimal5 != null" >
+	        extradecimal5 = #{extradecimal5,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extraint1 != null" >
+	        extraint1 = #{extraint1,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraint2 != null" >
+	        extraint2 = #{extraint2,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraint3 != null" >
+	        extraint3 = #{extraint3,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraint4 != null" >
+	        extraint4 = #{extraint4,jdbcType=INTEGER},
+	      </if>
+	      <if test="extraint5 != null" >
+	        extraint5 = #{extraint5,jdbcType=INTEGER},
+	      </if>
+			<if test="extraint6 != null" >
+				extraint6 = #{extraint6,jdbcType=INTEGER},
+			</if>
+			<if test="extraint7 != null" >
+				extraint7 = #{extraint7,jdbcType=INTEGER},
+			</if>
+			<if test="extraint8 != null" >
+				extraint8 = #{extraint8,jdbcType=INTEGER},
+			</if>
+			<if test="extraint9 != null" >
+				extraint9 = #{extraint9,jdbcType=INTEGER},
+			</if>
+			<if test="extraint10 != null" >
+				extraint10 = #{extraint10,jdbcType=INTEGER},
+			</if>
+	      <if test="extradatetime1 != null" >
+	        extradatetime1 = #{extradatetime1,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="extradatetime2 != null" >
+	        extradatetime2 = #{extradatetime2,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="extradatetime3 != null" >
+	        extradatetime3 = #{extradatetime3,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="extradatetime4 != null" >
+	        extradatetime4 = #{extradatetime4,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="extradatetime5 != null" >
+	        extradatetime5 = #{extradatetime5,jdbcType=TIMESTAMP},
+	      </if>
+			<if test="extradatetime6 != null" >
+				extradatetime6 = #{extradatetime6,jdbcType=TIMESTAMP},
+			</if>
+			<if test="extradatetime7 != null" >
+				extradatetime7 = #{extradatetime7,jdbcType=TIMESTAMP},
+			</if>
+			<if test="extradatetime8 != null" >
+				extradatetime8 = #{extradatetime8,jdbcType=TIMESTAMP},
+			</if>
+			<if test="extradatetime9 != null" >
+				extradatetime9 = #{extradatetime9,jdbcType=TIMESTAMP},
+			</if>
+			<if test="extradatetime10 != null" >
+				extradatetime10 = #{extradatetime10,jdbcType=TIMESTAMP},
+			</if>
+	      <if test="basetypeid != null" >
+	        basetypeid = #{basetypeid,jdbcType=INTEGER},
+	      </if>
+	      <if test="extradecimal6 != null" >
+	        extradecimal6 = #{extradecimal6,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extradecimal7 != null" >
+	        extradecimal7 = #{extradecimal7,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extradecimal8 != null" >
+	        extradecimal8 = #{extradecimal8,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extradecimal9 != null" >
+	        extradecimal9 = #{extradecimal9,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extradecimal10 != null" >
+	        extradecimal10 = #{extradecimal10,jdbcType=DECIMAL},
+	      </if>
+	      <if test="extravarchar11 != null" >
+	        extravarchar11 = #{extravarchar11,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar12 != null" >
+	        extravarchar12 = #{extravarchar12,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar13 != null" >
+	        extravarchar13 = #{extravarchar13,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar14 != null" >
+	        extravarchar14 = #{extravarchar14,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar15 != null" >
+	        extravarchar15 = #{extravarchar15,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar16 != null" >
+	        extravarchar16 = #{extravarchar16,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar17 != null" >
+	        extravarchar17 = #{extravarchar17,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar18 != null" >
+	        extravarchar18 = #{extravarchar18,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar19 != null" >
+	        extravarchar19 = #{extravarchar19,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar20 != null" >
+	        extravarchar20 = #{extravarchar20,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar21 != null" >
+	        extravarchar21 = #{extravarchar21,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar22 != null" >
+	        extravarchar22 = #{extravarchar22,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar23 != null" >
+	        extravarchar23 = #{extravarchar23,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar24 != null" >
+	        extravarchar24 = #{extravarchar24,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar25 != null" >
+	        extravarchar25 = #{extravarchar25,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar26 != null" >
+	        extravarchar26 = #{extravarchar26,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar27 != null" >
+	        extravarchar27 = #{extravarchar27,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar28 != null" >
+	        extravarchar28 = #{extravarchar28,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar29 != null" >
+	        extravarchar29 = #{extravarchar29,jdbcType=VARCHAR},
+	      </if>
+	      <if test="extravarchar30 != null" >
+	        extravarchar30 = #{extravarchar30,jdbcType=VARCHAR},
+	      </if>
+	      <if test="typeid != null" >
+	        typeid = #{typeid,jdbcType=INTEGER},
+	      </if>
+	      <if test="statusid != null" >
+	        statusid = #{statusid,jdbcType=INTEGER},
+	      </if>
+	      <if test="costcenterid != null" >
+	        costcenterid = #{costcenterid,jdbcType=INTEGER},
+	      </if>
+	      <if test="rootpath != null" >
+	        rootpath = #{rootpath,jdbcType=VARCHAR},
+	      </if>
+			<if test="extravarchar32 != null" >
+				extravarchar32 = #{extravarchar32,jdbcType=VARCHAR},
+			</if>
+      	</trim>
+	</sql>
+	<update id="update" parameterType="PositionEntity">
+		update
+		<include refid="table_name" />
+		<set>
+			<include refid="update_table_where"/>
+		</set>
+		where
+		<include refid="table_id" />
+		= #{id,jdbcType=INTEGER}
+	</update>
+	
+	<select id="get" parameterType="PositionEntity" resultMap="entityBeanResult">
+		SELECT
+		<include refid="database_table_columns" />
+		from
+		<include refid="table_name" />
+		<include refid="dynamic_full_match_condition" />
+	</select>
+
+	<select id="select" parameterType="PositionEntity" resultMap="entityBeanResult">
+		SELECT
+		<include refid="database_table_columns"/>
+		FROM
+		<include refid="table_name" />
+		<include refid="dynamic_full_match_condition" />
+	</select>
+	
+	<select id="selectAllApi" resultMap="ApiBeanResult">
+		SELECT POS_KEY, POS_NAME, Root_Pos_key
+		FROM
+		<include refid="table_name" />
+	</select>
+
+	<select id="selectAllToTask" resultMap="entityBeanResult">
+		SELECT id,poskey,posname,orgid,extradatetime3,extradatetime9,extradatetime10,extraint3,extraint4,extraint7,extraint8,extravarchar19,extravarchar20,extravarchar21,extravarchar22,extravarchar23,extravarchar24,extravarchar25,extravarchar26,extravarchar27,extravarchar28,extravarchar29,extravarchar30,extraid4,extraid5,extraid6,extraid7
+
+		FROM
+		<include refid="table_name" />
+		where tombstone=1 and positiontype =10
+	</select>
+
+	<select id="selectByPosKey" resultMap="ApiBeanResult" parameterType="java.lang.String">
+		SELECT
+			<include refid="database_table_columns" />
+		FROM
+			<include refid="table_name" />
+		WHERE <include refid="table_name" />.poskey = #{posKey, jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectKeyIdMap" resultMap="ApiBeanResult">
+		SELECT
+			poskey, id
+		FROM
+		<include refid="table_name" />
+	</select>
+
+	<select id="selectPosition" resultType="com.mingcloud.proxy.datalayer.entity.archiveinfo.PositionEntity">
+		SELECT
+		id, posname, poskey, extravarchar11
+		FROM
+		position
+		<where>
+			<if test="positiontype != null">
+				AND positiontype = #{positiontype}
+			</if>
+			<if test="tombstone != null">
+				AND tombstone = #{tombstone}
+			</if>
+			<if test="orgid != null">
+				ANd orgid = #{orgid}
+			</if>
+		</where>
+	</select>
+	<select id="selectSiteId"
+			resultType="com.mingcloud.proxy.datalayer.dto.archiveinfo.SiterelationpositionDto">
+		SELECT
+		s.siteid,
+		s.posid,
+		p.posname,
+		p.extravarchar13 AS posabname,
+		p.poskey,
+		p.extradecimal1,
+		p.extradatetime2 as apiDate
+		FROM
+		siterelationposition s,
+		position p
+		WHERE
+		s.posid = p.id
+		AND p.orgid = 2
+	</select>
+</mapper>

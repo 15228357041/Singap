@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.PlannedelectricMapper" >
+    <resultMap id="entityBeanResult" type="PlannedelectricEntity">
+
+    </resultMap>
+    <sql id="table_name">
+        plannedelectric
+    </sql>
+    <sql id="table_id">
+        <include refid="table_name"/>.id
+    </sql>
+    <!-- table columns -->
+    <sql id="database_table_columns">
+                    <include refid="table_name"/>.id,
+                    <include refid="table_name"/>.plannedelectrickey,
+                    <include refid="table_name"/>.plannedelectricname,
+                    <include refid="table_name"/>.stationid,
+                    <include refid="table_name"/>.plandate,
+                    <include refid="table_name"/>.incidencerate,
+                    <include refid="table_name"/>.createdate,
+                    <include refid="table_name"/>.createuserid,
+                    <include refid="table_name"/>.modificationdate,
+                    <include refid="table_name"/>.modificationuserid,
+                    <include refid="table_name"/>.extravarchar1,
+                    <include refid="table_name"/>.extravarchar2,
+                    <include refid="table_name"/>.extravarchar3,
+                    <include refid="table_name"/>.extravarchar4,
+                    <include refid="table_name"/>.extradecimal1,
+                    <include refid="table_name"/>.extradecimal2,
+                    <include refid="table_name"/>.extradecimal3,
+                    <include refid="table_name"/>.extradecimal4,
+                    <include refid="table_name"/>.extraint1,
+                    <include refid="table_name"/>.extraint2,
+                    <include refid="table_name"/>.extraint3,
+                    <include refid="table_name"/>.extraint4,
+                    <include refid="table_name"/>.tombstone
+            </sql>
+    <sql id="update_plannedelectric_where">
+        <trim prefix="" suffix="" prefixOverrides=",">
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="plannedelectrickey != null">
+                plannedelectrickey = #{plannedelectrickey},
+            </if>
+            <if test="plannedelectricname != null">
+                plannedelectricname = #{plannedelectricname},
+            </if>
+            <if test="stationid != null">
+                stationid = #{stationid},
+            </if>
+            <if test="plandate != null">
+                plandate = #{plandate},
+            </if>
+            <if test="incidencerate != null">
+                incidencerate = #{incidencerate},
+            </if>
+            <if test="createdate != null">
+                createdate = #{createdate},
+            </if>
+            <if test="createuserid != null">
+                createuserid = #{createuserid},
+            </if>
+            <if test="modificationdate != null">
+                modificationdate = #{modificationdate},
+            </if>
+            <if test="modificationuserid != null">
+                modificationuserid = #{modificationuserid},
+            </if>
+            <if test="extravarchar1 != null">
+                extravarchar1 = #{extravarchar1},
+            </if>
+            <if test="extravarchar2 != null">
+                extravarchar2 = #{extravarchar2},
+            </if>
+            <if test="extravarchar3 != null">
+                extravarchar3 = #{extravarchar3},
+            </if>
+            <if test="extravarchar4 != null">
+                extravarchar4 = #{extravarchar4},
+            </if>
+            <if test="extradecimal1 != null">
+                extradecimal1 = #{extradecimal1},
+            </if>
+            <if test="extradecimal2 != null">
+                extradecimal2 = #{extradecimal2},
+            </if>
+            <if test="extradecimal3 != null">
+                extradecimal3 = #{extradecimal3},
+            </if>
+            <if test="extradecimal4 != null">
+                extradecimal4 = #{extradecimal4},
+            </if>
+            <if test="extraint1 != null">
+                extraint1 = #{extraint1},
+            </if>
+            <if test="extraint2 != null">
+                extraint2 = #{extraint2},
+            </if>
+            <if test="extraint3 != null">
+                extraint3 = #{extraint3},
+            </if>
+            <if test="extraint4 != null">
+                extraint4 = #{extraint4},
+            </if>
+            <if test="tombstone != null">
+                tombstone = #{tombstone},
+            </if>
+        </trim>
+    </sql>
+    <!-- dynamic full match -->
+    <sql id="dynamic_full_match_condition">
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="id != null">
+                AND<include refid="table_name"/>.id = #{id}
+             </if>
+            <if test="plannedelectrickey != null">
+                AND<include refid="table_name"/>.plannedelectrickey = #{plannedelectrickey}
+             </if>
+            <if test="plannedelectricname != null">
+                AND<include refid="table_name"/>.plannedelectricname = #{plannedelectricname}
+             </if>
+            <if test="stationid != null">
+                AND<include refid="table_name"/>.stationid = #{stationid}
+             </if>
+            <if test="plandate != null">
+                AND<include refid="table_name"/>.plandate = #{plandate}
+             </if>
+            <if test="incidencerate != null">
+                AND<include refid="table_name"/>.incidencerate = #{incidencerate}
+             </if>
+            <if test="createdate != null">
+                AND<include refid="table_name"/>.createdate = #{createdate}
+             </if>
+            <if test="createuserid != null">
+                AND<include refid="table_name"/>.createuserid = #{createuserid}
+             </if>
+            <if test="modificationdate != null">
+                AND<include refid="table_name"/>.modificationdate = #{modificationdate}
+             </if>
+            <if test="modificationuserid != null">
+                AND<include refid="table_name"/>.modificationuserid = #{modificationuserid}
+             </if>
+            <if test="extravarchar1 != null">
+                AND<include refid="table_name"/>.extravarchar1 = #{extravarchar1}
+             </if>
+            <if test="extravarchar2 != null">
+                AND<include refid="table_name"/>.extravarchar2 = #{extravarchar2}
+             </if>
+            <if test="extravarchar3 != null">
+                AND<include refid="table_name"/>.extravarchar3 = #{extravarchar3}
+             </if>
+            <if test="extravarchar4 != null">
+                AND<include refid="table_name"/>.extravarchar4 = #{extravarchar4}
+             </if>
+            <if test="extradecimal1 != null">
+                AND<include refid="table_name"/>.extradecimal1 = #{extradecimal1}
+             </if>
+            <if test="extradecimal2 != null">
+                AND<include refid="table_name"/>.extradecimal2 = #{extradecimal2}
+             </if>
+            <if test="extradecimal3 != null">
+                AND<include refid="table_name"/>.extradecimal3 = #{extradecimal3}
+             </if>
+            <if test="extradecimal4 != null">
+                AND<include refid="table_name"/>.extradecimal4 = #{extradecimal4}
+             </if>
+            <if test="extraint1 != null">
+                AND<include refid="table_name"/>.extraint1 = #{extraint1}
+             </if>
+            <if test="extraint2 != null">
+                AND<include refid="table_name"/>.extraint2 = #{extraint2}
+             </if>
+            <if test="extraint3 != null">
+                AND<include refid="table_name"/>.extraint3 = #{extraint3}
+             </if>
+            <if test="extraint4 != null">
+                AND<include refid="table_name"/>.extraint4 = #{extraint4}
+             </if>
+            <if test="tombstone != null">
+                AND<include refid="table_name"/>.tombstone = #{tombstone}
+             </if>
+        </trim>
+    </sql>
+    <insert id="insert" parameterType="com.mingcloud.proxy.datalayer.entity.archiveinfo.PlannedelectricEntity" useGeneratedKeys="true" keyProperty="id" >
+        insert into plannedelectric
+        (
+            plannedelectrickey,      plannedelectricname,      stationid,      plandate,      incidencerate,      createdate,      createuserid,      modificationdate,      modificationuserid,      extravarchar1,      extravarchar2,      extravarchar3,      extravarchar4,      extradecimal1,      extradecimal2,      extradecimal3,      extradecimal4,      extraint1,      extraint2,      extraint3,      extraint4,      tombstone
+        )
+        values
+        (
+          #{plannedelectrickey}  ,    #{plannedelectricname}  ,    #{stationid}  ,    #{plandate}  ,    #{incidencerate}  ,    #{createdate}  ,    #{createuserid}  ,    #{modificationdate}  ,    #{modificationuserid}  ,    #{extravarchar1}  ,    #{extravarchar2}  ,    #{extravarchar3}  ,    #{extravarchar4}  ,    #{extradecimal1}  ,    #{extradecimal2}  ,    #{extradecimal3}  ,    #{extradecimal4}  ,    #{extraint1}  ,    #{extraint2}  ,    #{extraint3}  ,    #{extraint4}  ,    1
+        )
+    </insert>
+
+    <update id="update" parameterType="PlannedelectricEntity">
+        update
+        <include refid="table_name"/>
+        <set>
+            <include refid="update_plannedelectric_where"/>
+        </set>
+        where
+        <include refid="table_id"/>
+        = #{id}
+    </update>
+    <update id="delete" parameterType="PlannedelectricEntity">
+        DELETE
+        FROM
+        <include refid="table_name"/>
+        where
+        <include refid="table_id"/>
+        = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="get" parameterType="PlannedelectricEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        from
+        <include refid="table_name" />
+        where
+        <include refid="table_id" />
+        = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectOne" parameterType="PlannedelectricEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        FROM
+        <include refid="table_name" />
+        <include refid="dynamic_full_match_condition" />
+        limit 1
+    </select>
+
+    <select id="select" parameterType="PlannedelectricEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        FROM
+        <include refid="table_name" />
+        <include refid="dynamic_full_match_condition" />
+    </select>
+
+    <select id="selectCount" parameterType="PlannedelectricEntity" resultType="int">
+        SELECT COUNT(1)
+        FROM
+        <include refid="table_name" />
+        <include refid="dynamic_full_match_condition" />
+    </select>
+
+    <select id="selectAll" parameterType="PlannedelectricEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        FROM
+        <include refid="table_name" />
+        order by
+        <include refid="table_id" />
+        desc
+    </select>
+
+    <select databaseId="mysql" id="selectPage" parameterType="PlannedelectricEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        FROM
+        <include refid="table_name" />
+        <include refid="dynamic_full_match_condition" />
+        order by
+        <include refid="table_name"/>.plandate
+        desc limit #{offset},#{span}
+    </select>
+
+
+    <select  id="selectAllPage" parameterType="PlannedelectricEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        FROM
+        <include refid="table_name" />
+        order by
+        <include refid="table_id" />
+        desc limit #{offset},#{span}
+    </select>
+
+</mapper>
+
+
+
+

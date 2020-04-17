@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.SparepartMapper">
+    <resultMap id="BaseResultMap" type="SparepartEntity">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="sparepartkey" property="sparepartkey" jdbcType="VARCHAR"/>
+        <result column="sparepartname" property="sparepartname" jdbcType="VARCHAR"/>
+        <result column="avgprice" property="avgprice" jdbcType="DECIMAL"/>
+        <result column="upperlimitqty" property="upperlimitqty" jdbcType="DECIMAL"/>
+        <result column="lowerlimitqty" property="lowerlimitqty" jdbcType="DECIMAL"/>
+        <result column="isaddup" property="isaddup" jdbcType="INTEGER"/>
+        <result column="supplierid" property="supplierid" jdbcType="INTEGER"/>
+        <result column="stocklocationid" property="stocklocationid" jdbcType="INTEGER"/>
+        <result column="accountid" property="accountid" jdbcType="INTEGER"/>
+        <result column="costtypeid" property="costtypeid" jdbcType="INTEGER"/>
+        <result column="spcodeid" property="spcodeid" jdbcType="INTEGER"/>
+        <result column="spgroupid" property="spgroupid" jdbcType="INTEGER"/>
+        <result column="extraspinfo1" property="extraspinfo1" jdbcType="VARCHAR"/>
+        <result column="brandinfo" property="brandinfo" jdbcType="VARCHAR"/>
+        <result column="specinfo" property="specinfo" jdbcType="VARCHAR"/>
+        <result column="unitid" property="unitid" jdbcType="INTEGER"/>
+        <result column="packsize" property="packsize" jdbcType="DECIMAL"/>
+        <result column="purchaseprice" property="purchaseprice" jdbcType="DECIMAL"/>
+        <result column="profit" property="profit" jdbcType="DECIMAL"/>
+        <result column="salesprice" property="salesprice" jdbcType="DECIMAL"/>
+        <result column="autospareupdate" property="autospareupdate" jdbcType="TINYINT"/>
+        <result column="quantityonstock" property="quantityonstock" jdbcType="DECIMAL"/>
+        <result column="lasttransact" property="lasttransact" jdbcType="DATE"/>
+        <result column="purchaseqtyly" property="purchaseqtyly" jdbcType="DECIMAL"/>
+        <result column="purchvally" property="purchvally" jdbcType="DECIMAL"/>
+        <result column="purchqtyytd" property="purchqtyytd" jdbcType="DECIMAL"/>
+        <result column="purchvalytd" property="purchvalytd" jdbcType="DECIMAL"/>
+        <result column="consumpqtyly" property="consumpqtyly" jdbcType="DECIMAL"/>
+        <result column="consumpvally" property="consumpvally" jdbcType="DECIMAL"/>
+        <result column="consumpqtyytd" property="consumpqtyytd" jdbcType="DECIMAL"/>
+        <result column="consumpvalytd" property="consumpvalytd" jdbcType="DECIMAL"/>
+        <result column="lastpurchprice" property="lastpurchprice" jdbcType="DECIMAL"/>
+        <result column="purchasevalue" property="purchasevalue" jdbcType="DECIMAL"/>
+        <result column="purchaseqty" property="purchaseqty" jdbcType="DECIMAL"/>
+        <result column="consumpvalue" property="consumpvalue" jdbcType="DECIMAL"/>
+        <result column="consumpqty" property="consumpqty" jdbcType="DECIMAL"/>
+        <result column="lastcounted" property="lastcounted" jdbcType="DATE"/>
+        <result column="qtyonorder" property="qtyonorder" jdbcType="DECIMAL"/>
+        <result column="spbarcode" property="spbarcode" jdbcType="BIGINT"/>
+        <result column="repairable" property="repairable" jdbcType="TINYINT"/>
+        <result column="vattype" property="vattype" jdbcType="INTEGER"/>
+        <result column="vatmethod" property="vatmethod" jdbcType="INTEGER"/>
+        <result column="purchaseruuserid" property="purchaseruuserid" jdbcType="VARCHAR"/>
+        <result column="techrespuuserid" property="techrespuuserid" jdbcType="VARCHAR"/>
+        <result column="vatrate" property="vatrate" jdbcType="DECIMAL"/>
+        <result column="lastchangedate" property="lastchangedate" jdbcType="DATE"/>
+        <result column="lastchangetime" property="lastchangetime" jdbcType="INTEGER"/>
+        <result column="lastexportdate" property="lastexportdate" jdbcType="DATE"/>
+        <result column="lastexporttime" property="lastexporttime" jdbcType="INTEGER"/>
+        <result column="lastimportdate" property="lastimportdate" jdbcType="DATE"/>
+        <result column="lastimporttime" property="lastimporttime" jdbcType="INTEGER"/>
+        <result column="profitcosttypeid" property="profitcosttypeid" jdbcType="INTEGER"/>
+        <result column="siteid" property="siteid" jdbcType="INTEGER"/>
+        <result column="recordactive" property="recordactive" jdbcType="TINYINT"/>
+        <result column="custombarcode" property="custombarcode" jdbcType="VARCHAR"/>
+        <result column="qualitycheck" property="qualitycheck" jdbcType="TINYINT"/>
+        <result column="spname2" property="spname2" jdbcType="VARCHAR"/>
+        <result column="extraspinfo2" property="extraspinfo2" jdbcType="VARCHAR"/>
+        <result column="extraspinfo3" property="extraspinfo3" jdbcType="VARCHAR"/>
+        <result column="extraspinfo4" property="extraspinfo4" jdbcType="VARCHAR"/>
+        <result column="extraspinfo5" property="extraspinfo5" jdbcType="VARCHAR"/>
+        <result column="manufacturerid" property="manufacturerid" jdbcType="INTEGER"/>
+        <result column="icon" property="icon" jdbcType="INTEGER"/>
+        <result column="stockid" property="stockid" jdbcType="INTEGER"/>
+        <result column="rootspid" property="rootspid" jdbcType="INTEGER"/>
+        <result column="foreignowner" property="foreignowner" jdbcType="TINYINT"/>
+        <result column="extraspinfo6" property="extraspinfo6" jdbcType="VARCHAR"/>
+        <result column="extraspinfo7" property="extraspinfo7" jdbcType="VARCHAR"/>
+        <result column="extraspinfo8" property="extraspinfo8" jdbcType="VARCHAR"/>
+        <result column="extraspinfo9" property="extraspinfo9" jdbcType="VARCHAR"/>
+        <result column="extraspinfo10" property="extraspinfo10" jdbcType="VARCHAR"/>
+        <result column="eaninfo" property="eaninfo" jdbcType="VARCHAR"/>
+        <result column="classid" property="classid" jdbcType="INTEGER"/>
+        <result column="foreignownerid" property="foreignownerid" jdbcType="VARCHAR"/>
+        <result column="foreignownerlink" property="foreignownerlink" jdbcType="VARCHAR"/>
+        <result column="vatcodeid" property="vatcodeid" jdbcType="INTEGER"/>
+        <result column="approvedforpurchase" property="approvedforpurchase" jdbcType="TINYINT"/>
+        <result column="stocklocationkey" property="stocklocationkey" jdbcType="VARCHAR"/>
+        <result column="commoditycodeid" property="commoditycodeid" jdbcType="INTEGER"/>
+        <result column="onpartslist" property="onpartslist" jdbcType="TINYINT"/>
+        <result column="tiid" property="tiid" jdbcType="INTEGER"/>
+        <result column="lastchangedtz" property="lastchangedtz" jdbcType="TIMESTAMP"/>
+        <result column="lastexportdtz" property="lastexportdtz" jdbcType="TIMESTAMP"/>
+        <result column="lastimportdtz" property="lastimportdtz" jdbcType="TIMESTAMP"/>
+        <result column="lastcounteddtz" property="lastcounteddtz" jdbcType="TIMESTAMP"/>
+        <result column="lasttransactdtz" property="lasttransactdtz" jdbcType="TIMESTAMP"/>
+        <result column="recordlanguageid" property="recordlanguageid" jdbcType="INTEGER"/>
+        <result column="createdate" property="createdate" jdbcType="TIMESTAMP"/>
+        <result column="createuserid" property="createuserid" jdbcType="INTEGER"/>
+        <result column="modificationdate" property="modificationdate" jdbcType="TIMESTAMP"/>
+        <result column="modificationuserid" property="modificationuserid" jdbcType="INTEGER"/>
+        <result column="picpath" property="picpath" jdbcType="VARCHAR"/>
+        <result column="barcode" property="barcode" jdbcType="VARCHAR"/>
+        <result column="memo" property="memo" jdbcType="VARCHAR"/>
+        <result column="orgid" property="orgid" jdbcType="INTEGER"/>
+        <result column="tombstone" property="tombstone" jdbcType="INTEGER"/>
+        <result column="ppap" property="ppap" jdbcType="INTEGER"/>
+        <result column="spareparttype" property="spareparttype" jdbcType="INTEGER"/>
+        <result column="stationsid" property="stationsid" jdbcType="INTEGER"/>
+        <result column="momodelid" property="momodelid" jdbcType="INTEGER"/>
+        <result column="organizationid" property="organizationid" jdbcType="INTEGER"/>
+        <result column="spareparttype1" property="spareparttype1" jdbcType="INTEGER"/>
+        <result column="extraid1" property="extraid1" jdbcType="INTEGER"/>
+        <result column="extraid2" property="extraid2" jdbcType="INTEGER"/>
+        <result column="extraid3" property="extraid3" jdbcType="INTEGER"/>
+        <result column="extraid4" property="extraid4" jdbcType="INTEGER"/>
+        <result column="extraid5" property="extraid5" jdbcType="INTEGER"/>
+        <result column="extravarchar1" property="extravarchar1" jdbcType="VARCHAR"/>
+        <result column="extravarchar2" property="extravarchar2" jdbcType="VARCHAR"/>
+        <result column="extravarchar3" property="extravarchar3" jdbcType="VARCHAR"/>
+        <result column="extravarchar4" property="extravarchar4" jdbcType="VARCHAR"/>
+        <result column="extravarchar5" property="extravarchar5" jdbcType="VARCHAR"/>
+        <result column="extravarchar6" property="extravarchar6" jdbcType="VARCHAR"/>
+        <result column="extravarchar7" property="extravarchar7" jdbcType="VARCHAR"/>
+        <result column="extravarchar8" property="extravarchar8" jdbcType="VARCHAR"/>
+        <result column="extravarchar9" property="extravarchar9" jdbcType="VARCHAR"/>
+        <result column="extravarchar10" property="extravarchar10" jdbcType="VARCHAR"/>
+        <result column="extradecimal1" property="extradecimal1" jdbcType="DECIMAL"/>
+        <result column="extradecimal2" property="extradecimal2" jdbcType="DECIMAL"/>
+        <result column="extradecimal3" property="extradecimal3" jdbcType="DECIMAL"/>
+        <result column="extradecimal4" property="extradecimal4" jdbcType="DECIMAL"/>
+        <result column="extradecimal5" property="extradecimal5" jdbcType="DECIMAL"/>
+        <result column="extraint1" property="extraint1" jdbcType="INTEGER"/>
+        <result column="extraint2" property="extraint2" jdbcType="INTEGER"/>
+        <result column="extraint3" property="extraint3" jdbcType="INTEGER"/>
+        <result column="extraint4" property="extraint4" jdbcType="INTEGER"/>
+        <result column="extraint5" property="extraint5" jdbcType="INTEGER"/>
+        <result column="extradatetime1" property="extradatetime1" jdbcType="TIMESTAMP"/>
+        <result column="extradatetime2" property="extradatetime2" jdbcType="TIMESTAMP"/>
+        <result column="extradatetime3" property="extradatetime3" jdbcType="TIMESTAMP"/>
+        <result column="extradatetime4" property="extradatetime4" jdbcType="TIMESTAMP"/>
+        <result column="extradatetime5" property="extradatetime5" jdbcType="TIMESTAMP"/>
+        <result column="typeid" property="typeid" jdbcType="INTEGER"/>
+        <result column="statusid" property="statusid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="ApiBeanResult" type="SparepartEntity">
+        <result column="sp_key" property="sparepartkey" jdbcType="VARCHAR"/>
+        <result column="sp_name" property="sparepartname" jdbcType="VARCHAR"/>
+        <result column="extra_sp_info1" property="extraspinfo1" jdbcType="VARCHAR"/>
+        <result column="stock_key" property="extravarchar1" jdbcType="VARCHAR"/>
+        <result column="unit" property="extravarchar2" jdbcType="VARCHAR"/>
+        <result column="quantity_physical" property="extraint1" jdbcType="INTEGER"/>
+        <result column="min_quantity" property="extraint2" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <resultMap id="simpleResult" type="SparepartEntity">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="sparepartkey" property="sparepartkey" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, sparepartkey, sparepartname, avgprice, upperlimitqty, lowerlimitqty, isaddup, 
+    supplierid, stocklocationid, accountid, costtypeid, spcodeid, spgroupid, extraspinfo1, 
+    brandinfo, specinfo, unitid, packsize, purchaseprice, profit, salesprice, autospareupdate, 
+    quantityonstock, lasttransact, purchaseqtyly, purchvally, purchqtyytd, purchvalytd, 
+    consumpqtyly, consumpvally, consumpqtyytd, consumpvalytd, lastpurchprice, purchasevalue, 
+    purchaseqty, consumpvalue, consumpqty, lastcounted, qtyonorder, spbarcode, repairable, 
+    vattype, vatmethod, purchaseruuserid, techrespuuserid, vatrate, lastchangedate, lastchangetime, 
+    lastexportdate, lastexporttime, lastimportdate, lastimporttime, profitcosttypeid, 
+    siteid, recordactive, custombarcode, qualitycheck, spname2, extraspinfo2, extraspinfo3, 
+    extraspinfo4, extraspinfo5, manufacturerid, icon, stockid, rootspid, foreignowner, 
+    extraspinfo6, extraspinfo7, extraspinfo8, extraspinfo9, extraspinfo10, eaninfo, classid, 
+    foreignownerid, foreignownerlink, vatcodeid, approvedforpurchase, stocklocationkey, 
+    commoditycodeid, onpartslist, tiid, lastchangedtz, lastexportdtz, lastimportdtz, 
+    lastcounteddtz, lasttransactdtz, recordlanguageid, createdate, createuserid, modificationdate, 
+    modificationuserid, picpath, barcode, memo, orgid, tombstone, ppap, spareparttype, 
+    stationsid, momodelid, organizationid, spareparttype1, extraid1, extraid2, extraid3, 
+    extraid4, extraid5, extravarchar1, extravarchar2, extravarchar3, extravarchar4, extravarchar5, 
+    extravarchar6, extravarchar7, extravarchar8, extravarchar9, extravarchar10, extradecimal1, 
+    extradecimal2, extradecimal3, extradecimal4, extradecimal5, extraint1, extraint2, 
+    extraint3, extraint4, extraint5, extradatetime1, extradatetime2, extradatetime3, 
+    extradatetime4, extradatetime5, typeid, statusid
+  </sql>
+    <select id="get" resultMap="BaseResultMap" parameterType="SparepartEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from sparepart
+        where sparepartkey = #{sparepartkey,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAllApi" resultMap="ApiBeanResult">
+	SELECT sp.sp_key, sp.sp_name, sp.extra_sp_info1, round(sc.quantity_physical,2) as quantity_physical, sp.unit, round(sc.min_quantity,2) as min_quantity, sc.stock_key
+	FROM APIPRO.Spare_Part sp, apipro.stock_control sc
+	WHERE sc.sp_key=sp.sp_key
+  </select>
+
+    <select id="selectSpWithStockOrg" resultType="com.mingcloud.proxy.datalayer.dto.archiveinfo.SparepartDto">
+        SELECT concat(o.organizationkey, st.stockkey, sp.sparepartkey), sp.id as id, st.id as stockid, o.id as orgid
+        FROM sparepart sp, stock st, organization o
+        WHERE sp.stockid = st.id
+        AND st.orgid = o.id
+        AND sp.tombstone = 1
+        <if test="organizationkey != null and organizationkey != ''">
+            AND o.organizationkey = #{organizationkey}
+        </if>
+        <if test="stockkey != null and stockkey != ''">
+            AND st.stockkey = #{stockkey}
+        </if>
+        <if test="sparepartkey != null and sparepartkey != ''">
+            AND sp.sparepartkey = #{sparepartkey}
+        </if>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sparepart
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="SparepartEntity">
+    insert into sparepart (id, sparepartkey, sparepartname, 
+      avgprice, upperlimitqty, lowerlimitqty, 
+      isaddup, supplierid, stocklocationid, 
+      accountid, costtypeid, spcodeid, 
+      spgroupid, extraspinfo1, brandinfo, 
+      specinfo, unitid, packsize, 
+      purchaseprice, profit, salesprice, 
+      autospareupdate, quantityonstock, lasttransact, 
+      purchaseqtyly, purchvally, purchqtyytd, 
+      purchvalytd, consumpqtyly, consumpvally, 
+      consumpqtyytd, consumpvalytd, lastpurchprice, 
+      purchasevalue, purchaseqty, consumpvalue, 
+      consumpqty, lastcounted, qtyonorder, 
+      spbarcode, repairable, vattype, 
+      vatmethod, purchaseruuserid, techrespuuserid, 
+      vatrate, lastchangedate, lastchangetime, 
+      lastexportdate, lastexporttime, lastimportdate, 
+      lastimporttime, profitcosttypeid, siteid, 
+      recordactive, custombarcode, qualitycheck, 
+      spname2, extraspinfo2, extraspinfo3, 
+      extraspinfo4, extraspinfo5, manufacturerid, 
+      icon, stockid, rootspid, 
+      foreignowner, extraspinfo6, extraspinfo7, 
+      extraspinfo8, extraspinfo9, extraspinfo10, 
+      eaninfo, classid, foreignownerid, 
+      foreignownerlink, vatcodeid, approvedforpurchase, 
+      stocklocationkey, commoditycodeid, onpartslist, 
+      tiid, lastchangedtz, lastexportdtz, 
+      lastimportdtz, lastcounteddtz, lasttransactdtz, 
+      recordlanguageid, createdate, createuserid, 
+      modificationdate, modificationuserid, 
+      picpath, barcode, memo, 
+      orgid, tombstone, ppap, 
+      spareparttype, stationsid, momodelid, 
+      organizationid, spareparttype1, extraid1, 
+      extraid2, extraid3, extraid4, 
+      extraid5, extravarchar1, extravarchar2, 
+      extravarchar3, extravarchar4, extravarchar5, 
+      extravarchar6, extravarchar7, extravarchar8, 
+      extravarchar9, extravarchar10, extradecimal1, 
+      extradecimal2, extradecimal3, extradecimal4, 
+      extradecimal5, extraint1, extraint2, 
+      extraint3, extraint4, extraint5, 
+      extradatetime1, extradatetime2, extradatetime3, 
+      extradatetime4, extradatetime5, typeid, 
+      statusid)
+    values (#{id,jdbcType=INTEGER}, #{sparepartkey,jdbcType=VARCHAR}, #{sparepartname,jdbcType=VARCHAR}, 
+      #{avgprice,jdbcType=DECIMAL}, #{upperlimitqty,jdbcType=DECIMAL}, #{lowerlimitqty,jdbcType=DECIMAL}, 
+      #{isaddup,jdbcType=INTEGER}, #{supplierid,jdbcType=INTEGER}, #{stocklocationid,jdbcType=INTEGER}, 
+      #{accountid,jdbcType=INTEGER}, #{costtypeid,jdbcType=INTEGER}, #{spcodeid,jdbcType=INTEGER}, 
+      #{spgroupid,jdbcType=INTEGER}, #{extraspinfo1,jdbcType=VARCHAR}, #{brandinfo,jdbcType=VARCHAR}, 
+      #{specinfo,jdbcType=VARCHAR}, #{unitid,jdbcType=INTEGER}, #{packsize,jdbcType=DECIMAL}, 
+      #{purchaseprice,jdbcType=DECIMAL}, #{profit,jdbcType=DECIMAL}, #{salesprice,jdbcType=DECIMAL}, 
+      #{autospareupdate,jdbcType=TINYINT}, #{quantityonstock,jdbcType=DECIMAL}, #{lasttransact,jdbcType=DATE}, 
+      #{purchaseqtyly,jdbcType=DECIMAL}, #{purchvally,jdbcType=DECIMAL}, #{purchqtyytd,jdbcType=DECIMAL}, 
+      #{purchvalytd,jdbcType=DECIMAL}, #{consumpqtyly,jdbcType=DECIMAL}, #{consumpvally,jdbcType=DECIMAL}, 
+      #{consumpqtyytd,jdbcType=DECIMAL}, #{consumpvalytd,jdbcType=DECIMAL}, #{lastpurchprice,jdbcType=DECIMAL}, 
+      #{purchasevalue,jdbcType=DECIMAL}, #{purchaseqty,jdbcType=DECIMAL}, #{consumpvalue,jdbcType=DECIMAL}, 
+      #{consumpqty,jdbcType=DECIMAL}, #{lastcounted,jdbcType=DATE}, #{qtyonorder,jdbcType=DECIMAL}, 
+      #{spbarcode,jdbcType=BIGINT}, #{repairable,jdbcType=TINYINT}, #{vattype,jdbcType=INTEGER}, 
+      #{vatmethod,jdbcType=INTEGER}, #{purchaseruuserid,jdbcType=VARCHAR}, #{techrespuuserid,jdbcType=VARCHAR}, 
+      #{vatrate,jdbcType=DECIMAL}, #{lastchangedate,jdbcType=DATE}, #{lastchangetime,jdbcType=INTEGER}, 
+      #{lastexportdate,jdbcType=DATE}, #{lastexporttime,jdbcType=INTEGER}, #{lastimportdate,jdbcType=DATE}, 
+      #{lastimporttime,jdbcType=INTEGER}, #{profitcosttypeid,jdbcType=INTEGER}, #{siteid,jdbcType=INTEGER}, 
+      #{recordactive,jdbcType=TINYINT}, #{custombarcode,jdbcType=VARCHAR}, #{qualitycheck,jdbcType=TINYINT}, 
+      #{spname2,jdbcType=VARCHAR}, #{extraspinfo2,jdbcType=VARCHAR}, #{extraspinfo3,jdbcType=VARCHAR}, 
+      #{extraspinfo4,jdbcType=VARCHAR}, #{extraspinfo5,jdbcType=VARCHAR}, #{manufacturerid,jdbcType=INTEGER}, 
+      #{icon,jdbcType=INTEGER}, #{stockid,jdbcType=INTEGER}, #{rootspid,jdbcType=INTEGER}, 
+      #{foreignowner,jdbcType=TINYINT}, #{extraspinfo6,jdbcType=VARCHAR}, #{extraspinfo7,jdbcType=VARCHAR}, 
+      #{extraspinfo8,jdbcType=VARCHAR}, #{extraspinfo9,jdbcType=VARCHAR}, #{extraspinfo10,jdbcType=VARCHAR}, 
+      #{eaninfo,jdbcType=VARCHAR}, #{classid,jdbcType=INTEGER}, #{foreignownerid,jdbcType=VARCHAR}, 
+      #{foreignownerlink,jdbcType=VARCHAR}, #{vatcodeid,jdbcType=INTEGER}, #{approvedforpurchase,jdbcType=TINYINT}, 
+      #{stocklocationkey,jdbcType=VARCHAR}, #{commoditycodeid,jdbcType=INTEGER}, #{onpartslist,jdbcType=TINYINT}, 
+      #{tiid,jdbcType=INTEGER}, #{lastchangedtz,jdbcType=TIMESTAMP}, #{lastexportdtz,jdbcType=TIMESTAMP}, 
+      #{lastimportdtz,jdbcType=TIMESTAMP}, #{lastcounteddtz,jdbcType=TIMESTAMP}, #{lasttransactdtz,jdbcType=TIMESTAMP}, 
+      #{recordlanguageid,jdbcType=INTEGER}, #{createdate,jdbcType=TIMESTAMP}, #{createuserid,jdbcType=INTEGER}, 
+      #{modificationdate,jdbcType=TIMESTAMP}, #{modificationuserid,jdbcType=INTEGER}, 
+      #{picpath,jdbcType=VARCHAR}, #{barcode,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+      #{orgid,jdbcType=INTEGER}, #{tombstone,jdbcType=INTEGER}, #{ppap,jdbcType=INTEGER}, 
+      #{spareparttype,jdbcType=INTEGER}, #{stationsid,jdbcType=INTEGER}, #{momodelid,jdbcType=INTEGER}, 
+      #{organizationid,jdbcType=INTEGER}, #{spareparttype1,jdbcType=INTEGER}, #{extraid1,jdbcType=INTEGER}, 
+      #{extraid2,jdbcType=INTEGER}, #{extraid3,jdbcType=INTEGER}, #{extraid4,jdbcType=INTEGER}, 
+      #{extraid5,jdbcType=INTEGER}, #{extravarchar1,jdbcType=VARCHAR}, #{extravarchar2,jdbcType=VARCHAR}, 
+      #{extravarchar3,jdbcType=VARCHAR}, #{extravarchar4,jdbcType=VARCHAR}, #{extravarchar5,jdbcType=VARCHAR}, 
+      #{extravarchar6,jdbcType=VARCHAR}, #{extravarchar7,jdbcType=VARCHAR}, #{extravarchar8,jdbcType=VARCHAR}, 
+      #{extravarchar9,jdbcType=VARCHAR}, #{extravarchar10,jdbcType=VARCHAR}, #{extradecimal1,jdbcType=DECIMAL}, 
+      #{extradecimal2,jdbcType=DECIMAL}, #{extradecimal3,jdbcType=DECIMAL}, #{extradecimal4,jdbcType=DECIMAL}, 
+      #{extradecimal5,jdbcType=DECIMAL}, #{extraint1,jdbcType=INTEGER}, #{extraint2,jdbcType=INTEGER}, 
+      #{extraint3,jdbcType=INTEGER}, #{extraint4,jdbcType=INTEGER}, #{extraint5,jdbcType=INTEGER}, 
+      #{extradatetime1,jdbcType=TIMESTAMP}, #{extradatetime2,jdbcType=TIMESTAMP}, #{extradatetime3,jdbcType=TIMESTAMP}, 
+      #{extradatetime4,jdbcType=TIMESTAMP}, #{extradatetime5,jdbcType=TIMESTAMP}, #{typeid,jdbcType=INTEGER}, 
+      #{statusid,jdbcType=INTEGER})
+  </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="SparepartEntity">
+        update sparepart
+        <set>
+            <if test="sparepartkey != null">
+                sparepartkey = #{sparepartkey,jdbcType=VARCHAR},
+            </if>
+            <if test="sparepartname != null">
+                sparepartname = #{sparepartname,jdbcType=VARCHAR},
+            </if>
+            <if test="avgprice != null">
+                avgprice = #{avgprice,jdbcType=DECIMAL},
+            </if>
+            <if test="upperlimitqty != null">
+                upperlimitqty = #{upperlimitqty,jdbcType=DECIMAL},
+            </if>
+            <if test="lowerlimitqty != null">
+                lowerlimitqty = #{lowerlimitqty,jdbcType=DECIMAL},
+            </if>
+            <if test="isaddup != null">
+                isaddup = #{isaddup,jdbcType=INTEGER},
+            </if>
+            <if test="supplierid != null">
+                supplierid = #{supplierid,jdbcType=INTEGER},
+            </if>
+            <if test="stocklocationid != null">
+                stocklocationid = #{stocklocationid,jdbcType=INTEGER},
+            </if>
+            <if test="accountid != null">
+                accountid = #{accountid,jdbcType=INTEGER},
+            </if>
+            <if test="costtypeid != null">
+                costtypeid = #{costtypeid,jdbcType=INTEGER},
+            </if>
+            <if test="spcodeid != null">
+                spcodeid = #{spcodeid,jdbcType=INTEGER},
+            </if>
+            <if test="spgroupid != null">
+                spgroupid = #{spgroupid,jdbcType=INTEGER},
+            </if>
+            <if test="extraspinfo1 != null">
+                extraspinfo1 = #{extraspinfo1,jdbcType=VARCHAR},
+            </if>
+            <if test="brandinfo != null">
+                brandinfo = #{brandinfo,jdbcType=VARCHAR},
+            </if>
+            <if test="specinfo != null">
+                specinfo = #{specinfo,jdbcType=VARCHAR},
+            </if>
+            <if test="unitid != null">
+                unitid = #{unitid,jdbcType=INTEGER},
+            </if>
+            <if test="packsize != null">
+                packsize = #{packsize,jdbcType=DECIMAL},
+            </if>
+            <if test="purchaseprice != null">
+                purchaseprice = #{purchaseprice,jdbcType=DECIMAL},
+            </if>
+            <if test="profit != null">
+                profit = #{profit,jdbcType=DECIMAL},
+            </if>
+            <if test="salesprice != null">
+                salesprice = #{salesprice,jdbcType=DECIMAL},
+            </if>
+            <if test="autospareupdate != null">
+                autospareupdate = #{autospareupdate,jdbcType=TINYINT},
+            </if>
+            <if test="quantityonstock != null">
+                quantityonstock = #{quantityonstock,jdbcType=DECIMAL},
+            </if>
+            <if test="lasttransact != null">
+                lasttransact = #{lasttransact,jdbcType=DATE},
+            </if>
+            <if test="purchaseqtyly != null">
+                purchaseqtyly = #{purchaseqtyly,jdbcType=DECIMAL},
+            </if>
+            <if test="purchvally != null">
+                purchvally = #{purchvally,jdbcType=DECIMAL},
+            </if>
+            <if test="purchqtyytd != null">
+                purchqtyytd = #{purchqtyytd,jdbcType=DECIMAL},
+            </if>
+            <if test="purchvalytd != null">
+                purchvalytd = #{purchvalytd,jdbcType=DECIMAL},
+            </if>
+            <if test="consumpqtyly != null">
+                consumpqtyly = #{consumpqtyly,jdbcType=DECIMAL},
+            </if>
+            <if test="consumpvally != null">
+                consumpvally = #{consumpvally,jdbcType=DECIMAL},
+            </if>
+            <if test="consumpqtyytd != null">
+                consumpqtyytd = #{consumpqtyytd,jdbcType=DECIMAL},
+            </if>
+            <if test="consumpvalytd != null">
+                consumpvalytd = #{consumpvalytd,jdbcType=DECIMAL},
+            </if>
+            <if test="lastpurchprice != null">
+                lastpurchprice = #{lastpurchprice,jdbcType=DECIMAL},
+            </if>
+            <if test="purchasevalue != null">
+                purchasevalue = #{purchasevalue,jdbcType=DECIMAL},
+            </if>
+            <if test="purchaseqty != null">
+                purchaseqty = #{purchaseqty,jdbcType=DECIMAL},
+            </if>
+            <if test="consumpvalue != null">
+                consumpvalue = #{consumpvalue,jdbcType=DECIMAL},
+            </if>
+            <if test="consumpqty != null">
+                consumpqty = #{consumpqty,jdbcType=DECIMAL},
+            </if>
+            <if test="lastcounted != null">
+                lastcounted = #{lastcounted,jdbcType=DATE},
+            </if>
+            <if test="qtyonorder != null">
+                qtyonorder = #{qtyonorder,jdbcType=DECIMAL},
+            </if>
+            <if test="spbarcode != null">
+                spbarcode = #{spbarcode,jdbcType=BIGINT},
+            </if>
+            <if test="repairable != null">
+                repairable = #{repairable,jdbcType=TINYINT},
+            </if>
+            <if test="vattype != null">
+                vattype = #{vattype,jdbcType=INTEGER},
+            </if>
+            <if test="vatmethod != null">
+                vatmethod = #{vatmethod,jdbcType=INTEGER},
+            </if>
+            <if test="purchaseruuserid != null">
+                purchaseruuserid = #{purchaseruuserid,jdbcType=VARCHAR},
+            </if>
+            <if test="techrespuuserid != null">
+                techrespuuserid = #{techrespuuserid,jdbcType=VARCHAR},
+            </if>
+            <if test="vatrate != null">
+                vatrate = #{vatrate,jdbcType=DECIMAL},
+            </if>
+            <if test="lastchangedate != null">
+                lastchangedate = #{lastchangedate,jdbcType=DATE},
+            </if>
+            <if test="lastchangetime != null">
+                lastchangetime = #{lastchangetime,jdbcType=INTEGER},
+            </if>
+            <if test="lastexportdate != null">
+                lastexportdate = #{lastexportdate,jdbcType=DATE},
+            </if>
+            <if test="lastexporttime != null">
+                lastexporttime = #{lastexporttime,jdbcType=INTEGER},
+            </if>
+            <if test="lastimportdate != null">
+                lastimportdate = #{lastimportdate,jdbcType=DATE},
+            </if>
+            <if test="lastimporttime != null">
+                lastimporttime = #{lastimporttime,jdbcType=INTEGER},
+            </if>
+            <if test="profitcosttypeid != null">
+                profitcosttypeid = #{profitcosttypeid,jdbcType=INTEGER},
+            </if>
+            <if test="siteid != null">
+                siteid = #{siteid,jdbcType=INTEGER},
+            </if>
+            <if test="recordactive != null">
+                recordactive = #{recordactive,jdbcType=TINYINT},
+            </if>
+            <if test="custombarcode != null">
+                custombarcode = #{custombarcode,jdbcType=VARCHAR},
+            </if>
+            <if test="qualitycheck != null">
+                qualitycheck = #{qualitycheck,jdbcType=TINYINT},
+            </if>
+            <if test="spname2 != null">
+                spname2 = #{spname2,jdbcType=VARCHAR},
+            </if>
+            <if test="extraspinfo2 != null">
+                extraspinfo2 = #{extraspinfo2,jdbcType=VARCHAR},
+            </if>
+            <if test="extraspinfo3 != null">
+                extraspinfo3 = #{extraspinfo3,jdbcType=VARCHAR},
+            </if>
+            <if test="extraspinfo4 != null">
+                extraspinfo4 = #{extraspinfo4,jdbcType=VARCHAR},
+            </if>
+            <if test="extraspinfo5 != null">
+                extraspinfo5 = #{extraspinfo5,jdbcType=VARCHAR},
+            </if>
+            <if test="manufacturerid != null">
+                manufacturerid = #{manufacturerid,jdbcType=INTEGER},
+            </if>
+            <if test="icon != null">
+                icon = #{icon,jdbcType=INTEGER},
+            </if>
+            <if test="stockid != null">
+                stockid = #{stockid,jdbcType=INTEGER},
+            </if>
+            <if test="rootspid != null">
+                rootspid = #{rootspid,jdbcType=INTEGER},
+            </if>
+            <if test="foreignowner != null">
+                foreignowner = #{foreignowner,jdbcType=TINYINT},
+            </if>
+            <if test="extraspinfo6 != null">
+                extraspinfo6 = #{extraspinfo6,jdbcType=VARCHAR},
+            </if>
+            <if test="extraspinfo7 != null">
+                extraspinfo7 = #{extraspinfo7,jdbcType=VARCHAR},
+            </if>
+            <if test="extraspinfo8 != null">
+                extraspinfo8 = #{extraspinfo8,jdbcType=VARCHAR},
+            </if>
+            <if test="extraspinfo9 != null">
+                extraspinfo9 = #{extraspinfo9,jdbcType=VARCHAR},
+            </if>
+            <if test="extraspinfo10 != null">
+                extraspinfo10 = #{extraspinfo10,jdbcType=VARCHAR},
+            </if>
+            <if test="eaninfo != null">
+                eaninfo = #{eaninfo,jdbcType=VARCHAR},
+            </if>
+            <if test="classid != null">
+                classid = #{classid,jdbcType=INTEGER},
+            </if>
+            <if test="foreignownerid != null">
+                foreignownerid = #{foreignownerid,jdbcType=VARCHAR},
+            </if>
+            <if test="foreignownerlink != null">
+                foreignownerlink = #{foreignownerlink,jdbcType=VARCHAR},
+            </if>
+            <if test="vatcodeid != null">
+                vatcodeid = #{vatcodeid,jdbcType=INTEGER},
+            </if>
+            <if test="approvedforpurchase != null">
+                approvedforpurchase = #{approvedforpurchase,jdbcType=TINYINT},
+            </if>
+            <if test="stocklocationkey != null">
+                stocklocationkey = #{stocklocationkey,jdbcType=VARCHAR},
+            </if>
+            <if test="commoditycodeid != null">
+                commoditycodeid = #{commoditycodeid,jdbcType=INTEGER},
+            </if>
+            <if test="onpartslist != null">
+                onpartslist = #{onpartslist,jdbcType=TINYINT},
+            </if>
+            <if test="tiid != null">
+                tiid = #{tiid,jdbcType=INTEGER},
+            </if>
+            <if test="lastchangedtz != null">
+                lastchangedtz = #{lastchangedtz,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastexportdtz != null">
+                lastexportdtz = #{lastexportdtz,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastimportdtz != null">
+                lastimportdtz = #{lastimportdtz,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastcounteddtz != null">
+                lastcounteddtz = #{lastcounteddtz,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lasttransactdtz != null">
+                lasttransactdtz = #{lasttransactdtz,jdbcType=TIMESTAMP},
+            </if>
+            <if test="recordlanguageid != null">
+                recordlanguageid = #{recordlanguageid,jdbcType=INTEGER},
+            </if>
+            <if test="createdate != null">
+                createdate = #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createuserid != null">
+                createuserid = #{createuserid,jdbcType=INTEGER},
+            </if>
+            <if test="modificationdate != null">
+                modificationdate = #{modificationdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modificationuserid != null">
+                modificationuserid = #{modificationuserid,jdbcType=INTEGER},
+            </if>
+            <if test="picpath != null">
+                picpath = #{picpath,jdbcType=VARCHAR},
+            </if>
+            <if test="barcode != null">
+                barcode = #{barcode,jdbcType=VARCHAR},
+            </if>
+            <if test="memo != null">
+                memo = #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="orgid != null">
+                orgid = #{orgid,jdbcType=INTEGER},
+            </if>
+            <if test="tombstone != null">
+                tombstone = #{tombstone,jdbcType=INTEGER},
+            </if>
+            <if test="ppap != null">
+                ppap = #{ppap,jdbcType=INTEGER},
+            </if>
+            <if test="spareparttype != null">
+                spareparttype = #{spareparttype,jdbcType=INTEGER},
+            </if>
+            <if test="stationsid != null">
+                stationsid = #{stationsid,jdbcType=INTEGER},
+            </if>
+            <if test="momodelid != null">
+                momodelid = #{momodelid,jdbcType=INTEGER},
+            </if>
+            <if test="organizationid != null">
+                organizationid = #{organizationid,jdbcType=INTEGER},
+            </if>
+            <if test="spareparttype1 != null">
+                spareparttype1 = #{spareparttype1,jdbcType=INTEGER},
+            </if>
+            <if test="extraid1 != null">
+                extraid1 = #{extraid1,jdbcType=INTEGER},
+            </if>
+            <if test="extraid2 != null">
+                extraid2 = #{extraid2,jdbcType=INTEGER},
+            </if>
+            <if test="extraid3 != null">
+                extraid3 = #{extraid3,jdbcType=INTEGER},
+            </if>
+            <if test="extraid4 != null">
+                extraid4 = #{extraid4,jdbcType=INTEGER},
+            </if>
+            <if test="extraid5 != null">
+                extraid5 = #{extraid5,jdbcType=INTEGER},
+            </if>
+            <if test="extravarchar1 != null">
+                extravarchar1 = #{extravarchar1,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar2 != null">
+                extravarchar2 = #{extravarchar2,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar3 != null">
+                extravarchar3 = #{extravarchar3,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar4 != null">
+                extravarchar4 = #{extravarchar4,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar5 != null">
+                extravarchar5 = #{extravarchar5,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar6 != null">
+                extravarchar6 = #{extravarchar6,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar7 != null">
+                extravarchar7 = #{extravarchar7,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar8 != null">
+                extravarchar8 = #{extravarchar8,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar9 != null">
+                extravarchar9 = #{extravarchar9,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar10 != null">
+                extravarchar10 = #{extravarchar10,jdbcType=VARCHAR},
+            </if>
+            <if test="extradecimal1 != null">
+                extradecimal1 = #{extradecimal1,jdbcType=DECIMAL},
+            </if>
+            <if test="extradecimal2 != null">
+                extradecimal2 = #{extradecimal2,jdbcType=DECIMAL},
+            </if>
+            <if test="extradecimal3 != null">
+                extradecimal3 = #{extradecimal3,jdbcType=DECIMAL},
+            </if>
+            <if test="extradecimal4 != null">
+                extradecimal4 = #{extradecimal4,jdbcType=DECIMAL},
+            </if>
+            <if test="extradecimal5 != null">
+                extradecimal5 = #{extradecimal5,jdbcType=DECIMAL},
+            </if>
+            <if test="extraint1 != null">
+                extraint1 = #{extraint1,jdbcType=INTEGER},
+            </if>
+            <if test="extraint2 != null">
+                extraint2 = #{extraint2,jdbcType=INTEGER},
+            </if>
+            <if test="extraint3 != null">
+                extraint3 = #{extraint3,jdbcType=INTEGER},
+            </if>
+            <if test="extraint4 != null">
+                extraint4 = #{extraint4,jdbcType=INTEGER},
+            </if>
+            <if test="extraint5 != null">
+                extraint5 = #{extraint5,jdbcType=INTEGER},
+            </if>
+            <if test="extradatetime1 != null">
+                extradatetime1 = #{extradatetime1,jdbcType=TIMESTAMP},
+            </if>
+            <if test="extradatetime2 != null">
+                extradatetime2 = #{extradatetime2,jdbcType=TIMESTAMP},
+            </if>
+            <if test="extradatetime3 != null">
+                extradatetime3 = #{extradatetime3,jdbcType=TIMESTAMP},
+            </if>
+            <if test="extradatetime4 != null">
+                extradatetime4 = #{extradatetime4,jdbcType=TIMESTAMP},
+            </if>
+            <if test="extradatetime5 != null">
+                extradatetime5 = #{extradatetime5,jdbcType=TIMESTAMP},
+            </if>
+            <if test="typeid != null">
+                typeid = #{typeid,jdbcType=INTEGER},
+            </if>
+            <if test="statusid != null">
+                statusid = #{statusid,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectKeyIdList" resultMap="simpleResult">
+        SELECT
+            id,sparepartkey
+        FROM sparepart
+    </select>
+</mapper>

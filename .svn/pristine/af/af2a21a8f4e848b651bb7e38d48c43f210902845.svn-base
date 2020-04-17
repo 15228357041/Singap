@@ -1,0 +1,16 @@
+package com.mingcloud.proxy.datalayer.dao.archiveinfo;
+
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.HumanDto;
+
+import java.util.List;
+
+public interface HumanMapper {
+
+    List<HumanDto> selectAllHuman();
+
+    int update(HumanDto dto);
+
+    HumanDto getByHumanKey(String humanKey);
+
+    int insert(HumanDto dto);
+}

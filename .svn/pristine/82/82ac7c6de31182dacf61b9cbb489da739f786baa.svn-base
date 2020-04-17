@@ -1,0 +1,224 @@
+package com.mingcloud.proxy.datalayer.entity.archiveinfo;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+import com.mingcloud.proxy.datalayer.entity.BaseEntity;
+
+public class UseditemsEntity extends BaseEntity {
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1921585827418566538L;
+
+	private Integer id;
+
+    private Integer spid;
+
+    private BigDecimal qty;
+
+    private BigDecimal price;
+
+    private BigDecimal amount;
+
+    private Integer accountid;
+
+    private Date registerdatetime;
+
+    private Integer workorderid;
+
+    private Date createdate;
+
+    private Integer createuserid;
+
+    private Date modificationdate;
+
+    private Integer modificationuserid;
+
+    private String picpath;
+
+    private String barcode;
+
+    private String memo;
+
+    private Integer orgid;
+
+    private Integer checkqty;
+
+    private Integer checked;
+
+    private Integer checkuserid;
+
+    private Integer worktaskid;
+
+    private Integer stockid;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getSpid() {
+        return spid;
+    }
+
+    public void setSpid(Integer spid) {
+        this.spid = spid;
+    }
+
+    public BigDecimal getQty() {
+        return qty;
+    }
+
+    public void setQty(BigDecimal qty) {
+        this.qty = qty;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public Integer getAccountid() {
+        return accountid;
+    }
+
+    public void setAccountid(Integer accountid) {
+        this.accountid = accountid;
+    }
+
+    public Date getRegisterdatetime() {
+        return registerdatetime;
+    }
+
+    public void setRegisterdatetime(Date registerdatetime) {
+        this.registerdatetime = registerdatetime;
+    }
+
+    public Integer getWorkorderid() {
+        return workorderid;
+    }
+
+    public void setWorkorderid(Integer workorderid) {
+        this.workorderid = workorderid;
+    }
+
+    public Date getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+
+    public Integer getCreateuserid() {
+        return createuserid;
+    }
+
+    public void setCreateuserid(Integer createuserid) {
+        this.createuserid = createuserid;
+    }
+
+    public Date getModificationdate() {
+        return modificationdate;
+    }
+
+    public void setModificationdate(Date modificationdate) {
+        this.modificationdate = modificationdate;
+    }
+
+    public Integer getModificationuserid() {
+        return modificationuserid;
+    }
+
+    public void setModificationuserid(Integer modificationuserid) {
+        this.modificationuserid = modificationuserid;
+    }
+
+    public String getPicpath() {
+        return picpath;
+    }
+
+    public void setPicpath(String picpath) {
+        this.picpath = picpath == null ? null : picpath.trim();
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode == null ? null : barcode.trim();
+    }
+
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo == null ? null : memo.trim();
+    }
+
+    public Integer getOrgid() {
+        return orgid;
+    }
+
+    public void setOrgid(Integer orgid) {
+        this.orgid = orgid;
+    }
+
+    public Integer getCheckqty() {
+        return checkqty;
+    }
+
+    public void setCheckqty(Integer checkqty) {
+        this.checkqty = checkqty;
+    }
+
+    public Integer getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Integer checked) {
+        this.checked = checked;
+    }
+
+    public Integer getCheckuserid() {
+        return checkuserid;
+    }
+
+    public void setCheckuserid(Integer checkuserid) {
+        this.checkuserid = checkuserid;
+    }
+
+    public Integer getWorktaskid() {
+        return worktaskid;
+    }
+
+    public void setWorktaskid(Integer worktaskid) {
+        this.worktaskid = worktaskid;
+    }
+
+    public Integer getStockid() {
+        return stockid;
+    }
+
+    public void setStockid(Integer stockid) {
+        this.stockid = stockid;
+    }
+}

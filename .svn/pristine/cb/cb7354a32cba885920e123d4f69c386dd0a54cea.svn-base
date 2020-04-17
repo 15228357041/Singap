@@ -1,0 +1,107 @@
+package com.mingcloud.proxy.datalayer.entity.inspection;
+
+import java.util.Date;
+
+/**
+ * AMS 巡检路线
+ */
+public class InspectionEntity {
+
+    private Integer id;
+
+    /**
+     * 巡检路线key
+     */
+    private String inspectionkey;
+
+    /**
+     * 巡检路线名称
+     */
+    private String inspectionname;
+
+    /**
+     * 作业人员
+     */
+    private Integer humanid;
+
+    /**
+     * 创建日期
+     */
+    private Date createdate;
+
+    /**
+     * 修改日期
+     */
+    private Date modificationdate;
+
+    private Integer tombstone;
+
+    private Integer inspectiontypeid;
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getInspectionkey() {
+        return inspectionkey;
+    }
+
+    public void setInspectionkey(String inspectionkey) {
+        this.inspectionkey = inspectionkey;
+    }
+
+    public String getInspectionname() {
+        return inspectionname;
+    }
+
+    public void setInspectionname(String inspectionname) {
+        this.inspectionname = inspectionname;
+    }
+
+    public Integer getHumanid() {
+        return humanid;
+    }
+
+    public void setHumanid(Integer humanid) {
+        this.humanid = humanid;
+    }
+
+    public Date getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+
+    public Date getModificationdate() {
+        return modificationdate;
+    }
+
+    public void setModificationdate(Date modificationdate) {
+        this.modificationdate = modificationdate;
+    }
+
+    public Integer getTombstone() {
+        return tombstone;
+    }
+
+    public void setTombstone(Integer tombstone) {
+        this.tombstone = tombstone;
+    }
+
+    public Integer getInspectiontypeid() {
+        return inspectiontypeid;
+    }
+
+    public void setInspectiontypeid(Integer inspectiontypeid) {
+        this.inspectiontypeid = inspectiontypeid;
+    }
+
+
+}

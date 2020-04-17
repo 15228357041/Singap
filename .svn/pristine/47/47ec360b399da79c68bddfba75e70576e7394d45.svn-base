@@ -1,0 +1,156 @@
+package com.mingcloud.proxy.logiclayer.taskhandler;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.PositionMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.PositionDto;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.TaskDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.PositionEntity;
+import com.mingcloud.proxy.logiclayer.huaweihandler.PositionDataInThread;
+import com.mingcloud.proxy.util.DateHelper;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.log4j.Logger;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+public class TaskDataInThreadIn implements Runnable{
+    private static Logger logger = Logger.getLogger(PositionDataInThread.class);
+
+    private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+
+    private DataCenter dataCenter = DataCenter.getInstance();
+
+    private PositionMapper positionMapper = SpringContextUtil.getBean("positionMapper");
+
+    public TaskDataInThreadIn(){
+        // TODO Auto-generated constructor stub
+        // 设置数据源为mysql
+        jdbcChange.changeJdbc(JdbcChange.mySqlDataSource);
+    }
+
+    @Override
+    public void run() {
+        // TODO Auto-generated method stub
+        logger.info("TaskDataInThreadIn begin");
+
+        while(true) {
+            try {
+                if(dataCenter.getTasklistSize() < DataCenter.COMMONRECORDEXLIST_MAX_LENGTH) {
+                    getAllPositionData();
+                    logger.info("TaskDataInThread wait for 10 minutes...");
+                    Thread.sleep(10 * 60 * 1000);
+                } else {
+                    logger.info("PositionDataInThread wait for 5 minutes...");
+                    Thread.sleep(5 * 60 * 1000);
+                }
+            } catch(Exception e) {
+                logger.error("PositionDataInThread: " + e);
+            }
+        }
+    }
+
+    private void getAllPositionData() {
+        // TODO Auto-generated method stub
+        List<PositionEntity> list = null;
+        try {
+            list = positionMapper.selectAllToTask();
+
+            if(list != null && !list.isEmpty()) {
+                Calendar now=Calendar.getInstance();
+                for(PositionEntity entity : list) {
+                    TaskDto dto = new TaskDto();
+                    dto.setExtraid1(entity.getId());
+
+                    dto.setExtravarchar16(entity.getPosname());
+                    dto.setTaskkey(entity.getPoskey());
+                    dto.setTaskname(entity.getPosname());
+                   // dto.setTaskkey("JS"+entity.getPoskey()+ DateHelper.dateToString(new Date(),DateHelper.DEFAILT_DATE_PATTERN));
+                   // dto.setTaskname(entity.getPosname()+"电费结算"+DateHelper.dateToString(new Date(),DateHelper.DEFAILT_DATE_PATTERN));
+                    if (entity.getExtraint3() != null && !entity.getExtraint3().equals("")) {
+                        dto.setExtraint1(entity.getExtraint3());
+                    }
+
+                    if (entity.getExtraid4()!=null && !entity.getExtraid4().equals("")) {
+                        dto.setExtraid3(entity.getExtraid4());
+                    }
+
+                    if (entity.getExtraid5() != null && !entity.getExtraid5().equals("")) {
+                        dto.setExtraid4(entity.getExtraid5());
+                    }
+                    if (entity.getExtraid6() != null && !entity.getExtraid6().equals("")) {
+                        dto.setExtraid5(entity.getExtraid6());
+                    }
+                    if (entity.getExtraid7() != null && !entity.getExtraid7().equals("")) {
+                        dto.setExtraid6(entity.getExtraid7());
+                    }
+                    if (entity.getOrgid() != null && !entity.getOrgid().equals("")) {
+                        dto.setOrgid(entity.getOrgid());
+                    }
+                    if (entity.getExtraint4() != null && !entity.getExtraint4().equals("")) {
+                        dto.setExtraint2(entity.getExtraint4());
+                    }
+                    if (entity.getExtraint7() != null && !entity.getExtraint7().equals("")) {
+                        dto.setExtraint3(entity.getExtraint7());
+                    }
+                    if (entity.getExtraint8() != null && !entity.getExtraint8().equals("")) {
+                        dto.setExtraint4(entity.getExtraint8());
+                    }
+                    if(entity.getExtravarchar19()!=null&&!entity.getExtravarchar19().equals("")){
+                        dto.setExtravarchar1(entity.getExtravarchar19());
+                    }
+                    if(entity.getExtravarchar20()!=null&&!entity.getExtravarchar20().equals("")){
+                        dto.setExtravarchar2(entity.getExtravarchar20());
+                    }
+                    if(entity.getExtravarchar21()!=null&&!entity.getExtravarchar21().equals("")){
+                        dto.setExtravarchar3(entity.getExtravarchar21());
+                    }
+                    if(entity.getExtravarchar22()!=null&&!entity.getExtravarchar22().equals("")){
+                        dto.setExtravarchar4(entity.getExtravarchar22());
+                    }
+                    if(entity.getExtravarchar23()!=null&&!entity.getExtravarchar23().equals("")){
+                        dto.setExtravarchar5(entity.getExtravarchar23());
+                    }
+                    if(entity.getExtravarchar24()!=null&&!entity.getExtravarchar24().equals("")){
+                        dto.setExtravarchar6(entity.getExtravarchar24());
+                    }
+                    if(entity.getExtravarchar25()!=null&&!entity.getExtravarchar25().equals("")){
+                        dto.setExtravarchar7(entity.getExtravarchar25());
+                    }
+                    if(entity.getExtravarchar26()!=null&&!entity.getExtravarchar26().equals("")){
+                        dto.setExtravarchar8(entity.getExtravarchar26());
+                    }
+                    if(entity.getExtravarchar27()!=null&&!entity.getExtravarchar27().equals("")){
+                        dto.setExtravarchar9(entity.getExtravarchar27());
+                    }
+                    if(entity.getExtravarchar28()!=null&&!entity.getExtravarchar28().equals("")){
+                        dto.setExtravarchar10(entity.getExtravarchar28());
+                    }
+                    if(entity.getExtravarchar29()!=null&&!entity.getExtravarchar29().equals("")){
+                        dto.setExtravarchar11(entity.getExtravarchar29());
+                    }
+                    if(entity.getExtravarchar30()!=null&&!entity.getExtravarchar30().equals("")){
+                        dto.setExtravarchar12(entity.getExtravarchar30());
+                    }
+                    if(entity.getExtradatetime3()!=null&&!entity.getExtradatetime3().equals("")){
+                        dto.setExtradatetime1(entity.getExtradatetime3());
+                    }
+                    if(entity.getExtradatetime9()!=null&&!entity.getExtradatetime9().equals("")){
+                        dto.setExtradatetime2(entity.getExtradatetime9());
+                    }
+                    if(entity.getExtradatetime10()!=null&&!entity.getExtradatetime10().equals("")){
+                        dto.setExtradatetime3(entity.getExtradatetime10());
+                    }
+
+                    logger.info("xyc:..."+dto);
+                    dataCenter.pushTasklist(dto);
+                }
+                logger.info("TaskDataInthread getAllTaskData succeeded...");
+            }
+        } catch(Exception e) {
+            logger.error("PositionDataInThread getAllPositionData: " + e);
+        }
+
+    }
+}

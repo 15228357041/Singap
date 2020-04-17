@@ -1,0 +1,61 @@
+#============================================================================
+# MySQL
+#============================================================================
+jdbc.connect=prod
+jdbc.mysql.driver=com.mysql.jdbc.Driver
+#jdbc.mysql.url=jdbc\:mysql\://uper-unicare.cccsyoc56i7i.rds.cn-north-1.amazonaws.com.cn\:3006/unicare?createDatabaseIfNotExist\=true&useUnicode\=true&characterEncoding\=utf-8
+jdbc.mysql.url=jdbc\:mysql\://52.83.171.94\:3006/unicare0901?createDatabaseIfNotExist\=true&useUnicode\=true&characterEncoding\=utf-8
+#jdbc.mysql.url=jdbc\:mysql\://uper-unicare.cp7xq0adw0g0.rds.cn-northwest-1.amazonaws.com.cn:3306/unicare?createDatabaseIfNotExist\=true&useUnicode\=true&characterEncoding\=utf-8
+#jdbc.mysql.username=mysql
+#jdbc.mysql.password=123456
+#jdbc.mysql.url=jdbc\:mysql\://127.0.0.1\:3306/geely?createDatabaseIfNotExist\=true&useUnicode\=true&characterEncoding\=utf-8
+#jdbc.mysql.url=jdbc\:mysql\://10.86.214.63\:3306/geely?createDatabaseIfNotExist\=true&useUnicode\=true&characterEncoding\=utf-8
+#jdbc.mysql.url=jdbc\:mysql\://localhost\:3306/geely?createDatabaseIfNotExist\=true&useUnicode\=true&characterEncoding\=utf-8
+#jdbc.mysql.url=jdbc\:mysql\://10.190.38.200\:3306/geely?createDatabaseIfNotExist\=true&useUnicode\=true&characterEncoding\=utf-8
+#jdbc.mysql.url=jdbc\:mysql\://10.86.216.244\:3306/geely?createDatabaseIfNotExist\=true&useUnicode\=true&characterEncoding\=utf-8
+#jdbc.mysql.username=root
+#jdbc.mysql.password=Geely_2018
+
+jdbc.mysql.username=mysql
+jdbc.mysql.password=123456
+
+#============================================================================
+# SQL Server (JTDS)
+#============================================================================
+jdbc.sqlserver.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
+#jdbc.sqlserver.url=jdbc:sqlserver://10.12.1.13;DatabaseName=u8
+#jdbc.sqlserver.username=sa
+#jdbc.sqlserver.password=0
+jdbc.sqlserver.url=jdbc:sqlserver://zb.sxcym.com:6618;DatabaseName=mingcloud
+jdbc.sqlserver.username=sa
+jdbc.sqlserver.password=ABC123!
+
+#============================================================================
+# oracle (JTDS)
+#============================================================================
+jdbc.oracle.driver=oracle.jdbc.driver.OracleDriver
+jdbc.oracle.url=jdbc:oracle:thin:@127.0.0.1:1521:CARGO
+jdbc.oracle.username=sa
+jdbc.oracle.password=ABC123!
+
+#============================================================================
+# common
+#============================================================================
+jdbc.initialSize=5
+jdbc.minIdle=5
+jdbc.maxIdle=20
+jdbc.maxActive=10
+jdbc.maxWait=60000
+jdbc.defaultAutoCommit=false
+jdbc.removeAbandoned=true
+jdbc.removeAbandonedTimeout=3000000
+jdbc.timeBetweenEvictionRunsMillis=60000
+jdbc.numTestsPerEvictionRun=20
+jdbc.minEvictableIdleTimeMillis=300000
+jdbc.validationQuery=SELECT 'x'
+jdbc.testWhileIdle=true
+jdbc.testOnBorrow=false
+jdbc.testOnReturn=false
+jdbc.poolPreparedStatements=true
+jdbc.maxPoolPreparedStatementPerConnectionSize=20
+jdbc.filters=stat

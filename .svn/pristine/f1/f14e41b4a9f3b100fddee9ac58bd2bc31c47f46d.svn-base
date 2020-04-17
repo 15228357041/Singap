@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.StatisticsMapper" >
+  <resultMap id="BaseResultMap" type="StatisticsEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="posid" property="posid" jdbcType="INTEGER" />
+    <result column="poskey" property="poskey" jdbcType="VARCHAR" />
+    <result column="posabname" property="posabname" jdbcType="VARCHAR" />
+    <result column="posname" property="posname" jdbcType="VARCHAR" />
+    <result column="extradecimal1" property="extradecimal1" jdbcType="DECIMAL" />
+    <result column="extradecimal2" property="extradecimal2" jdbcType="DECIMAL" />
+    <result column="extradecimal3" property="extradecimal3" jdbcType="DECIMAL" />
+    <result column="extradecimal4" property="extradecimal4" jdbcType="DECIMAL" />
+    <result column="extradecimal5" property="extradecimal5" jdbcType="DECIMAL" />
+    <result column="extradecimal6" property="extradecimal6" jdbcType="DECIMAL" />
+    <result column="extradecimal7" property="extradecimal7" jdbcType="DECIMAL" />
+    <result column="extradecimal8" property="extradecimal8" jdbcType="DECIMAL" />
+    <result column="extradecimal9" property="extradecimal9" jdbcType="DECIMAL" />
+    <result column="extradecimal10" property="extradecimal10" jdbcType="DECIMAL" />
+    <result column="extradecimal11" property="extradecimal11" jdbcType="DECIMAL" />
+    <result column="extradecimal12" property="extradecimal12" jdbcType="DECIMAL" />
+    <result column="extradecimal13" property="extradecimal13" jdbcType="DECIMAL" />
+    <result column="extradecimal14" property="extradecimal14" jdbcType="DECIMAL" />
+    <result column="extradecimal15" property="extradecimal15" jdbcType="DECIMAL" />
+    <result column="extradecimal16" property="extradecimal16" jdbcType="DECIMAL" />
+    <result column="extradecimal17" property="extradecimal17" jdbcType="DECIMAL" />
+    <result column="extradecimal18" property="extradecimal18" jdbcType="DECIMAL" />
+    <result column="extradecimal19" property="extradecimal19" jdbcType="DECIMAL" />
+    <result column="extradecimal20" property="extradecimal20" jdbcType="DECIMAL" />
+    <result column="extradecimal21" property="extradecimal21" jdbcType="DECIMAL" />
+    <result column="extradecimal22" property="extradecimal22" jdbcType="DECIMAL" />
+    <result column="extradecimal23" property="extradecimal23" jdbcType="DECIMAL" />
+    <result column="extradecimal24" property="extradecimal24" jdbcType="DECIMAL" />
+    <result column="extradecimal25" property="extradecimal25" jdbcType="DECIMAL" />
+    <result column="extradecimal26" property="extradecimal26" jdbcType="DECIMAL" />
+    <result column="extradecimal27" property="extradecimal27" jdbcType="DECIMAL" />
+    <result column="extradecimal28" property="extradecimal28" jdbcType="DECIMAL" />
+    <result column="extradecimal29" property="extradecimal29" jdbcType="DECIMAL" />
+    <result column="extradecimal30" property="extradecimal30" jdbcType="DECIMAL" />
+    <result column="extradecimal31" property="extradecimal31" jdbcType="DECIMAL" />
+    <result column="extradecimal32" property="extradecimal32" jdbcType="DECIMAL" />
+    <result column="extradecimal33" property="extradecimal33" jdbcType="DECIMAL" />
+    <result column="extradecimal34" property="extradecimal34" jdbcType="DECIMAL" />
+    <result column="extradecimal35" property="extradecimal35" jdbcType="DECIMAL" />
+    <result column="extradecimal36" property="extradecimal36" jdbcType="DECIMAL" />
+    <result column="extradecimal37" property="extradecimal37" jdbcType="DECIMAL" />
+    <result column="extradecimal38" property="extradecimal38" jdbcType="DECIMAL" />
+    <result column="extradecimal39" property="extradecimal39" jdbcType="DECIMAL" />
+    <result column="extradecimal40" property="extradecimal40" jdbcType="DECIMAL" />
+    <result column="extradecimal41" property="extradecimal41" jdbcType="DECIMAL" />
+    <result column="extradecimal42" property="extradecimal42" jdbcType="DECIMAL" />
+    <result column="extradecimal43" property="extradecimal43" jdbcType="DECIMAL" />
+    <result column="extradecimal44" property="extradecimal44" jdbcType="DECIMAL" />
+    <result column="extradecimal45" property="extradecimal45" jdbcType="DECIMAL" />
+    <result column="extradecimal46" property="extradecimal46" jdbcType="DECIMAL" />
+    <result column="extradecimal47" property="extradecimal47" jdbcType="DECIMAL" />
+    <result column="extradecimal48" property="extradecimal48" jdbcType="DECIMAL" />
+    <result column="extradecimal49" property="extradecimal49" jdbcType="DECIMAL" />
+    <result column="extradecimal50" property="extradecimal50" jdbcType="DECIMAL" />
+    <result column="extradecimal51" property="extradecimal51" jdbcType="DECIMAL" />
+    <result column="extradecimal52" property="extradecimal52" jdbcType="DECIMAL" />
+    <result column="extradecimal53" property="extradecimal53" jdbcType="DECIMAL" />
+    <result column="extradecimal54" property="extradecimal54" jdbcType="DECIMAL" />
+    <result column="extradecimal55" property="extradecimal55" jdbcType="DECIMAL" />
+    <result column="extradecimal56" property="extradecimal56" jdbcType="DECIMAL" />
+    <result column="extradecimal57" property="extradecimal57" jdbcType="DECIMAL" />
+    <result column="extradecimal58" property="extradecimal58" jdbcType="DECIMAL" />
+    <result column="extradecimal59" property="extradecimal59" jdbcType="DECIMAL" />
+    <result column="extradecimal60" property="extradecimal60" jdbcType="DECIMAL" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="modificationdate" property="modificationdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="VComData" statementType="CALLABLE">
+    {call VComData()}
+  </select>
+
+  <select id="VCoomDataDaily" parameterType="java.lang.String" statementType="CALLABLE">
+    {call VComDataDetailByPosition(#{curdate,mode=IN})}
+  </select>
+
+</mapper>

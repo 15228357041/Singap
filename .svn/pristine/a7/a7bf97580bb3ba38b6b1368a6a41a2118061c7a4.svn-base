@@ -1,0 +1,188 @@
+package com.mingcloud.proxy.logiclayer.apiprohandler;
+
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.InspectionMapper;
+import com.mingcloud.proxy.datalayer.dto.inspection.InspectionDto;
+import com.mingcloud.proxy.datalayer.entity.inspection.InspectionEntity;
+import com.mingcloud.proxy.util.DateHelper;
+import com.mingcloud.proxy.util.PropertiesFileUtil;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.axis2.AxisFault;
+import org.apache.log4j.Logger;
+
+
+
+import java.util.*;
+
+/**
+ * @author zxf
+ * @desc mingcloud���ݴ���api
+ * @date 2018-11-20 18:48
+ */
+public class MingcloudDataToAPI implements Runnable {
+
+    private DataCenter dataCenter = DataCenter.getInstance();
+
+
+    private static Logger logger = Logger.getLogger(MingcloudDataToAPI.class);
+
+    private static InspectionMapper inspectionMapper = SpringContextUtil.getBean("inspectionMapper");
+
+    private Integer size;
+
+    @Override
+    public void run() {
+        while(true){
+            try {
+                sendInspectionSuccess();
+                Thread.sleep(PropertiesFileUtil.getInstance("intervals").getInt("MingcloudDataToAPI"));
+                logger.info("MingcloudDatatoAPI wait for 2 minutes...");
+            } catch (InterruptedException e) {
+                logger.error("MingcloudDatatoAPI: " + e);
+            }
+        }
+    }
+
+
+    //�ɹ���Ѳ��
+    private String InspectionSuccess = "";
+
+
+    //�쳣��Ѳ��
+    private String InspectionUpdate = "";
+
+
+    //�������ݵ���APIϵͳ
+    private String SUCCESSICF = "IMP-INS-HIS-N.icf";
+    //Ѳ�����ڸ���
+    private String UPDATEDATEICF = "IF-IMP-POINT_DATE.icf";
+
+    //�豸̨��
+    private List<InspectionDto> inspectionSuccessData = new ArrayList<>();
+    //�豸̨��
+    private  List<InspectionDto> inspectionUpdateData = new ArrayList<>();
+
+
+
+
+    private void setInspectionSuccessData(InspectionDto dto) throws AxisFault {
+        String roundKey = "";
+        if (null != dto.getInspectionkey()) {
+            roundKey = dto.getInspectionkey();
+        }
+        String moKey = "";
+        if (null != dto.getMokey()) {
+            moKey = dto.getMokey();
+        }
+        String pointKey = dto.getInspectionpointkey();
+        String inspectionDate = "";
+        if (null != dto.getInspectiondate()) {
+            inspectionDate = dto.getInspectiondate();
+        }
+        String inspectionTime = "";
+        if (null != dto.getInspectiontime()) {
+            inspectionTime = dto.getInspectiontime();
+        }
+        String measurment = "";
+        if (null != dto.getInspectionvalue()) {
+            measurment = dto.getInspectionvalue();
+        }
+        String alarmOn = "";
+        if (null != dto.getAlarmOn()) {
+            alarmOn = dto.getAlarmOn();
+        }
+        String remark = "";
+        if (null != dto.getDescription()) {
+            measurment = dto.getDescription();
+        }
+        String checkUserId = "";
+        if (null != dto.getCheckuserid()) {
+            checkUserId = dto.getCheckuserid().toString();
+        }
+        String alarmFlag = "";
+        if (null != dto.getAlarmFlag()) {
+            alarmFlag = dto.getAlarmFlag();
+        }
+        String siteKey = "";
+        if (null != dto.getOrganizationkey()) {
+            siteKey = dto.getOrganizationkey();
+        }
+        String str = "压力表";
+        InspectionSuccess += roundKey + "^" + moKey + "^" + pointKey + "^" + inspectionDate + "^"
+                + inspectionTime + "^" + measurment + "^" + alarmOn + "^" + remark + "^" + checkUserId
+                + "^" + alarmFlag + "^" + siteKey + "^" + str  + "\n";
+
+        logger.info(InspectionSuccess);
+        inspectionSuccessData.add(dto);
+        if (inspectionSuccessData.size() == 200 || inspectionSuccessData.size() == size){
+            List<String> stringList = ImportDate.webImport(SUCCESSICF, InspectionSuccess);
+            InspectionSuccess = "";
+            int code = 0;
+            if (stringList.get(0).contains("True") || stringList.get(1).contains("True")) {
+                code = 1;
+            } else {
+                code = 2;
+            }
+            inspectionMapper.batchUpdate(inspectionSuccessData, code);
+            inspectionSuccessData.clear();
+        }
+    }
+
+    private void updateInspectionDate(InspectionDto dto) throws AxisFault {
+        String roundKey = "";
+        if (null != dto.getInspectionkey()) {
+            roundKey = dto.getInspectionkey();
+        }
+        String route = "";
+        if (null != dto.getRoute()) {
+            route = dto.getRoute();
+        }
+        String IntervalTimeNext = "";
+        if (null != dto.getPlanstartdate()) {
+            IntervalTimeNext = dto.getPlanstartdate();
+        }
+        InspectionUpdate += roundKey + "^" + route + "^" + IntervalTimeNext + "\n";
+        inspectionUpdateData.add(dto);
+        if (inspectionUpdateData.size() == 500){
+            List<String> stringList = ImportDate.webImport(UPDATEDATEICF, InspectionUpdate);
+            InspectionUpdate = "";
+            inspectionUpdateData.clear();
+        }
+        logger.info(InspectionUpdate);
+
+    }
+
+
+    public void sendInspectionSuccess() {
+        try {
+            List<InspectionDto> inspectionDtoList = inspectionMapper.selectSuccessInspection();
+            size = inspectionDtoList.size();
+            for (InspectionDto obj : inspectionDtoList) {
+                setInspectionSuccessData(obj);
+            }
+        } catch (AxisFault axisFault) {
+            axisFault.printStackTrace();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            inspectionSuccessData.clear();
+        }
+    }
+
+
+    public void updateInspection() {
+        try {
+            List<InspectionDto> inspectionDtoList = inspectionMapper.selectUpdateInspection();
+            InspectionUpdate = "";
+            for (InspectionDto obj : inspectionDtoList) {
+                updateInspectionDate(obj);
+            }
+        } catch (AxisFault axisFault) {
+            axisFault.printStackTrace();
+        } finally {
+            inspectionUpdateData.clear();
+        }
+    }
+}

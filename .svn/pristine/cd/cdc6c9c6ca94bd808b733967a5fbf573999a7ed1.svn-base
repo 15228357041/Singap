@@ -1,0 +1,192 @@
+
+package com.mingcloud.proxy.logiclayer.beiqitransfer.webservice;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>DT_FATransfer_REQ complex type�� Java �ࡣ
+ * 
+ * <p>����ģʽƬ��ָ�������ڴ����е�Ԥ�����ݡ�
+ * 
+ * <pre>
+ * &lt;complexType name="DT_FATransfer_REQ"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="FATransfer_REQ" maxOccurs="unbounded"&gt;
+ *           &lt;complexType&gt;
+ *             &lt;complexContent&gt;
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                 &lt;sequence&gt;
+ *                   &lt;element name="ANLA_BUKRS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *                   &lt;element name="ANLA_ANLN1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *                   &lt;element name="SY_DATUM" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *                 &lt;/sequence&gt;
+ *               &lt;/restriction&gt;
+ *             &lt;/complexContent&gt;
+ *           &lt;/complexType&gt;
+ *         &lt;/element&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "DT_FATransfer_REQ", propOrder = {
+    "faTransferREQ"
+})
+public class DTFATransferREQ {
+
+    @XmlElement(name = "FATransfer_REQ", required = true)
+    protected List<FATransferREQ> faTransferREQ;
+
+    /**
+     * Gets the value of the faTransferREQ property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the faTransferREQ property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getFATransferREQ().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link FATransferREQ }
+     * 
+     * 
+     */
+    public List<FATransferREQ> getFATransferREQ() {
+        if (faTransferREQ == null) {
+            faTransferREQ = new ArrayList<FATransferREQ>();
+        }
+        return this.faTransferREQ;
+    }
+
+
+    /**
+     * <p>anonymous complex type�� Java �ࡣ
+     * 
+     * <p>����ģʽƬ��ָ�������ڴ����е�Ԥ�����ݡ�
+     * 
+     * <pre>
+     * &lt;complexType&gt;
+     *   &lt;complexContent&gt;
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *       &lt;sequence&gt;
+     *         &lt;element name="ANLA_BUKRS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+     *         &lt;element name="ANLA_ANLN1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+     *         &lt;element name="SY_DATUM" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+     *       &lt;/sequence&gt;
+     *     &lt;/restriction&gt;
+     *   &lt;/complexContent&gt;
+     * &lt;/complexType&gt;
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "anlabukrs",
+        "anlaanln1",
+        "sydatum"
+    })
+    public static class FATransferREQ {
+
+        @XmlElement(name = "ANLA_BUKRS")
+        protected String anlabukrs;
+        @XmlElement(name = "ANLA_ANLN1")
+        protected String anlaanln1;
+        @XmlElement(name = "SY_DATUM")
+        protected String sydatum;
+
+        /**
+         * ��ȡanlabukrs���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getANLABUKRS() {
+            return anlabukrs;
+        }
+
+        /**
+         * ����anlabukrs���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setANLABUKRS(String value) {
+            this.anlabukrs = value;
+        }
+
+        /**
+         * ��ȡanlaanln1���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getANLAANLN1() {
+            return anlaanln1;
+        }
+
+        /**
+         * ����anlaanln1���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setANLAANLN1(String value) {
+            this.anlaanln1 = value;
+        }
+
+        /**
+         * ��ȡsydatum���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getSYDATUM() {
+            return sydatum;
+        }
+
+        /**
+         * ����sydatum���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setSYDATUM(String value) {
+            this.sydatum = value;
+        }
+
+    }
+
+}

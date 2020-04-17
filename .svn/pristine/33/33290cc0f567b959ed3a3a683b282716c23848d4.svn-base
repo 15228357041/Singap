@@ -1,0 +1,67 @@
+package com.mingcloud.proxy.logiclayer.cheryhandler;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.PositionMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.PositionDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.PositionEntity;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.log4j.Logger;
+
+import java.util.List;
+
+public class CheryPositionDataInThread implements Runnable {
+    private static Logger logger = Logger.getLogger(CheryPositionDataInThread.class);
+
+    private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+
+    private DataCenter dataCenter = DataCenter.getInstance();
+
+    private PositionMapper positionMapper = SpringContextUtil.getBean("positionMapper");
+
+    public CheryPositionDataInThread() {
+        //设置数据源为oracle
+        jdbcChange.changeJdbc(JdbcChange.oracleDataSource);
+    }
+
+    @Override
+    public void run() {
+        logger.info("CheryPositionDataInThread begin");
+
+        while(true) {
+            try {
+                if(dataCenter.getPositionlistSize() < DataCenter.COMMONRECORDEXLIST_MAX_LENGTH) {
+                    getAllPositionData();
+                    logger.info("CheryPositionDataInThread wait for 60 minutes...");
+                    Thread.sleep(60 * 60 * 1000);
+                } else {
+                    logger.info("CheryPositionDataInThread wait for 5 minutes...");
+                    Thread.sleep(5 * 60 * 1000);
+                }
+            } catch(Exception e) {
+                logger.error("CheryPositionDataInThread: " + e);
+            }
+        }
+    }
+
+    private void getAllPositionData() {
+        // TODO Auto-generated method stub
+        List<PositionEntity> list = null;
+        try {
+            list = positionMapper.selectAllApi();
+            if(null != list && list.size() > 0) {
+                for(PositionEntity entity : list) {
+                    PositionDto dto = new PositionDto();
+                    dto.setPoskey(entity.getPoskey());
+                    dto.setPosname(entity.getPosname());
+                    dto.setExtravarchar1(entity.getExtravarchar1());
+                    dataCenter.pushPositionlist(dto);
+                }
+                logger.info("CheryPositionDataInThread getAllPositionData succeeded...");
+            }
+        } catch(Exception e) {
+            logger.error("CheryPositionDataInThread getAllPositionData: " + e);
+        }
+
+    }
+}

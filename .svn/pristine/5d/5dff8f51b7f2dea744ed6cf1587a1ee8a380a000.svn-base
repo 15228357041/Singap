@@ -1,0 +1,62 @@
+package com.mingcloud.proxy.logiclayer.cheryhandler;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.HumanMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.HumanDto;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.log4j.Logger;
+
+import java.util.Date;
+
+/**
+ * 奇瑞作业人员导入线程
+ */
+public class HumanDataOutThread implements Runnable {
+    private static Logger logger = Logger.getLogger(HumanDataOutThread.class);
+
+    private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+
+    private DataCenter dataCenter = DataCenter.getInstance();
+
+    private HumanMapper humanMapper = SpringContextUtil.getBean("humanMapper");
+
+    @Override
+    public void run() {
+        logger.info("HumanDataOutThread begin");
+        jdbcChange.changeJdbc(JdbcChange.mySqlDataSource);
+        while(true) {
+            try {
+                if(dataCenter.getHumanListSize() > 0) {
+                    insertHuman();
+                }
+                Thread.sleep(50);
+            } catch(Exception e) {
+                logger.error("HumanDataOutThread: " + e);
+            }
+        }
+    }
+
+    private void insertHuman() {
+        try {
+            HumanDto dto = dataCenter.popHumanList();
+            HumanDto humanDto = humanMapper.getByHumanKey(dto.getHumankey());
+            Date date = new Date();
+            if (null != humanDto) {
+                dto.setModificationdate(date);
+                dto.setId(humanDto.getId());
+                humanMapper.update(dto);
+                logger.info("HumanDataOutThread update succeeded...");
+            } else {
+                dto.setCreatedate(date);
+                dto.setModificationdate(date);
+                dto.setTombstone(1);
+                humanMapper.insert(dto);
+                logger.info("HumanDataOutThread insert succeeded...");
+            }
+        } catch (Exception e) {
+            logger.error("HumanDataOutThread InsertUsers: " + e);
+        }
+    }
+
+}

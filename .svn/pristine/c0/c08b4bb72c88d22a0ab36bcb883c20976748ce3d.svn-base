@@ -1,0 +1,58 @@
+package com.mingcloud.proxy.logiclayer.instrumenthandler;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.InstrumentMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.InstrumentDto;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.log4j.Logger;
+
+import java.util.List;
+
+public class InstrumentDataInThread implements Runnable {
+
+    private static Logger logger = Logger.getLogger(InstrumentDataInThread.class);
+
+    private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+
+    private DataCenter dataCenter = DataCenter.getInstance();
+
+    private InstrumentMapper instrumentMapper = SpringContextUtil.getBean("instrumentMapper");
+
+    @Override
+    public void run() {
+        logger.info("InstrumentDataInThread begin ...");
+        // 设置数据源为oracle
+        jdbcChange.changeJdbc(JdbcChange.oracleDataSource);
+        logger.info("InstrumentDataInThread change to oracleDataSource");
+        while (true) {
+            try {
+                if (dataCenter.getInstrumentListSize() < dataCenter.COMMONRECORDEXLIST_MAX_LENGTH) {
+                    getAllInstrumentData();
+                    logger.info("InstrumentDataInThread wait for 60 minutes...");
+                    Thread.sleep(20 * 60 * 1000);
+                } else {
+                    logger.info("InstrumentDataInThread wait for 5 minutes...");
+                    Thread.sleep(5 * 60 * 1000);
+                }
+            } catch (Exception e) {
+                logger.error("InstrumentDataInThread: " + e);
+            }
+
+        }
+    }
+
+    private void getAllInstrumentData(){
+        try {
+            List<InstrumentDto> list  = instrumentMapper.selectAll();
+            if (null != list && list.size() > 0) {
+                for (InstrumentDto dto : list) {
+                    dataCenter.pushInstrumentList(dto);
+                }
+            }
+            logger.info("InstrumentDataInThread========================" + dataCenter.getInstrumentListSize());
+        } catch (Exception e) {
+            logger.error("InstrumentDataInThread getAllInspectionData :" + e);
+        }
+    }
+}

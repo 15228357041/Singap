@@ -1,0 +1,28 @@
+package com.mingcloud.proxy.datalayer.dto.vcomapi;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+public class VcomApiDto {
+
+	private Date timestamp;
+	
+	private BigDecimal value;
+
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public BigDecimal getValue() {
+		return value;
+	}
+
+	public void setValue(BigDecimal value) {
+		this.value = value;
+	}
+
+}

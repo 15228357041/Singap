@@ -1,0 +1,9 @@
+package com.mingcloud.proxy.datalayer.dao.archiveinfo;
+
+import com.mingcloud.proxy.datalayer.dao.BaseMapper;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.CommonrecodeEntity;
+
+public interface CommonrecodeMapper extends BaseMapper<CommonrecodeEntity> {
+	
+	
+}

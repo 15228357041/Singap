@@ -1,0 +1,50 @@
+package com.mingcloud.proxy.common;
+
+/**
+ * Api巡检点执行周期对应AMS
+ *       API      AMS
+ * 天     D        3
+ * 周     W        4
+ * 月     M        5
+ * 年     Y        6
+ */
+public enum InspectionPointCycleEnum {
+
+    D("D",3),
+    W("W",4),
+    M("M",5),
+    Y("Y",6);
+
+    private Integer amsCycle;
+    private String apiCycle;
+
+    private InspectionPointCycleEnum(String apiCycle, Integer amsCycle){
+        this.apiCycle = apiCycle;
+        this.amsCycle = amsCycle;
+    }
+
+    public static Integer getAmsCycle(String apiCycle){
+        for (InspectionPointCycleEnum e : InspectionPointCycleEnum.values()) {
+            if (e.getApiCycle().equals(apiCycle)) {
+                return e.getAmsCycle();
+            }
+        }
+        return null;
+    }
+
+    public Integer getAmsCycle() {
+        return amsCycle;
+    }
+
+    public void setAmsCycle(Integer amsCycle) {
+        this.amsCycle = amsCycle;
+    }
+
+    public String getApiCycle() {
+        return apiCycle;
+    }
+
+    public void setApiCycle(String apiCycle) {
+        this.apiCycle = apiCycle;
+    }
+}

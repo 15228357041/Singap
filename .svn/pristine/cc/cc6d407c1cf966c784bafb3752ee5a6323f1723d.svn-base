@@ -1,0 +1,94 @@
+package com.mingcloud.proxy.logiclayer.huaweihandler;
+
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.UsergroupMapper;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.UsersMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.UsergroupDto;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.UsersDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.UsergroupEntity;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.UsersEntity;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+
+public class UsersDataInThread implements Runnable {
+	private static Logger logger = Logger.getLogger(UsersDataInThread.class);
+	
+	private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+	
+	private DataCenter dataCenter = DataCenter.getInstance();
+	
+	private UsergroupMapper usergroupMapper = SpringContextUtil.getBean("usergroupMapper");
+	private UsersMapper usersMapper = SpringContextUtil.getBean("usersMapper");
+	
+	public UsersDataInThread() {
+		// 设置数据源为oracle
+		jdbcChange.changeJdbc(JdbcChange.oracleDataSource);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		logger.info("UsersDataInThread begin");
+		
+		while(true) {
+			try {
+				if(dataCenter.getUsergrouplistSize() < DataCenter.COMMONRECORDEXLIST_MAX_LENGTH) {
+					getAllUsergroupData();
+				}
+				if(dataCenter.getUserslistSize() < DataCenter.COMMONRECORDEXLIST_MAX_LENGTH) {
+					getAllUsersData();
+				}
+				logger.info("UsersDataInThread wait for 20 minutes...");
+				Thread.sleep(20 * 60 * 1000);
+			} catch (Exception e) {
+				logger.error("UsersDataInThread: " + e);
+			}
+		}
+	}
+
+	private void getAllUsersData() {
+		// TODO Auto-generated method stub
+		List<UsersEntity> usersList = null;
+		try {
+			usersList = usersMapper.selectAllApi();
+			if (usersList != null && !usersList.isEmpty()) {
+				for (UsersEntity entity : usersList) {
+					UsersDto dto = new UsersDto();
+					dto.setUserkey(entity.getUserkey());
+					dto.setUsername(entity.getUsername());
+					dto.setPassword(entity.getPassword());
+					dto.setExtravarchar1(entity.getExtravarchar1());
+					dto.setEmail(entity.getEmail());
+					dataCenter.pushUserslist(dto);
+				}
+				logger.info("UsersDataInThread getAllUsersData succeeded...");
+			}
+		} catch (Exception e) {
+			logger.error("UsersDataInThread getAllUsersData: " + e);
+		}
+	}
+
+	private void getAllUsergroupData() {
+		// TODO Auto-generated method stub
+		List<UsergroupEntity> usergroupList = null;
+		try {
+			usergroupList = usergroupMapper.selectAllApi();
+			if (usergroupList != null && !usergroupList.isEmpty()) {
+				for (UsergroupEntity entity : usergroupList) {
+					UsergroupDto dto = new UsergroupDto();
+					dto.setUsergroupkey(entity.getUsergroupkey());
+					dto.setUsergroupname(entity.getUsergroupname());
+					dataCenter.pushUsergrouplist(dto);
+				}
+				logger.info("UsergroupDataInThread getAllUsergroupData succeeded...");
+			}
+		} catch (Exception e) {
+			logger.error("UsergroupDataInThread getAllUsergroupData: " + e);
+		}
+	}
+	
+}

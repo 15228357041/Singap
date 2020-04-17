@@ -1,0 +1,609 @@
+package com.mingcloud;
+
+import com.mingcloud.proxy.logiclayer.apiprohandler.MingcloudDataToAPI;
+import com.mingcloud.proxy.logiclayer.apiprohandler.MingcloudDataUpdateDateToAPI;
+import com.mingcloud.proxy.logiclayer.beiqidisposeouthandler.BeiqiDisposeDoutDataOutThread;
+import com.mingcloud.proxy.logiclayer.beiqidisposeouthandler.BeiqiDisposeOutDataInThread;
+import com.mingcloud.proxy.logiclayer.beiqifamdhandler.BeiqiFamdOutDataInThread;
+import com.mingcloud.proxy.logiclayer.cheryhandler.*;
+import com.mingcloud.proxy.logiclayer.chuanhuahandler.ChuanhuaThread;
+import com.mingcloud.proxy.logiclayer.huaweihandler.*;
+import com.mingcloud.proxy.logiclayer.inspectionhandler.InspectionDataInThread;
+import com.mingcloud.proxy.logiclayer.inspectionhandler.InspectionDataOutThread;
+import com.mingcloud.proxy.logiclayer.inspectionpointhandler.InspectionPointDataInThread;
+import com.mingcloud.proxy.logiclayer.inspectionpointhandler.InspectionPointDataOutThread;
+import com.mingcloud.proxy.logiclayer.instrumenthandler.InstrumentDataInThread;
+import com.mingcloud.proxy.logiclayer.instrumenthandler.InstrumentDataOutThread;
+import com.mingcloud.proxy.logiclayer.meshandler.MesDataInThread;
+import com.mingcloud.proxy.logiclayer.meshandler.MesDataOutThread;
+import com.mingcloud.proxy.logiclayer.messagehandler.MessageSourceDataInThread;
+import com.mingcloud.proxy.logiclayer.messagehandler.MessageSourceDataOutByC3Thread;
+import com.mingcloud.proxy.logiclayer.messagehandler.MessageSourceDataOutThread;
+import com.mingcloud.proxy.logiclayer.pmhandler.PmStartThread;
+import com.mingcloud.proxy.logiclayer.purchaserehandler.PurchasereDataInThread;
+import com.mingcloud.proxy.logiclayer.purchaserehandler.PurchasereDataOutThread;
+import com.mingcloud.proxy.logiclayer.stockcontrollerhandler.SAPDateCenter;
+import com.mingcloud.proxy.logiclayer.stockhandler.StockDataInThread;
+import com.mingcloud.proxy.logiclayer.stockhandler.StockDataOutThread;
+import com.mingcloud.proxy.logiclayer.taskhandler.TaskDataInThreadIn;
+import com.mingcloud.proxy.logiclayer.taskhandler.TaskDataOutThread;
+import com.mingcloud.proxy.logiclayer.transactionshandler.TransactionsDataInThread;
+import com.mingcloud.proxy.logiclayer.transactionshandler.TransactionsDataOutThread;
+import com.mingcloud.proxy.logiclayer.userhandler.UserDimissionThread;
+import com.mingcloud.proxy.logiclayer.vcom_dayhander.VComDayDataOutThread;
+import com.mingcloud.proxy.logiclayer.vcom_dayhander.VcomDayDataInThread;
+import com.mingcloud.proxy.logiclayer.vcomhandler.VComDataOutThread;
+import com.mingcloud.proxy.logiclayer.vcomhandler.VcomApiDataInThread;
+import com.mingcloud.proxy.logiclayer.vcomhandler.VcomApiDataOutThread;
+import com.mingcloud.proxy.logiclayer.vcomhandler.VcomDataInThread;
+import com.mingcloud.proxy.logiclayer.weatherhandler.WeatherDataInThread;
+import com.mingcloud.proxy.logiclayer.weatherhandler.WeatherDataOutThread;
+import com.mingcloud.proxy.util.PropertiesFileUtil;
+import org.apache.log4j.Logger;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.io.IOException;
+
+/**
+ * @Author zxf
+ */
+public class Proxy {
+	private static Logger logger = Logger.getLogger(Proxy.class);
+	
+	@SuppressWarnings("unused")
+	private static ClassPathXmlApplicationContext classPathXmlApplicationContext;
+	private static Integer MessageSourceDataOutByC3Thread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("MessageSourceDataOutByC3Thread"));
+	private static Integer SAPDateCenter= Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("SAPDateCenter"));
+	private static Integer PmStartThread= Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("PmStartThread"));
+	private static Integer VcomDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("VcomDataInThread"));
+	private static Integer VComDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("VComDataOutThread"));
+	private static Integer VcomApiDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("VcomApiDataInThread"));
+	private static Integer VcomApiDataOutThread= Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("VcomApiDataOutThread"));
+	private static Integer WeatherDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("WeatherDataInThread"));
+	private static Integer WeatherDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("WeatherDataOutThread"));
+	private static Integer BeiqiFamdOutDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("BeiqiFamdOutDataInThread"));
+	private static Integer BeiqiDisposeOutDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("BeiqiDisposeOutDataInThread"));
+	private static Integer BeiqiDisposeDoutDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("BeiqiDisposeDoutDataOutThread"));
+	private static Integer ChuanhuaThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("ChuanhuaThread"));
+	private static Integer MessageSourceDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("MessageSourceDataInThread"));
+	private static Integer MessageSourceDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("MessageSourceDataOutThread"));
+	private static Integer VcomDayDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("VcomDayDataInThread"));
+	private static Integer VComDayDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("VComDayDataOutThread"));
+	private static Integer StockDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("StockDataInThread"));
+	private static Integer StockDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("StockDataOutThread"));
+	private static Integer PurchasereDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("PurchasereDataInThread"));
+	private static Integer PurchasereDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("PurchasereDataOutThread"));
+	private static Integer TransactionsDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("TransactionsDataInThread"));
+	private static Integer TransactionsDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("TransactionsDataOutThread"));
+	private static Integer MaintenanceDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("MaintenanceDataInThread"));
+	private static Integer MaintenanceDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("MaintenanceDataOutThread"));
+	private static Integer SparepartDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("SparepartDataInThread"));
+	private static Integer SparepartDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("SparepartDataOutThread"));
+	private static Integer WorkorderDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("WorkorderDataInThread"));
+	private static Integer WorkorderDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("WorkorderDataOutThread"));
+	private static Integer PositionDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("PositionDataInThread"));
+	private static Integer PositionDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("PositionDataOutThread"));
+	private static Integer MaintenanceobjectgroupDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("MaintenanceobjectgroupDataInThread"));
+	private static Integer MaintenanceobjectgroupDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("MaintenanceobjectgroupDataOutThread"));
+	private static Integer MorelationtdDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("MorelationtdDataInThread"));
+	private static Integer TaskDataInThreadIn = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("TaskDataInThreadIn"));
+	private static Integer TaskDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("TaskDataOutThread"));
+	private static Integer MorelationtdDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("MorelationtdDataOutThread"));
+	private static Integer TechnicaldataDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("TechnicaldataDataInThread"));
+	private static Integer TechnicaldataDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("TechnicaldataDataOutThread"));
+	private static Integer UsersDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("UsersDataInThread"));
+	private static Integer UsersDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("UsersDataOutThread"));
+	private static Integer MesDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("MesDataInThread"));
+	private static Integer MesDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("MesDataOutThread"));
+	private static Integer InspectionDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("InspectionDataInThread"));
+	private static Integer InspectionDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("InspectionDataOutThread"));
+	private static Integer CheryUserDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("CheryUserDataInThread"));
+	private static Integer CheryUserDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("CheryUserDataOutThread"));
+	private static Integer HumanDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("HumanDataInThread"));
+	private static Integer HumanDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("HumanDataOutThread"));
+	private static Integer InstrumentDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("InstrumentDataInThread"));
+	private static Integer InstrumentDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("InstrumentDataOutThread"));
+	private static Integer CheryPositionDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("CheryPositionDataInThread"));
+	private static Integer CheryPositionDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("CheryPositionDataOutThread"));
+	private static Integer CheryMaintenanceDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("CheryMaintenanceDataInThread"));
+	private static Integer CheryMaintenanceDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("CheryMaintenanceDataOutThread"));
+	private static Integer InspectionPointDataInThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("InspectionPointDataInThread"));
+	private static Integer InspectionPointDataOutThread = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("InspectionPointDataOutThread"));
+    private static Integer MingcloudDataToAPI = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("MingcloudDataToAPI"));
+	private static Integer MingcloudDataUpdateDateToAPI = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("MingcloudDataUpdateDateToAPI"));
+	private static Integer userDimissionThreadOn = Integer.valueOf(PropertiesFileUtil.getInstance("logic").get("UserDimissionThread"));
+	public static String sapNum = "";
+
+
+
+
+
+
+
+	public static void main(String[] args) throws InterruptedException,IOException {
+		logger.info("Proxy proceeding...");
+		//加载spring上下文
+		classPathXmlApplicationContext = new
+				ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+
+		//Vcom获取线程
+		if (VcomDataInThread == 1) {
+			VcomDataInThread VcomInThread = new VcomDataInThread();
+			Thread VcomdataInThread = new Thread(VcomInThread);
+			VcomdataInThread.setName("VcomdataInThread");
+			VcomdataInThread.start();
+		}
+
+		//Vcom写入MingCloudEAM数据库
+		if (VComDataOutThread == 1) {
+			VComDataOutThread VcomOutThread = new VComDataOutThread();
+			Thread VcomdataOutThread = new Thread(VcomOutThread);
+			VcomdataOutThread.setName("VcomdataOutThread");
+			VcomdataOutThread.start();
+		}
+
+		//vcomAPI写入
+		if (VcomApiDataInThread == 1) {
+			VcomApiDataInThread vcomApiInThread = new VcomApiDataInThread();
+			Thread VcomApidataInThread = new Thread(vcomApiInThread);
+			VcomApidataInThread.setName("VcomApidataInThread");
+			VcomApidataInThread.start();
+		}
+		if (VcomApiDataOutThread == 1) {
+			VcomApiDataOutThread vcomApiOutThread = new VcomApiDataOutThread();
+			Thread VcomApidataOutThread = new Thread(vcomApiOutThread);
+			VcomApidataOutThread.setName("VcomApidataOutThread");
+			VcomApidataOutThread.start();
+		}
+
+		//Weather获取线程
+		if (WeatherDataInThread == 1) {
+			WeatherDataInThread WeatherInThread = new WeatherDataInThread();
+			Thread WeatherdataInThread = new Thread(WeatherInThread);
+			WeatherdataInThread.setName("WeatherdataInThread");
+			WeatherdataInThread.start();
+		}
+
+		//Weather写入MingCloudEAM数据库
+		if (WeatherDataOutThread == 1) {
+			WeatherDataOutThread WeatherOutThread = new WeatherDataOutThread();
+			Thread WeatherdataOutthread = new Thread(WeatherOutThread);
+			WeatherdataOutthread.setName("WeatherdataOutthread");
+			WeatherdataOutthread.start();
+		}
+
+
+		//固定资产主数据获取线程
+		if (BeiqiFamdOutDataInThread == 1) {
+			BeiqiFamdOutDataInThread beiqiInThread = new BeiqiFamdOutDataInThread();
+			Thread beiqidataInThread = new Thread(beiqiInThread);
+			beiqidataInThread.setName("BeiqiSI_FAMD_OUT_EAM2SAP_SYN_ClientDataInThread");
+			beiqidataInThread.start();
+		}
+
+		//固定资产主数据插入线程
+	/*	BeiqiFamdOutDataOutThread beiqiOutThread = new BeiqiFamdOutDataOutThread();
+		Thread beiqidataOutthread = new Thread(beiqiOutThread);
+		beiqidataOutthread.setName("BeiqiSI_FAMD_OUT_EAM2SAP_SYN_ClientDataOutthread");
+		beiqidataOutthread.start();*/
+
+		//北汽数据传入线程
+		if (BeiqiDisposeOutDataInThread == 1) {
+			BeiqiDisposeOutDataInThread beiqiInThread2 = new BeiqiDisposeOutDataInThread();
+			Thread beiqidataInThread2 = new Thread(beiqiInThread2);
+			beiqidataInThread2.setName("BeiqiSI_FADispose_Out_EAM2SAP_SYN_ClientDataInThread");
+			beiqidataInThread2.start();
+		}
+
+		//北汽数据传出线程
+		if (BeiqiDisposeDoutDataOutThread == 1) {
+			BeiqiDisposeDoutDataOutThread beiqiOutThread = new BeiqiDisposeDoutDataOutThread();
+			Thread beiqidataOutthread = new Thread(beiqiOutThread);
+			beiqidataOutthread.setName("BeiqiSI_FADispose_Out_EAM2SAP_SYN_ClientDataOutthread");
+			beiqidataOutthread.start();
+		}
+
+		//传化线程
+		if (ChuanhuaThread == 1) {
+			ChuanhuaThread beiqiInThread3 = new ChuanhuaThread();
+			Thread chuanhuaThread = new Thread(beiqiInThread3);
+			chuanhuaThread.setName("ChuanhuaSparePartThread");
+			chuanhuaThread.start();
+		}
+
+		//消息传入线程
+		if (MessageSourceDataInThread == 1) {
+			MessageSourceDataInThread messageSourceDataInThread = new MessageSourceDataInThread();
+			Thread messageSourceInThread = new Thread(messageSourceDataInThread);
+			messageSourceInThread.setName("MessageSourceInThread");
+			messageSourceInThread.start();
+		}
+
+		//消息传出线程
+		if (MessageSourceDataOutThread == 1) {
+			MessageSourceDataOutThread messageSourceDataOutThread = new MessageSourceDataOutThread();
+			Thread messageSourceOutthread = new Thread(messageSourceDataOutThread);
+			messageSourceOutthread.setName("MessageSourceOutThread");
+			messageSourceOutthread.start();
+		}
+
+		//消息传入线程
+		if (MessageSourceDataOutByC3Thread == 1){
+			MessageSourceDataOutByC3Thread messageSourceDataOuC3tThread = new MessageSourceDataOutByC3Thread();
+			Thread messageSourceOutByC3Thread = new Thread(messageSourceDataOuC3tThread);
+			messageSourceOutByC3Thread.setName("messageSourceOutByC3Thread");
+			messageSourceOutByC3Thread.start();
+		}
+
+		//自动开启PM工单线程
+		if (PmStartThread == 1){
+			PmStartThread pmStartThreadSwitch = new PmStartThread();
+			Thread PmStartThread = new Thread(pmStartThreadSwitch);
+			PmStartThread.setName("PmStartThread");
+			PmStartThread.start();
+		}
+
+		//sap库存数据导入线程4
+		if (SAPDateCenter == 1) {
+			SAPDateCenter sapDateCenter = new SAPDateCenter();
+			Thread sapDateCenterThread = new Thread(sapDateCenter);
+			sapDateCenterThread.setName("sapDateCenterThread");
+			sapDateCenterThread.start();
+		}
+
+        //task获取线程得到position表中的数据
+		if (TaskDataInThreadIn == 1) {
+			TaskDataInThreadIn taskDataInThreadIn = new TaskDataInThreadIn();
+			Thread TaskDataInThreadIn = new Thread(taskDataInThreadIn);
+			TaskDataInThreadIn.setName("TaskDataInThreadIn");
+			TaskDataInThreadIn.start();
+		}
+		//task获取线程得到position表中的数据
+		if (TaskDataOutThread == 1) {
+			TaskDataOutThread taskDataOutThread = new TaskDataOutThread();
+			Thread TaskDataOutThread = new Thread(taskDataOutThread);
+			TaskDataOutThread.setName("TaskDataOutThread");
+			TaskDataOutThread.start();
+		}
+
+     //统计场站信息到statisticslines
+		/*{
+			ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+			//第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
+
+			service.scheduleAtFixedRate(new VcomDateStatisticsLinesThread(), 0, 15, TimeUnit.DAYS);
+
+			//统计场站信息到statistics
+			ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+			// 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
+			scheduledExecutorService.scheduleAtFixedRate(new VcomDateStatisticsThread(), 0, 60, TimeUnit.MINUTES);
+		}*/
+
+		//VcomDay获取线程
+		if (VcomDayDataInThread == 1) {
+			VcomDayDataInThread vcomDayDataInThread = new VcomDayDataInThread();
+			Thread VcomDayDataInThread = new Thread(vcomDayDataInThread);
+			VcomDayDataInThread.setName("VcomDayDataInThread");
+			VcomDayDataInThread.start();
+		}
+		if (VComDayDataOutThread == 1) {
+			//VcomDay数据写入MingCloudEAM数据库
+			VComDayDataOutThread vComDayDataOutThread = new VComDayDataOutThread();
+			Thread VComDayDataOutThread = new Thread(vComDayDataOutThread);
+			VComDayDataOutThread.setName("VComDayDataOutThread");
+			VComDayDataOutThread.start();
+		}
+
+        //触发生成Email的timer
+  /*      WordLogTrigger wordLogTrigger = new WordLogTrigger();
+        WordLogTrigger.generateWordLog();*/
+
+        //备件仓库库存管理
+        //stock获取
+		if (StockDataInThread == 1) {
+			StockDataInThread stockInThread = new StockDataInThread();
+			Thread StockdataInThread = new Thread(stockInThread);
+			StockdataInThread.setName("StockdataInThread");
+			StockdataInThread.start();
+		}
+
+		//stock写入
+		if (StockDataOutThread == 1) {
+			StockDataOutThread stockOutThread = new StockDataOutThread();
+			Thread StockdataOutThread = new Thread(stockOutThread);
+			StockdataOutThread.setName("StockdataOutThread");
+			StockdataOutThread.start();
+		}
+
+		//采购订单状态管理
+		if (PurchasereDataInThread == 1) {
+			PurchasereDataInThread purchasereInThread = new PurchasereDataInThread();
+			Thread PurchaseredataInThread = new Thread(purchasereInThread);
+			PurchaseredataInThread.setName("PurchaseredataInThread");
+			PurchaseredataInThread.start();
+		}
+
+		if (PurchasereDataOutThread == 1) {
+			PurchasereDataOutThread purchasereOutThread = new PurchasereDataOutThread();
+			Thread PurchaseredataOutThread = new Thread(purchasereOutThread);
+			PurchaseredataOutThread.setName("PurchaseredataOutThread");
+			PurchaseredataOutThread.start();
+		}
+
+        //U8库存移库数据管理
+		if (TransactionsDataInThread == 1) {
+			TransactionsDataInThread transactionsInThread = new TransactionsDataInThread();
+			Thread TransactionsdataInThread = new Thread(transactionsInThread);
+			TransactionsdataInThread.setName("TransactionsdataInThread");
+			TransactionsdataInThread.start();
+		}
+
+		if (TransactionsDataOutThread == 1) {
+			TransactionsDataOutThread transactionsOutThread = new TransactionsDataOutThread();
+			Thread TransactionsdataOutThread = new Thread(transactionsOutThread);
+			TransactionsdataOutThread.setName("TransactionsdataOutThread");
+			TransactionsdataOutThread.start();
+		}
+
+        //APIPRO数据移库
+		//设备移库
+		if (MaintenanceDataInThread == 1) {
+			MaintenanceDataInThread maintenanceInThread = new MaintenanceDataInThread();
+			Thread MaintenancedataInThread = new Thread(maintenanceInThread);
+			MaintenancedataInThread.setName("MaintenancedataInThread");
+			MaintenancedataInThread.start();
+		}
+
+		if (MaintenanceDataOutThread == 1) {
+			MaintenanceDataOutThread maintenanceOutThread = new MaintenanceDataOutThread();
+			Thread MaintenancedataOutThread = new Thread(maintenanceOutThread);
+			MaintenancedataOutThread.setName("MaintenancedataOutThread");
+			MaintenancedataOutThread.start();
+		}
+
+        //备件移库
+		if (SparepartDataInThread == 1) {
+			SparepartDataInThread sparepartInThread = new SparepartDataInThread();
+			Thread SparepartdataInThread = new Thread(sparepartInThread);
+			SparepartdataInThread.setName("SparepartdataInThread");
+			SparepartdataInThread.start();
+		}
+
+		if (SparepartDataOutThread == 1) {
+			SparepartDataOutThread sparepartOutThread = new SparepartDataOutThread();
+			Thread SparepartdataOutThread = new Thread(sparepartOutThread);
+			SparepartdataOutThread.setName("SparepartdataOutThread");
+			SparepartdataOutThread.start();
+		}
+
+        //工单移库
+		if (WorkorderDataInThread == 1) {
+			WorkorderDataInThread workorderInThread = new WorkorderDataInThread();
+			Thread WorkorderdataInThread = new Thread(workorderInThread);
+			WorkorderdataInThread.setName("WorkorderdataInThread");
+			WorkorderdataInThread.start();
+		}
+
+		if (WorkorderDataOutThread == 1) {
+			WorkorderDataOutThread workorderOutThread = new WorkorderDataOutThread();
+			Thread WorkorderdataOutThread = new Thread(workorderOutThread);
+			WorkorderdataOutThread.setName("WorkorderdataOutThread");
+			WorkorderdataOutThread.start();
+		}
+
+        //产线移库
+		if (PositionDataInThread == 1) {
+			PositionDataInThread positionInThread = new PositionDataInThread();
+			Thread PositiondataInThread = new Thread(positionInThread);
+			PositiondataInThread.setName("PositiondataInThread");
+			PositiondataInThread.start();
+		}
+
+		if (PositionDataOutThread == 1) {
+			PositionDataOutThread positionOutThread = new PositionDataOutThread();
+			Thread PositiondataOutThread = new Thread(positionOutThread);
+			PositiondataOutThread.setName("PositiondataOutThread");
+			PositiondataOutThread.start();
+		}
+
+        //设备型号移库
+		if (MaintenanceobjectgroupDataInThread == 1) {
+			MaintenanceobjectgroupDataInThread maintenanceobjectgroupInThread = new MaintenanceobjectgroupDataInThread();
+			Thread MaintenanceobjectgroupdataInThread = new Thread(maintenanceobjectgroupInThread);
+			MaintenanceobjectgroupdataInThread.setName("MaintenanceobjectgroupdataInThread");
+			MaintenanceobjectgroupdataInThread.start();
+		}
+
+		if (MaintenanceobjectgroupDataOutThread == 1) {
+			MaintenanceobjectgroupDataOutThread maintenanceobjectgroupOutThread = new MaintenanceobjectgroupDataOutThread();
+			Thread MaintenanceobjectgroupdataOutThread = new Thread(maintenanceobjectgroupOutThread);
+			MaintenanceobjectgroupdataOutThread.setName("MaintenanceobjectgroupdataOutThread");
+			MaintenanceobjectgroupdataOutThread.start();
+		}
+
+        //型号参数移库
+		if (MorelationtdDataInThread == 1) {
+			MorelationtdDataInThread morelationtdInThread = new MorelationtdDataInThread();
+			Thread MorelationtddataInThread = new Thread(morelationtdInThread);
+			MorelationtddataInThread.setName("MorelationtddataInThread");
+			MorelationtddataInThread.start();
+		}
+
+		if (MorelationtdDataOutThread == 1) {
+			MorelationtdDataOutThread morelationtdOutThread = new MorelationtdDataOutThread();
+			Thread MorelationtddataOutThread = new Thread(morelationtdOutThread);
+			MorelationtddataOutThread.setName("MorelationtddataOutThread");
+			MorelationtddataOutThread.start();
+		}
+
+        //参数移库
+		if (TechnicaldataDataInThread == 1) {
+			TechnicaldataDataInThread technicaldataInThread = new TechnicaldataDataInThread();
+			Thread TechnicaldatadataInThread = new Thread(technicaldataInThread);
+			TechnicaldatadataInThread.setName("TechnicaldatadataInThread");
+			TechnicaldatadataInThread.start();
+		}
+
+		if (TechnicaldataDataOutThread == 1) {
+			TechnicaldataDataOutThread technicaldataOutThread = new TechnicaldataDataOutThread();
+			Thread TechnicaldatadataOutThread = new Thread(technicaldataOutThread);
+			TechnicaldatadataOutThread.setName("TechnicaldatadataOutThread");
+			TechnicaldatadataOutThread.start();
+		}
+
+        //用户移库
+		if (UsersDataInThread == 1) {
+			UsersDataInThread usersInThread = new UsersDataInThread();
+			Thread UsersdataInThread = new Thread(usersInThread);
+			UsersdataInThread.setName("UsersdataInThread");
+			UsersdataInThread.start();
+		}
+
+		if (UsersDataOutThread == 1) {
+			UsersDataOutThread usersOutThread = new UsersDataOutThread();
+			Thread UsersdataOutThread = new Thread(usersOutThread);
+			UsersdataOutThread.setName("UsersdataOutThread");
+			UsersdataOutThread.start();
+		}
+
+		if (MesDataInThread == 1) {
+			MesDataInThread mesDataInThread = new MesDataInThread();
+			Thread dataInThread = new Thread(mesDataInThread);
+			dataInThread.setName("MesDataInThread");
+			dataInThread.start();
+		}
+
+		if (MesDataOutThread == 1) {
+			MesDataOutThread mesDataOutThread = new MesDataOutThread();
+			Thread dataOutThread = new Thread(mesDataOutThread);
+			dataOutThread.setName("MesDataOutThread");
+			dataOutThread.start();
+		}
+
+		//----------------------------奇瑞点巡检start---------------------------------
+		if (InspectionDataInThread == 1) {
+			InspectionDataInThread inspectionInThread = new InspectionDataInThread();
+			Thread inspectionDataInThread = new Thread(inspectionInThread);
+			inspectionDataInThread.setName("InspectionDataInThread");
+			inspectionDataInThread.start();
+		}
+
+		if (InspectionDataOutThread == 1) {
+			InspectionDataOutThread inspectionOutThread = new InspectionDataOutThread();
+			Thread inspectionDataOutThread = new Thread(inspectionOutThread);
+			inspectionDataOutThread.setName("InspectionDataOutThread");
+			inspectionDataOutThread.start();
+		}
+
+		if (CheryUserDataInThread == 1) {
+			CheryUserDataInThread userDataIn = new CheryUserDataInThread();
+			Thread userDataInThread = new Thread(userDataIn);
+			userDataInThread.setName("CheryUserDataInThread");
+			userDataInThread.start();
+		}
+
+		if (CheryUserDataOutThread == 1) {
+			CheryUserDataOutThread userDataOut = new CheryUserDataOutThread();
+			Thread userDataOutThread = new Thread(userDataOut);
+			userDataOutThread.setName("CheryUserDataOutThread");
+			userDataOutThread.start();
+		}
+
+		if (HumanDataInThread == 1) {
+			HumanDataInThread humanDataIn = new HumanDataInThread();
+			Thread humanDataInThread = new Thread(humanDataIn);
+			humanDataInThread.setName("HumanDataInThread");
+			humanDataInThread.start();
+		}
+
+		if (HumanDataOutThread == 1) {
+			HumanDataOutThread humanDataOut = new HumanDataOutThread();
+			Thread humanDataOutThread = new Thread(humanDataOut);
+			humanDataOutThread.setName("HumanDataOutThread");
+			humanDataOutThread.start();
+		}
+
+		if (InstrumentDataInThread == 1) {
+			InstrumentDataInThread instrumentDataIn = new InstrumentDataInThread();
+			Thread instrumentDataInThread = new Thread(instrumentDataIn);
+			instrumentDataInThread.setName("InstrumentDataInThread");
+			instrumentDataInThread.start();
+		}
+
+		if (InstrumentDataOutThread == 1) {
+			InstrumentDataOutThread instrumentDataOut = new InstrumentDataOutThread();
+			Thread instrumentDataOutThread = new Thread(instrumentDataOut);
+			instrumentDataOutThread.setName("InstrumentDataOutThread");
+			instrumentDataOutThread.start();
+		}
+
+		if (CheryPositionDataInThread == 1) {
+			CheryPositionDataInThread cheryPositionDataIn = new CheryPositionDataInThread();
+			Thread cheryPositionDataInThread = new Thread(cheryPositionDataIn);
+			cheryPositionDataInThread.setName("CheryPositionDataInThread");
+			cheryPositionDataInThread.start();
+		}
+
+		if (CheryPositionDataOutThread == 1) {
+			CheryPositionDataOutThread cheryPositionDataOut = new CheryPositionDataOutThread();
+			Thread cheryPositionDataOutThread = new Thread(cheryPositionDataOut);
+			cheryPositionDataOutThread.setName("CheryPositionDataOutThread");
+			cheryPositionDataOutThread.start();
+		}
+
+		if (CheryMaintenanceDataInThread == 1) {
+			CheryMaintenanceDataInThread cheryMaintenanceDataIn = new CheryMaintenanceDataInThread();
+			Thread cheryMaintenanceDataInThread = new Thread(cheryMaintenanceDataIn);
+			cheryMaintenanceDataInThread.setName("CheryMaintenanceDataInThread");
+			cheryMaintenanceDataInThread.start();
+		}
+
+		if (CheryMaintenanceDataOutThread == 1) {
+			CheryMaintenanceDataOutThread cheryMaintenanceDataOut = new CheryMaintenanceDataOutThread();
+			Thread cheryMaintenanceDataOutThread = new Thread(cheryMaintenanceDataOut);
+			cheryMaintenanceDataOutThread.setName("CheryMaintenanceDataOutThread");
+			cheryMaintenanceDataOutThread.start();
+		}
+
+		if (InspectionPointDataInThread == 1) {
+			InspectionPointDataInThread inspectionPointDataIn = new InspectionPointDataInThread();
+			Thread inspectionPointDataInThread = new Thread(inspectionPointDataIn);
+			inspectionPointDataInThread.setName("InspectionPointDataInThread");
+			inspectionPointDataInThread.start();
+		}
+
+		if (InspectionPointDataOutThread == 1) {
+			InspectionPointDataOutThread inspectionPointDataOut = new InspectionPointDataOutThread();
+			Thread inspectionPointDataOutThread = new Thread(inspectionPointDataOut);
+			inspectionPointDataOutThread.setName("InspectionPointDataOutThread");
+			inspectionPointDataOutThread.start();
+		}
+
+		//明云数据同步到API数据库
+		if (MingcloudDataToAPI == 1) {
+			MingcloudDataToAPI mingcloudDataToAPI = new MingcloudDataToAPI();
+			Thread mingcloudDataToAPIThread = new Thread(mingcloudDataToAPI);
+            mingcloudDataToAPIThread.setName("mingcloudDataToAPIThread");
+            mingcloudDataToAPIThread.start();
+		}
+
+		//明云数据同步到API数据库
+		if (MingcloudDataUpdateDateToAPI == 1) {
+			MingcloudDataUpdateDateToAPI mingcloudDataToAPI = new MingcloudDataUpdateDateToAPI();
+			Thread mingcloudDataUpdateDateToAPI = new Thread(mingcloudDataToAPI);
+			mingcloudDataUpdateDateToAPI.setName("mingcloudDataToAPIThread");
+			mingcloudDataUpdateDateToAPI.start();
+		}
+
+        //----------------------------奇瑞点巡检end---------------------------------
+
+		if (userDimissionThreadOn == 1) {
+			UserDimissionThread dimissionThread = new UserDimissionThread();
+			Thread userDimissionThread = new Thread(dimissionThread);
+			userDimissionThread.setName("UserDimissionThread");
+			userDimissionThread.start();
+		}
+
+	}
+}
+

@@ -1,0 +1,38 @@
+package com.mingcloud.proxy.datacenter.messageData;
+
+
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.MessageconfigMapper;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.MessageconfigEntity;
+import com.mingcloud.proxy.util.SpringContextUtil;
+
+import java.util.List;
+
+public class MessageconfigData {
+	
+	private static MessageconfigData messageconfigData;
+	
+	private static MessageconfigMapper messageconfigMapper = SpringContextUtil.getBean("messageconfigMapper");
+	
+	public static MessageconfigData getInstance() {
+    	if(messageconfigData == null) {
+			messageconfigData = new MessageconfigData();
+    	}
+    	return messageconfigData;
+    }
+	
+    private List<MessageconfigEntity> messageconfigList;
+    
+    public List<MessageconfigEntity> getSucmessagelogList() {
+    	return messageconfigList;
+    }
+    
+    public void resetMessageconfigList() {
+		setMessageconfigData();
+    }
+
+    private void setMessageconfigData() {
+		MessageconfigEntity entity = new MessageconfigEntity();
+		messageconfigList = messageconfigMapper.selectAll();
+    }
+
+}

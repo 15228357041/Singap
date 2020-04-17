@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.PurchaserequestlineMapper" >
+  <resultMap id="BaseResultMap" type="PurchaserequestlineEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="purchaserequestid" property="purchaserequestid" jdbcType="INTEGER" />
+    <result column="spid" property="spid" jdbcType="INTEGER" />
+    <result column="spname" property="spname" jdbcType="VARCHAR" />
+    <result column="qty" property="qty" jdbcType="DECIMAL" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="maintenanceobjectid" property="maintenanceobjectid" jdbcType="INTEGER" />
+    <result column="workorderid" property="workorderid" jdbcType="INTEGER" />
+    <result column="wokey" property="wokey" jdbcType="VARCHAR" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="createuserid" property="createuserid" jdbcType="INTEGER" />
+    <result column="modificationdate" property="modificationdate" jdbcType="TIMESTAMP" />
+    <result column="modificationuserid" property="modificationuserid" jdbcType="INTEGER" />
+    <result column="picpath" property="picpath" jdbcType="VARCHAR" />
+    <result column="barcode" property="barcode" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="orgid" property="orgid" jdbcType="INTEGER" />
+    <result column="tombstone" property="tombstone" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="table_name">
+		purchaserequestline
+  </sql>
+  
+  <sql id="Base_Column_List" >
+    <include refid="table_name"/>.id, 
+    <include refid="table_name"/>.purchaserequestid, 
+    <include refid="table_name"/>.spid, 
+    <include refid="table_name"/>.spname, 
+    <include refid="table_name"/>.qty, 
+    <include refid="table_name"/>.price, 
+    <include refid="table_name"/>.amount, 
+    <include refid="table_name"/>.status, 
+    <include refid="table_name"/>.maintenanceobjectid, 
+    <include refid="table_name"/>.workorderid, 
+    <include refid="table_name"/>.wokey, 
+    <include refid="table_name"/>.createdate, 
+    <include refid="table_name"/>.createuserid, 
+    <include refid="table_name"/>.modificationdate, 
+    <include refid="table_name"/>.modificationuserid, 
+    <include refid="table_name"/>.picpath, 
+    <include refid="table_name"/>.barcode, 
+    <include refid="table_name"/>.memo, 
+    <include refid="table_name"/>.orgid, 
+    <include refid="table_name"/>.tombstone
+  </sql>
+  <select id="checkLine" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from purchaserequestline, sparepart
+	where purchaserequestid = #{purchaserequestid}
+	AND sparepartkey = #{spkey}
+	AND sparepart.id = purchaserequestline.spid
+  </select>
+  <insert id="insertLine" parameterType="java.util.Map" >
+    insert into purchaserequestline 
+    (purchaserequestid, spid, createdate)
+    select #{purchaserequestid}, id, #{createdate}
+	from sparepart
+	WHERE sparepartkey = #{spkey}
+  </insert>
+  
+  <update id="updateLine" parameterType="java.util.Map" >
+    update purchaserequestline
+    <set >
+      <if test="purchaserequestid != null" >
+        purchaserequestid = #{purchaserequestid,jdbcType=INTEGER},
+      </if>
+      <if test="spid != null" >
+        spid = #{spid,jdbcType=INTEGER},
+      </if>
+      <if test="spname != null" >
+        spname = #{spname,jdbcType=VARCHAR},
+      </if>
+      <if test="qty != null" >
+        qty = #{qty,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="maintenanceobjectid != null" >
+        maintenanceobjectid = #{maintenanceobjectid,jdbcType=INTEGER},
+      </if>
+      <if test="workorderid != null" >
+        workorderid = #{workorderid,jdbcType=INTEGER},
+      </if>
+      <if test="wokey != null" >
+        wokey = #{wokey,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuserid != null" >
+        createuserid = #{createuserid,jdbcType=INTEGER},
+      </if>
+      <if test="modificationdate != null" >
+        modificationdate = #{modificationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificationuserid != null" >
+        modificationuserid = #{modificationuserid,jdbcType=INTEGER},
+      </if>
+      <if test="picpath != null" >
+        picpath = #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        orgid = #{orgid,jdbcType=INTEGER},
+      </if>
+      <if test="tombstone != null" >
+        tombstone = #{tombstone,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

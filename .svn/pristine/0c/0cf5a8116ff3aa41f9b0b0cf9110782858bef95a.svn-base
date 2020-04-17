@@ -1,0 +1,126 @@
+package com.mingcloud.proxy.logiclayer.huaweihandler;
+
+import java.util.Date;
+
+import org.apache.log4j.Logger;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.MaintenanceobjectMapper;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.MaintenanceobjectgroupMapper;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.PositionMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.MaintenanceobjectDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.MaintenanceobjectEntity;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.MaintenanceobjectgroupEntity;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.PositionEntity;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+
+public class MaintenanceDataOutThread implements Runnable {
+	private static Logger logger = Logger.getLogger(MaintenanceDataOutThread.class);
+
+	private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+	
+	private DataCenter dataCenter = DataCenter.getInstance();
+	
+	private MaintenanceobjectMapper maintenanceobjectMapper = SpringContextUtil.getBean("maintenanceobjectMapper");
+	private PositionMapper positionMapper = SpringContextUtil.getBean("positionMapper");
+	private MaintenanceobjectgroupMapper maintenanceobjectgroupMapper = SpringContextUtil.getBean("maintenanceobjectgroupMapper");
+	
+	private static Integer maintenancelistSize;
+	
+	public MaintenanceDataOutThread() {
+		// TODO Auto-generated constructor stub
+		// 设置数据源为MySql
+		jdbcChange.changeJdbc(JdbcChange.mySqlDataSource);
+	}
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		logger.info("MaintenanceDataOutThread begin");
+		
+		while(true) {
+			try {
+				if(dataCenter.getMaintenancelistSize() > 0) {
+					maintenancelistSize = dataCenter.getMaintenancelistSize();
+					InsertMaintenanceobject();
+					logger.info("MaintenanceDataCenter Size:" + (maintenancelistSize-1));
+				}
+				Thread.sleep(50);
+			} catch(Exception e) {
+				logger.error("MaintenanceDataOutThread: " + e);
+			}
+		}
+	}
+	
+	private void InsertMaintenanceobject() {
+		// TODO Auto-generated method stub
+		try {
+			MaintenanceobjectDto dto = dataCenter.popMaintenancelist();
+			PositionEntity positionEntity = new PositionEntity();
+			positionEntity.setPoskey(dto.getExtravarchar1());
+			PositionEntity posEntity = positionMapper.get(positionEntity);
+			
+			MaintenanceobjectgroupEntity maintenanceobjectgroupEntity = new MaintenanceobjectgroupEntity();
+			maintenanceobjectgroupEntity.setMogroupkey(dto.getExtravarchar2());
+			MaintenanceobjectgroupEntity groupEntity = maintenanceobjectgroupMapper.get(maintenanceobjectgroupEntity);
+			
+			MaintenanceobjectEntity entity = new MaintenanceobjectEntity();
+			entity.setMokey(dto.getMokey());
+			MaintenanceobjectEntity maintenanceobjectEntity = maintenanceobjectMapper.get(entity);
+			
+			MaintenanceobjectEntity mgentity = new MaintenanceobjectEntity();
+			if (dto.getExtravarchar3() != null && !dto.getExtravarchar3().equals("")) {
+				MaintenanceobjectEntity gentity = new MaintenanceobjectEntity();
+				gentity.setMokey(dto.getExtravarchar3());
+				mgentity = maintenanceobjectMapper.get(gentity);
+			}
+			
+			Date date = new Date();
+			if(posEntity != null && !posEntity.equals("")) {
+				entity.setPosid(posEntity.getId());
+			}
+			if(groupEntity != null && !groupEntity.equals("")) {
+				entity.setMogroupid(groupEntity.getId().toString());
+			}
+			if(maintenanceobjectEntity != null && !maintenanceobjectEntity.equals("")) {
+				entity.setMoname(dto.getMoname());
+				entity.setExtramoinfo1(dto.getExtramoinfo1());
+				entity.setExtramoinfo2(dto.getExtramoinfo2());
+				entity.setExtramoinfo3(dto.getExtramoinfo3());
+				entity.setExtramoinfo4(dto.getExtramoinfo4());
+				entity.setGuarantyexpiredate(dto.getGuarantyexpiredate());
+				entity.setDeliverydate(dto.getDeliverydate());
+				entity.setAccountid(dto.getAccountid());
+				entity.setModificationdate(date);
+				entity.setId(maintenanceobjectEntity.getId());
+				if (mgentity != null && !mgentity.equals("")) {
+					entity.setRootmoid(mgentity.getId().toString());
+				}
+				
+				maintenanceobjectMapper.update(entity);
+				logger.info("MaintenanceDataOutThread update succeeded...");
+			} else {
+				entity.setMoname(dto.getMoname());
+				entity.setExtramoinfo1(dto.getExtramoinfo1());
+				entity.setExtramoinfo2(dto.getExtramoinfo2());
+				entity.setExtramoinfo3(dto.getExtramoinfo3());
+				entity.setExtramoinfo4(dto.getExtramoinfo4());
+				entity.setGuarantyexpiredate(dto.getGuarantyexpiredate());
+				entity.setDeliverydate(dto.getDeliverydate());
+				entity.setAccountid(dto.getAccountid());
+				entity.setCreatedate(date);
+				entity.setModificationdate(date);
+				if (mgentity != null && !mgentity.equals("")) {
+					entity.setRootmoid(mgentity.getId().toString());
+				}
+				
+				maintenanceobjectMapper.insert(entity);
+				logger.info("MaintenanceDataOutThread insert succeeded...");
+			}
+		} catch(Exception e) {
+			logger.error("MaintenanceDataOutThread InsertMaintenanceobject: " + e);
+		}
+	}
+
+}

@@ -1,0 +1,96 @@
+package com.mingcloud.proxy.logiclayer.transactionshandler;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.Rdrecord11Mapper;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.Rdrecords11Mapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.Rdrecords11Dto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.Rdrecord11Entity;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.Rdrecords11Entity;
+import com.mingcloud.proxy.logiclayer.purchaserehandler.PurchasereDataInThread;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class TransactionsDataInThread implements Runnable {
+	private static Logger logger = Logger.getLogger(PurchasereDataInThread.class);
+
+	private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+
+	private DataCenter dataCenter = DataCenter.getInstance();
+	
+	private Rdrecord11Mapper rdrecord11Mapper = SpringContextUtil.getBean("rdrecord11Mapper");
+	private Rdrecords11Mapper rdrecords11Mapper = SpringContextUtil.getBean("rdrecords11Mapper");
+	
+	public TransactionsDataInThread() {
+		// TODO Auto-generated constructor stub
+		//设置数据源为sqlserver
+		jdbcChange.changeJdbc(JdbcChange.sqlServerDataSource);
+	}
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		logger.info("TransactionsDataInThread begin");
+		
+		while (true) {
+			try {
+				if (dataCenter.getRdrecords11listSize() < DataCenter.COMMONRECORDEXLIST_MAX_LENGTH) {
+					getAllTransactionsData();
+					logger.info("TransactionsDataInThread wait for 5 minutes...");
+					Thread.sleep(5 * 60 * 1000);
+				} else {
+					logger.info("TransactionsDataInThread wait for 5 minutes...");
+					Thread.sleep(5 * 60 * 1000);
+				}
+			} catch(Exception e) {
+				logger.error("TransactionsDataInThread: " + e);
+			}
+		}
+	}
+
+	private void getAllTransactionsData() {
+		// TODO Auto-generated method stub
+		List<Rdrecord11Entity> cordlist = new ArrayList<Rdrecord11Entity>();
+		try {
+			cordlist = rdrecord11Mapper.selectAll();
+			if (cordlist != null && !cordlist.isEmpty()) {
+				for (Rdrecord11Entity entity : cordlist) {
+					//判断大写字母开头的正则
+					String regex = "^[A-Z].*$";
+					//U8中代表工单编号的字段
+					String cDefine2 = entity.getCdefine2();
+
+					if(cDefine2.matches(regex)){
+						Rdrecords11Entity rdrecords11Entity = new Rdrecords11Entity();
+						rdrecords11Entity.setId(entity.getId());
+						List<Rdrecords11Entity> cordslist  = rdrecords11Mapper.select(rdrecords11Entity);
+						if (cordslist != null && !cordslist.isEmpty()) {
+							for (Rdrecords11Entity cords11Entity : cordslist) {
+								if (cords11Entity.getCinvcode() != null && entity.getCdefine2() != null) {
+									Rdrecords11Dto dto = new Rdrecords11Dto();
+									dto.setCinvcode(cords11Entity.getCinvcode());
+									dto.setIquantity(cords11Entity.getIquantity());
+									dto.setIprice(cords11Entity.getIprice());
+									dto.setCwhcode(entity.getCwhcode());
+									dto.setCdefine2(entity.getCdefine2());
+									dto.setCmemo(entity.getCmemo());
+									dto.setId(cords11Entity.getId());
+									dataCenter.pushRdrecords11list(dto);
+								}
+							}
+						}
+					}
+				}
+				logger.info("TransactionsDataInThread.getAllTransactionsData succeeded...");
+			}
+			
+		} catch (Exception e) {
+			logger.error("TransactionsDataInThread getAllTransactionsData: " + e);
+		}
+		
+	}
+
+}

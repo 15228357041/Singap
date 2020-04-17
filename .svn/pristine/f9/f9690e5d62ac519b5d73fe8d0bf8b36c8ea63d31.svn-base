@@ -1,0 +1,2 @@
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://eam.baicmotor.com")
+package com.mingcloud.proxy.logiclayer.beiqidisposeouthandler.webservice;

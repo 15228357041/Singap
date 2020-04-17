@@ -1,0 +1,19 @@
+package com.mingcloud.proxy.datalayer.dao.archiveinfo;
+
+import com.mingcloud.proxy.datalayer.dao.BaseMapper;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.UsersEntity;
+
+import java.util.List;
+
+public interface UsersMapper extends BaseMapper<UsersEntity> {
+	
+	List<UsersEntity> selectAllApi();
+
+	List<UsersEntity> selectAllUsers();
+
+	List<UsersEntity> getUsersByKeys(List<String> userKeyList);
+
+	int batchUpdateStatus(List<UsersEntity> usersEntities);
+
+	int batchInsertDimission(List<UsersEntity> usersEntities);
+}

@@ -1,0 +1,53 @@
+package com.mingcloud.proxy.common;
+
+/**
+ * 虚拟工单对应仓库id，R开头表是虚拟工单。Z1-一工厂  Z2-二工厂
+ * ZZ-总装车间  FDJ-发动机车间 CY-冲压车间 TZ-涂装车间 HZ-焊装车间 DL-动力设施
+ */
+public enum WoKeyRelationStockEnum {
+    RZ1ZZ("RZ1ZZ",14),
+    RZ1FDJ("RZ1FDJ",15),
+    RZ1CY("RZ1CY",16),
+    RZ1TZ("RZ1TZ",17),
+    RZ1HZ("RZ1HZ",18),
+    RZ1DL("RZ1DL",19),
+    RZ2ZZ("RZ2ZZ",21),
+    RZ2CY("RZ2CY",22),
+    RZ2HZ("RZ2HZ",23),
+    RZ2TZ("RZ2TZ",24),
+    RZ2FDJ("RZ2FDJ",25),
+    RZ2DL("RZ2DL",26);
+
+    private Integer stockId;
+    private String woKey;
+
+    private WoKeyRelationStockEnum(String woKey, Integer stockId){
+        this.woKey = woKey;
+        this.stockId = stockId;
+    }
+
+    public static Integer getStockId(String woKey){
+        for (WoKeyRelationStockEnum e : WoKeyRelationStockEnum.values()) {
+            if (e.getWoKey().equals(woKey)) {
+                return e.getStockId();
+            }
+        }
+        return null;
+    }
+
+    public Integer getStockId() {
+        return stockId;
+    }
+
+    public void setStockId(Integer stockId) {
+        this.stockId = stockId;
+    }
+
+    public String getWoKey() {
+        return woKey;
+    }
+
+    public void setWoKey(String woKey) {
+        this.woKey = woKey;
+    }
+}

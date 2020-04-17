@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.OrganizationMapper">
+
+	<sql id="table_name">
+		organization
+	</sql>
+
+	<sql id="table_id">
+		<include refid="table_name"/>.id
+	</sql>
+
+	<!-- table columns -->
+	<sql id="database_table_columns">
+		 <include refid="table_name"/>.id, 
+		 <include refid="table_name"/>.organizationkey, 
+		 <include refid="table_name"/>.organizationname, 
+		 <include refid="table_name"/>.rootorganizationid, 
+		 <include refid="table_name"/>.createdate, 
+		 <include refid="table_name"/>.createuserid, 
+		 <include refid="table_name"/>.modificationdate, 
+		 <include refid="table_name"/>.modificationuserid, 
+		 <include refid="table_name"/>.picpath, 
+		 <include refid="table_name"/>.barcode, 
+		 <include refid="table_name"/>.memo, 
+		 <include refid="table_name"/>.tombstone,
+		 <include refid="table_name"/>.rootpath
+	</sql>
+
+	<!-- dynamic full match -->
+	<sql id="dynamic_full_match_condition">
+		<trim prefix="WHERE" prefixOverrides="AND ">
+			  	AND <include refid="table_name"/>.tombstone = 1
+			  <if test="id != null">
+			  	AND <include refid="table_name"/>.id = #{id,jdbcType=INTEGER}
+			  </if>
+			  <if test="organizationkey != null" >
+		        AND <include refid="table_name"/>.organizationkey = #{organizationkey,jdbcType=VARCHAR}
+		      </if>
+		      <if test="organizationname != null" >
+		        AND <include refid="table_name"/>.organizationname = #{organizationname,jdbcType=VARCHAR}
+		      </if>
+		      <if test="rootorganizationid != null" >
+		        AND <include refid="table_name"/>.rootorganizationid = #{rootorganizationid,jdbcType=INTEGER}
+		      </if>
+		      <if test="createdate != null" >
+		        AND <include refid="table_name"/>.createdate = #{createdate,jdbcType=TIMESTAMP}
+		      </if>
+		      <if test="createuserid != null" >
+		        AND <include refid="table_name"/>.createuserid = #{createuserid,jdbcType=INTEGER}
+		      </if>
+		      <if test="modificationdate != null" >
+		        AND <include refid="table_name"/>.modificationdate = #{modificationdate,jdbcType=TIMESTAMP}
+		      </if>
+		      <if test="modificationuserid != null" >
+		        AND <include refid="table_name"/>.modificationuserid = #{modificationuserid,jdbcType=INTEGER}
+		      </if>
+		      <if test="picpath != null" >
+		        AND <include refid="table_name"/>.picpath = #{picpath,jdbcType=VARCHAR}
+		      </if>
+		      <if test="barcode != null" >
+		        AND <include refid="table_name"/>.barcode = #{barcode,jdbcType=VARCHAR}
+		      </if>
+		      <if test="memo != null" >
+		        AND <include refid="table_name"/>.memo = #{memo,jdbcType=VARCHAR}
+		      </if>
+		      <if test="rootpath != null" >
+		        AND <include refid="table_name"/>.rootpath = #{rootpath,jdbcType=VARCHAR}
+		      </if>
+		</trim>
+	</sql>
+	
+	<!-- dynamic like match -->
+	<sql id="dynamic_like_match_condition">
+	  WHERE <include refid="table_name"/>.tombstone = 1 
+	  <trim prefix=" AND (" prefixOverrides="OR " suffix=") ">
+		  <if test="organizationkey != null" >
+	        OR <include refid="table_name"/>.organizationkey like "%"#{organizationkey,jdbcType=VARCHAR}"%"
+	      </if>
+	      <if test="organizationname != null" >
+	        OR <include refid="table_name"/>.organizationname like "%"#{organizationname,jdbcType=VARCHAR}"%"
+	      </if>
+	      <if test="barcode != null" >
+	        OR <include refid="table_name"/>.barcode like "%"#{barcode,jdbcType=VARCHAR}"%"
+	      </if>
+	      <if test="memo != null" >
+	        OR <include refid="table_name"/>.memo like "%"#{memo,jdbcType=VARCHAR}"%"
+	      </if>
+      </trim>
+	  <if test="id != null">
+	  	AND <include refid="table_name"/>.id = #{id,jdbcType=INTEGER}
+	  </if>
+      <if test="rootorganizationid != null" >
+        AND <include refid="table_name"/>.rootorganizationid = #{rootorganizationid,jdbcType=INTEGER}
+      </if>
+      <if test="createdate != null" >
+        AND <include refid="table_name"/>.createdate = #{createdate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createuserid != null" >
+        AND <include refid="table_name"/>.createuserid = #{createuserid,jdbcType=INTEGER}
+      </if>
+      <if test="modificationdate != null" >
+        AND <include refid="table_name"/>.modificationdate = #{modificationdate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="modificationuserid != null" >
+        AND <include refid="table_name"/>.modificationuserid = #{modificationuserid,jdbcType=INTEGER}
+      </if>
+      <if test="picpath != null" >
+        AND <include refid="table_name"/>.picpath = #{picpath,jdbcType=VARCHAR}
+      </if>
+      <if test="rootpath != null" >
+	    AND <include refid="table_name"/>.rootpath like "%"#{rootpath,jdbcType=VARCHAR}"%"
+	  </if>
+	</sql>
+	
+	<resultMap id="entityBeanResultEx" type="OrganizationEntity">
+		<id column="id" property="id" jdbcType="INTEGER" />
+	    <result column="organizationkey" property="organizationkey" jdbcType="VARCHAR" />
+	    <result column="organizationname" property="organizationname" jdbcType="VARCHAR" />
+	    <result column="rootorganizationid" property="rootorganizationid" jdbcType="INTEGER" />
+	    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+	    <result column="createuserid" property="createuserid" jdbcType="INTEGER" />
+	    <result column="modificationdate" property="modificationdate" jdbcType="TIMESTAMP" />
+	    <result column="modificationuserid" property="modificationuserid" jdbcType="INTEGER" />
+	    <result column="picpath" property="picpath" jdbcType="VARCHAR" />
+	    <result column="barcode" property="barcode" jdbcType="VARCHAR" />
+	    <result column="memo" property="memo" jdbcType="VARCHAR" />
+	    <result column="tombstone" property="tombstone" jdbcType="INTEGER" />
+	    <result column="rootpath" property="rootpath" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="selectByKeyLike" parameterType="OrganizationEntity" resultMap="entityBeanResultEx">
+		SELECT
+		<include refid="database_table_columns" />
+		FROM
+		<include refid="table_name" />
+		<include refid="dynamic_like_match_condition" />
+	</select>
+
+	<select id="get" parameterType="OrganizationEntity" resultMap="entityBeanResultEx">
+		SELECT <include refid="database_table_columns"/>
+		FROM
+		<include refid="table_name" />
+		WHERE
+		organizationkey = #{organizationkey,jdbcType=VARCHAR}
+	</select>
+	
+</mapper>

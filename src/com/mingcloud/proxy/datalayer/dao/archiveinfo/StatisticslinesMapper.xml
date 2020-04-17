@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.StatisticslinesMapper">
+
+    <sql id="table_name">
+    statisticslines
+    </sql>
+
+    <sql id="table_id">
+    id
+    </sql>
+
+    <sql id="database_table_columns">
+        <include refid="table_name"/>.id,
+        <include refid="table_name"/>.posid,
+        <include refid="table_name"/>.poskey,
+        <include refid="table_name"/>.posname,
+        <include refid="table_name"/>.posabname,
+        <include refid="table_name"/>.extradecimal1,
+        <include refid="table_name"/>.extradecimal2,
+        <include refid="table_name"/>.extradecimal3,
+        <include refid="table_name"/>.extradecimal4,
+        <include refid="table_name"/>.extradecimal5,
+        <include refid="table_name"/>.extradecimal6,
+        <include refid="table_name"/>.extradecimal7,
+        <include refid="table_name"/>.extradecimal8,
+        <include refid="table_name"/>.extradecimal9,
+        <include refid="table_name"/>.extradecimal10,
+        <include refid="table_name"/>.extradecimal11,
+        <include refid="table_name"/>.extradecimal12,
+        <include refid="table_name"/>.extradecimal13,
+        <include refid="table_name"/>.extradecimal14,
+        <include refid="table_name"/>.extradecimal15,
+        <include refid="table_name"/>.statisticsdate,
+        <include refid="table_name"/>.createdate,
+        <include refid="table_name"/>.modificationdate,
+        <include refid="table_name"/>.orgid,
+        <include refid="table_name"/>.datenum
+    </sql>
+
+    <sql id="update_statisticslines_where">
+        <trim prefix="" suffix="" prefixOverrides=",">
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="posid != null">
+                posid = #{posid},
+            </if>
+            <if test="poskey != null">
+                poskey = #{poskey},
+            </if>
+            <if test="posabname != null">
+                posabname = #{posabname},
+            </if>
+            <if test="posname != null">
+                posname = #{posname},
+            </if>
+            <if test="extradecimal1 != null">
+                extradecimal1 = #{extradecimal1},
+            </if>
+            <if test="extradecimal2 != null">
+                extradecimal2 = #{extradecimal2},
+            </if>
+            <if test="extradecimal3 != null">
+                extradecimal3 = #{extradecimal3},
+            </if>
+            <if test="extradecimal4 != null">
+                extradecimal4 = #{extradecimal4},
+            </if>
+            <if test="extradecimal5 != null">
+                extradecimal5 = #{extradecimal5},
+            </if>
+            <if test="extradecimal6 != null">
+                extradecimal6 = #{extradecimal6},
+            </if>
+            <if test="extradecimal7 != null">
+                extradecimal7 = #{extradecimal7},
+            </if>
+            <if test="extradecimal8 != null">
+                extradecimal8 = #{extradecimal8},
+            </if>
+            <if test="extradecimal9 != null">
+                extradecimal9 = #{extradecimal9},
+            </if>
+            <if test="extradecimal10 != null">
+                extradecimal10 = #{extradecimal10},
+            </if>
+            <if test="statisticsdate != null">
+                statisticsdate = #{statisticsdate},
+            </if>
+            <if test="createdate != null">
+                createdate = #{createdate},
+            </if>
+            <if test="modificationdate != null">
+                modificationdate = #{modificationdate},
+            </if>
+            <if test="orgid != null">
+                orgid = #{orgid},
+            </if>
+            <if test="datenum != null">
+                datenum = #{datenum},
+            </if>
+            <if test="extradecimal11 != null">
+                extradecimal11 = #{extradecimal11},
+            </if>
+            <if test="extradecimal12 != null">
+                extradecimal12 = #{extradecimal12},
+            </if>
+            <if test="extradecimal13 != null">
+                extradecimal13 = #{extradecimal13},
+            </if>
+            <if test="extradecimal14 != null">
+                extradecimal14 = #{extradecimal14},
+            </if>
+            <if test="extradecimal15 != null">
+                extradecimal15 = #{extradecimal15},
+            </if>
+        </trim>
+    </sql>
+
+
+    <!-- table columns -->
+    <sql id="dynamic_full_match_condition">
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="id != null">
+                AND id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="posid != null">
+                AND posid = #{posid,jdbcType=INTEGER}
+            </if>
+            <if test="poskey != null">
+                AND poskey = #{poskey,jdbcType=VARCHAR}
+            </if>
+            <if test="posname != null">
+                AND posname = #{posname,jdbcType=VARCHAR}
+            </if>
+            <if test="posabname != null">
+                AND posabname = #{posabname,jdbcType=VARCHAR}
+            </if>
+            <if test="extradecimal1 != null">
+                AND extradecimal1 = #{extradecimal1,jdbcType=DECIMAL}
+            </if>
+            <if test="extradecimal2 != null">
+                AND extradecimal2 = #{extradecimal2,jdbcType=DECIMAL}
+            </if>
+            <if test="extradecimal3 != null">
+                AND extradecimal3 = #{extradecimal3,jdbcType=DECIMAL}
+            </if>
+            <if test="extradecimal4 != null">
+                AND extradecimal4 = #{extradecimal4,jdbcType=DECIMAL}
+            </if>
+            <if test="extradecimal5 != null">
+                AND extradecimal5 = #{extradecimal5,jdbcType=DECIMAL}
+            </if>
+            <if test="extradecimal6 != null">
+                AND extradecimal6 = #{extradecimal6,jdbcType=DECIMAL}
+            </if>
+            <if test="extradecimal7 != null">
+                AND extradecimal7 = #{extradecimal7,jdbcType=DECIMAL}
+            </if>
+            <if test="extradecimal8 != null">
+                AND extradecimal8 = #{extradecimal8,jdbcType=DECIMAL}
+            </if>
+            <if test="extradecimal9 != null">
+                AND extradecimal9 = #{extradecimal9,jdbcType=DECIMAL}
+            </if>
+            <if test="extradecimal10 != null">
+                AND extradecimal10 = #{extradecimal10,jdbcType=DECIMAL}
+            </if>
+            <if test="extradecimal11 != null">
+                AND extradecimal11 = #{extradecimal11,jdbcType=DECIMAL}
+            </if>
+            <if test="extradecimal12 != null">
+                AND extradecimal12 = #{extradecimal12,jdbcType=DECIMAL}
+            </if>
+            <if test="extradecimal13 != null">
+                AND extradecimal13 = #{extradecimal13,jdbcType=DECIMAL}
+            </if>
+            <if test="extradecimal14 != null">
+                AND extradecimal14 = #{extradecimal14,jdbcType=DECIMAL}
+            </if>
+            <if test="extradecimal15 != null">
+                AND extradecimal15 = #{extradecimal15,jdbcType=DECIMAL}
+            </if>
+            <if test="extradetime1 != null">
+                AND extradetime1 = #{extradetime1,jdbcType=TIMESTAMP}
+            </if>
+            <if test="timeque != null">
+                AND timeque = #{timeque,jdbcType=TIMESTAMP}
+            </if>
+            <if test="createdate != null">
+                AND createdate = #{createdate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="modificationdate != null">
+                AND modificationdate = #{modificationdate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="orgid != null">
+                AND orgid = #{orgid,jdbcType=INTEGER}
+            </if>
+            <if test="datenum != null">
+                AND datenum = #{datenum,jdbcType=INTEGER}
+            </if>
+        </trim>
+    </sql>
+
+    <resultMap id="BaseResultMap" type="StatisticslinesEntity">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="posid" property="posid" jdbcType="INTEGER"/>
+        <result column="poskey" property="poskey" jdbcType="VARCHAR"/>
+        <result column="posabname" property="posabname" jdbcType="VARCHAR"/>
+        <result column="posname" property="posname" jdbcType="VARCHAR"/>
+        <result column="extradecimal1" property="extradecimal1" jdbcType="DECIMAL"/>
+        <result column="extradecimal2" property="extradecimal2" jdbcType="DECIMAL"/>
+        <result column="extradecimal3" property="extradecimal3" jdbcType="DECIMAL"/>
+        <result column="extradecimal4" property="extradecimal4" jdbcType="DECIMAL"/>
+        <result column="extradecimal5" property="extradecimal5" jdbcType="DECIMAL"/>
+        <result column="extradecimal6" property="extradecimal6" jdbcType="DECIMAL"/>
+        <result column="extradecimal7" property="extradecimal7" jdbcType="DECIMAL"/>
+        <result column="extradecimal8" property="extradecimal8" jdbcType="DECIMAL"/>
+        <result column="extradecimal9" property="extradecimal9" jdbcType="DECIMAL"/>
+        <result column="extradecimal10" property="extradecimal10" jdbcType="DECIMAL"/>
+        <result column="extradecimal11" property="extradecimal11" jdbcType="DECIMAL"/>
+        <result column="extradecimal12" property="extradecimal12" jdbcType="DECIMAL"/>
+        <result column="extradecimal13" property="extradecimal13" jdbcType="DECIMAL"/>
+        <result column="extradecimal14" property="extradecimal14" jdbcType="DECIMAL"/>
+        <result column="extradecimal15" property="extradecimal15" jdbcType="DECIMAL"/>
+        <result column="statisticsdate" property="statisticsdate" jdbcType="TIMESTAMP"/>
+        <result column="createdate" property="createdate" jdbcType="TIMESTAMP"/>
+        <result column="modificationdate" property="modificationdate" jdbcType="TIMESTAMP"/>
+        <result column="orgid" property="orgid" jdbcType="INTEGER"/>
+        <result column="datenum" property="datenum" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!-- dynamic full match -->
+    <select id="select" parameterType="StatisticslinesEntity" resultMap="BaseResultMap">
+        SELECT
+        <include refid="database_table_columns"/>
+        FROM
+        <include refid="table_name"/>
+        <include refid="dynamic_full_match_condition"/>
+    </select>
+
+    <!-- dynamic full match -->
+    <select id="selectOne" parameterType="StatisticslinesEntity" resultMap="BaseResultMap">
+        SELECT
+        <include refid="database_table_columns"/>
+        FROM
+        <include refid="table_name"/>
+        <where>
+        <if test="posid != null">
+            AND <include refid="table_name"/>.posid = #{posid}
+        </if>
+        <if test="statisticsdate != null">
+            AND <include refid="table_name"/>.statisticsdate = #{statisticsdate}
+        </if>
+        </where>
+        limit 1
+    </select>
+
+
+
+
+ <insert id="insert" parameterType="StatisticslinesEntity" useGeneratedKeys="true" keyProperty="id">
+     insert into
+     <include refid="table_name"/>
+     (
+     posid,
+     poskey,
+     posabname,
+     posname,
+     extradecimal1,
+     extradecimal2,
+     extradecimal3,
+     extradecimal4,
+     extradecimal5,
+     extradecimal6,
+     extradecimal7,
+     extradecimal8,
+     extradecimal9,
+     extradecimal10,
+     extradecimal11,
+     extradecimal12,
+     extradecimal13,
+     extradecimal14,
+     extradecimal15,
+     statisticsdate,
+     createdate,
+     modificationdate,
+     orgid,
+     datenum
+     )
+     values
+     (
+     #{posid},
+     #{poskey},
+     #{posabname},
+     #{posname},
+     #{extradecimal1},
+     #{extradecimal2},
+     #{extradecimal3},
+     #{extradecimal4},
+     #{extradecimal5},
+     #{extradecimal6},
+     #{extradecimal7},
+     #{extradecimal8},
+     #{extradecimal9},
+     #{extradecimal10},
+     #{extradecimal11},
+     #{extradecimal12},
+     #{extradecimal13},
+     #{extradecimal14},
+     #{extradecimal15},
+     #{statisticsdate},
+     #{createdate},
+     #{modificationdate},
+     #{orgid},
+     #{datenum}
+     )
+ </insert>
+
+ <update id="update" parameterType="StatisticslinesEntity">
+     update
+     <include refid="table_name"/>
+     <set>
+         <include refid="update_statisticslines_where"/>
+     </set>
+     where id = #{id,jdbcType=INTEGER}
+ </update>
+
+</mapper>

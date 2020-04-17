@@ -1,0 +1,129 @@
+package com.mingcloud.proxy.logiclayer.huaweihandler;
+
+import org.apache.log4j.Logger;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.MaintenanceobjectMapper;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.WorkorderMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.WorkorderDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.MaintenanceobjectEntity;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.WorkorderEntity;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+public class WorkorderDataOutThread implements Runnable {
+	private static Logger logger = Logger.getLogger(WorkorderDataOutThread.class);
+	
+	private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+	
+	private DataCenter dataCenter = DataCenter.getInstance();
+	
+	private WorkorderMapper workorderMapper = SpringContextUtil.getBean("workorderMapper");
+	private MaintenanceobjectMapper maintenanceobjectMapper = SpringContextUtil.getBean("maintenanceobjectMapper");
+	
+	private static Integer workorderlistSize = 0;
+	
+	public WorkorderDataOutThread() {
+		// TODO Auto-generated constructor stub
+		// 设置数据源为MySql
+		jdbcChange.changeJdbc(JdbcChange.mySqlDataSource);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		logger.info("WorkorderDataOutThread begin");
+		
+		while(true) {
+			try {
+				if(dataCenter.getWorkorderlistSize() > 0) {
+					workorderlistSize = dataCenter.getWorkorderlistSize();
+					//InsertWorkorder();
+                    updateworkorderpriorityid();
+					logger.info("WorkorderDataCenter Size:" + (workorderlistSize-1));
+				}
+				Thread.sleep(50);
+			} catch(Exception e) {
+				logger.error("WorkorderDataOutThread: " + e);
+			}
+		}
+	}
+	private void updateworkorderpriorityid() {
+        Calendar calendar = new GregorianCalendar();
+
+
+        WorkorderDto dto = dataCenter.popWorkorderlist();
+        logger.info("xyc dto：" + dto);
+
+            if (dto != null) {
+                WorkorderEntity entity = new WorkorderEntity();
+                entity.setId(dto.getId());
+                if(dto.getExtradatetime5()==null){
+                   dto.setExtradatetime5(dto.getCreatedate());
+                }
+                if (dto.getCreatedate() != null) {
+                    calendar.setTime(dto.getExtradatetime5());
+                    calendar.add(calendar.DATE, 3);
+                    Date now = new Date();
+                    if (now.getTime() >= calendar.getTime().getTime() && dto.getJobstatus() != null && dto.getJobstatus().equals(1) ) {
+                        if (dto.getPriorityid() == null) {
+                            entity.setPriorityid(21);
+                            entity.setExtradatetime5(calendar.getTime());
+                            workorderMapper.update(entity);
+
+                        } else if (dto.getPriorityid().equals(24)) {
+                            entity.setPriorityid(21);
+                            entity.setExtradatetime5(calendar.getTime());
+                            workorderMapper.update(entity);
+                        } else if (dto.getPriorityid().equals(21)) {
+                            entity.setPriorityid(20);
+                            entity.setExtradatetime5(calendar.getTime());
+                            workorderMapper.update(entity);
+                        } else if (dto.getPriorityid().equals(20)) {
+                            entity.setPriorityid(19);
+                            entity.setExtradatetime5(calendar.getTime());
+                            workorderMapper.update(entity);
+                        }
+                    }
+                }
+            }
+
+    }
+/*	private void InsertWorkorder() {
+		// TODO Auto-generated method stub
+		try {
+			WorkorderDto dto = dataCenter.popWorkorderlist();
+			WorkorderEntity entity = new WorkorderEntity();
+			entity.setWokey(dto.getWokey());
+			WorkorderEntity workorderEntity = workorderMapper.get(entity);
+			if(workorderEntity == null || workorderEntity.equals("")) {
+				MaintenanceobjectEntity maintenanceobjectEntity = new MaintenanceobjectEntity();
+				maintenanceobjectEntity.setMokey(dto.getExtravarchar1());
+				MaintenanceobjectEntity maintenanceEntity = maintenanceobjectMapper.get(maintenanceobjectEntity);
+				if(maintenanceEntity != null && !maintenanceEntity.equals("")) {
+					entity.setMoid(maintenanceEntity.getId());
+					entity.setWoname(dto.getWoname());
+					entity.setMoname(dto.getMoname());
+					entity.setErrorcode1name(dto.getErrorcode1name());
+					entity.setErrorcode3name(dto.getErrorcode3name());
+					entity.setOrderdate(dto.getOrderdate());
+					entity.setExtravarchar2(dto.getExtravarchar2());
+					entity.setJobstatus(dto.getJobstatus());
+					entity.setActualstartdate(dto.getActualstartdate());
+					entity.setJobexecdate(dto.getJobexecdate());
+					entity.setStoptime(dto.getStoptime());
+					workorderMapper.insert(entity);
+					logger.info("WorkorderDataOutThread insert succeeded...");
+				}
+			}
+		} catch(Exception e) {
+			logger.error("WorkorderDataOutThread InsertWorkorder: " + e);
+		}
+		
+	}*/
+
+}

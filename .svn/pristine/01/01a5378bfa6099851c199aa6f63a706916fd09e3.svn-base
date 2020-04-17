@@ -1,0 +1,90 @@
+package com.mingcloud.proxy.logiclayer.huaweihandler;
+
+import java.util.Date;
+
+import org.apache.log4j.Logger;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.PositionMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.PositionDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.PositionEntity;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+
+public class PositionDataOutThread implements Runnable {
+	private static Logger logger = Logger.getLogger(PositionDataOutThread.class);
+
+	private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+	
+	private DataCenter dataCenter = DataCenter.getInstance();
+	
+	private PositionMapper positionMapper = SpringContextUtil.getBean("positionMapper");
+	
+	private static Integer positionlistSize;
+	
+	public PositionDataOutThread() {
+		// TODO Auto-generated constructor stub
+		// 设置数据源为MySql
+		jdbcChange.changeJdbc(JdbcChange.mySqlDataSource);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		logger.info("PositionDataOutThread begin");
+		
+		while(true) {
+			try {
+				if(dataCenter.getPositionlistSize() > 0) {
+					positionlistSize = dataCenter.getPositionlistSize();
+					InsertPosition();
+					logger.info("PositionDataCenter Size:" + (positionlistSize-1));
+				}
+				Thread.sleep(50);
+			} catch(Exception e) {
+				logger.error("PositionDataOutThread: " + e);
+			}
+		}
+	}
+
+	private void InsertPosition() {
+		// TODO Auto-generated method stub
+		try {
+			PositionDto dto = dataCenter.popPositionlist();
+			PositionEntity entity = new PositionEntity();
+			entity.setPoskey(dto.getPoskey());
+			PositionEntity positionEntity = positionMapper.get(entity);
+			
+			PositionEntity groupEntity = null;
+			if (dto.getExtravarchar1() != null && !dto.getExtravarchar1().equals("")) {
+				PositionEntity gentity = new PositionEntity();
+				gentity.setPoskey(dto.getExtravarchar1());
+				groupEntity = positionMapper.get(gentity);
+			}
+			
+			Date date = new Date();
+			if(positionEntity != null && !positionEntity.equals("")) {
+				entity.setId(positionEntity.getId());
+				entity.setPosname(dto.getPosname());
+				entity.setModificationdate(date);
+				if (groupEntity != null && !groupEntity.equals("")) {
+					entity.setRootposid(groupEntity.getId());
+				}
+				positionMapper.update(entity);
+				logger.info("PositionDataOutThread update succeeded...");
+			} else {
+				if (groupEntity != null && !groupEntity.equals("")) {
+					entity.setRootposid(groupEntity.getId());
+				}
+				entity.setPosname(dto.getPosname());
+				entity.setCreatedate(date);
+				entity.setModificationdate(date);
+				positionMapper.insert(entity);
+				logger.info("PositionDataOutThread insert succeeded...");
+			}
+		} catch(Exception e) {
+			logger.error("PositionDataOutThread InsertPosition: " + e);
+		}
+	}
+
+}

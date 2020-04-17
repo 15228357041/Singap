@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.UsergroupMapper" >
+  <resultMap id="BaseResultMap" type="UsergroupEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="usergroupkey" property="usergroupkey" jdbcType="VARCHAR" />
+    <result column="usergroupname" property="usergroupname" jdbcType="VARCHAR" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="createuserid" property="createuserid" jdbcType="INTEGER" />
+    <result column="modificationdate" property="modificationdate" jdbcType="TIMESTAMP" />
+    <result column="modificationuserid" property="modificationuserid" jdbcType="INTEGER" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="orgid" property="orgid" jdbcType="INTEGER" />
+    <result column="picpath" property="picpath" jdbcType="VARCHAR" />
+    <result column="barcode" property="barcode" jdbcType="VARCHAR" />
+    <result column="tombstone" property="tombstone" jdbcType="INTEGER" />
+    <result column="rootusergroupid" property="rootusergroupid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, usergroupkey, usergroupname, createdate, createuserid, modificationdate, modificationuserid, 
+    memo, orgid, picpath, barcode, tombstone, rootusergroupid
+  </sql>
+  
+  <resultMap id="ApiBeanResult" type="UsergroupEntity">
+  	<result column="Usergroup_ID" property="usergroupkey" jdbcType="VARCHAR" />
+    <result column="GroupName" property="usergroupname" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="selectAllApi" resultMap="ApiBeanResult">
+	select Usergroup_ID, GroupName
+	from Usergroups
+  </select>
+  
+  <select id="get" resultMap="BaseResultMap" parameterType="UsergroupEntity" >
+    select 
+    <include refid="Base_Column_List" />
+    from usergroup
+    where usergroupkey = #{usergroupkey,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from usergroup
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="UsergroupEntity" >
+    insert into usergroup
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="usergroupkey != null" >
+        usergroupkey,
+      </if>
+      <if test="usergroupname != null" >
+        usergroupname,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+      <if test="createuserid != null" >
+        createuserid,
+      </if>
+      <if test="modificationdate != null" >
+        modificationdate,
+      </if>
+      <if test="modificationuserid != null" >
+        modificationuserid,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="orgid != null" >
+        orgid,
+      </if>
+      <if test="picpath != null" >
+        picpath,
+      </if>
+      <if test="barcode != null" >
+        barcode,
+      </if>
+      <if test="tombstone != null" >
+        tombstone,
+      </if>
+      <if test="rootusergroupid != null" >
+        rootusergroupid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="usergroupkey != null" >
+        #{usergroupkey,jdbcType=VARCHAR},
+      </if>
+      <if test="usergroupname != null" >
+        #{usergroupname,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuserid != null" >
+        #{createuserid,jdbcType=INTEGER},
+      </if>
+      <if test="modificationdate != null" >
+        #{modificationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificationuserid != null" >
+        #{modificationuserid,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=INTEGER},
+      </if>
+      <if test="picpath != null" >
+        #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="tombstone != null" >
+        #{tombstone,jdbcType=INTEGER},
+      </if>
+      <if test="rootusergroupid != null" >
+        #{rootusergroupid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="UsergroupEntity" >
+    update usergroup
+    <set >
+      <if test="usergroupkey != null" >
+        usergroupkey = #{usergroupkey,jdbcType=VARCHAR},
+      </if>
+      <if test="usergroupname != null" >
+        usergroupname = #{usergroupname,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuserid != null" >
+        createuserid = #{createuserid,jdbcType=INTEGER},
+      </if>
+      <if test="modificationdate != null" >
+        modificationdate = #{modificationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificationuserid != null" >
+        modificationuserid = #{modificationuserid,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        orgid = #{orgid,jdbcType=INTEGER},
+      </if>
+      <if test="picpath != null" >
+        picpath = #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="tombstone != null" >
+        tombstone = #{tombstone,jdbcType=INTEGER},
+      </if>
+      <if test="rootusergroupid != null" >
+        rootusergroupid = #{rootusergroupid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

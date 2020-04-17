@@ -1,0 +1,834 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.StockMapper">
+    <resultMap id="BaseResultMap" type="StockEntity">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="stockkey" property="stockkey" jdbcType="VARCHAR"/>
+        <result column="stockname" property="stockname" jdbcType="VARCHAR"/>
+        <result column="address1" property="address1" jdbcType="VARCHAR"/>
+        <result column="address2" property="address2" jdbcType="VARCHAR"/>
+        <result column="address3" property="address3" jdbcType="VARCHAR"/>
+        <result column="address4" property="address4" jdbcType="VARCHAR"/>
+        <result column="address5" property="address5" jdbcType="VARCHAR"/>
+        <result column="emailaddress" property="emailaddress" jdbcType="VARCHAR"/>
+        <result column="telephone" property="telephone" jdbcType="VARCHAR"/>
+        <result column="accountid" property="accountid" jdbcType="INTEGER"/>
+        <result column="adjustmentaccountid" property="adjustmentaccountid" jdbcType="INTEGER"/>
+        <result column="scrappingaccountid" property="scrappingaccountid" jdbcType="INTEGER"/>
+        <result column="beginaccountid" property="beginaccountid" jdbcType="INTEGER"/>
+        <result column="defaultdeliveryaddress1" property="defaultdeliveryaddress1" jdbcType="VARCHAR"/>
+        <result column="defaultdeliveryaddress2" property="defaultdeliveryaddress2" jdbcType="VARCHAR"/>
+        <result column="defaultdeliveryaddress3" property="defaultdeliveryaddress3" jdbcType="VARCHAR"/>
+        <result column="defaultdeliveryaddress4" property="defaultdeliveryaddress4" jdbcType="VARCHAR"/>
+        <result column="defaultdeliveryaddress5" property="defaultdeliveryaddress5" jdbcType="VARCHAR"/>
+        <result column="defaultdeliveryemailaddress" property="defaultdeliveryemailaddress" jdbcType="VARCHAR"/>
+        <result column="defaultinvoiceaddress1" property="defaultinvoiceaddress1" jdbcType="VARCHAR"/>
+        <result column="defaultinvoiceaddress2" property="defaultinvoiceaddress2" jdbcType="VARCHAR"/>
+        <result column="defaultinvoiceaddress3" property="defaultinvoiceaddress3" jdbcType="VARCHAR"/>
+        <result column="defaultinvoiceaddress4" property="defaultinvoiceaddress4" jdbcType="VARCHAR"/>
+        <result column="defaultinvoiceaddress5" property="defaultinvoiceaddress5" jdbcType="VARCHAR"/>
+        <result column="defaultinvoiceemailaddress" property="defaultinvoiceemailaddress" jdbcType="VARCHAR"/>
+        <result column="stockbarcode" property="stockbarcode" jdbcType="BIGINT"/>
+        <result column="lastchangedate" property="lastchangedate" jdbcType="DATE"/>
+        <result column="lastchangetime" property="lastchangetime" jdbcType="INTEGER"/>
+        <result column="lastexportdate" property="lastexportdate" jdbcType="DATE"/>
+        <result column="lastexporttime" property="lastexporttime" jdbcType="INTEGER"/>
+        <result column="lastimportdate" property="lastimportdate" jdbcType="DATE"/>
+        <result column="lastimporttime" property="lastimporttime" jdbcType="INTEGER"/>
+        <result column="costtypeid" property="costtypeid" jdbcType="INTEGER"/>
+        <result column="begincosttypeid" property="begincosttypeid" jdbcType="INTEGER"/>
+        <result column="scrappingcosttypeid" property="scrappingcosttypeid" jdbcType="INTEGER"/>
+        <result column="adjustmentcosttypeid" property="adjustmentcosttypeid" jdbcType="INTEGER"/>
+        <result column="siteid" property="siteid" jdbcType="INTEGER"/>
+        <result column="recordactive" property="recordactive" jdbcType="TINYINT"/>
+        <result column="custombarcode" property="custombarcode" jdbcType="VARCHAR"/>
+        <result column="posid" property="posid" jdbcType="INTEGER"/>
+        <result column="deliverylocationid" property="deliverylocationid" jdbcType="INTEGER"/>
+        <result column="invoicelocationid" property="invoicelocationid" jdbcType="INTEGER"/>
+        <result column="locationid" property="locationid" jdbcType="INTEGER"/>
+        <result column="contactpersonid" property="contactpersonid" jdbcType="INTEGER"/>
+        <result column="foreignowner" property="foreignowner" jdbcType="TINYINT"/>
+        <result column="extrastockinfo1" property="extrastockinfo1" jdbcType="VARCHAR"/>
+        <result column="extrastockinfo2" property="extrastockinfo2" jdbcType="VARCHAR"/>
+        <result column="extrastockinfo3" property="extrastockinfo3" jdbcType="VARCHAR"/>
+        <result column="extrastockinfo4" property="extrastockinfo4" jdbcType="VARCHAR"/>
+        <result column="extrastockinfo5" property="extrastockinfo5" jdbcType="VARCHAR"/>
+        <result column="purchworksupplierid" property="purchworksupplierid" jdbcType="INTEGER"/>
+        <result column="apprworksupplierid" property="apprworksupplierid" jdbcType="INTEGER"/>
+        <result column="debitcosttypeid" property="debitcosttypeid" jdbcType="INTEGER"/>
+        <result column="costcarrierid" property="costcarrierid" jdbcType="INTEGER"/>
+        <result column="stocklocationkey" property="stocklocationkey" jdbcType="VARCHAR"/>
+        <result column="rootstockid" property="rootstockid" jdbcType="INTEGER"/>
+        <result column="plantid" property="plantid" jdbcType="INTEGER"/>
+        <result column="legalunitid" property="legalunitid" jdbcType="INTEGER"/>
+        <result column="legalunitcurrencykey" property="legalunitcurrencykey" jdbcType="VARCHAR"/>
+        <result column="mainstock" property="mainstock" jdbcType="TINYINT"/>
+        <result column="virtualstock" property="virtualstock" jdbcType="TINYINT"/>
+        <result column="lastchangedtz" property="lastchangedtz" jdbcType="TIMESTAMP"/>
+        <result column="lastexportdtz" property="lastexportdtz" jdbcType="TIMESTAMP"/>
+        <result column="lastimportdtz" property="lastimportdtz" jdbcType="TIMESTAMP"/>
+        <result column="recordlanguageid" property="recordlanguageid" jdbcType="INTEGER"/>
+        <result column="createdate" property="createdate" jdbcType="TIMESTAMP"/>
+        <result column="createuserid" property="createuserid" jdbcType="INTEGER"/>
+        <result column="modificationdate" property="modificationdate" jdbcType="TIMESTAMP"/>
+        <result column="modificationuserid" property="modificationuserid" jdbcType="INTEGER"/>
+        <result column="picpath" property="picpath" jdbcType="VARCHAR"/>
+        <result column="barcode" property="barcode" jdbcType="VARCHAR"/>
+        <result column="memo" property="memo" jdbcType="VARCHAR"/>
+        <result column="tombstone" property="tombstone" jdbcType="INTEGER"/>
+        <result column="stationsid" property="stationsid" jdbcType="INTEGER"/>
+        <result column="stocktype" property="stocktype" jdbcType="INTEGER"/>
+        <result column="orgid" property="orgid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, stockkey, stockname, address1, address2, address3, address4, address5, emailaddress,
+    telephone, accountid, adjustmentaccountid, scrappingaccountid, beginaccountid, defaultdeliveryaddress1,
+    defaultdeliveryaddress2, defaultdeliveryaddress3, defaultdeliveryaddress4, defaultdeliveryaddress5,
+    defaultdeliveryemailaddress, defaultinvoiceaddress1, defaultinvoiceaddress2, defaultinvoiceaddress3,
+    defaultinvoiceaddress4, defaultinvoiceaddress5, defaultinvoiceemailaddress, stockbarcode,
+    lastchangedate, lastchangetime, lastexportdate, lastexporttime, lastimportdate, lastimporttime,
+    costtypeid, begincosttypeid, scrappingcosttypeid, adjustmentcosttypeid, siteid, recordactive,
+    custombarcode, posid, deliverylocationid, invoicelocationid, locationid, contactpersonid,
+    foreignowner, extrastockinfo1, extrastockinfo2, extrastockinfo3, extrastockinfo4,
+    extrastockinfo5, purchworksupplierid, apprworksupplierid, debitcosttypeid, costcarrierid,
+    stocklocationkey, rootstockid, plantid, legalunitid, legalunitcurrencykey, mainstock,
+    virtualstock, lastchangedtz, lastexportdtz, lastimportdtz, recordlanguageid, createdate,
+    createuserid, modificationdate, modificationuserid, picpath, barcode, memo, tombstone,
+    stationsid, stocktype, orgid
+  </sql>
+
+    <sql id="dynamic_full_match_condition">
+        <trim prefix="WHERE" prefixOverrides="AND ">
+            <if test="id != null">
+                AND id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="stockkey != null">
+                AND stockkey = #{stockkey,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </sql>
+
+    <select id="get" resultMap="BaseResultMap" parameterType="StockEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from stock
+        <include refid="dynamic_full_match_condition"/>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from stock
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="insertSelective" parameterType="StockEntity">
+        insert into stock
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="stockkey != null">
+                stockkey,
+            </if>
+            <if test="stockname != null">
+                stockname,
+            </if>
+            <if test="address1 != null">
+                address1,
+            </if>
+            <if test="address2 != null">
+                address2,
+            </if>
+            <if test="address3 != null">
+                address3,
+            </if>
+            <if test="address4 != null">
+                address4,
+            </if>
+            <if test="address5 != null">
+                address5,
+            </if>
+            <if test="emailaddress != null">
+                emailaddress,
+            </if>
+            <if test="telephone != null">
+                telephone,
+            </if>
+            <if test="accountid != null">
+                accountid,
+            </if>
+            <if test="adjustmentaccountid != null">
+                adjustmentaccountid,
+            </if>
+            <if test="scrappingaccountid != null">
+                scrappingaccountid,
+            </if>
+            <if test="beginaccountid != null">
+                beginaccountid,
+            </if>
+            <if test="defaultdeliveryaddress1 != null">
+                defaultdeliveryaddress1,
+            </if>
+            <if test="defaultdeliveryaddress2 != null">
+                defaultdeliveryaddress2,
+            </if>
+            <if test="defaultdeliveryaddress3 != null">
+                defaultdeliveryaddress3,
+            </if>
+            <if test="defaultdeliveryaddress4 != null">
+                defaultdeliveryaddress4,
+            </if>
+            <if test="defaultdeliveryaddress5 != null">
+                defaultdeliveryaddress5,
+            </if>
+            <if test="defaultdeliveryemailaddress != null">
+                defaultdeliveryemailaddress,
+            </if>
+            <if test="defaultinvoiceaddress1 != null">
+                defaultinvoiceaddress1,
+            </if>
+            <if test="defaultinvoiceaddress2 != null">
+                defaultinvoiceaddress2,
+            </if>
+            <if test="defaultinvoiceaddress3 != null">
+                defaultinvoiceaddress3,
+            </if>
+            <if test="defaultinvoiceaddress4 != null">
+                defaultinvoiceaddress4,
+            </if>
+            <if test="defaultinvoiceaddress5 != null">
+                defaultinvoiceaddress5,
+            </if>
+            <if test="defaultinvoiceemailaddress != null">
+                defaultinvoiceemailaddress,
+            </if>
+            <if test="stockbarcode != null">
+                stockbarcode,
+            </if>
+            <if test="lastchangedate != null">
+                lastchangedate,
+            </if>
+            <if test="lastchangetime != null">
+                lastchangetime,
+            </if>
+            <if test="lastexportdate != null">
+                lastexportdate,
+            </if>
+            <if test="lastexporttime != null">
+                lastexporttime,
+            </if>
+            <if test="lastimportdate != null">
+                lastimportdate,
+            </if>
+            <if test="lastimporttime != null">
+                lastimporttime,
+            </if>
+            <if test="costtypeid != null">
+                costtypeid,
+            </if>
+            <if test="begincosttypeid != null">
+                begincosttypeid,
+            </if>
+            <if test="scrappingcosttypeid != null">
+                scrappingcosttypeid,
+            </if>
+            <if test="adjustmentcosttypeid != null">
+                adjustmentcosttypeid,
+            </if>
+            <if test="siteid != null">
+                siteid,
+            </if>
+            <if test="recordactive != null">
+                recordactive,
+            </if>
+            <if test="custombarcode != null">
+                custombarcode,
+            </if>
+            <if test="posid != null">
+                posid,
+            </if>
+            <if test="deliverylocationid != null">
+                deliverylocationid,
+            </if>
+            <if test="invoicelocationid != null">
+                invoicelocationid,
+            </if>
+            <if test="locationid != null">
+                locationid,
+            </if>
+            <if test="contactpersonid != null">
+                contactpersonid,
+            </if>
+            <if test="foreignowner != null">
+                foreignowner,
+            </if>
+            <if test="extrastockinfo1 != null">
+                extrastockinfo1,
+            </if>
+            <if test="extrastockinfo2 != null">
+                extrastockinfo2,
+            </if>
+            <if test="extrastockinfo3 != null">
+                extrastockinfo3,
+            </if>
+            <if test="extrastockinfo4 != null">
+                extrastockinfo4,
+            </if>
+            <if test="extrastockinfo5 != null">
+                extrastockinfo5,
+            </if>
+            <if test="purchworksupplierid != null">
+                purchworksupplierid,
+            </if>
+            <if test="apprworksupplierid != null">
+                apprworksupplierid,
+            </if>
+            <if test="debitcosttypeid != null">
+                debitcosttypeid,
+            </if>
+            <if test="costcarrierid != null">
+                costcarrierid,
+            </if>
+            <if test="stocklocationkey != null">
+                stocklocationkey,
+            </if>
+            <if test="rootstockid != null">
+                rootstockid,
+            </if>
+            <if test="plantid != null">
+                plantid,
+            </if>
+            <if test="legalunitid != null">
+                legalunitid,
+            </if>
+            <if test="legalunitcurrencykey != null">
+                legalunitcurrencykey,
+            </if>
+            <if test="mainstock != null">
+                mainstock,
+            </if>
+            <if test="virtualstock != null">
+                virtualstock,
+            </if>
+            <if test="lastchangedtz != null">
+                lastchangedtz,
+            </if>
+            <if test="lastexportdtz != null">
+                lastexportdtz,
+            </if>
+            <if test="lastimportdtz != null">
+                lastimportdtz,
+            </if>
+            <if test="recordlanguageid != null">
+                recordlanguageid,
+            </if>
+            <if test="createdate != null">
+                createdate,
+            </if>
+            <if test="createuserid != null">
+                createuserid,
+            </if>
+            <if test="modificationdate != null">
+                modificationdate,
+            </if>
+            <if test="modificationuserid != null">
+                modificationuserid,
+            </if>
+            <if test="picpath != null">
+                picpath,
+            </if>
+            <if test="barcode != null">
+                barcode,
+            </if>
+            <if test="memo != null">
+                memo,
+            </if>
+            <if test="tombstone != null">
+                tombstone,
+            </if>
+            <if test="stationsid != null">
+                stationsid,
+            </if>
+            <if test="stocktype != null">
+                stocktype,
+            </if>
+            <if test="orgid != null">
+                orgid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="stockkey != null">
+                #{stockkey,jdbcType=VARCHAR},
+            </if>
+            <if test="stockname != null">
+                #{stockname,jdbcType=VARCHAR},
+            </if>
+            <if test="address1 != null">
+                #{address1,jdbcType=VARCHAR},
+            </if>
+            <if test="address2 != null">
+                #{address2,jdbcType=VARCHAR},
+            </if>
+            <if test="address3 != null">
+                #{address3,jdbcType=VARCHAR},
+            </if>
+            <if test="address4 != null">
+                #{address4,jdbcType=VARCHAR},
+            </if>
+            <if test="address5 != null">
+                #{address5,jdbcType=VARCHAR},
+            </if>
+            <if test="emailaddress != null">
+                #{emailaddress,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone != null">
+                #{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="accountid != null">
+                #{accountid,jdbcType=INTEGER},
+            </if>
+            <if test="adjustmentaccountid != null">
+                #{adjustmentaccountid,jdbcType=INTEGER},
+            </if>
+            <if test="scrappingaccountid != null">
+                #{scrappingaccountid,jdbcType=INTEGER},
+            </if>
+            <if test="beginaccountid != null">
+                #{beginaccountid,jdbcType=INTEGER},
+            </if>
+            <if test="defaultdeliveryaddress1 != null">
+                #{defaultdeliveryaddress1,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultdeliveryaddress2 != null">
+                #{defaultdeliveryaddress2,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultdeliveryaddress3 != null">
+                #{defaultdeliveryaddress3,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultdeliveryaddress4 != null">
+                #{defaultdeliveryaddress4,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultdeliveryaddress5 != null">
+                #{defaultdeliveryaddress5,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultdeliveryemailaddress != null">
+                #{defaultdeliveryemailaddress,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultinvoiceaddress1 != null">
+                #{defaultinvoiceaddress1,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultinvoiceaddress2 != null">
+                #{defaultinvoiceaddress2,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultinvoiceaddress3 != null">
+                #{defaultinvoiceaddress3,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultinvoiceaddress4 != null">
+                #{defaultinvoiceaddress4,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultinvoiceaddress5 != null">
+                #{defaultinvoiceaddress5,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultinvoiceemailaddress != null">
+                #{defaultinvoiceemailaddress,jdbcType=VARCHAR},
+            </if>
+            <if test="stockbarcode != null">
+                #{stockbarcode,jdbcType=BIGINT},
+            </if>
+            <if test="lastchangedate != null">
+                #{lastchangedate,jdbcType=DATE},
+            </if>
+            <if test="lastchangetime != null">
+                #{lastchangetime,jdbcType=INTEGER},
+            </if>
+            <if test="lastexportdate != null">
+                #{lastexportdate,jdbcType=DATE},
+            </if>
+            <if test="lastexporttime != null">
+                #{lastexporttime,jdbcType=INTEGER},
+            </if>
+            <if test="lastimportdate != null">
+                #{lastimportdate,jdbcType=DATE},
+            </if>
+            <if test="lastimporttime != null">
+                #{lastimporttime,jdbcType=INTEGER},
+            </if>
+            <if test="costtypeid != null">
+                #{costtypeid,jdbcType=INTEGER},
+            </if>
+            <if test="begincosttypeid != null">
+                #{begincosttypeid,jdbcType=INTEGER},
+            </if>
+            <if test="scrappingcosttypeid != null">
+                #{scrappingcosttypeid,jdbcType=INTEGER},
+            </if>
+            <if test="adjustmentcosttypeid != null">
+                #{adjustmentcosttypeid,jdbcType=INTEGER},
+            </if>
+            <if test="siteid != null">
+                #{siteid,jdbcType=INTEGER},
+            </if>
+            <if test="recordactive != null">
+                #{recordactive,jdbcType=TINYINT},
+            </if>
+            <if test="custombarcode != null">
+                #{custombarcode,jdbcType=VARCHAR},
+            </if>
+            <if test="posid != null">
+                #{posid,jdbcType=INTEGER},
+            </if>
+            <if test="deliverylocationid != null">
+                #{deliverylocationid,jdbcType=INTEGER},
+            </if>
+            <if test="invoicelocationid != null">
+                #{invoicelocationid,jdbcType=INTEGER},
+            </if>
+            <if test="locationid != null">
+                #{locationid,jdbcType=INTEGER},
+            </if>
+            <if test="contactpersonid != null">
+                #{contactpersonid,jdbcType=INTEGER},
+            </if>
+            <if test="foreignowner != null">
+                #{foreignowner,jdbcType=TINYINT},
+            </if>
+            <if test="extrastockinfo1 != null">
+                #{extrastockinfo1,jdbcType=VARCHAR},
+            </if>
+            <if test="extrastockinfo2 != null">
+                #{extrastockinfo2,jdbcType=VARCHAR},
+            </if>
+            <if test="extrastockinfo3 != null">
+                #{extrastockinfo3,jdbcType=VARCHAR},
+            </if>
+            <if test="extrastockinfo4 != null">
+                #{extrastockinfo4,jdbcType=VARCHAR},
+            </if>
+            <if test="extrastockinfo5 != null">
+                #{extrastockinfo5,jdbcType=VARCHAR},
+            </if>
+            <if test="purchworksupplierid != null">
+                #{purchworksupplierid,jdbcType=INTEGER},
+            </if>
+            <if test="apprworksupplierid != null">
+                #{apprworksupplierid,jdbcType=INTEGER},
+            </if>
+            <if test="debitcosttypeid != null">
+                #{debitcosttypeid,jdbcType=INTEGER},
+            </if>
+            <if test="costcarrierid != null">
+                #{costcarrierid,jdbcType=INTEGER},
+            </if>
+            <if test="stocklocationkey != null">
+                #{stocklocationkey,jdbcType=VARCHAR},
+            </if>
+            <if test="rootstockid != null">
+                #{rootstockid,jdbcType=INTEGER},
+            </if>
+            <if test="plantid != null">
+                #{plantid,jdbcType=INTEGER},
+            </if>
+            <if test="legalunitid != null">
+                #{legalunitid,jdbcType=INTEGER},
+            </if>
+            <if test="legalunitcurrencykey != null">
+                #{legalunitcurrencykey,jdbcType=VARCHAR},
+            </if>
+            <if test="mainstock != null">
+                #{mainstock,jdbcType=TINYINT},
+            </if>
+            <if test="virtualstock != null">
+                #{virtualstock,jdbcType=TINYINT},
+            </if>
+            <if test="lastchangedtz != null">
+                #{lastchangedtz,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastexportdtz != null">
+                #{lastexportdtz,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastimportdtz != null">
+                #{lastimportdtz,jdbcType=TIMESTAMP},
+            </if>
+            <if test="recordlanguageid != null">
+                #{recordlanguageid,jdbcType=INTEGER},
+            </if>
+            <if test="createdate != null">
+                #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createuserid != null">
+                #{createuserid,jdbcType=INTEGER},
+            </if>
+            <if test="modificationdate != null">
+                #{modificationdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modificationuserid != null">
+                #{modificationuserid,jdbcType=INTEGER},
+            </if>
+            <if test="picpath != null">
+                #{picpath,jdbcType=VARCHAR},
+            </if>
+            <if test="barcode != null">
+                #{barcode,jdbcType=VARCHAR},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="tombstone != null">
+                #{tombstone,jdbcType=INTEGER},
+            </if>
+            <if test="stationsid != null">
+                #{stationsid,jdbcType=INTEGER},
+            </if>
+            <if test="stocktype != null">
+                #{stocktype,jdbcType=INTEGER},
+            </if>
+            <if test="orgid != null">
+                #{orgid,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="StockEntity">
+        update stock
+        <set>
+            <if test="stockkey != null">
+                stockkey = #{stockkey,jdbcType=VARCHAR},
+            </if>
+            <if test="stockname != null">
+                stockname = #{stockname,jdbcType=VARCHAR},
+            </if>
+            <if test="address1 != null">
+                address1 = #{address1,jdbcType=VARCHAR},
+            </if>
+            <if test="address2 != null">
+                address2 = #{address2,jdbcType=VARCHAR},
+            </if>
+            <if test="address3 != null">
+                address3 = #{address3,jdbcType=VARCHAR},
+            </if>
+            <if test="address4 != null">
+                address4 = #{address4,jdbcType=VARCHAR},
+            </if>
+            <if test="address5 != null">
+                address5 = #{address5,jdbcType=VARCHAR},
+            </if>
+            <if test="emailaddress != null">
+                emailaddress = #{emailaddress,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone != null">
+                telephone = #{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="accountid != null">
+                accountid = #{accountid,jdbcType=INTEGER},
+            </if>
+            <if test="adjustmentaccountid != null">
+                adjustmentaccountid = #{adjustmentaccountid,jdbcType=INTEGER},
+            </if>
+            <if test="scrappingaccountid != null">
+                scrappingaccountid = #{scrappingaccountid,jdbcType=INTEGER},
+            </if>
+            <if test="beginaccountid != null">
+                beginaccountid = #{beginaccountid,jdbcType=INTEGER},
+            </if>
+            <if test="defaultdeliveryaddress1 != null">
+                defaultdeliveryaddress1 = #{defaultdeliveryaddress1,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultdeliveryaddress2 != null">
+                defaultdeliveryaddress2 = #{defaultdeliveryaddress2,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultdeliveryaddress3 != null">
+                defaultdeliveryaddress3 = #{defaultdeliveryaddress3,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultdeliveryaddress4 != null">
+                defaultdeliveryaddress4 = #{defaultdeliveryaddress4,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultdeliveryaddress5 != null">
+                defaultdeliveryaddress5 = #{defaultdeliveryaddress5,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultdeliveryemailaddress != null">
+                defaultdeliveryemailaddress = #{defaultdeliveryemailaddress,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultinvoiceaddress1 != null">
+                defaultinvoiceaddress1 = #{defaultinvoiceaddress1,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultinvoiceaddress2 != null">
+                defaultinvoiceaddress2 = #{defaultinvoiceaddress2,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultinvoiceaddress3 != null">
+                defaultinvoiceaddress3 = #{defaultinvoiceaddress3,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultinvoiceaddress4 != null">
+                defaultinvoiceaddress4 = #{defaultinvoiceaddress4,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultinvoiceaddress5 != null">
+                defaultinvoiceaddress5 = #{defaultinvoiceaddress5,jdbcType=VARCHAR},
+            </if>
+            <if test="defaultinvoiceemailaddress != null">
+                defaultinvoiceemailaddress = #{defaultinvoiceemailaddress,jdbcType=VARCHAR},
+            </if>
+            <if test="stockbarcode != null">
+                stockbarcode = #{stockbarcode,jdbcType=BIGINT},
+            </if>
+            <if test="lastchangedate != null">
+                lastchangedate = #{lastchangedate,jdbcType=DATE},
+            </if>
+            <if test="lastchangetime != null">
+                lastchangetime = #{lastchangetime,jdbcType=INTEGER},
+            </if>
+            <if test="lastexportdate != null">
+                lastexportdate = #{lastexportdate,jdbcType=DATE},
+            </if>
+            <if test="lastexporttime != null">
+                lastexporttime = #{lastexporttime,jdbcType=INTEGER},
+            </if>
+            <if test="lastimportdate != null">
+                lastimportdate = #{lastimportdate,jdbcType=DATE},
+            </if>
+            <if test="lastimporttime != null">
+                lastimporttime = #{lastimporttime,jdbcType=INTEGER},
+            </if>
+            <if test="costtypeid != null">
+                costtypeid = #{costtypeid,jdbcType=INTEGER},
+            </if>
+            <if test="begincosttypeid != null">
+                begincosttypeid = #{begincosttypeid,jdbcType=INTEGER},
+            </if>
+            <if test="scrappingcosttypeid != null">
+                scrappingcosttypeid = #{scrappingcosttypeid,jdbcType=INTEGER},
+            </if>
+            <if test="adjustmentcosttypeid != null">
+                adjustmentcosttypeid = #{adjustmentcosttypeid,jdbcType=INTEGER},
+            </if>
+            <if test="siteid != null">
+                siteid = #{siteid,jdbcType=INTEGER},
+            </if>
+            <if test="recordactive != null">
+                recordactive = #{recordactive,jdbcType=TINYINT},
+            </if>
+            <if test="custombarcode != null">
+                custombarcode = #{custombarcode,jdbcType=VARCHAR},
+            </if>
+            <if test="posid != null">
+                posid = #{posid,jdbcType=INTEGER},
+            </if>
+            <if test="deliverylocationid != null">
+                deliverylocationid = #{deliverylocationid,jdbcType=INTEGER},
+            </if>
+            <if test="invoicelocationid != null">
+                invoicelocationid = #{invoicelocationid,jdbcType=INTEGER},
+            </if>
+            <if test="locationid != null">
+                locationid = #{locationid,jdbcType=INTEGER},
+            </if>
+            <if test="contactpersonid != null">
+                contactpersonid = #{contactpersonid,jdbcType=INTEGER},
+            </if>
+            <if test="foreignowner != null">
+                foreignowner = #{foreignowner,jdbcType=TINYINT},
+            </if>
+            <if test="extrastockinfo1 != null">
+                extrastockinfo1 = #{extrastockinfo1,jdbcType=VARCHAR},
+            </if>
+            <if test="extrastockinfo2 != null">
+                extrastockinfo2 = #{extrastockinfo2,jdbcType=VARCHAR},
+            </if>
+            <if test="extrastockinfo3 != null">
+                extrastockinfo3 = #{extrastockinfo3,jdbcType=VARCHAR},
+            </if>
+            <if test="extrastockinfo4 != null">
+                extrastockinfo4 = #{extrastockinfo4,jdbcType=VARCHAR},
+            </if>
+            <if test="extrastockinfo5 != null">
+                extrastockinfo5 = #{extrastockinfo5,jdbcType=VARCHAR},
+            </if>
+            <if test="purchworksupplierid != null">
+                purchworksupplierid = #{purchworksupplierid,jdbcType=INTEGER},
+            </if>
+            <if test="apprworksupplierid != null">
+                apprworksupplierid = #{apprworksupplierid,jdbcType=INTEGER},
+            </if>
+            <if test="debitcosttypeid != null">
+                debitcosttypeid = #{debitcosttypeid,jdbcType=INTEGER},
+            </if>
+            <if test="costcarrierid != null">
+                costcarrierid = #{costcarrierid,jdbcType=INTEGER},
+            </if>
+            <if test="stocklocationkey != null">
+                stocklocationkey = #{stocklocationkey,jdbcType=VARCHAR},
+            </if>
+            <if test="rootstockid != null">
+                rootstockid = #{rootstockid,jdbcType=INTEGER},
+            </if>
+            <if test="plantid != null">
+                plantid = #{plantid,jdbcType=INTEGER},
+            </if>
+            <if test="legalunitid != null">
+                legalunitid = #{legalunitid,jdbcType=INTEGER},
+            </if>
+            <if test="legalunitcurrencykey != null">
+                legalunitcurrencykey = #{legalunitcurrencykey,jdbcType=VARCHAR},
+            </if>
+            <if test="mainstock != null">
+                mainstock = #{mainstock,jdbcType=TINYINT},
+            </if>
+            <if test="virtualstock != null">
+                virtualstock = #{virtualstock,jdbcType=TINYINT},
+            </if>
+            <if test="lastchangedtz != null">
+                lastchangedtz = #{lastchangedtz,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastexportdtz != null">
+                lastexportdtz = #{lastexportdtz,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastimportdtz != null">
+                lastimportdtz = #{lastimportdtz,jdbcType=TIMESTAMP},
+            </if>
+            <if test="recordlanguageid != null">
+                recordlanguageid = #{recordlanguageid,jdbcType=INTEGER},
+            </if>
+            <if test="createdate != null">
+                createdate = #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createuserid != null">
+                createuserid = #{createuserid,jdbcType=INTEGER},
+            </if>
+            <if test="modificationdate != null">
+                modificationdate = #{modificationdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modificationuserid != null">
+                modificationuserid = #{modificationuserid,jdbcType=INTEGER},
+            </if>
+            <if test="picpath != null">
+                picpath = #{picpath,jdbcType=VARCHAR},
+            </if>
+            <if test="barcode != null">
+                barcode = #{barcode,jdbcType=VARCHAR},
+            </if>
+            <if test="memo != null">
+                memo = #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="tombstone != null">
+                tombstone = #{tombstone,jdbcType=INTEGER},
+            </if>
+            <if test="stationsid != null">
+                stationsid = #{stationsid,jdbcType=INTEGER},
+            </if>
+            <if test="stocktype != null">
+                stocktype = #{stocktype,jdbcType=INTEGER},
+            </if>
+            <if test="orgid != null">
+                orgid = #{orgid,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectKeyIdList" resultMap="BaseResultMap">
+        SELECT
+            id,stockkey
+        FROM stock
+    </select>
+</mapper>

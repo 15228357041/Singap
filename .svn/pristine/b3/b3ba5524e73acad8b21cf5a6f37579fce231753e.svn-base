@@ -1,0 +1,72 @@
+package com.mingcloud.proxy.logiclayer.huaweihandler;
+
+import org.apache.log4j.Logger;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.SparepartMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.SparepartDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.SparepartEntity;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+
+public class SparepartDataOutThread implements Runnable {
+	private static Logger logger = Logger.getLogger(SparepartDataOutThread.class);
+	
+	private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+	
+	private DataCenter dataCenter = DataCenter.getInstance();
+	
+	private SparepartMapper sparepartMapper = SpringContextUtil.getBean("sparepartMapper");
+	
+	private static Integer sparepartlistSize = 0;
+	
+	public SparepartDataOutThread() {
+		// TODO Auto-generated constructor stub
+		// 设置数据源为MySql
+		jdbcChange.changeJdbc(JdbcChange.mySqlDataSource);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		logger.info("SparepartDataOutThread begin");
+		
+		while(true) {
+			try {
+				if(dataCenter.getSparepartlistSize() > 0) {
+					sparepartlistSize = dataCenter.getSparepartlistSize();
+					InsertSparepart();
+					logger.info("SparepartDataCenter Size:" + (sparepartlistSize-1));
+				}
+				Thread.sleep(20);
+			} catch(Exception e) {
+				logger.error("SparepartDataOutThread: " + e);
+			}
+		}
+	}
+
+	private void InsertSparepart() {
+		// TODO Auto-generated method stub
+		try {
+			SparepartDto dto = dataCenter.popSparepartlist();
+			SparepartEntity entity = new SparepartEntity();
+			entity.setSparepartkey(dto.getSparepartkey());
+			SparepartEntity sparepartEntity = sparepartMapper.get(entity);
+			if(sparepartEntity == null || sparepartEntity.equals("")) {
+				entity.setSparepartname(dto.getSparepartname());
+				entity.setExtraspinfo1(dto.getExtraspinfo1());
+				entity.setExtravarchar1(dto.getExtravarchar1());
+				entity.setExtravarchar2(dto.getExtravarchar2());
+				entity.setExtraint1(dto.getExtraint1());
+				entity.setExtraint2(dto.getExtraint2());
+				entity.setSpareparttype(1);
+				sparepartMapper.insert(entity);
+				logger.info("SparepartDataOutThread insert succeeded...");
+			}
+		} catch(Exception e) {
+			logger.error("SparepartDataOutThread InsertSparepart: " + e);
+		}
+		
+	}
+
+}

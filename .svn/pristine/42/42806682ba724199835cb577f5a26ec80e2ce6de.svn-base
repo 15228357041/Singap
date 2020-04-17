@@ -1,0 +1,99 @@
+package com.mingcloud.proxy.datalayer.entity.archiveinfo;
+
+import com.mingcloud.proxy.datalayer.entity.BaseEntity;
+
+import java.util.Date;
+
+
+public class SIFATransferEntity extends BaseEntity {
+
+	private static final long serialVersionUID = -2799024587468226163L;
+
+	private String assetkey;
+
+	private String extramoinfo1;
+
+	private String extravarchar4;//资产报废日期
+	
+	private String mokey;
+	
+	private String moname;
+	
+	private Date extradatetime5;//更改日期
+	
+	private String extravarchar20;//公司代码
+	
+	private Double originalvalue;//净值
+
+	public String getAssetkey() {
+		return assetkey;
+	}
+
+	public void setAssetkey(String assetkey) {
+		this.assetkey = assetkey;
+	}
+
+	public String getExtramoinfo1() {
+		return extramoinfo1;
+	}
+
+	public void setExtramoinfo1(String extramoinfo1) {
+		this.extramoinfo1 = extramoinfo1;
+	}
+
+	public String getExtravarchar4() {
+		return extravarchar4;
+	}
+
+	public void setExtravarchar4(String extravarchar4) {
+		this.extravarchar4 = extravarchar4;
+	}
+
+	public String getMokey() {
+		return mokey;
+	}
+
+	public void setMokey(String mokey) {
+		this.mokey = mokey;
+	}
+
+	public String getMoname() {
+		return moname;
+	}
+
+	public void setMoname(String moname) {
+		this.moname = moname;
+	}
+
+	public Date getExtradatetime5() {
+		return extradatetime5;
+	}
+
+	public void setExtradatetime5(Date extradatetime5) {
+		this.extradatetime5 = extradatetime5;
+	}
+
+	public String getExtravarchar20() {
+		return extravarchar20;
+	}
+
+	public void setExtravarchar20(String extravarchar20) {
+		this.extravarchar20 = extravarchar20;
+	}
+
+	public Double getOriginalvalue() {
+		return originalvalue;
+	}
+
+	public void setOriginalvalue(Double originalvalue) {
+		this.originalvalue = originalvalue;
+	}
+
+	@Override
+	public String toString() {
+		return "SIFATransferEntity [assetkey=" + assetkey + ", extramoinfo1=" + extramoinfo1 + ", extravarchar4="
+				+ extravarchar4 + ", mokey=" + mokey + ", moname=" + moname + ", extradatetime5=" + extradatetime5
+				+ ", extravarchar20=" + extravarchar20 + ", originalvalue=" + originalvalue + "]";
+	}
+
+}

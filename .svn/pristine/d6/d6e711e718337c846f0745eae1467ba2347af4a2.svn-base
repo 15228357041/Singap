@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.TaskMapper" >
+  <resultMap id="BaseResultMap" type="TaskEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roottaskid" property="roottaskid" jdbcType="INTEGER" />
+    <result column="taskgroupid" property="taskgroupid" jdbcType="INTEGER" />
+    <result column="taskkey" property="taskkey" jdbcType="VARCHAR" />
+    <result column="taskname" property="taskname" jdbcType="VARCHAR" />
+    <result column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="statusid" property="statusid" jdbcType="INTEGER" />
+    <result column="extraid1" property="extraid1" jdbcType="INTEGER" />
+    <result column="extraid2" property="extraid2" jdbcType="INTEGER" />
+    <result column="extraid3" property="extraid3" jdbcType="INTEGER" />
+    <result column="extraid4" property="extraid4" jdbcType="INTEGER" />
+    <result column="extraid5" property="extraid5" jdbcType="INTEGER" />
+    <result column="extravarchar1" property="extravarchar1" jdbcType="VARCHAR" />
+    <result column="extravarchar2" property="extravarchar2" jdbcType="VARCHAR" />
+    <result column="extravarchar3" property="extravarchar3" jdbcType="VARCHAR" />
+    <result column="extravarchar4" property="extravarchar4" jdbcType="VARCHAR" />
+    <result column="extravarchar5" property="extravarchar5" jdbcType="VARCHAR" />
+    <result column="extravarchar6" property="extravarchar6" jdbcType="VARCHAR" />
+    <result column="extravarchar7" property="extravarchar7" jdbcType="VARCHAR" />
+    <result column="extravarchar8" property="extravarchar8" jdbcType="VARCHAR" />
+    <result column="extravarchar9" property="extravarchar9" jdbcType="VARCHAR" />
+    <result column="extravarchar10" property="extravarchar10" jdbcType="VARCHAR" />
+    <result column="extradecimal1" property="extradecimal1" jdbcType="DECIMAL" />
+    <result column="extradecimal2" property="extradecimal2" jdbcType="DECIMAL" />
+    <result column="extradecimal3" property="extradecimal3" jdbcType="DECIMAL" />
+    <result column="extradecimal4" property="extradecimal4" jdbcType="DECIMAL" />
+    <result column="extradecimal5" property="extradecimal5" jdbcType="DECIMAL" />
+    <result column="extraint1" property="extraint1" jdbcType="INTEGER" />
+    <result column="extraint2" property="extraint2" jdbcType="INTEGER" />
+    <result column="extraint3" property="extraint3" jdbcType="INTEGER" />
+    <result column="extraint4" property="extraint4" jdbcType="INTEGER" />
+    <result column="extraint5" property="extraint5" jdbcType="INTEGER" />
+    <result column="extradatetime1" property="extradatetime1" jdbcType="TIMESTAMP" />
+    <result column="extradatetime2" property="extradatetime2" jdbcType="TIMESTAMP" />
+    <result column="extradatetime3" property="extradatetime3" jdbcType="TIMESTAMP" />
+    <result column="extradatetime4" property="extradatetime4" jdbcType="TIMESTAMP" />
+    <result column="extradatetime5" property="extradatetime5" jdbcType="TIMESTAMP" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="createuserid" property="createuserid" jdbcType="INTEGER" />
+    <result column="modificationdate" property="modificationdate" jdbcType="TIMESTAMP" />
+    <result column="modificationuserid" property="modificationuserid" jdbcType="INTEGER" />
+    <result column="picpath" property="picpath" jdbcType="VARCHAR" />
+    <result column="barcode" property="barcode" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="orgid" property="orgid" jdbcType="INTEGER" />
+    <result column="accountid" property="accountid" jdbcType="INTEGER" />
+    <result column="tombstone" property="tombstone" jdbcType="INTEGER" />
+    <result column="extravarchar11" property="extravarchar11" jdbcType="VARCHAR" />
+    <result column="extravarchar12" property="extravarchar12" jdbcType="VARCHAR" />
+    <result column="extravarchar13" property="extravarchar13" jdbcType="VARCHAR" />
+    <result column="extravarchar14" property="extravarchar14" jdbcType="VARCHAR" />
+    <result column="extravarchar15" property="extravarchar15" jdbcType="VARCHAR" />
+    <result column="extravarchar16" property="extravarchar16" jdbcType="VARCHAR" />
+    <result column="extravarchar17" property="extravarchar17" jdbcType="VARCHAR" />
+    <result column="extravarchar18" property="extravarchar18" jdbcType="VARCHAR" />
+    <result column="extravarchar19" property="extravarchar19" jdbcType="VARCHAR" />
+    <result column="extravarchar20" property="extravarchar20" jdbcType="VARCHAR" />
+    <result column="extraid6" property="extraid6" jdbcType="INTEGER" />
+    <result column="extraid7" property="extraid7" jdbcType="INTEGER" />
+    <result column="extraid8" property="extraid8" jdbcType="INTEGER" />
+    <result column="extraid9" property="extraid9" jdbcType="INTEGER" />
+    <result column="extraid10" property="extraid10" jdbcType="INTEGER" />
+    <result column="extravarchar21" property="extravarchar21" jdbcType="VARCHAR" />
+    <result column="extravarchar22" property="extravarchar22" jdbcType="VARCHAR" />
+    <result column="extravarchar23" property="extravarchar23" jdbcType="VARCHAR" />
+    <result column="extravarchar24" property="extravarchar24" jdbcType="VARCHAR" />
+    <result column="extravarchar25" property="extravarchar25" jdbcType="VARCHAR" />
+    <result column="extravarchar26" property="extravarchar26" jdbcType="VARCHAR" />
+    <result column="extravarchar27" property="extravarchar27" jdbcType="VARCHAR" />
+    <result column="extravarchar28" property="extravarchar28" jdbcType="VARCHAR" />
+    <result column="extravarchar29" property="extravarchar29" jdbcType="VARCHAR" />
+    <result column="extravarchar30" property="extravarchar30" jdbcType="VARCHAR" />
+    <result column="extradecimal6" property="extradecimal6" jdbcType="DECIMAL" />
+    <result column="extradecimal7" property="extradecimal7" jdbcType="DECIMAL" />
+    <result column="extradecimal8" property="extradecimal8" jdbcType="DECIMAL" />
+    <result column="extradecimal9" property="extradecimal9" jdbcType="DECIMAL" />
+    <result column="extradecimal10" property="extradecimal10" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, roottaskid, taskgroupid, taskkey, taskname, typeid, statusid, extraid1, extraid2, 
+    extraid3, extraid4, extraid5, extravarchar1, extravarchar2, extravarchar3, extravarchar4, 
+    extravarchar5, extravarchar6, extravarchar7, extravarchar8, extravarchar9, extravarchar10, 
+    extradecimal1, extradecimal2, extradecimal3, extradecimal4, extradecimal5, extraint1, 
+    extraint2, extraint3, extraint4, extraint5, extradatetime1, extradatetime2, extradatetime3, 
+    extradatetime4, extradatetime5, createdate, createuserid, modificationdate, modificationuserid, 
+    picpath, barcode, memo, orgid, accountid, tombstone, extravarchar11, extravarchar12, 
+    extravarchar13, extravarchar14, extravarchar15, extravarchar16, extravarchar17, extravarchar18, 
+    extravarchar19, extravarchar20, extraid6, extraid7, extraid8, extraid9, extraid10, 
+    extravarchar21, extravarchar22, extravarchar23, extravarchar24, extravarchar25, extravarchar26, 
+    extravarchar27, extravarchar28, extravarchar29, extravarchar30, extradecimal6, extradecimal7, 
+    extradecimal8, extradecimal9, extradecimal10
+  </sql>
+
+  <insert id="insert" parameterType="TaskEntity" >
+    insert into task (roottaskid, taskgroupid,
+      taskkey, taskname, typeid, 
+      statusid, extraid1, extraid2, 
+      extraid3, extraid4, extraid5, 
+      extravarchar1, extravarchar2, extravarchar3, 
+      extravarchar4, extravarchar5, extravarchar6, 
+      extravarchar7, extravarchar8, extravarchar9, 
+      extravarchar10, extradecimal1, extradecimal2, 
+      extradecimal3, extradecimal4, extradecimal5, 
+      extraint1, extraint2, extraint3, 
+      extraint4, extraint5, extradatetime1, 
+      extradatetime2, extradatetime3, extradatetime4, 
+      extradatetime5, createdate, createuserid, 
+      modificationdate, modificationuserid, 
+      picpath, barcode, memo, 
+      orgid, accountid, tombstone, 
+      extravarchar11, extravarchar12, extravarchar13, 
+      extravarchar14, extravarchar15, extravarchar16, 
+      extravarchar17, extravarchar18, extravarchar19, 
+      extravarchar20, extraid6, extraid7, 
+      extraid8, extraid9, extraid10, 
+      extravarchar21, extravarchar22, extravarchar23, 
+      extravarchar24, extravarchar25, extravarchar26, 
+      extravarchar27, extravarchar28, extravarchar29, 
+      extravarchar30, extradecimal6, extradecimal7, 
+      extradecimal8, extradecimal9, extradecimal10
+      )
+    values ( #{roottaskid,jdbcType=INTEGER}, #{taskgroupid,jdbcType=INTEGER},
+      #{taskkey,jdbcType=VARCHAR}, #{taskname,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER}, 
+      #{statusid,jdbcType=INTEGER}, #{extraid1,jdbcType=INTEGER}, #{extraid2,jdbcType=INTEGER}, 
+      #{extraid3,jdbcType=INTEGER}, #{extraid4,jdbcType=INTEGER}, #{extraid5,jdbcType=INTEGER}, 
+      #{extravarchar1,jdbcType=VARCHAR}, #{extravarchar2,jdbcType=VARCHAR}, #{extravarchar3,jdbcType=VARCHAR}, 
+      #{extravarchar4,jdbcType=VARCHAR}, #{extravarchar5,jdbcType=VARCHAR}, #{extravarchar6,jdbcType=VARCHAR}, 
+      #{extravarchar7,jdbcType=VARCHAR}, #{extravarchar8,jdbcType=VARCHAR}, #{extravarchar9,jdbcType=VARCHAR}, 
+      #{extravarchar10,jdbcType=VARCHAR}, #{extradecimal1,jdbcType=DECIMAL}, #{extradecimal2,jdbcType=DECIMAL}, 
+      #{extradecimal3,jdbcType=DECIMAL}, #{extradecimal4,jdbcType=DECIMAL}, #{extradecimal5,jdbcType=DECIMAL}, 
+      #{extraint1,jdbcType=INTEGER}, #{extraint2,jdbcType=INTEGER}, #{extraint3,jdbcType=INTEGER}, 
+      #{extraint4,jdbcType=INTEGER}, #{extraint5,jdbcType=INTEGER}, #{extradatetime1,jdbcType=TIMESTAMP}, 
+      #{extradatetime2,jdbcType=TIMESTAMP}, #{extradatetime3,jdbcType=TIMESTAMP}, #{extradatetime4,jdbcType=TIMESTAMP}, 
+      #{extradatetime5,jdbcType=TIMESTAMP}, #{createdate,jdbcType=TIMESTAMP}, #{createuserid,jdbcType=INTEGER}, 
+      #{modificationdate,jdbcType=TIMESTAMP}, #{modificationuserid,jdbcType=INTEGER}, 
+      #{picpath,jdbcType=VARCHAR}, #{barcode,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+      #{orgid,jdbcType=INTEGER}, #{accountid,jdbcType=INTEGER}, #{tombstone,jdbcType=INTEGER}, 
+      #{extravarchar11,jdbcType=VARCHAR}, #{extravarchar12,jdbcType=VARCHAR}, #{extravarchar13,jdbcType=VARCHAR}, 
+      #{extravarchar14,jdbcType=VARCHAR}, #{extravarchar15,jdbcType=VARCHAR}, #{extravarchar16,jdbcType=VARCHAR}, 
+      #{extravarchar17,jdbcType=VARCHAR}, #{extravarchar18,jdbcType=VARCHAR}, #{extravarchar19,jdbcType=VARCHAR}, 
+      #{extravarchar20,jdbcType=VARCHAR}, #{extraid6,jdbcType=INTEGER}, #{extraid7,jdbcType=INTEGER}, 
+      #{extraid8,jdbcType=INTEGER}, #{extraid9,jdbcType=INTEGER}, #{extraid10,jdbcType=INTEGER}, 
+      #{extravarchar21,jdbcType=VARCHAR}, #{extravarchar22,jdbcType=VARCHAR}, #{extravarchar23,jdbcType=VARCHAR}, 
+      #{extravarchar24,jdbcType=VARCHAR}, #{extravarchar25,jdbcType=VARCHAR}, #{extravarchar26,jdbcType=VARCHAR}, 
+      #{extravarchar27,jdbcType=VARCHAR}, #{extravarchar28,jdbcType=VARCHAR}, #{extravarchar29,jdbcType=VARCHAR}, 
+      #{extravarchar30,jdbcType=VARCHAR}, #{extradecimal6,jdbcType=DECIMAL}, #{extradecimal7,jdbcType=DECIMAL}, 
+      #{extradecimal8,jdbcType=DECIMAL}, #{extradecimal9,jdbcType=DECIMAL}, #{extradecimal10,jdbcType=DECIMAL}
+      )
+  </insert>
+
+
+
+</mapper>

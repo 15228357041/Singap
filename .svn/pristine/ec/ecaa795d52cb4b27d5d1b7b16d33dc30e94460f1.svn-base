@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.HumanMapper">
+
+    <sql id="table_name">
+        human
+    </sql>
+
+    <sql id="table_id">
+        <include refid="table_name"/>.id
+    </sql>
+
+    <!-- table columns -->
+    <sql id="database_table_columns">
+        <include refid="table_name"/>.id,
+        <include refid="table_name"/>.humankey,
+        <include refid="table_name"/>.humanname,
+        <include refid="table_name"/>.tombstone
+    </sql>
+
+
+    <resultMap id="dtoBeanResult" type="com.mingcloud.proxy.datalayer.dto.archiveinfo.HumanDto">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="humankey" property="humankey" jdbcType="VARCHAR" />
+        <result column="humanname" property="humanname" jdbcType="VARCHAR" />
+        <result column="tombstone" property="tombstone" jdbcType="INTEGER" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.mingcloud.proxy.datalayer.dto.archiveinfo.HumanDto"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into
+        <include refid="table_name" />
+        (
+        humankey,
+        humanname,
+        tombstone,
+        createdate,
+        modificationdate
+        )
+        values
+        (
+        #{humankey,jdbcType=VARCHAR},
+        #{humanname,jdbcType=VARCHAR},
+        #{tombstone,jdbcType=INTEGER},
+        #{createdate,jdbcType=TIMESTAMP},
+        #{modificationdate,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <sql id="update_human_where">
+        <trim prefix="" suffix="" suffixOverrides=",">
+            <if test="humankey !=null">
+                humankey = #{humankey,jdbcType=VARCHAR},
+            </if>
+            <if test="humanname !=null">
+                humanname =#{humanname,jdbcType=VARCHAR},
+            </if>
+            <if test="tombstone != null" >
+                tombstone = #{tombstone,jdbcType=INTEGER},
+            </if>
+            <if test="modificationdate != null" >
+                modificationdate = #{modificationdate,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </sql>
+
+    <update id="update" parameterType="com.mingcloud.proxy.datalayer.dto.archiveinfo.HumanDto">
+        update
+        <include refid="table_name" />
+        <set>
+            <include refid="update_human_where"/>
+        </set>
+        where
+        <include refid="table_id" />
+        = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectAllHuman" parameterType="com.mingcloud.proxy.datalayer.dto.archiveinfo.HumanDto"
+            resultMap="dtoBeanResult">
+        SELECT
+          WORK_SUPPLIER_KEY AS humankey,
+          WORK_SUPPLIER_NAME AS humanname
+        FROM
+          WORK_SUPPLIER
+    </select>
+
+    <select id="getByHumanKey" resultMap="dtoBeanResult" parameterType="java.lang.String">
+        SELECT
+          <include refid="database_table_columns" />
+        FROM
+          <include refid="table_name" />
+        WHERE <include refid="table_name" />.humankey = #{humanKey, jdbcType=VARCHAR}
+    </select>
+</mapper>

@@ -1,0 +1,45 @@
+package com.mingcloud.proxy.datalayer.entity.archiveinfo;
+
+import java.math.BigDecimal;
+
+import com.mingcloud.proxy.datalayer.entity.BaseEntity;
+
+public class CurrentStockEntity extends BaseEntity {
+		
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1569054194793409857L;
+
+	private String cInvCode;
+	
+	private String cWhCode;
+	
+	private BigDecimal iQuantity;
+
+	public String getCInvCode() {
+		return cInvCode;
+	}
+
+	public void setCInvCode(String cInvCode) {
+		this.cInvCode = cInvCode;
+	}
+
+	public String getcWhCode() {
+		return cWhCode;
+	}
+
+	public void setcWhCode(String cWhCode) {
+		this.cWhCode = cWhCode;
+	}
+
+	public BigDecimal getiQuantity() {
+		return iQuantity;
+	}
+
+	public void setiQuantity(BigDecimal iQuantity) {
+		this.iQuantity = iQuantity;
+	}
+	
+
+}

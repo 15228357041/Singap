@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.InspectionMapper" >
+
+    <sql id="table_name">
+        inspection
+    </sql>
+
+    <sql id="table_id">
+        <include refid="table_name" />.id
+    </sql>
+
+    <!-- table columns -->
+    <sql id="database_table_columns">
+        <include refid="table_name" />.id,
+        <include refid="table_name" />.inspectionkey,
+        <include refid="table_name" />.inspectionname,
+        <include refid="table_name" />.humanid,
+        <include refid="table_name" />.createdate,
+        <include refid="table_name" />.modificationdate,
+        <include refid="table_name" />.tombstone
+    </sql>
+
+    <!-- 作业人员关联信息 -->
+    <sql id="releation_human_table_name">
+        human
+    </sql>
+
+    <sql id="releation_human_table_id">
+        <include refid="releation_human_table_name"/>.id
+    </sql>
+
+    <sql id="releation_human_columns">
+        <include refid="releation_human_table_name"/>.humanname
+    </sql>
+
+    <resultMap id="entityBeanResult" type="InspectionEntity" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="inspectionkey" property="inspectionkey" jdbcType="VARCHAR" />
+        <result column="inspectionname" property="inspectionname" jdbcType="VARCHAR" />
+        <result column="humanid" property="humanid" jdbcType="INTEGER" />
+        <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+        <result column="modificationdate" property="modificationdate" jdbcType="TIMESTAMP" />
+        <result column="tombstone" property="tombstone" jdbcType="INTEGER" />
+    </resultMap>
+
+
+
+    <insert id="insert" parameterType="InspectionEntity"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into
+        <include refid="table_name" />
+        (
+        inspectionkey,
+        inspectionname,
+        humanid,
+        createdate,
+        inspectiontypeid,
+        tombstone
+        )
+        values
+        (
+        #{inspectionkey,jdbcType=VARCHAR},
+        #{inspectionname,jdbcType=VARCHAR},
+        #{humanid,jdbcType=INTEGER},
+        #{createdate,jdbcType=TIMESTAMP},
+        #{inspectiontypeid,jdbcType=INTEGER},
+        1
+        )
+    </insert>
+
+    <update id="update" parameterType="InspectionEntity" >
+        update
+        <include refid="table_name" />
+        <set>
+            <if test="inspectionkey != null">
+                inspectionkey =#{inspectionkey,jdbcType=VARCHAR},
+            </if>
+            <if test="inspectionname != null">
+                inspectionname=#{inspectionname,jdbcType=VARCHAR},
+            </if>
+            <if test="humanid != null">
+                humanid=#{humanid,jdbcType=INTEGER},
+            </if>
+            <if test="modificationdate != null">
+                modificationdate=#{modificationdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tombstone != null">
+                tombstone =#{tombstone,jdbcType=INTEGER},
+            </if>
+            <if test="inspectiontypeid != null">
+                inspectiontypeid =#{inspectiontypeid,jdbcType=INTEGER}
+            </if>
+        </set>
+        where
+        <include refid="table_id" />
+        = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByInspectionKey" parameterType="java.lang.String" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        FROM
+        <include refid="table_name" />
+        WHERE <include refid="table_name" />.inspectionkey =#{inspectionkey,jdbcType=VARCHAR}
+        limit 1
+    </select>
+
+   <select id="selectKeyIdMap" resultMap="entityBeanResult">
+        SELECT
+          inspectionkey,id,humanid
+        FROM
+          <include refid="table_name" />
+    </select>
+    <select id="selectSuccessInspection"
+            resultType="com.mingcloud.proxy.datalayer.dto.inspection.InspectionDto">
+        SELECT
+            r.id,
+            i.inspectionkey,
+            mo.mokey,
+            p.inspectionpointkey,
+            date_format( r.createdate, '%Y-%m-%d' ) AS inspectiondate,
+            TIME_TO_SEC( r.createdate ) AS inspectiontime,
+            r.inspectionvalue,
+            ( CASE WHEN r.STATUS = '1' THEN 'No' WHEN r.STATUS = '2' THEN 'yes' ELSE 'No' END ) alarmon,
+            r.description,
+            r.checkuserid,
+            ( CASE WHEN r.STATUS = '1' THEN 'No' WHEN r.STATUS = '2' THEN 'yes' ELSE 'No' END ) alarmflag,
+            og.organizationkey
+        FROM
+            inspectionresult r
+            LEFT JOIN inspectionpoint p ON r.inspectionpointid = p.id
+            LEFT JOIN inspection i ON p.inspectionid = i.id
+            LEFT JOIN maintenanceobject mo ON r.moid = mo.id
+            LEFT JOIN organization og ON i.orgid = og.id
+            LEFT JOIN USERs u ON r.checkuserid = u.id
+        WHERE
+            r.createdate >= curdate()
+            AND (r.isupload is null OR r.isupload =2)
+
+    </select>
+    <select id="selectErrorInspection" resultType="com.mingcloud.proxy.datalayer.dto.inspection.InspectionDto">
+        SELECT
+            r.id,
+            concat( r.inspectionpointid, r.createdate, 'M11A1' ) AS mainkey,
+            r.inspectionpointid,
+            p.inspectionpointkey,
+            p.inspectionpointname,
+            r.STATUS,
+            date_format( r.createdate, '%Y-%m-%d' ) AS inspectiondate,
+            TIME_TO_SEC( r.createdate ) AS inspectiontime,
+            r.upperlimitvalue,
+            r.lowerlimitvalue,
+            p.inspectionid,
+            i.inspectionkey,
+            i.inspectionname,
+            mo.id,
+            mo.mokey,
+            mo.moname,
+            r.inspectionvalue,
+            r.description,
+            og.organizationkey,
+            'Yes' AS limitOn,
+            'Yes' AS alarmOn
+        FROM
+            inspectionresult r
+            LEFT JOIN inspectionpoint p ON r.inspectionpointid = p.id
+            LEFT JOIN inspection i ON p.inspectionid = i.id
+            LEFT JOIN maintenanceobject mo ON r.moid = mo.id
+            LEFT JOIN organization og ON i.orgid = og.id
+        WHERE
+            r.STATUS = '2'
+            AND r.createdate >= curdate( )
+            AND r.isupload is null
+    </select>
+    <select id="selectUpdateInspection"
+            resultType="com.mingcloud.proxy.datalayer.dto.inspection.InspectionDto">
+        SELECT
+            concat( p.id, p.planstartdate ) AS mainkey,
+            p.inspectionpointkey,
+            p.inspectionpointname,
+            date_format( p.planstartdate, '%Y/%m/%d' ) AS planstartdate,
+            p.inspectionid,
+            i.inspectionkey,
+            p.extraint1 as route
+        FROM
+            inspectionpoint p
+            LEFT JOIN inspection i ON p.inspectionid = i.id
+        WHERE
+            p.planstartdate >= curdate( ) - 1
+
+    </select>
+    <update id="updateResulltUpload">
+        UPDATE inspectionresult set isupload = #{isupload}
+        WHERE id = #{id}
+    </update>
+    <update id="batchUpdate">
+        UPDATE inspectionresult set isupload = ${isupload}
+        WHERE id in
+        <foreach collection="array" item="item" index="index" open="(" close=")" separator=",">${item.id}</foreach>
+    </update>
+    <update id="updateUploadById">
+           UPDATE inspectionresult set isupload = #{code}
+        <where>
+            id = #{id}
+        </where>
+    </update>
+
+</mapper>

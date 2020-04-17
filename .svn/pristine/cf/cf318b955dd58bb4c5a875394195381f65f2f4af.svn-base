@@ -1,0 +1,149 @@
+package com.mingcloud.proxy.datalayer.entity.archiveinfo;
+
+import com.mingcloud.proxy.datalayer.entity.BaseEntity;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+public class CounterLineEntity extends BaseEntity {
+
+    private Integer id;
+
+    private Integer counterheaderid;
+
+    private BigDecimal qty;
+
+    private Date counterlinedate;
+
+    private Integer status;
+
+    private Date createdate;
+
+    private Integer createuserid;
+
+    private Date modificationdate;
+
+    private Integer modificationuserid;
+
+    private String picpath;
+
+    private String barcode;
+
+    private String memo;
+
+    private Integer orgid;
+
+    private Integer tombstone;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getCounterheaderid() {
+        return counterheaderid;
+    }
+
+    public void setCounterheaderid(Integer counterheaderid) {
+        this.counterheaderid = counterheaderid;
+    }
+
+    public BigDecimal getQty() {
+        return qty;
+    }
+
+    public void setQty(BigDecimal qty) {
+        this.qty = qty;
+    }
+
+    public Date getCounterlinedate() {
+        return counterlinedate;
+    }
+
+    public void setCounterlinedate(Date counterlinedate) {
+        this.counterlinedate = counterlinedate;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Date getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+
+    public Integer getCreateuserid() {
+        return createuserid;
+    }
+
+    public void setCreateuserid(Integer createuserid) {
+        this.createuserid = createuserid;
+    }
+
+    public Date getModificationdate() {
+        return modificationdate;
+    }
+
+    public void setModificationdate(Date modificationdate) {
+        this.modificationdate = modificationdate;
+    }
+
+    public Integer getModificationuserid() {
+        return modificationuserid;
+    }
+
+    public void setModificationuserid(Integer modificationuserid) {
+        this.modificationuserid = modificationuserid;
+    }
+
+    public String getPicpath() {
+        return picpath;
+    }
+
+    public void setPicpath(String picpath) {
+        this.picpath = picpath;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public Integer getOrgid() {
+        return orgid;
+    }
+
+    public void setOrgid(Integer orgid) {
+        this.orgid = orgid;
+    }
+
+    public Integer getTombstone() {
+        return tombstone;
+    }
+
+    public void setTombstone(Integer tombstone) {
+        this.tombstone = tombstone;
+    }
+}

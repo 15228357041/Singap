@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.InspectionPointMapper">
+
+    <sql id="table_name">
+        inspectionpoint
+    </sql>
+
+    <sql id="table_id">
+        id
+    </sql>
+
+    <!-- table columns -->
+    <sql id="database_table_columns">
+        <include refid="table_name"/>.id,
+        <include refid="table_name"/>.inspectionpointkey,
+        <include refid="table_name"/>.inspectionpointname,
+        <include refid="table_name"/>.inspectionid,
+        <include refid="table_name"/>.moid,
+        <include refid="table_name"/>.rfid,
+        <include refid="table_name"/>.description,
+        <include refid="table_name"/>.standard,
+        <include refid="table_name"/>.userid,
+        <include refid="table_name"/>.executecycletype,
+        <include refid="table_name"/>.executecyclevalue,
+        <include refid="table_name"/>.fixedexecutecycle,
+        <include refid="table_name"/>.inspectiondatetime,
+        <include refid="table_name"/>.inspectionstartdatetime,
+        <include refid="table_name"/>.instrumentid,
+        <include refid="table_name"/>.humanid,
+        <include refid="table_name"/>.inspectiontype,
+        <include refid="table_name"/>.createdate,
+        <include refid="table_name"/>.createuserid,
+        <include refid="table_name"/>.modificationdate,
+        <include refid="table_name"/>.modificationuserid,
+        <include refid="table_name"/>.status,
+        <include refid="table_name"/>.picpath,
+        <include refid="table_name"/>.barcode,
+        <include refid="table_name"/>.memo,
+        <include refid="table_name"/>.orgid,
+        <include refid="table_name"/>.accountid,
+        <include refid="table_name"/>.tombstone,
+        <include refid="table_name"/>.jobinstructionheaderid,
+        <include refid="table_name"/>.inspectionenddatetime,
+        <include refid="table_name"/>.lastcompleteddate,
+        <include refid="table_name"/>.planstartdate,
+        <include refid="table_name"/>.planenddate,
+        <include refid="table_name"/>.startdate,
+        <include refid="table_name"/>.enddate,
+        <include refid="table_name"/>.spid,
+        <include refid="table_name"/>.typeid,
+        <include refid="table_name"/>.jobstandard,
+        <include refid="table_name"/>.jobmethod,
+        <include refid="table_name"/>.extravarchar1,
+        <include refid="table_name"/>.extravarchar2,
+        <include refid="table_name"/>.extravarchar3,
+        <include refid="table_name"/>.extravarchar4,
+        <include refid="table_name"/>.extravarchar5,
+        <include refid="table_name"/>.extravarchar6,
+        <include refid="table_name"/>.extravarchar7,
+        <include refid="table_name"/>.extravarchar8,
+        <include refid="table_name"/>.extravarchar9,
+        <include refid="table_name"/>.extravarchar10,
+        <include refid="table_name"/>.extradecimal1,
+        <include refid="table_name"/>.extradecimal2,
+        <include refid="table_name"/>.extradecimal3,
+        <include refid="table_name"/>.extradecimal4,
+        <include refid="table_name"/>.extradecimal5,
+        <include refid="table_name"/>.extraint1,
+        <include refid="table_name"/>.extraint2,
+        <include refid="table_name"/>.extraint3,
+        <include refid="table_name"/>.extraint4,
+        <include refid="table_name"/>.extraint5,
+        <include refid="table_name"/>.extraid1,
+        <include refid="table_name"/>.extraid2,
+        <include refid="table_name"/>.extraid3,
+        <include refid="table_name"/>.extraid4,
+        <include refid="table_name"/>.extraid5,
+        <include refid="table_name"/>.extradatetime1,
+        <include refid="table_name"/>.extradatetime2,
+        <include refid="table_name"/>.extradatetime3,
+        <include refid="table_name"/>.extradatetime4,
+        <include refid="table_name"/>.extradatetime5,
+        <include refid="table_name"/>.shiftid,
+        <include refid="table_name"/>.upperlimitvalue,
+        <include refid="table_name"/>.lowerlimitvalue
+    </sql>
+
+    <insert id="insert" parameterType="com.mingcloud.proxy.datalayer.dto.inspection.InspectionPointDto" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        <include refid="table_name" />
+        (
+        inspectionpointkey,
+        inspectionpointname,
+        inspectionid,
+        moid,
+        rfid,
+        description,
+        standard,
+        userid,
+        executecycletype,
+        executecyclevalue,
+        fixedexecutecycle,
+        inspectiondatetime,
+        inspectionstartdatetime,
+        instrumentid,
+        humanid,
+        inspectiontype,
+        createdate,
+        createuserid,
+        status,
+        picpath,
+        barcode,
+        memo,
+        orgid,
+        accountid,
+        tombstone,
+        jobinstructionheaderid,
+        inspectionenddatetime,
+        lastcompleteddate,
+        planstartdate,
+        planenddate,
+        startdate,
+        enddate,
+        spid,
+        typeid,
+        jobstandard,
+        jobmethod,
+        extravarchar1,
+        extravarchar2,
+        extravarchar3,
+        extravarchar4,
+        extravarchar5,
+        extravarchar6,
+        extravarchar7,
+        extravarchar8,
+        extravarchar9,
+        extravarchar10,
+        extradecimal1,
+        extradecimal2,
+        extradecimal3,
+        extradecimal4,
+        extradecimal5,
+        extraint1,
+        extraint2,
+        extraint3,
+        extraint4,
+        extraint5,
+        extraid1,
+        extraid2,
+        extraid3,
+        extraid4,
+        extraid5,
+        extradatetime1,
+        extradatetime2,
+        extradatetime3,
+        extradatetime4,
+        extradatetime5,
+        shiftid,
+        upperlimitvalue,
+        lowerlimitvalue
+        )
+        values
+        (
+        #{inspectionpointkey,jdbcType=VARCHAR},
+        #{inspectionpointname,jdbcType=VARCHAR},
+        #{inspectionid,jdbcType=INTEGER},
+        #{moid,jdbcType=INTEGER},
+        #{rfid,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR},
+        #{standard,jdbcType=VARCHAR},
+        #{userid,jdbcType=INTEGER},
+        #{executecycletype,jdbcType=INTEGER},
+        #{executecyclevalue,jdbcType=INTEGER},
+        #{fixedexecutecycle,jdbcType=INTEGER},
+        #{inspectiondatetime,jdbcType=TIMESTAMP},
+        #{inspectionstartdatetime,jdbcType=TIMESTAMP},
+        #{instrumentid,jdbcType=INTEGER},
+        #{humanid,jdbcType=INTEGER},
+        #{inspectiontype,jdbcType=INTEGER},
+        #{createdate,jdbcType=TIMESTAMP},
+        #{createuserid,jdbcType=INTEGER},
+        #{status,jdbcType=INTEGER},
+        #{picpath,jdbcType=VARCHAR},
+        #{barcode,jdbcType=VARCHAR},
+        #{memo,jdbcType=VARCHAR},
+        #{orgid,jdbcType=INTEGER},
+        #{accountid,jdbcType=INTEGER},
+        1,
+        #{jobinstructionheaderid,jdbcType=INTEGER},
+        #{inspectionenddatetime,jdbcType=TIMESTAMP},
+        #{lastcompleteddate,jdbcType=TIMESTAMP},
+        #{planstartdate,jdbcType=TIMESTAMP},
+        #{planenddate,jdbcType=TIMESTAMP},
+        #{startdate,jdbcType=TIMESTAMP},
+        #{enddate,jdbcType=TIMESTAMP},
+        #{spid,jdbcType=INTEGER},
+        #{typeid,jdbcType=INTEGER},
+        #{jobstandard,jdbcType=VARCHAR},
+        #{jobmethod,jdbcType=VARCHAR},
+        #{extravarchar1,jdbcType=VARCHAR},
+        #{extravarchar2,jdbcType=VARCHAR},
+        #{extravarchar3,jdbcType=VARCHAR},
+        #{extravarchar4,jdbcType=VARCHAR},
+        #{extravarchar5,jdbcType=VARCHAR},
+        #{extravarchar6,jdbcType=VARCHAR},
+        #{extravarchar7,jdbcType=VARCHAR},
+        #{extravarchar8,jdbcType=VARCHAR},
+        #{extravarchar9,jdbcType=VARCHAR},
+        #{extravarchar10,jdbcType=VARCHAR},
+        #{extradecimal1,jdbcType=DECIMAL},
+        #{extradecimal2,jdbcType=DECIMAL},
+        #{extradecimal3,jdbcType=DECIMAL},
+        #{extradecimal4,jdbcType=DECIMAL},
+        #{extradecimal5,jdbcType=DECIMAL},
+        #{extraint1,jdbcType=INTEGER},
+        #{extraint2,jdbcType=INTEGER},
+        #{extraint3,jdbcType=INTEGER},
+        #{extraint4,jdbcType=INTEGER},
+        #{extraint5,jdbcType=INTEGER},
+        #{extraid1,jdbcType=INTEGER},
+        #{extraid2,jdbcType=INTEGER},
+        #{extraid3,jdbcType=INTEGER},
+        #{extraid4,jdbcType=INTEGER},
+        #{extraid5,jdbcType=INTEGER},
+        #{extradatetime1,jdbcType=TIMESTAMP},
+        #{extradatetime2,jdbcType=TIMESTAMP},
+        #{extradatetime3,jdbcType=TIMESTAMP},
+        #{extradatetime4,jdbcType=TIMESTAMP},
+        #{extradatetime5,jdbcType=TIMESTAMP},
+        #{shiftid,jdbcType=INTEGER},
+        #{upperlimitvalue,jdbcType=DECIMAL},
+        #{lowerlimitvalue,jdbcType=DECIMAL}
+        )
+    </insert>
+
+    <sql id="update_table_where">
+        <trim prefix="" suffix="" suffixOverrides=",">
+            <if test="inspectionpointkey != null" >
+                inspectionpointkey = #{inspectionpointkey,jdbcType=VARCHAR},
+            </if>
+            <if test="inspectionpointname != null" >
+                inspectionpointname = #{inspectionpointname,jdbcType=VARCHAR},
+            </if>
+            <if test="inspectionid != null" >
+                inspectionid = #{inspectionid,jdbcType=INTEGER},
+            </if>
+            <if test="moid != null" >
+                moid = #{moid,jdbcType=INTEGER},
+            </if>
+            <if test="rfid != null" >
+                rfid = #{rfid,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null" >
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="userid != null" >
+                userid = #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="executecycletype != null" >
+                executecycletype = #{executecycletype,jdbcType=INTEGER},
+            </if>
+            <if test="executecyclevalue != null" >
+                executecyclevalue = #{executecyclevalue,jdbcType=INTEGER},
+            </if>
+            <if test="fixedexecutecycle != null" >
+                fixedexecutecycle = #{fixedexecutecycle,jdbcType=INTEGER},
+            </if>
+            <if test="inspectiondatetime != null" >
+                inspectiondatetime = #{inspectiondatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="inspectionstartdatetime != null" >
+                inspectionstartdatetime= #{inspectionstartdatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="instrumentid != null" >
+                instrumentid = #{instrumentid,jdbcType=INTEGER},
+            </if>
+            <if test="humanid != null" >
+                humanid = #{humanid,jdbcType=INTEGER},
+            </if>
+            <if test="inspectiontype != null" >
+                inspectiontype = #{inspectiontype,jdbcType=INTEGER},
+            </if>
+            <if test="modificationdate != null" >
+                modificationdate = #{modificationdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modificationuserid != null" >
+                modificationuserid = #{modificationuserid,jdbcType=INTEGER},
+            </if>
+            <if test="picpath != null" >
+                picpath = #{picpath,jdbcType=VARCHAR},
+            </if>
+            <if test="barcode != null" >
+                barcode = #{barcode,jdbcType=VARCHAR},
+            </if>
+            <if test="memo != null" >
+                memo = #{memo,jdbcType=VARCHAR},
+            </if>
+            <if test="orgid != null" >
+                orgid = #{orgid,jdbcType=INTEGER},
+            </if>
+            <if test="accountid != null" >
+                accountid = #{accountid,jdbcType=INTEGER},
+            </if>
+            <if test="tombstone != null" >
+                tombstone = #{tombstone,jdbcType=INTEGER},
+            </if>
+            <if test="jobinstructionheaderid != null" >
+                jobinstructionheaderid =#{jobinstructionheaderid,jdbcType=INTEGER},
+            </if>
+            <if test="standard != null" >
+                standard =#{standard,jdbcType=VARCHAR},
+            </if>
+            <if test="inspectionenddatetime != null" >
+                inspectionenddatetime = #{inspectionenddatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastcompleteddate != null" >
+                lastcompleteddate = #{lastcompleteddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="planstartdate != null" >
+                planstartdate = #{planstartdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="planenddate != null" >
+                planenddate = #{planenddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="startdate != null" >
+                startdate = #{startdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="enddate != null" >
+                enddate = #{enddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="spid != null" >
+                spid = #{spid,jdbcType=INTEGER},
+            </if>
+            <if test="typeid != null" >
+                typeid = #{typeid,jdbcType=INTEGER},
+            </if>
+            <if test="jobstandard != null">
+                jobstandard = #{jobstandard,jdbcType=VARCHAR},
+            </if>
+            <if test="jobmethod != null">
+                jobmethod = #{jobmethod,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar1 != null">
+                extravarchar1 = #{extravarchar1,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar2 != null">
+                extravarchar2 = #{extravarchar2,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar3 != null">
+                extravarchar3 = #{extravarchar3,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar4 != null">
+                extravarchar4 = #{extravarchar4,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar5 != null">
+                extravarchar5 = #{extravarchar5,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar6 != null">
+                extravarchar6 = #{extravarchar6,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar7 != null">
+                extravarchar7 = #{extravarchar7,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar8 != null">
+                extravarchar8 = #{extravarchar8,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar9 != null">
+                extravarchar9 = #{extravarchar9,jdbcType=VARCHAR},
+            </if>
+            <if test="extravarchar10 != null">
+                extravarchar10 = #{extravarchar10,jdbcType=VARCHAR},
+            </if>
+            <if test="extradecimal1 != null">
+                extradecimal1 = #{extradecimal1,jdbcType=DECIMAL},
+            </if>
+            <if test="extradecimal2 != null">
+                extradecimal2 = #{extradecimal2,jdbcType=DECIMAL},
+            </if>
+            <if test="extradecimal3 != null">
+                extradecimal3 = #{extradecimal3,jdbcType=DECIMAL},
+            </if>
+            <if test="extradecimal4 != null">
+                extradecimal4 = #{extradecimal4,jdbcType=DECIMAL},
+            </if>
+            <if test="extradecimal5 != null">
+                extradecimal5 = #{extradecimal5,jdbcType=DECIMAL},
+            </if>
+            <if test="extraint1 != null">
+                extraint1 = #{extraint1,jdbcType=INTEGER},
+            </if>
+            <if test="extraint2 != null">
+                extraint2 = #{extraint2,jdbcType=INTEGER},
+            </if>
+            <if test="extraint3 != null">
+                extraint3 = #{extraint3,jdbcType=INTEGER},
+            </if>
+            <if test="extraint4 != null">
+                extraint4 = #{extraint4,jdbcType=INTEGER},
+            </if>
+            <if test="extraint5 != null">
+                extraint5 = #{extraint5,jdbcType=INTEGER},
+            </if>
+            <if test="extraid1 != null">
+                extraid1 = #{extraid1,jdbcType=INTEGER},
+            </if>
+            <if test="extraid2 != null">
+                extraid2 = #{extraid2,jdbcType=INTEGER},
+            </if>
+            <if test="extraid3 != null">
+                extraid3 = #{extraid3,jdbcType=INTEGER},
+            </if>
+            <if test="extraid4 != null">
+                extraid4 = #{extraid4,jdbcType=INTEGER},
+            </if>
+            <if test="extraid5 != null">
+                extraid5 = #{extraid5,jdbcType=INTEGER},
+            </if>
+            <if test="extradatetime1 != null">
+                extradatetime1 = #{extradatetime1,jdbcType=TIMESTAMP},
+            </if>
+            <if test="extradatetime2 != null">
+                extradatetime2 = #{extradatetime2,jdbcType=TIMESTAMP},
+            </if>
+            <if test="extradatetime3 != null">
+                extradatetime3 = #{extradatetime3,jdbcType=TIMESTAMP},
+            </if>
+            <if test="extradatetime4 != null">
+                extradatetime4 = #{extradatetime4,jdbcType=TIMESTAMP},
+            </if>
+            <if test="extradatetime5 != null">
+                extradatetime5 = #{extradatetime5,jdbcType=TIMESTAMP}
+            </if>
+            <if test="shiftid != null" >
+                shiftid = #{shiftid,jdbcType=INTEGER},
+            </if>
+            <if test="upperlimitvalue != null">
+                upperlimitvalue = #{upperlimitvalue,jdbcType=DECIMAL},
+            </if>
+            <if test="lowerlimitvalue != null">
+                lowerlimitvalue = #{lowerlimitvalue,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </sql>
+    <update id="update" parameterType="com.mingcloud.proxy.datalayer.dto.inspection.InspectionPointDto">
+        update
+        <include refid="table_name" />
+        <set>
+            <include refid="update_table_where"/>
+        </set>
+        where
+        <include refid="table_id" />
+        = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <resultMap id="dtoBeanResult" type="com.mingcloud.proxy.datalayer.dto.inspection.InspectionPointDto">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="inspectionpointkey" property="inspectionpointkey" jdbcType="VARCHAR" />
+        <result column="inspectionkey" property="inspectionkey" jdbcType="VARCHAR" />
+        <result column="inspectionpointname" property="inspectionpointname" jdbcType="VARCHAR" />
+        <result column="inspectionid" property="inspectionid" jdbcType="INTEGER" />
+        <result column="moid" property="moid" jdbcType="INTEGER" />
+        <result column="mokey" property="mokey" jdbcType="VARCHAR" />
+        <result column="rfid" property="rfid" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="standard" property="standard" jdbcType="VARCHAR" />
+        <result column="userid" property="userid" jdbcType="INTEGER" />
+        <result column="executecycletype" property="executecycletype" jdbcType="INTEGER" />
+        <result column="executecyclevalue" property="executecyclevalue" jdbcType="INTEGER" />
+        <result column="fixedexecutecycle" property="fixedexecutecycle" jdbcType="INTEGER" />
+        <result column="inspectiondatetime" property="inspectiondatetime" jdbcType="TIMESTAMP" />
+        <result column="inspectionstartdatetime" property="inspectionstartdatetime" jdbcType="TIMESTAMP" />
+        <result column="instrumentid" property="instrumentid" jdbcType="INTEGER" />
+        <result column="instrumentkey" property="instrumentkey" jdbcType="VARCHAR" />
+        <result column="humanid" property="humanid" jdbcType="INTEGER" />
+        <result column="inspectiontype" property="inspectiontype" jdbcType="INTEGER" />
+        <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+        <result column="createuserid" property="createuserid" jdbcType="INTEGER" />
+        <result column="modificationdate" property="modificationdate" jdbcType="TIMESTAMP" />
+        <result column="modificationuserid" property="modificationuserid" jdbcType="INTEGER" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="picpath" property="picpath" jdbcType="VARCHAR" />
+        <result column="barcode" property="barcode" jdbcType="VARCHAR" />
+        <result column="memo" property="memo" jdbcType="VARCHAR" />
+        <result column="orgid" property="orgid" jdbcType="INTEGER" />
+        <result column="accountid" property="accountid" jdbcType="INTEGER" />
+        <result column="tombstone" property="tombstone" jdbcType="INTEGER" />
+        <result column="jobinstructionheaderid" property="jobinstructionheaderid" jdbcType="INTEGER" />
+        <result column="jobinstructionheadername" property="jobinstructionheadername" jdbcType="VARCHAR" />
+        <result column="inspectionenddatetime" property="inspectionenddatetime" jdbcType="TIMESTAMP" />
+        <result column="lastcompleteddate" property="lastcompleteddate" jdbcType="TIMESTAMP" />
+        <result column="planstartdate" property="planstartdate" jdbcType="TIMESTAMP" />
+        <result column="planenddate" property="planenddate" jdbcType="TIMESTAMP" />
+        <result column="startdate" property="startdate" jdbcType="TIMESTAMP" />
+        <result column="enddate" property="enddate" jdbcType="TIMESTAMP" />
+        <result column="spid" property="spid" jdbcType="INTEGER" />
+        <result column="costcentername" property="costcentername" jdbcType="VARCHAR" />
+        <result column="organizationname" property="organizationname" jdbcType="VARCHAR" />
+        <result column="typeid" property="typeid" jdbcType="INTEGER" />
+        <result column="jobstandard" property="jobstandard" jdbcType="VARCHAR" />
+        <result column="jobmethod" property="jobmethod" jdbcType="VARCHAR" />
+        <result column="extravarchar1" property="extravarchar1" jdbcType="VARCHAR" />
+        <result column="extravarchar2" property="extravarchar2" jdbcType="VARCHAR" />
+        <result column="extravarchar3" property="extravarchar3" jdbcType="VARCHAR" />
+        <result column="extravarchar4" property="extravarchar4" jdbcType="VARCHAR" />
+        <result column="extravarchar5" property="extravarchar5" jdbcType="VARCHAR" />
+        <result column="extravarchar6" property="extravarchar6" jdbcType="VARCHAR" />
+        <result column="extravarchar7" property="extravarchar7" jdbcType="VARCHAR" />
+        <result column="extravarchar8" property="extravarchar8" jdbcType="VARCHAR" />
+        <result column="extravarchar9" property="extravarchar9" jdbcType="VARCHAR" />
+        <result column="extravarchar10" property="extravarchar10" jdbcType="VARCHAR" />
+        <result column="extradecimal1" property="extradecimal1" jdbcType="DECIMAL" />
+        <result column="extradecimal2" property="extradecimal2" jdbcType="DECIMAL" />
+        <result column="extradecimal3" property="extradecimal3" jdbcType="DECIMAL" />
+        <result column="extradecimal4" property="extradecimal4" jdbcType="DECIMAL" />
+        <result column="extradecimal5" property="extradecimal5" jdbcType="DECIMAL" />
+        <result column="extraint1" property="extraint1" jdbcType="INTEGER" />
+        <result column="extraint2" property="extraint2" jdbcType="INTEGER" />
+        <result column="extraint3" property="extraint3" jdbcType="INTEGER" />
+        <result column="extraint4" property="extraint4" jdbcType="INTEGER" />
+        <result column="extraint5" property="extraint5" jdbcType="INTEGER" />
+        <result column="extraid1" property="extraid1" jdbcType="INTEGER" />
+        <result column="extraid2" property="extraid2" jdbcType="INTEGER" />
+        <result column="extraid3" property="extraid3" jdbcType="INTEGER" />
+        <result column="extraid4" property="extraid4" jdbcType="INTEGER" />
+        <result column="extraid5" property="extraid5" jdbcType="INTEGER" />
+        <result column="extradatetime1" property="extradatetime1" jdbcType="TIMESTAMP" />
+        <result column="extradatetime2" property="extradatetime2" jdbcType="TIMESTAMP" />
+        <result column="extradatetime3" property="extradatetime3" jdbcType="TIMESTAMP" />
+        <result column="extradatetime4" property="extradatetime4" jdbcType="TIMESTAMP" />
+        <result column="extradatetime5" property="extradatetime5" jdbcType="TIMESTAMP" />
+        <result column="shiftid" property="shiftid" jdbcType="INTEGER" />
+        <result column="upperlimitvalue" property="upperlimitvalue" jdbcType="DECIMAL" />
+        <result column="lowerlimitvalue" property="lowerlimitvalue" jdbcType="DECIMAL" />
+        <result column="INTERVAL_TIME" property="INTERVAL_TIME" jdbcType="INTEGER" />
+        <result column="INTERVAL_TIME_UNIT" property="INTERVAL_TIME_UNIT" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="selectAllApi" resultMap="dtoBeanResult">
+        SELECT
+            POINT_KEY AS inspectionpointname,
+            POINT_KEY AS inspectionpointkey,
+            ROUND_KEY AS inspectionkey,
+            MO_KEY AS mokey,
+            FREE_TEXT AS jobstandard,
+            ROUTE AS extraint1,
+            INTERVAL_TIME_NEXT AS planstartdate,
+            INSTRUMENT_KEY AS instrumentkey,
+            UPPER_LIMIT##1 AS upperlimitvalue,
+            LOWER_LIMIT##1 AS lowerlimitvalue,
+            UNIT_1 AS extravarchar3,
+            INTERVAL_TIME,
+            INTERVAL_TIME_UNIT
+        FROM
+            INSPECTION_ROUNDS
+    </select>
+
+    <select id="selectByInspectionPointKey" resultMap="dtoBeanResult">
+        SELECT
+          <include refid="database_table_columns" />
+        FROM
+          <include refid="table_name" />
+        WHERE <include refid="table_name" />.inspectionpointkey = #{inspectionPointKey, jdbcType=VARCHAR}
+    </select>
+
+</mapper>

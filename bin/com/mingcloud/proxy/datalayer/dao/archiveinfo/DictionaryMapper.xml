@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.DictionaryMapper" >
+    <resultMap id="entityBeanResult" type="DictionaryEntity">
+
+    </resultMap>
+    <sql id="table_name">
+        dictionary
+    </sql>
+    <sql id="table_id">
+        <include refid="table_name"/>.id
+    </sql>
+    <!-- table columns -->
+    <sql id="database_table_columns">
+                    <include refid="table_name"/>.id,
+                    <include refid="table_name"/>.dicname,
+                    <include refid="table_name"/>.dicvalue,
+                    <include refid="table_name"/>.dictype,
+                    <include refid="table_name"/>.ordernum,
+                    <include refid="table_name"/>.createdate,
+                    <include refid="table_name"/>.createuserid,
+                    <include refid="table_name"/>.modificationdate,
+                    <include refid="table_name"/>.modificationuserid,
+                    <include refid="table_name"/>.tombstone
+            </sql>
+    <sql id="update_dictionary_where">
+        <trim prefix="" suffix="" prefixOverrides=",">
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="dicname != null">
+                dicname = #{dicname},
+            </if>
+            <if test="dicvalue != null">
+                dicvalue = #{dicvalue},
+            </if>
+            <if test="dictype != null">
+                dictype = #{dictype},
+            </if>
+            <if test="ordernum != null">
+                ordernum = #{ordernum},
+            </if>
+            <if test="createdate != null">
+                createdate = #{createdate},
+            </if>
+            <if test="createuserid != null">
+                createuserid = #{createuserid},
+            </if>
+            <if test="modificationdate != null">
+                modificationdate = #{modificationdate},
+            </if>
+            <if test="modificationuserid != null">
+                modificationuserid = #{modificationuserid},
+            </if>
+            <if test="tombstone != null">
+                tombstone = #{tombstone},
+            </if>
+        </trim>
+    </sql>
+    <!-- dynamic full match -->
+    <sql id="dynamic_full_match_condition">
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="id != null">
+                AND<include refid="table_name"/>.id = #{id}
+             </if>
+            <if test="dicname != null">
+                AND<include refid="table_name"/>.dicname = #{dicname}
+             </if>
+            <if test="dicvalue != null">
+                AND<include refid="table_name"/>.dicvalue = #{dicvalue}
+             </if>
+            <if test="dictype != null">
+                AND<include refid="table_name"/>.dictype = #{dictype}
+             </if>
+            <if test="ordernum != null">
+                AND<include refid="table_name"/>.ordernum = #{ordernum}
+             </if>
+            <if test="createdate != null">
+                AND<include refid="table_name"/>.createdate = #{createdate}
+             </if>
+            <if test="createuserid != null">
+                AND<include refid="table_name"/>.createuserid = #{createuserid}
+             </if>
+            <if test="modificationdate != null">
+                AND<include refid="table_name"/>.modificationdate = #{modificationdate}
+             </if>
+            <if test="modificationuserid != null">
+                AND<include refid="table_name"/>.modificationuserid = #{modificationuserid}
+             </if>
+            <if test="tombstone != null">
+                AND<include refid="table_name"/>.tombstone = #{tombstone}
+             </if>
+        </trim>
+    </sql>
+    <insert id="insert" parameterType="DictionaryEntity" useGeneratedKeys="true" keyProperty="id" databaseId="mysql">
+        insert into dictionary
+        (
+            dicname,      dicvalue,      dictype,      ordernum,      createdate,      createuserid,      modificationdate,      modificationuserid,      tombstone
+        )
+        values
+        (
+          #{dicname}  ,    #{dicvalue}  ,    #{dictype}  ,    #{ordernum}  ,    #{createdate}  ,    #{createuserid}  ,    #{modificationdate}  ,    #{modificationuserid}  ,    #{tombstone}  
+        )
+    </insert>
+
+    <update id="update" parameterType="DictionaryEntity">
+        update
+        <include refid="table_name"/>
+        <set>
+            <include refid="update_dictionary_where"/>
+        </set>
+        where
+        <include refid="table_id"/>
+        = #{id}
+    </update>
+    <update id="delete" parameterType="DictionaryEntity">
+        update
+        <include refid="table_name"/>
+        <set>
+            <trim prefix="" suffix="" suffixOverrides=",">
+                tombstone = 0,
+                <if test="modificationdate != null">
+                    modificationdate = #{modificationdate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="modificationuserid != null">
+                    modificationuserid = #{modificationuserid,jdbcType=INTEGER},
+                </if>
+            </trim>
+        </set>
+        where
+        <include refid="table_id"/>
+        = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="get" parameterType="DictionaryEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        from
+        <include refid="table_name" />
+        where
+        <include refid="table_id" />
+        = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectOne" parameterType="DictionaryEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        FROM
+        <include refid="table_name" />
+        <include refid="dynamic_full_match_condition" />
+        limit 1
+    </select>
+
+    <select id="select" parameterType="DictionaryEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        FROM
+        <include refid="table_name" />
+        <include refid="dynamic_full_match_condition" />
+        ORDER BY ordernum
+    </select>
+
+    <select id="selectCount" parameterType="DictionaryEntity" resultType="int">
+        SELECT COUNT(1)
+        FROM
+        <include refid="table_name" />
+        <include refid="dynamic_full_match_condition" />
+    </select>
+
+    <select id="selectAll" parameterType="DictionaryEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        FROM
+        <include refid="table_name" />
+        ordernum by
+        <include refid="table_id" />
+        desc
+    </select>
+
+    <select  id="selectPage" parameterType="DictionaryEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        FROM
+        <include refid="table_name" />
+        <include refid="dynamic_full_match_condition" />
+        ordernum by
+        <include refid="table_id" />
+        desc limit #{offset},#{span}
+    </select>
+
+    <select  id="selectAllPage" parameterType="DictionaryEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        FROM
+        <include refid="table_name" />
+        ordernum by
+        <include refid="table_id" />
+        desc limit #{offset},#{span}
+    </select>
+
+    <update id="batchDelete" parameterType="java.util.Map">
+        update
+        <include refid="table_name"/>
+        <set>
+            <trim prefix="" suffix="" suffixOverrides=",">
+                tombstone = 0,
+            </trim>
+        </set>
+        where
+        <include refid="table_id"/> in
+        <foreach collection="list" item="item" index="index"
+                 open="(" close=")" separator=",">
+            #{item.id,jdbcType=INTEGER}
+        </foreach>
+    </update>
+
+</mapper>
+
+
+
+

@@ -1,0 +1,106 @@
+package com.mingcloud.proxy.logiclayer.meshandler;
+
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.CounterHeaderMapper;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.CounterLineMapper;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.OrganizationMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.MesRecordDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.CounterHeaderEntity;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.CounterLineEntity;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.OrganizationEntity;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.log4j.Logger;
+
+public class MesDataOutThread implements Runnable{
+
+    private static Logger logger = Logger.getLogger(MesDataOutThread.class);
+
+    private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+
+    private DataCenter dataCenter = DataCenter.getInstance();
+
+    private CounterHeaderMapper counterHeaderMapper = SpringContextUtil.getBean("counterHeaderMapper");
+
+    private CounterLineMapper counterLineMapper = SpringContextUtil.getBean("counterLineMapper");
+
+    private OrganizationMapper organizationMapper = SpringContextUtil.getBean("organizationMapper");
+
+    @Override
+    public void run() {
+        logger.info("MesDataOutThread begin ...");
+        //切换到Mysql数据源
+        jdbcChange.changeJdbc(JdbcChange.mySqlDataSource);
+        logger.info("MesDataOutThread change to mySqlDataSource");
+
+        while (true) {
+            try {
+                if (dataCenter.getMesRecordListSize() > 0) {
+                    insertCountHeaderAndCountLine();
+                }
+                Thread.sleep(50);
+            } catch (Exception e) {
+                logger.error("MesDataOutThread : " + e);
+            }
+        }
+
+    }
+
+    public void insertCountHeaderAndCountLine(){
+
+        try {
+            MesRecordDto dto = dataCenter.popMesRecordList();
+            CounterHeaderEntity headerEntity = new CounterHeaderEntity();
+            headerEntity.setCounterheaderkey(dto.getCode());
+            headerEntity.setRelationkey(dto.getType());
+            //根据code和type查询是否已经存在counterheader数据
+            CounterHeaderEntity oldHeaderEntity = counterHeaderMapper.selectOne(headerEntity);
+
+            if (null == oldHeaderEntity) {//如果counterHeader数据不存在，先插入counterheader数据，再插入couterline数据
+                headerEntity.setTombstone(1);
+                headerEntity.setCounterheadername(dto.getType() + "-" + dto.getName());
+                headerEntity.setMemo(dto.getLine());
+                //根据relationkey 查询,为了获取orgid
+                OrganizationEntity org = new OrganizationEntity();
+                org.setOrganizationkey(dto.getType());
+                OrganizationEntity organizationEntity = organizationMapper.selectByKeyLike(org);
+                if (null != organizationEntity) {
+                    headerEntity.setOrgid(organizationEntity.getId());
+                }
+                //插入counterheader数据库
+                counterHeaderMapper.insert(headerEntity);
+
+                //设置明细信息
+                CounterLineEntity lineEntity = new CounterLineEntity();
+                lineEntity.setCounterheaderid(headerEntity.getId());
+                lineEntity.setQty(dto.getVal());
+                lineEntity.setCounterlinedate(dto.getTime());
+                lineEntity.setTombstone(1);
+
+                CounterLineEntity oldLineEntity = counterLineMapper.selectOne(lineEntity);
+                //明细数据不存在的时候才插入
+                if (null == oldLineEntity) {
+                    counterLineMapper.insert(lineEntity);
+                }
+
+            } else {
+                //header数据已经存在，只需要插入明细数据
+                CounterLineEntity lineEntity = new CounterLineEntity();
+                lineEntity.setCounterheaderid(oldHeaderEntity.getId());
+                lineEntity.setQty(dto.getVal());
+                lineEntity.setCounterlinedate(dto.getTime());
+                lineEntity.setTombstone(1);
+
+                CounterLineEntity oldLineEntity = counterLineMapper.selectOne(lineEntity);
+                //明细数据不存在的时候才插入
+                if (null == oldLineEntity) {
+                    counterLineMapper.insert(lineEntity);
+                }
+            }
+
+        } catch (Exception e) {
+            logger.error("MesDataOutThread : " + e);
+        }
+    }
+}

@@ -1,0 +1,129 @@
+package com.mingcloud.proxy.logiclayer.inspectionpointhandler;
+
+import com.mingcloud.proxy.common.InspectionPointCycleEnum;
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.*;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.InstrumentDto;
+import com.mingcloud.proxy.datalayer.dto.inspection.InspectionPointDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.MaintenanceobjectEntity;
+import com.mingcloud.proxy.datalayer.entity.inspection.InspectionEntity;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class InspectionPointDataOutThread implements Runnable{
+
+    private static Logger logger = Logger.getLogger(InspectionPointDataOutThread.class);
+
+    private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+
+    private DataCenter dataCenter = DataCenter.getInstance();
+
+    private InspectionMapper inspectionMapper = SpringContextUtil.getBean("inspectionMapper");
+
+    private HumanMapper humanMapper = SpringContextUtil.getBean("humanMapper");
+
+    private InspectionPointMapper inspectionPointMapper = SpringContextUtil.getBean("inspectionPointMapper");
+
+    private InstrumentMapper instrumentMapper = SpringContextUtil.getBean("instrumentMapper");
+
+    private MaintenanceobjectMapper maintenanceobjectMapper = SpringContextUtil.getBean("maintenanceobjectMapper");
+
+    //所有巡检路线的key和id{inspectionkey:id}
+    private Map<String,Integer> inspectionKeyIdMap = new HashMap<String,Integer>();
+
+    //所有仪器仪表的key和id{inspectionkey:id}
+    private Map<String,Integer> instrumentMap = new HashMap<String,Integer>();
+
+    //所有巡检路线的key：humanId
+    private Map<String,Integer> inspectionKeyHumanIdMap = new HashMap<String,Integer>();
+
+    public InspectionPointDataOutThread(){
+        //切换到Mysql数据源
+        jdbcChange.changeJdbc(JdbcChange.mySqlDataSource);
+        logger.info("InspectionPointDataOutThread change to mySqlDataSource");
+        getInspectionMap();
+        getInstrumentMap();
+    }
+
+    @Override
+    public void run() {
+        logger.info("InspectionPointDataOutThread begin ...");
+
+        while (true) {
+            try {
+                if (dataCenter.getInspectionPointListSize() > 0) {
+                    insertInspectionPoint();
+                }
+                Thread.sleep(50);
+            } catch (Exception e) {
+                logger.error("InspectionPointDataOutThread : " + e);
+            }
+        }
+
+    }
+
+    private void insertInspectionPoint(){
+        InspectionPointDto dto = dataCenter.popInspectionPointList();
+        InspectionPointDto oldDto = inspectionPointMapper.selectByInspectionPointKey(dto.getInspectionpointkey());
+        dto.setInspectionid(inspectionKeyIdMap.get(dto.getInspectionkey()));
+        dto.setHumanid(inspectionKeyHumanIdMap.get(dto.getInspectionkey()));
+        dto.setInstrumentid(instrumentMap.get(dto.getInspectionkey()));
+        dto.setInspectiontype(1);
+        dto.setExecutecyclevalue(dto.getINTERVAL_TIME());
+        dto.setExecutecycletype(InspectionPointCycleEnum.getAmsCycle(dto.getINTERVAL_TIME_UNIT()));
+        //将mokey保存在extravarchar4字段中
+        dto.setExtravarchar4(dto.getMokey());
+        if(StringUtils.isNotBlank(dto.getMokey())){
+            MaintenanceobjectEntity moEntity = maintenanceobjectMapper.selectByMoKey(dto.getMokey());
+            if(null != moEntity){
+                dto.setMoid(moEntity.getId());
+            }
+        }
+
+        Date date = new Date();
+        if(null != oldDto){
+            dto.setId(oldDto.getId());
+            dto.setModificationdate(date);
+            inspectionPointMapper.update(dto);
+            logger.info("InspectionPointDataOutThread update success");
+        } else {
+            dto.setCreatedate(date);
+            inspectionPointMapper.insert(dto);
+            logger.info("InspectionPointDataOutThread insert success");
+        }
+    }
+
+    /**
+     * 获取所有巡检路线的key：id Map以及key:humanId map
+     * @return
+     */
+    private void getInspectionMap(){
+        List<InspectionEntity> inspections = inspectionMapper.selectKeyIdMap();
+        if(null != inspections && inspections.size() > 0){
+            for(InspectionEntity entity : inspections){
+                inspectionKeyIdMap.put(entity.getInspectionkey(), entity.getId());
+                inspectionKeyHumanIdMap.put(entity.getInspectionkey(), entity.getHumanid());
+            }
+        }
+    }
+
+    /**
+     * 获取所有仪器仪表的key：id Map
+     * @return
+     */
+    private void getInstrumentMap(){
+        List<InstrumentDto> instruments = instrumentMapper.selectKeyIdMap();
+        if(null != instruments && instruments.size() > 0){
+            for(InstrumentDto dto : instruments){
+                instrumentMap.put(dto.getInstrumentkey(), dto.getId());
+            }
+        }
+    };
+}

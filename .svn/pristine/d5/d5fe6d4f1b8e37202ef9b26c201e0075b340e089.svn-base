@@ -1,0 +1,384 @@
+package com.mingcloud.proxy.datalayer.dto.archiveinfo;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+import com.mingcloud.proxy.datalayer.dto.BaseDto;
+
+public class MorelationtdDto extends BaseDto {
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3276367270862808745L;
+
+	private Integer id;
+
+    private Integer moid;
+
+    private Integer tdid;
+
+    private Integer tdtype;
+
+    private String devaluetext;
+
+    private BigDecimal defvaluenum;
+
+    private Date defvaluedate;
+
+    private Integer extraid1;
+
+    private Integer extraid2;
+
+    private Integer extraid3;
+
+    private Integer extraid4;
+
+    private Integer extraid5;
+
+    private String extravarchar1;
+
+    private String extravarchar2;
+
+    private String extravarchar3;
+
+    private String extravarchar4;
+
+    private String extravarchar5;
+
+    private String extravarchar6;
+
+    private String extravarchar7;
+
+    private String extravarchar8;
+
+    private String extravarchar9;
+
+    private String extravarchar10;
+
+    private BigDecimal extradecimal1;
+
+    private BigDecimal extradecimal2;
+
+    private BigDecimal extradecimal3;
+
+    private BigDecimal extradecimal4;
+
+    private BigDecimal extradecimal5;
+
+    private Integer extraint1;
+
+    private Integer extraint2;
+
+    private Integer extraint3;
+
+    private Integer extraint4;
+
+    private Integer extraint5;
+
+    private Date extradatetime1;
+
+    private Date extradatetime2;
+
+    private Date extradatetime3;
+
+    private Date extradatetime4;
+
+    private Date extradatetime5;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getMoid() {
+        return moid;
+    }
+
+    public void setMoid(Integer moid) {
+        this.moid = moid;
+    }
+
+    public Integer getTdid() {
+        return tdid;
+    }
+
+    public void setTdid(Integer tdid) {
+        this.tdid = tdid;
+    }
+
+    public Integer getTdtype() {
+        return tdtype;
+    }
+
+    public void setTdtype(Integer tdtype) {
+        this.tdtype = tdtype;
+    }
+
+    public String getDevaluetext() {
+        return devaluetext;
+    }
+
+    public void setDevaluetext(String devaluetext) {
+        this.devaluetext = devaluetext == null ? null : devaluetext.trim();
+    }
+
+    public BigDecimal getDefvaluenum() {
+        return defvaluenum;
+    }
+
+    public void setDefvaluenum(BigDecimal defvaluenum) {
+        this.defvaluenum = defvaluenum;
+    }
+
+    public Date getDefvaluedate() {
+        return defvaluedate;
+    }
+
+    public void setDefvaluedate(Date defvaluedate) {
+        this.defvaluedate = defvaluedate;
+    }
+
+    public Integer getExtraid1() {
+        return extraid1;
+    }
+
+    public void setExtraid1(Integer extraid1) {
+        this.extraid1 = extraid1;
+    }
+
+    public Integer getExtraid2() {
+        return extraid2;
+    }
+
+    public void setExtraid2(Integer extraid2) {
+        this.extraid2 = extraid2;
+    }
+
+    public Integer getExtraid3() {
+        return extraid3;
+    }
+
+    public void setExtraid3(Integer extraid3) {
+        this.extraid3 = extraid3;
+    }
+
+    public Integer getExtraid4() {
+        return extraid4;
+    }
+
+    public void setExtraid4(Integer extraid4) {
+        this.extraid4 = extraid4;
+    }
+
+    public Integer getExtraid5() {
+        return extraid5;
+    }
+
+    public void setExtraid5(Integer extraid5) {
+        this.extraid5 = extraid5;
+    }
+
+    public String getExtravarchar1() {
+        return extravarchar1;
+    }
+
+    public void setExtravarchar1(String extravarchar1) {
+        this.extravarchar1 = extravarchar1 == null ? null : extravarchar1.trim();
+    }
+
+    public String getExtravarchar2() {
+        return extravarchar2;
+    }
+
+    public void setExtravarchar2(String extravarchar2) {
+        this.extravarchar2 = extravarchar2 == null ? null : extravarchar2.trim();
+    }
+
+    public String getExtravarchar3() {
+        return extravarchar3;
+    }
+
+    public void setExtravarchar3(String extravarchar3) {
+        this.extravarchar3 = extravarchar3 == null ? null : extravarchar3.trim();
+    }
+
+    public String getExtravarchar4() {
+        return extravarchar4;
+    }
+
+    public void setExtravarchar4(String extravarchar4) {
+        this.extravarchar4 = extravarchar4 == null ? null : extravarchar4.trim();
+    }
+
+    public String getExtravarchar5() {
+        return extravarchar5;
+    }
+
+    public void setExtravarchar5(String extravarchar5) {
+        this.extravarchar5 = extravarchar5 == null ? null : extravarchar5.trim();
+    }
+
+    public String getExtravarchar6() {
+        return extravarchar6;
+    }
+
+    public void setExtravarchar6(String extravarchar6) {
+        this.extravarchar6 = extravarchar6 == null ? null : extravarchar6.trim();
+    }
+
+    public String getExtravarchar7() {
+        return extravarchar7;
+    }
+
+    public void setExtravarchar7(String extravarchar7) {
+        this.extravarchar7 = extravarchar7 == null ? null : extravarchar7.trim();
+    }
+
+    public String getExtravarchar8() {
+        return extravarchar8;
+    }
+
+    public void setExtravarchar8(String extravarchar8) {
+        this.extravarchar8 = extravarchar8 == null ? null : extravarchar8.trim();
+    }
+
+    public String getExtravarchar9() {
+        return extravarchar9;
+    }
+
+    public void setExtravarchar9(String extravarchar9) {
+        this.extravarchar9 = extravarchar9 == null ? null : extravarchar9.trim();
+    }
+
+    public String getExtravarchar10() {
+        return extravarchar10;
+    }
+
+    public void setExtravarchar10(String extravarchar10) {
+        this.extravarchar10 = extravarchar10 == null ? null : extravarchar10.trim();
+    }
+
+    public BigDecimal getExtradecimal1() {
+        return extradecimal1;
+    }
+
+    public void setExtradecimal1(BigDecimal extradecimal1) {
+        this.extradecimal1 = extradecimal1;
+    }
+
+    public BigDecimal getExtradecimal2() {
+        return extradecimal2;
+    }
+
+    public void setExtradecimal2(BigDecimal extradecimal2) {
+        this.extradecimal2 = extradecimal2;
+    }
+
+    public BigDecimal getExtradecimal3() {
+        return extradecimal3;
+    }
+
+    public void setExtradecimal3(BigDecimal extradecimal3) {
+        this.extradecimal3 = extradecimal3;
+    }
+
+    public BigDecimal getExtradecimal4() {
+        return extradecimal4;
+    }
+
+    public void setExtradecimal4(BigDecimal extradecimal4) {
+        this.extradecimal4 = extradecimal4;
+    }
+
+    public BigDecimal getExtradecimal5() {
+        return extradecimal5;
+    }
+
+    public void setExtradecimal5(BigDecimal extradecimal5) {
+        this.extradecimal5 = extradecimal5;
+    }
+
+    public Integer getExtraint1() {
+        return extraint1;
+    }
+
+    public void setExtraint1(Integer extraint1) {
+        this.extraint1 = extraint1;
+    }
+
+    public Integer getExtraint2() {
+        return extraint2;
+    }
+
+    public void setExtraint2(Integer extraint2) {
+        this.extraint2 = extraint2;
+    }
+
+    public Integer getExtraint3() {
+        return extraint3;
+    }
+
+    public void setExtraint3(Integer extraint3) {
+        this.extraint3 = extraint3;
+    }
+
+    public Integer getExtraint4() {
+        return extraint4;
+    }
+
+    public void setExtraint4(Integer extraint4) {
+        this.extraint4 = extraint4;
+    }
+
+    public Integer getExtraint5() {
+        return extraint5;
+    }
+
+    public void setExtraint5(Integer extraint5) {
+        this.extraint5 = extraint5;
+    }
+
+    public Date getExtradatetime1() {
+        return extradatetime1;
+    }
+
+    public void setExtradatetime1(Date extradatetime1) {
+        this.extradatetime1 = extradatetime1;
+    }
+
+    public Date getExtradatetime2() {
+        return extradatetime2;
+    }
+
+    public void setExtradatetime2(Date extradatetime2) {
+        this.extradatetime2 = extradatetime2;
+    }
+
+    public Date getExtradatetime3() {
+        return extradatetime3;
+    }
+
+    public void setExtradatetime3(Date extradatetime3) {
+        this.extradatetime3 = extradatetime3;
+    }
+
+    public Date getExtradatetime4() {
+        return extradatetime4;
+    }
+
+    public void setExtradatetime4(Date extradatetime4) {
+        this.extradatetime4 = extradatetime4;
+    }
+
+    public Date getExtradatetime5() {
+        return extradatetime5;
+    }
+
+    public void setExtradatetime5(Date extradatetime5) {
+        this.extradatetime5 = extradatetime5;
+    }
+}

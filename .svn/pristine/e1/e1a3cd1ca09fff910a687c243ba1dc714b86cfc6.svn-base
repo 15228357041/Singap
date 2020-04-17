@@ -1,0 +1,100 @@
+package com.mingcloud.proxy.datalayer.entity.archiveinfo;
+
+
+import com.mingcloud.proxy.datalayer.entity.BaseEntity;
+
+public class ChuanhuaEntity extends BaseEntity {
+
+	private static final long serialVersionUID = -4872498691085218974L;
+
+	private String extraWOinfo4;
+	
+	private String wOKey;
+	
+	private String accountkey;
+	
+	private String sPkey;
+	
+	private String sitekey;
+	
+	private String stockkey;
+	
+	private String startdate;
+	
+	private String plannedunits;
+	
+	private String extraWOinfo5;
+
+	public String getExtraWOinfo4() {
+		return extraWOinfo4;
+	}
+
+	public void setExtraWOinfo4(String extraWOinfo4) {
+		this.extraWOinfo4 = extraWOinfo4;
+	}
+
+	public String getwOKey() {
+		return wOKey;
+	}
+
+	public void setwOKey(String wOKey) {
+		this.wOKey = wOKey;
+	}
+
+	public String getAccountkey() {
+		return accountkey;
+	}
+
+	public void setAccountkey(String accountkey) {
+		this.accountkey = accountkey;
+	}
+
+	public String getsPkey() {
+		return sPkey;
+	}
+
+	public void setsPkey(String sPkey) {
+		this.sPkey = sPkey;
+	}
+
+	public String getSitekey() {
+		return sitekey;
+	}
+
+	public void setSitekey(String sitekey) {
+		this.sitekey = sitekey;
+	}
+
+	public String getStockkey() {
+		return stockkey;
+	}
+
+	public void setStockkey(String stockkey) {
+		this.stockkey = stockkey;
+	}
+
+	public String getStartdate() {
+		return startdate;
+	}
+
+	public void setStartdate(String startdate) {
+		this.startdate = startdate;
+	}
+
+	public String getPlannedunits() {
+		return plannedunits;
+	}
+
+	public void setPlannedunits(String plannedunits) {
+		this.plannedunits = plannedunits;
+	}
+
+	public String getExtraWOinfo5() {
+		return extraWOinfo5;
+	}
+
+	public void setExtraWOinfo5(String extraWOinfo5) {
+		this.extraWOinfo5 = extraWOinfo5;
+	}
+	
+}

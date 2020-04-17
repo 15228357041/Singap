@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.Rdrecords11Mapper" >
+  <resultMap id="BaseResultMap" type="Rdrecords11Entity" >
+    <id column="AutoID" property="autoid" jdbcType="BIGINT" />
+    <result column="ID" property="id" jdbcType="BIGINT" />
+    <result column="cInvCode" property="cinvcode" jdbcType="NVARCHAR" />
+    <result column="iNum" property="inum" jdbcType="DECIMAL" />
+    <result column="iQuantity" property="iquantity" jdbcType="DECIMAL" />
+    <result column="iUnitCost" property="iunitcost" jdbcType="DECIMAL" />
+    <result column="iPrice" property="iprice" jdbcType="DECIMAL" />
+    <result column="iAPrice" property="iaprice" jdbcType="DECIMAL" />
+    <result column="iPUnitCost" property="ipunitcost" jdbcType="DECIMAL" />
+    <result column="iPPrice" property="ipprice" jdbcType="DECIMAL" />
+    <result column="cBatch" property="cbatch" jdbcType="NVARCHAR" />
+    <result column="cObjCode" property="cobjcode" jdbcType="NVARCHAR" />
+    <result column="cVouchCode" property="cvouchcode" jdbcType="BIGINT" />
+    <result column="cInVouchCode" property="cinvouchcode" jdbcType="NVARCHAR" />
+    <result column="cinvouchtype" property="cinvouchtype" jdbcType="NVARCHAR" />
+    <result column="iSOutQuantity" property="isoutquantity" jdbcType="DECIMAL" />
+    <result column="iSOutNum" property="isoutnum" jdbcType="DECIMAL" />
+    <result column="coutvouchid" property="coutvouchid" jdbcType="BIGINT" />
+    <result column="coutvouchtype" property="coutvouchtype" jdbcType="NVARCHAR" />
+    <result column="iSRedOutQuantity" property="isredoutquantity" jdbcType="DECIMAL" />
+    <result column="iSRedOutNum" property="isredoutnum" jdbcType="DECIMAL" />
+    <result column="cFree1" property="cfree1" jdbcType="NVARCHAR" />
+    <result column="cFree2" property="cfree2" jdbcType="NVARCHAR" />
+    <result column="iFlag" property="iflag" jdbcType="TINYINT" />
+    <result column="iSQuantity" property="isquantity" jdbcType="DECIMAL" />
+    <result column="iSNum" property="isnum" jdbcType="DECIMAL" />
+    <result column="iFNum" property="ifnum" jdbcType="DECIMAL" />
+    <result column="iFQuantity" property="ifquantity" jdbcType="DECIMAL" />
+    <result column="dVDate" property="dvdate" jdbcType="TIMESTAMP" />
+    <result column="iTrIds" property="itrids" jdbcType="BIGINT" />
+    <result column="cPosition" property="cposition" jdbcType="NVARCHAR" />
+    <result column="cDefine22" property="cdefine22" jdbcType="NVARCHAR" />
+    <result column="cDefine23" property="cdefine23" jdbcType="NVARCHAR" />
+    <result column="cDefine24" property="cdefine24" jdbcType="NVARCHAR" />
+    <result column="cDefine25" property="cdefine25" jdbcType="NVARCHAR" />
+    <result column="cDefine26" property="cdefine26" jdbcType="DOUBLE" />
+    <result column="cDefine27" property="cdefine27" jdbcType="DOUBLE" />
+    <result column="cItem_class" property="citemClass" jdbcType="NVARCHAR" />
+    <result column="cItemCode" property="citemcode" jdbcType="NVARCHAR" />
+    <result column="cName" property="cname" jdbcType="NVARCHAR" />
+    <result column="cItemCName" property="citemcname" jdbcType="NVARCHAR" />
+    <result column="cFree3" property="cfree3" jdbcType="NVARCHAR" />
+    <result column="cFree4" property="cfree4" jdbcType="NVARCHAR" />
+    <result column="cFree5" property="cfree5" jdbcType="NVARCHAR" />
+    <result column="cFree6" property="cfree6" jdbcType="NVARCHAR" />
+    <result column="cFree7" property="cfree7" jdbcType="NVARCHAR" />
+    <result column="cFree8" property="cfree8" jdbcType="NVARCHAR" />
+    <result column="cFree9" property="cfree9" jdbcType="NVARCHAR" />
+    <result column="cFree10" property="cfree10" jdbcType="NVARCHAR" />
+    <result column="cBarCode" property="cbarcode" jdbcType="NVARCHAR" />
+    <result column="iNQuantity" property="inquantity" jdbcType="DECIMAL" />
+    <result column="iNNum" property="innum" jdbcType="DECIMAL" />
+    <result column="cAssUnit" property="cassunit" jdbcType="NVARCHAR" />
+    <result column="dMadeDate" property="dmadedate" jdbcType="TIMESTAMP" />
+    <result column="iMassDate" property="imassdate" jdbcType="INTEGER" />
+    <result column="cDefine28" property="cdefine28" jdbcType="NVARCHAR" />
+    <result column="cDefine29" property="cdefine29" jdbcType="NVARCHAR" />
+    <result column="cDefine30" property="cdefine30" jdbcType="NVARCHAR" />
+    <result column="cDefine31" property="cdefine31" jdbcType="NVARCHAR" />
+    <result column="cDefine32" property="cdefine32" jdbcType="NVARCHAR" />
+    <result column="cDefine33" property="cdefine33" jdbcType="NVARCHAR" />
+    <result column="cDefine34" property="cdefine34" jdbcType="INTEGER" />
+    <result column="cDefine35" property="cdefine35" jdbcType="INTEGER" />
+    <result column="cDefine36" property="cdefine36" jdbcType="TIMESTAMP" />
+    <result column="cDefine37" property="cdefine37" jdbcType="TIMESTAMP" />
+    <result column="iMPoIds" property="impoids" jdbcType="BIGINT" />
+    <result column="iCheckIds" property="icheckids" jdbcType="BIGINT" />
+    <result column="cBVencode" property="cbvencode" jdbcType="NVARCHAR" />
+    <result column="bGsp" property="bgsp" jdbcType="BIT" />
+    <result column="cGspState" property="cgspstate" jdbcType="NVARCHAR" />
+    <result column="cCheckCode" property="ccheckcode" jdbcType="NVARCHAR" />
+    <result column="iCheckIdBaks" property="icheckidbaks" jdbcType="BIGINT" />
+    <result column="cRejectCode" property="crejectcode" jdbcType="NVARCHAR" />
+    <result column="iRejectIds" property="irejectids" jdbcType="BIGINT" />
+    <result column="cCheckPersonCode" property="ccheckpersoncode" jdbcType="NVARCHAR" />
+    <result column="dCheckDate" property="dcheckdate" jdbcType="TIMESTAMP" />
+    <result column="cMassUnit" property="cmassunit" jdbcType="SMALLINT" />
+    <result column="cMoLotCode" property="cmolotcode" jdbcType="NVARCHAR" />
+    <result column="iMaterialFee" property="imaterialfee" jdbcType="DECIMAL" />
+    <result column="iProcessCost" property="iprocesscost" jdbcType="DECIMAL" />
+    <result column="iProcessFee" property="iprocessfee" jdbcType="DECIMAL" />
+    <result column="dMSDate" property="dmsdate" jdbcType="TIMESTAMP" />
+    <result column="iSMaterialFee" property="ismaterialfee" jdbcType="DECIMAL" />
+    <result column="iSProcessFee" property="isprocessfee" jdbcType="DECIMAL" />
+    <result column="iOMoDID" property="iomodid" jdbcType="INTEGER" />
+    <result column="bFilled" property="bfilled" jdbcType="BIGINT" />
+    <result column="bChecked" property="bchecked" jdbcType="BIT" />
+    <result column="iOMoMID" property="iomomid" jdbcType="BIGINT" />
+    <result column="cmworkcentercode" property="cmworkcentercode" jdbcType="NVARCHAR" />
+    <result column="bLPUseFree" property="blpusefree" jdbcType="BIT" />
+    <result column="iRSRowNO" property="irsrowno" jdbcType="INTEGER" />
+    <result column="iOriTrackID" property="ioritrackid" jdbcType="BIGINT" />
+    <result column="coritracktype" property="coritracktype" jdbcType="NVARCHAR" />
+    <result column="cbaccounter" property="cbaccounter" jdbcType="NVARCHAR" />
+    <result column="dbKeepDate" property="dbkeepdate" jdbcType="TIMESTAMP" />
+    <result column="bCosting" property="bcosting" jdbcType="BIT" />
+    <result column="bVMIUsed" property="bvmiused" jdbcType="BIT" />
+    <result column="iVMISettleQuantity" property="ivmisettlequantity" jdbcType="DECIMAL" />
+    <result column="iVMISettleNum" property="ivmisettlenum" jdbcType="DECIMAL" />
+    <result column="cvmivencode" property="cvmivencode" jdbcType="NVARCHAR" />
+    <result column="iInvSNCount" property="iinvsncount" jdbcType="INTEGER" />
+    <result column="cwhpersoncode" property="cwhpersoncode" jdbcType="NVARCHAR" />
+    <result column="cwhpersonname" property="cwhpersonname" jdbcType="NVARCHAR" />
+    <result column="iMaIDs" property="imaids" jdbcType="BIGINT" />
+    <result column="cserviceoid" property="cserviceoid" jdbcType="VARCHAR" />
+    <result column="cbserviceoid" property="cbserviceoid" jdbcType="VARCHAR" />
+    <result column="iinvexchrate" property="iinvexchrate" jdbcType="DECIMAL" />
+    <result column="corufts" property="corufts" jdbcType="VARCHAR" />
+    <result column="comcode" property="comcode" jdbcType="NVARCHAR" />
+    <result column="cmocode" property="cmocode" jdbcType="NVARCHAR" />
+    <result column="invcode" property="invcode" jdbcType="NVARCHAR" />
+    <result column="imoseq" property="imoseq" jdbcType="INTEGER" />
+    <result column="iopseq" property="iopseq" jdbcType="NVARCHAR" />
+    <result column="copdesc" property="copdesc" jdbcType="NVARCHAR" />
+    <result column="strContractGUID" property="strcontractguid" jdbcType="CHAR" />
+    <result column="iExpiratDateCalcu" property="iexpiratdatecalcu" jdbcType="SMALLINT" />
+    <result column="cExpirationdate" property="cexpirationdate" jdbcType="VARCHAR" />
+    <result column="dExpirationdate" property="dexpirationdate" jdbcType="TIMESTAMP" />
+    <result column="cciqbookcode" property="cciqbookcode" jdbcType="NVARCHAR" />
+    <result column="iBondedSumQty" property="ibondedsumqty" jdbcType="DECIMAL" />
+    <result column="productinids" property="productinids" jdbcType="INTEGER" />
+    <result column="iorderdid" property="iorderdid" jdbcType="INTEGER" />
+    <result column="iordertype" property="iordertype" jdbcType="TINYINT" />
+    <result column="iordercode" property="iordercode" jdbcType="NVARCHAR" />
+    <result column="iorderseq" property="iorderseq" jdbcType="INTEGER" />
+    <result column="isodid" property="isodid" jdbcType="NVARCHAR" />
+    <result column="isotype" property="isotype" jdbcType="TINYINT" />
+    <result column="csocode" property="csocode" jdbcType="NVARCHAR" />
+    <result column="isoseq" property="isoseq" jdbcType="INTEGER" />
+    <result column="ipesodid" property="ipesodid" jdbcType="NVARCHAR" />
+    <result column="ipesotype" property="ipesotype" jdbcType="TINYINT" />
+    <result column="cpesocode" property="cpesocode" jdbcType="NVARCHAR" />
+    <result column="ipesoseq" property="ipesoseq" jdbcType="INTEGER" />
+    <result column="cBatchProperty1" property="cbatchproperty1" jdbcType="DECIMAL" />
+    <result column="cBatchProperty2" property="cbatchproperty2" jdbcType="DECIMAL" />
+    <result column="cBatchProperty3" property="cbatchproperty3" jdbcType="DECIMAL" />
+    <result column="cBatchProperty4" property="cbatchproperty4" jdbcType="DECIMAL" />
+    <result column="cBatchProperty5" property="cbatchproperty5" jdbcType="DECIMAL" />
+    <result column="cBatchProperty6" property="cbatchproperty6" jdbcType="NVARCHAR" />
+    <result column="cBatchProperty7" property="cbatchproperty7" jdbcType="NVARCHAR" />
+    <result column="cBatchProperty8" property="cbatchproperty8" jdbcType="NVARCHAR" />
+    <result column="cBatchProperty9" property="cbatchproperty9" jdbcType="NVARCHAR" />
+    <result column="cBatchProperty10" property="cbatchproperty10" jdbcType="TIMESTAMP" />
+    <result column="cbMemo" property="cbmemo" jdbcType="NVARCHAR" />
+    <result column="applydid" property="applydid" jdbcType="INTEGER" />
+    <result column="applycode" property="applycode" jdbcType="NVARCHAR" />
+    <result column="irowno" property="irowno" jdbcType="INTEGER" />
+    <result column="strowguid" property="strowguid" jdbcType="CHAR" />
+    <result column="cservicecode" property="cservicecode" jdbcType="NVARCHAR" />
+    <result column="ipreuseqty" property="ipreuseqty" jdbcType="DECIMAL" />
+    <result column="ipreuseinum" property="ipreuseinum" jdbcType="DECIMAL" />
+    <result column="bsupersede" property="bsupersede" jdbcType="INTEGER" />
+    <result column="isupersedeqty" property="isupersedeqty" jdbcType="DECIMAL" />
+    <result column="isupersedempoids" property="isupersedempoids" jdbcType="INTEGER" />
+    <result column="imoallocatesubid" property="imoallocatesubid" jdbcType="CHAR" />
+    <result column="cInVoucherLineID" property="cinvoucherlineid" jdbcType="INTEGER" />
+    <result column="cInVoucherCode" property="cinvouchercode" jdbcType="NVARCHAR" />
+    <result column="cInVoucherType" property="cinvouchertype" jdbcType="NVARCHAR" />
+    <result column="cbsysbarcode" property="cbsysbarcode" jdbcType="NVARCHAR" />
+    <result column="cSourceMOCode" property="csourcemocode" jdbcType="NVARCHAR" />
+    <result column="iSourceMODetailsid" property="isourcemodetailsid" jdbcType="INTEGER" />
+    <result column="cplanlotcode" property="cplanlotcode" jdbcType="NVARCHAR" />
+    <result column="bcanreplace" property="bcanreplace" jdbcType="INTEGER" />
+    <result column="iposflag" property="iposflag" jdbcType="SMALLINT" />
+    <result column="bOutMaterials" property="boutmaterials" jdbcType="SMALLINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="Rdrecords11Entity" extends="BaseResultMap" >
+    <result column="rowufts" property="rowufts" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    AutoID, ID, cInvCode, iNum, iQuantity, iUnitCost, iPrice, iAPrice, iPUnitCost, iPPrice, 
+    cBatch, cObjCode, cVouchCode, cInVouchCode, cinvouchtype, iSOutQuantity, iSOutNum, 
+    coutvouchid, coutvouchtype, iSRedOutQuantity, iSRedOutNum, cFree1, cFree2, iFlag, 
+    iSQuantity, iSNum, iFNum, iFQuantity, dVDate, iTrIds, cPosition, cDefine22, cDefine23, 
+    cDefine24, cDefine25, cDefine26, cDefine27, cItem_class, cItemCode, cName, cItemCName, 
+    cFree3, cFree4, cFree5, cFree6, cFree7, cFree8, cFree9, cFree10, cBarCode, iNQuantity, 
+    iNNum, cAssUnit, dMadeDate, iMassDate, cDefine28, cDefine29, cDefine30, cDefine31, 
+    cDefine32, cDefine33, cDefine34, cDefine35, cDefine36, cDefine37, iMPoIds, iCheckIds, 
+    cBVencode, bGsp, cGspState, cCheckCode, iCheckIdBaks, cRejectCode, iRejectIds, cCheckPersonCode, 
+    dCheckDate, cMassUnit, cMoLotCode, iMaterialFee, iProcessCost, iProcessFee, dMSDate, 
+    iSMaterialFee, iSProcessFee, iOMoDID, bFilled, bChecked, iOMoMID, cmworkcentercode, 
+    bLPUseFree, iRSRowNO, iOriTrackID, coritracktype, cbaccounter, dbKeepDate, bCosting, 
+    bVMIUsed, iVMISettleQuantity, iVMISettleNum, cvmivencode, iInvSNCount, cwhpersoncode, 
+    cwhpersonname, iMaIDs, cserviceoid, cbserviceoid, iinvexchrate, corufts, comcode, 
+    cmocode, invcode, imoseq, iopseq, copdesc, strContractGUID, iExpiratDateCalcu, cExpirationdate, 
+    dExpirationdate, cciqbookcode, iBondedSumQty, productinids, iorderdid, iordertype, 
+    iordercode, iorderseq, isodid, isotype, csocode, isoseq, ipesodid, ipesotype, cpesocode, 
+    ipesoseq, cBatchProperty1, cBatchProperty2, cBatchProperty3, cBatchProperty4, cBatchProperty5, 
+    cBatchProperty6, cBatchProperty7, cBatchProperty8, cBatchProperty9, cBatchProperty10, 
+    cbMemo, applydid, applycode, irowno, strowguid, cservicecode, ipreuseqty, ipreuseinum, 
+    bsupersede, isupersedeqty, isupersedempoids, imoallocatesubid, cInVoucherLineID, 
+    cInVoucherCode, cInVoucherType, cbsysbarcode, cSourceMOCode, iSourceMODetailsid, 
+    cplanlotcode, bcanreplace, iposflag, bOutMaterials
+  </sql>
+  <sql id="Blob_Column_List" >
+    rowufts
+  </sql>
+  
+  <!-- dynamic full match -->
+  <sql id="dynamic_full_match_condition">
+	  WHERE 1=1 
+	  <if test="id != null">
+        AND id = #{id,jdbcType=INTEGER}
+      </if>
+	  <if test="id != null" >
+        AND ID = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="cinvcode != null" >
+        AND cInvCode = #{cinvcode,jdbcType=NVARCHAR}
+      </if>
+      <if test="inum != null" >
+        AND iNum = #{inum,jdbcType=DECIMAL}
+      </if>
+      <if test="iquantity != null" >
+        AND iQuantity = #{iquantity,jdbcType=DECIMAL}
+      </if>
+      <if test="iunitcost != null" >
+        AND iUnitCost = #{iunitcost,jdbcType=DECIMAL}
+      </if>
+      <if test="iprice != null" >
+        AND iPrice = #{iprice,jdbcType=DECIMAL}
+      </if>
+      <if test="iaprice != null" >
+        AND iAPrice = #{iaprice,jdbcType=DECIMAL}
+      </if>
+      <if test="ipunitcost != null" >
+        AND iPUnitCost = #{ipunitcost,jdbcType=DECIMAL}
+      </if>
+      <if test="ipprice != null" >
+        AND iPPrice = #{ipprice,jdbcType=DECIMAL}
+      </if>
+      <if test="cbatch != null" >
+        AND cBatch = #{cbatch,jdbcType=NVARCHAR}
+      </if>
+      <if test="cobjcode != null" >
+        AND cObjCode = #{cobjcode,jdbcType=NVARCHAR}
+      </if>
+      <if test="cvouchcode != null" >
+        AND cVouchCode = #{cvouchcode,jdbcType=BIGINT}
+      </if>
+      <if test="cinvouchcode != null" >
+        AND cInVouchCode = #{cinvouchcode,jdbcType=NVARCHAR}
+      </if>
+      <if test="cinvouchtype != null" >
+        AND cinvouchtype = #{cinvouchtype,jdbcType=NVARCHAR}
+      </if>
+      <if test="isoutquantity != null" >
+        AND iSOutQuantity = #{isoutquantity,jdbcType=DECIMAL}
+      </if>
+      <if test="isoutnum != null" >
+        AND iSOutNum = #{isoutnum,jdbcType=DECIMAL}
+      </if>
+      <if test="coutvouchid != null" >
+        AND coutvouchid = #{coutvouchid,jdbcType=BIGINT}
+      </if>
+      <if test="coutvouchtype != null" >
+        AND coutvouchtype = #{coutvouchtype,jdbcType=NVARCHAR}
+      </if>
+      <if test="isredoutquantity != null" >
+        AND iSRedOutQuantity = #{isredoutquantity,jdbcType=DECIMAL}
+      </if>
+      <if test="isredoutnum != null" >
+        AND iSRedOutNum = #{isredoutnum,jdbcType=DECIMAL}
+      </if>
+      <if test="cfree1 != null" >
+        AND cFree1 = #{cfree1,jdbcType=NVARCHAR}
+      </if>
+      <if test="cfree2 != null" >
+        AND cFree2 = #{cfree2,jdbcType=NVARCHAR}
+      </if>
+      <if test="iflag != null" >
+        AND iFlag = #{iflag,jdbcType=TINYINT}
+      </if>
+      <if test="isquantity != null" >
+        AND iSQuantity = #{isquantity,jdbcType=DECIMAL}
+      </if>
+      <if test="isnum != null" >
+        AND iSNum = #{isnum,jdbcType=DECIMAL}
+      </if>
+      <if test="ifnum != null" >
+        AND iFNum = #{ifnum,jdbcType=DECIMAL}
+      </if>
+      <if test="ifquantity != null" >
+        AND iFQuantity = #{ifquantity,jdbcType=DECIMAL}
+      </if>
+      <if test="dvdate != null" >
+        AND dVDate = #{dvdate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="itrids != null" >
+        AND iTrIds = #{itrids,jdbcType=BIGINT}
+      </if>
+      <if test="cposition != null" >
+        AND cPosition = #{cposition,jdbcType=NVARCHAR}
+      </if>
+      <if test="cdefine22 != null" >
+        AND cDefine22 = #{cdefine22,jdbcType=NVARCHAR}
+      </if>
+      <if test="cdefine23 != null" >
+        AND cDefine23 = #{cdefine23,jdbcType=NVARCHAR}
+      </if>
+      <if test="cdefine24 != null" >
+        AND cDefine24 = #{cdefine24,jdbcType=NVARCHAR}
+      </if>
+      <if test="cdefine25 != null" >
+        AND cDefine25 = #{cdefine25,jdbcType=NVARCHAR}
+      </if>
+      <if test="cdefine26 != null" >
+        AND cDefine26 = #{cdefine26,jdbcType=DOUBLE}
+      </if>
+      <if test="cdefine27 != null" >
+        AND cDefine27 = #{cdefine27,jdbcType=DOUBLE}
+      </if>
+      <if test="citemClass != null" >
+        AND cItem_class = #{citemClass,jdbcType=NVARCHAR}
+      </if>
+      <if test="citemcode != null" >
+        AND cItemCode = #{citemcode,jdbcType=NVARCHAR}
+      </if>
+      <if test="cname != null" >
+        AND cName = #{cname,jdbcType=NVARCHAR}
+      </if>
+      <if test="citemcname != null" >
+        AND cItemCName = #{citemcname,jdbcType=NVARCHAR}
+      </if>
+      <if test="cfree3 != null" >
+        AND cFree3 = #{cfree3,jdbcType=NVARCHAR}
+      </if>
+      <if test="cfree4 != null" >
+        AND cFree4 = #{cfree4,jdbcType=NVARCHAR}
+      </if>
+      <if test="cfree5 != null" >
+        AND cFree5 = #{cfree5,jdbcType=NVARCHAR}
+      </if>
+      <if test="cfree6 != null" >
+        AND cFree6 = #{cfree6,jdbcType=NVARCHAR}
+      </if>
+      <if test="cfree7 != null" >
+        AND cFree7 = #{cfree7,jdbcType=NVARCHAR}
+      </if>
+      <if test="cfree8 != null" >
+        AND cFree8 = #{cfree8,jdbcType=NVARCHAR}
+      </if>
+      <if test="cfree9 != null" >
+        AND cFree9 = #{cfree9,jdbcType=NVARCHAR}
+      </if>
+      <if test="cfree10 != null" >
+        AND cFree10 = #{cfree10,jdbcType=NVARCHAR}
+      </if>
+      <if test="cbarcode != null" >
+        AND cBarCode = #{cbarcode,jdbcType=NVARCHAR}
+      </if>
+      <if test="inquantity != null" >
+        AND iNQuantity = #{inquantity,jdbcType=DECIMAL}
+      </if>
+      <if test="innum != null" >
+        AND iNNum = #{innum,jdbcType=DECIMAL}
+      </if>
+      <if test="cassunit != null" >
+        AND cAssUnit = #{cassunit,jdbcType=NVARCHAR}
+      </if>
+      <if test="dmadedate != null" >
+        AND dMadeDate = #{dmadedate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="imassdate != null" >
+        AND iMassDate = #{imassdate,jdbcType=INTEGER}
+      </if>
+      <if test="cdefine28 != null" >
+        AND cDefine28 = #{cdefine28,jdbcType=NVARCHAR}
+      </if>
+      <if test="cdefine29 != null" >
+        AND cDefine29 = #{cdefine29,jdbcType=NVARCHAR}
+      </if>
+      <if test="cdefine30 != null" >
+        AND cDefine30 = #{cdefine30,jdbcType=NVARCHAR}
+      </if>
+      <if test="cdefine31 != null" >
+        AND cDefine31 = #{cdefine31,jdbcType=NVARCHAR}
+      </if>
+      <if test="cdefine32 != null" >
+        AND cDefine32 = #{cdefine32,jdbcType=NVARCHAR}
+      </if>
+      <if test="cdefine33 != null" >
+        AND cDefine33 = #{cdefine33,jdbcType=NVARCHAR}
+      </if>
+      <if test="cdefine34 != null" >
+        AND cDefine34 = #{cdefine34,jdbcType=INTEGER}
+      </if>
+      <if test="cdefine35 != null" >
+        AND cDefine35 = #{cdefine35,jdbcType=INTEGER}
+      </if>
+      <if test="cdefine36 != null" >
+        AND cDefine36 = #{cdefine36,jdbcType=TIMESTAMP}
+      </if>
+      <if test="cdefine37 != null" >
+        AND cDefine37 = #{cdefine37,jdbcType=TIMESTAMP}
+      </if>
+      <if test="impoids != null" >
+        AND iMPoIds = #{impoids,jdbcType=BIGINT}
+      </if>
+      <if test="icheckids != null" >
+        AND iCheckIds = #{icheckids,jdbcType=BIGINT}
+      </if>
+      <if test="cbvencode != null" >
+        AND cBVencode = #{cbvencode,jdbcType=NVARCHAR}
+      </if>
+      <if test="bgsp != null" >
+        AND bGsp = #{bgsp,jdbcType=BIT},
+      </if>
+      <if test="cgspstate != null" >
+        AND cGspState = #{cgspstate,jdbcType=NVARCHAR}
+      </if>
+      <if test="ccheckcode != null" >
+        AND cCheckCode = #{ccheckcode,jdbcType=NVARCHAR}
+      </if>
+      <if test="icheckidbaks != null" >
+        AND iCheckIdBaks = #{icheckidbaks,jdbcType=BIGINT}
+      </if>
+      <if test="crejectcode != null" >
+        AND cRejectCode = #{crejectcode,jdbcType=NVARCHAR}
+      </if>
+      <if test="irejectids != null" >
+        AND iRejectIds = #{irejectids,jdbcType=BIGINT}
+      </if>
+      <if test="ccheckpersoncode != null" >
+        AND cCheckPersonCode = #{ccheckpersoncode,jdbcType=NVARCHAR}
+      </if>
+      <if test="dcheckdate != null" >
+        AND dCheckDate = #{dcheckdate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="cmassunit != null" >
+        AND cMassUnit = #{cmassunit,jdbcType=SMALLINT}
+      </if>
+      <if test="cmolotcode != null" >
+        AND cMoLotCode = #{cmolotcode,jdbcType=NVARCHAR}
+      </if>
+      <if test="imaterialfee != null" >
+        AND iMaterialFee = #{imaterialfee,jdbcType=DECIMAL}
+      </if>
+      <if test="iprocesscost != null" >
+        AND iProcessCost = #{iprocesscost,jdbcType=DECIMAL}
+      </if>
+      <if test="iprocessfee != null" >
+        AND iProcessFee = #{iprocessfee,jdbcType=DECIMAL}
+      </if>
+      <if test="dmsdate != null" >
+        AND dMSDate = #{dmsdate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="ismaterialfee != null" >
+        AND iSMaterialFee = #{ismaterialfee,jdbcType=DECIMAL}
+      </if>
+      <if test="isprocessfee != null" >
+        AND iSProcessFee = #{isprocessfee,jdbcType=DECIMAL}
+      </if>
+      <if test="iomodid != null" >
+        AND iOMoDID = #{iomodid,jdbcType=INTEGER}
+      </if>
+      <if test="bfilled != null" >
+        AND bFilled = #{bfilled,jdbcType=BIGINT}
+      </if>
+      <if test="bchecked != null" >
+        AND bChecked = #{bchecked,jdbcType=BIT}
+      </if>
+      <if test="iomomid != null" >
+        AND iOMoMID = #{iomomid,jdbcType=BIGINT}
+      </if>
+      <if test="cmworkcentercode != null" >
+        AND cmworkcentercode = #{cmworkcentercode,jdbcType=NVARCHAR}
+      </if>
+      <if test="blpusefree != null" >
+        AND bLPUseFree = #{blpusefree,jdbcType=BIT}
+      </if>
+      <if test="irsrowno != null" >
+        AND iRSRowNO = #{irsrowno,jdbcType=INTEGER}
+      </if>
+      <if test="ioritrackid != null" >
+        AND iOriTrackID = #{ioritrackid,jdbcType=BIGINT}
+      </if>
+      <if test="coritracktype != null" >
+        AND coritracktype = #{coritracktype,jdbcType=NVARCHAR}
+      </if>
+      <if test="cbaccounter != null" >
+        AND cbaccounter = #{cbaccounter,jdbcType=NVARCHAR}
+      </if>
+      <if test="dbkeepdate != null" >
+        AND dbKeepDate = #{dbkeepdate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="bcosting != null" >
+        AND bCosting = #{bcosting,jdbcType=BIT}
+      </if>
+      <if test="bvmiused != null" >
+        AND bVMIUsed = #{bvmiused,jdbcType=BIT}
+      </if>
+      <if test="ivmisettlequantity != null" >
+        AND iVMISettleQuantity = #{ivmisettlequantity,jdbcType=DECIMAL}
+      </if>
+      <if test="ivmisettlenum != null" >
+        AND iVMISettleNum = #{ivmisettlenum,jdbcType=DECIMAL}
+      </if>
+      <if test="cvmivencode != null" >
+        AND cvmivencode = #{cvmivencode,jdbcType=NVARCHAR}
+      </if>
+      <if test="iinvsncount != null" >
+        AND iInvSNCount = #{iinvsncount,jdbcType=INTEGER}
+      </if>
+      <if test="cwhpersoncode != null" >
+        AND cwhpersoncode = #{cwhpersoncode,jdbcType=NVARCHAR}
+      </if>
+      <if test="cwhpersonname != null" >
+        AND cwhpersonname = #{cwhpersonname,jdbcType=NVARCHAR}
+      </if>
+      <if test="imaids != null" >
+        AND iMaIDs = #{imaids,jdbcType=BIGINT}
+      </if>
+      <if test="cserviceoid != null" >
+        AND cserviceoid = #{cserviceoid,jdbcType=VARCHAR}
+      </if>
+      <if test="cbserviceoid != null" >
+        AND cbserviceoid = #{cbserviceoid,jdbcType=VARCHAR}
+      </if>
+      <if test="iinvexchrate != null" >
+        AND iinvexchrate = #{iinvexchrate,jdbcType=DECIMAL}
+      </if>
+      <if test="corufts != null" >
+        AND corufts = #{corufts,jdbcType=VARCHAR}
+      </if>
+      <if test="comcode != null" >
+        AND comcode = #{comcode,jdbcType=NVARCHAR}
+      </if>
+      <if test="cmocode != null" >
+        AND cmocode = #{cmocode,jdbcType=NVARCHAR}
+      </if>
+      <if test="invcode != null" >
+        AND invcode = #{invcode,jdbcType=NVARCHAR}
+      </if>
+      <if test="imoseq != null" >
+        AND imoseq = #{imoseq,jdbcType=INTEGER}
+      </if>
+      <if test="iopseq != null" >
+        AND iopseq = #{iopseq,jdbcType=NVARCHAR}
+      </if>
+      <if test="copdesc != null" >
+        AND copdesc = #{copdesc,jdbcType=NVARCHAR}
+      </if>
+      <if test="strcontractguid != null" >
+        AND strContractGUID = #{strcontractguid,jdbcType=CHAR}
+      </if>
+      <if test="iexpiratdatecalcu != null" >
+        AND iExpiratDateCalcu = #{iexpiratdatecalcu,jdbcType=SMALLINT}
+      </if>
+      <if test="cexpirationdate != null" >
+        AND cExpirationdate = #{cexpirationdate,jdbcType=VARCHAR}
+      </if>
+      <if test="dexpirationdate != null" >
+        AND dExpirationdate = #{dexpirationdate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="cciqbookcode != null" >
+        AND cciqbookcode = #{cciqbookcode,jdbcType=NVARCHAR}
+      </if>
+      <if test="ibondedsumqty != null" >
+        AND iBondedSumQty = #{ibondedsumqty,jdbcType=DECIMAL}
+      </if>
+      <if test="productinids != null" >
+        AND productinids = #{productinids,jdbcType=INTEGER}
+      </if>
+      <if test="iorderdid != null" >
+        AND iorderdid = #{iorderdid,jdbcType=INTEGER}
+      </if>
+      <if test="iordertype != null" >
+        AND iordertype = #{iordertype,jdbcType=TINYINT}
+      </if>
+      <if test="iordercode != null" >
+        AND iordercode = #{iordercode,jdbcType=NVARCHAR}
+      </if>
+      <if test="iorderseq != null" >
+        AND iorderseq = #{iorderseq,jdbcType=INTEGER}
+      </if>
+      <if test="isodid != null" >
+        AND isodid = #{isodid,jdbcType=NVARCHAR}
+      </if>
+      <if test="isotype != null" >
+        AND isotype = #{isotype,jdbcType=TINYINT}
+      </if>
+      <if test="csocode != null" >
+        AND csocode = #{csocode,jdbcType=NVARCHAR}
+      </if>
+      <if test="isoseq != null" >
+        AND isoseq = #{isoseq,jdbcType=INTEGER}
+      </if>
+      <if test="ipesodid != null" >
+        AND ipesodid = #{ipesodid,jdbcType=NVARCHAR}
+      </if>
+      <if test="ipesotype != null" >
+        AND ipesotype = #{ipesotype,jdbcType=TINYINT}
+      </if>
+      <if test="cpesocode != null" >
+        AND cpesocode = #{cpesocode,jdbcType=NVARCHAR}
+      </if>
+      <if test="ipesoseq != null" >
+        AND ipesoseq = #{ipesoseq,jdbcType=INTEGER}
+      </if>
+      <if test="cbatchproperty1 != null" >
+        AND cBatchProperty1 = #{cbatchproperty1,jdbcType=DECIMAL}
+      </if>
+      <if test="cbatchproperty2 != null" >
+        AND cBatchProperty2 = #{cbatchproperty2,jdbcType=DECIMAL}
+      </if>
+      <if test="cbatchproperty3 != null" >
+        AND cBatchProperty3 = #{cbatchproperty3,jdbcType=DECIMAL}
+      </if>
+      <if test="cbatchproperty4 != null" >
+        AND cBatchProperty4 = #{cbatchproperty4,jdbcType=DECIMAL}
+      </if>
+      <if test="cbatchproperty5 != null" >
+        AND cBatchProperty5 = #{cbatchproperty5,jdbcType=DECIMAL}
+      </if>
+      <if test="cbatchproperty6 != null" >
+        AND cBatchProperty6 = #{cbatchproperty6,jdbcType=NVARCHAR}
+      </if>
+      <if test="cbatchproperty7 != null" >
+        AND cBatchProperty7 = #{cbatchproperty7,jdbcType=NVARCHAR}
+      </if>
+      <if test="cbatchproperty8 != null" >
+        AND cBatchProperty8 = #{cbatchproperty8,jdbcType=NVARCHAR}
+      </if>
+      <if test="cbatchproperty9 != null" >
+        AND cBatchProperty9 = #{cbatchproperty9,jdbcType=NVARCHAR}
+      </if>
+      <if test="cbatchproperty10 != null" >
+        AND cBatchProperty10 = #{cbatchproperty10,jdbcType=TIMESTAMP}
+      </if>
+      <if test="cbmemo != null" >
+        AND cbMemo = #{cbmemo,jdbcType=NVARCHAR}
+      </if>
+      <if test="applydid != null" >
+        AND applydid = #{applydid,jdbcType=INTEGER}
+      </if>
+      <if test="applycode != null" >
+        AND applycode = #{applycode,jdbcType=NVARCHAR}
+      </if>
+      <if test="irowno != null" >
+        AND irowno = #{irowno,jdbcType=INTEGER}
+      </if>
+      <if test="strowguid != null" >
+        AND strowguid = #{strowguid,jdbcType=CHAR}
+      </if>
+      <if test="cservicecode != null" >
+        AND cservicecode = #{cservicecode,jdbcType=NVARCHAR}
+      </if>
+      <if test="ipreuseqty != null" >
+        AND ipreuseqty = #{ipreuseqty,jdbcType=DECIMAL}
+      </if>
+      <if test="ipreuseinum != null" >
+        AND ipreuseinum = #{ipreuseinum,jdbcType=DECIMAL}
+      </if>
+      <if test="bsupersede != null" >
+        AND bsupersede = #{bsupersede,jdbcType=INTEGER}
+      </if>
+      <if test="isupersedeqty != null" >
+        AND isupersedeqty = #{isupersedeqty,jdbcType=DECIMAL}
+      </if>
+      <if test="isupersedempoids != null" >
+        AND isupersedempoids = #{isupersedempoids,jdbcType=INTEGER}
+      </if>
+      <if test="imoallocatesubid != null" >
+        AND imoallocatesubid = #{imoallocatesubid,jdbcType=CHAR}
+      </if>
+      <if test="cinvoucherlineid != null" >
+        AND cInVoucherLineID = #{cinvoucherlineid,jdbcType=INTEGER}
+      </if>
+      <if test="cinvouchercode != null" >
+        AND cInVoucherCode = #{cinvouchercode,jdbcType=NVARCHAR}
+      </if>
+      <if test="cinvouchertype != null" >
+        AND cInVoucherType = #{cinvouchertype,jdbcType=NVARCHAR}
+      </if>
+      <if test="cbsysbarcode != null" >
+        AND cbsysbarcode = #{cbsysbarcode,jdbcType=NVARCHAR}
+      </if>
+      <if test="csourcemocode != null" >
+        AND cSourceMOCode = #{csourcemocode,jdbcType=NVARCHAR}
+      </if>
+      <if test="isourcemodetailsid != null" >
+        AND iSourceMODetailsid = #{isourcemodetailsid,jdbcType=INTEGER}
+      </if>
+      <if test="cplanlotcode != null" >
+        AND cplanlotcode = #{cplanlotcode,jdbcType=NVARCHAR}
+      </if>
+      <if test="bcanreplace != null" >
+        AND bcanreplace = #{bcanreplace,jdbcType=INTEGER}
+      </if>
+      <if test="iposflag != null" >
+        AND iposflag = #{iposflag,jdbcType=SMALLINT}
+      </if>
+      <if test="boutmaterials != null" >
+        AND bOutMaterials = #{boutmaterials,jdbcType=SMALLINT}
+      </if>
+      <if test="rowufts != null" >
+        AND rowufts = #{rowufts,jdbcType=BINARY}
+      </if>
+  </sql>
+  
+  <select id="select" resultMap="ResultMapWithBLOBs" parameterType="Rdrecords11Entity" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from rdrecords11
+    <include refid="dynamic_full_match_condition" />
+  </select>
+</mapper>

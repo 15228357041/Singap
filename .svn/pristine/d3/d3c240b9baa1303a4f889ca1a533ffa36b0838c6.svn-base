@@ -1,0 +1,79 @@
+package com.mingcloud.proxy.logiclayer.apiprohandler;
+
+import org.apache.axiom.om.OMAbstractFactory;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.OMFactory;
+import org.apache.axiom.om.OMNamespace;
+import org.apache.axis2.AxisFault;
+import org.apache.axis2.addressing.EndpointReference;
+import org.apache.axis2.client.Options;
+import org.apache.axis2.client.ServiceClient;
+import org.apache.log4j.Logger;
+import com.mingcloud.proxy.util.XmlUtil;
+
+import java.util.List;
+
+/**
+ * @author Relic
+ */
+public class ImportDate {
+
+    private static ServiceClient serviceClient;
+
+    private static Logger logger = Logger.getLogger(ImportDate.class);
+
+    public static List<String> webImport(String icfFileStr, String importFileStr) throws AxisFault {
+        serviceClient = new ServiceClient();
+        List<String> stringList = null;
+        try {
+            //创建服务地址WebService的URL,注意不是WSDL的URL
+            String url = "http://10.1.1.38:8088/OnlineKPI/Eam/APIINTERFACE.asmx?wsdl";
+            EndpointReference targetEPR = new EndpointReference(url);
+            Options options = serviceClient.getOptions();
+            options.setTo(targetEPR);
+            //确定调用方法（wsdl 命名空间地址 (wsdl文档中的targetNamespace) 和 方法名称 的组合）
+            options.setAction("urn:apipro:apiinterface/WebImport");
+
+            OMFactory fac = OMAbstractFactory.getOMFactory();
+            /*
+             * 指定命名空间，参数：
+             * uri--即为wsdl文档的targetNamespace，命名空间
+             * perfix--可不填
+             */
+            OMNamespace omNs = fac.createOMNamespace("urn:apipro:apiinterface", "");
+            // 指定方法
+            OMElement method = fac.createOMElement("WebImport", omNs);
+
+            // 指定方法的参数
+            OMElement userName = fac.createOMElement("userName", omNs);
+            userName.setText("sap");
+
+            OMElement passwordMd5 = fac.createOMElement("passwordMd5", omNs);
+            passwordMd5.setText("LBJ78yzLTt8r8i/qWgDklA==");
+
+            OMElement icfFile = fac.createOMElement("icfFile", omNs);
+            icfFile.setText(icfFileStr);
+
+            OMElement importFile = fac.createOMElement("importFile", omNs);
+            importFile.setText(importFileStr);
+
+            method.addChild(userName);
+            method.addChild(passwordMd5);
+            method.addChild(icfFile);
+            method.addChild(importFile);
+            method.build();
+
+            //远程调用web服务
+            OMElement result = serviceClient.sendReceive(method);
+            stringList = XmlUtil.getResults(result);
+
+            logger.info(result);
+
+        } catch (AxisFault axisFault) {
+            axisFault.printStackTrace();
+        }
+        return stringList;
+
+    }
+
+}

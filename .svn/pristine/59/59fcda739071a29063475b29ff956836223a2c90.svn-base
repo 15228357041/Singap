@@ -1,0 +1,71 @@
+package com.mingcloud.proxy.logiclayer.huaweihandler;
+
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.MorelationtdMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.MorelationtdDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.MorelationtdEntity;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+
+public class MorelationtdDataInThread implements Runnable {
+	private static Logger logger = Logger.getLogger(MorelationtdDataInThread.class);
+	
+	private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+	
+	private DataCenter dataCenter = DataCenter.getInstance();
+	
+	private MorelationtdMapper morelationtdMapper = SpringContextUtil.getBean("morelationtdMapper");
+	
+	public MorelationtdDataInThread() {
+		// TODO Auto-generated constructor stub
+		// 设置数据源为oracle
+		jdbcChange.changeJdbc(JdbcChange.oracleDataSource);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		logger.info("MorelationtdDataInThread begin");
+		
+		while(true) {
+			try {
+				if(dataCenter.getMorelationtdlistSize() < DataCenter.COMMONRECORDEXLIST_MAX_LENGTH) {
+					getAllMorelationtdData();
+					logger.info("MorelationtdDataInThread wait for 10 minutes...");
+					Thread.sleep(10 * 60 * 1000);
+				} else {
+					logger.info("MorelationtdDataInThread wait for 5 minutes...");
+					Thread.sleep(5 * 60 * 1000);
+				}
+			} catch(Exception e) {
+				logger.error("MorelationtdDataInThread: " + e);
+			}
+		}
+	}
+
+	private void getAllMorelationtdData() {
+		// TODO Auto-generated method stub
+		List<MorelationtdEntity> list = null;
+		try {
+			list = morelationtdMapper.selectAllApi();
+			if(list != null && !list.isEmpty()) {
+				for(MorelationtdEntity entity : list) {
+					MorelationtdDto dto = new MorelationtdDto();
+					dto.setDefvaluenum(entity.getDefvaluenum());
+					dto.setExtravarchar1(entity.getExtravarchar1());
+					dto.setExtravarchar2(entity.getExtravarchar2());
+					dto.setExtravarchar3(entity.getExtravarchar3());
+					dataCenter.pushMorelationtdlist(dto);
+				}
+				logger.info("MorelationtdDataInThread getAllMorelationtdData succeeded...");
+			}
+		} catch(Exception e) {
+			logger.error("MorelationtdDataInThread getAllMorelationtdData: " + e);
+		}
+	}
+
+}

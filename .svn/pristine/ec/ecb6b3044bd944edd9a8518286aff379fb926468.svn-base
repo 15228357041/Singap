@@ -1,0 +1,114 @@
+package com.mingcloud.proxy.logiclayer.huaweihandler;
+
+import org.apache.log4j.Logger;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.MaintenanceobjectgroupMapper;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.MorelationtdMapper;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.TechnicaldataMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.MorelationtdDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.MaintenanceobjectgroupEntity;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.MorelationtdEntity;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.TechnicaldataEntity;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+
+public class MorelationtdDataOutThread implements Runnable {
+	private static Logger logger = Logger.getLogger(MorelationtdDataOutThread.class);
+	
+	private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+	
+	private DataCenter dataCenter = DataCenter.getInstance();
+	
+	private MorelationtdMapper morelationtdMapper = SpringContextUtil.getBean("morelationtdMapper");
+	private MaintenanceobjectgroupMapper maintenanceobjectgroupMapper = SpringContextUtil.getBean("maintenanceobjectgroupMapper");
+	private TechnicaldataMapper technicaldataMapper = SpringContextUtil.getBean("technicaldataMapper");
+	
+	private static Integer morelationtdlistSize = 0;
+	
+	public MorelationtdDataOutThread() {
+		// TODO Auto-generated constructor stub
+		// 设置数据源为MySql
+		jdbcChange.changeJdbc(JdbcChange.mySqlDataSource);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		logger.info("MorelationtdDataOutThread begin");
+		
+		while(true) {
+			try {
+				if(dataCenter.getMorelationtdlistSize() > 0) {
+					morelationtdlistSize = dataCenter.getMorelationtdlistSize();
+					InsertMorelationtd();
+					logger.info("MorelationtdDataOutThread Size:" + (morelationtdlistSize-1));
+				}
+				Thread.sleep(50);
+			} catch(Exception e) {
+				logger.error("MorelationtdDataOutThread: " + e);
+			}
+		}
+	}
+
+	private void InsertMorelationtd() {
+		// TODO Auto-generated method stub
+		try {
+			MorelationtdDto dto = dataCenter.popMorelationtdlist();
+			MaintenanceobjectgroupEntity maintenancegroupEntity = new MaintenanceobjectgroupEntity();
+			TechnicaldataEntity technicaldataEntity = new TechnicaldataEntity();
+			maintenancegroupEntity.setMogroupkey(dto.getExtravarchar1());
+			String tdkey = "";
+			if(!dto.getExtravarchar2().replace("最大值", "范围").equals(dto.getExtravarchar2())) {
+				tdkey = "最大值";
+				technicaldataEntity.setTdkey(dto.getExtravarchar2().replace("最大值", "范围"));
+			} else if(!dto.getExtravarchar2().replace("最小值", "范围").equals(dto.getExtravarchar2())) {
+				tdkey = "最小值";
+				technicaldataEntity.setTdkey(dto.getExtravarchar2().replace("最小值", "范围"));
+			}
+			
+			if(!tdkey.equals("")) {
+				MaintenanceobjectgroupEntity groupEntity = maintenanceobjectgroupMapper.get(maintenancegroupEntity);
+				TechnicaldataEntity technicalaEntity = technicaldataMapper.get(technicaldataEntity);
+				if(groupEntity != null && !groupEntity.equals("") &&
+						technicalaEntity != null && !technicalaEntity.equals("")) {
+					MorelationtdEntity entity = new MorelationtdEntity();
+					entity.setMoid(groupEntity.getId());
+					entity.setTdid(technicalaEntity.getId());
+					MorelationtdEntity morelationtdEntity = morelationtdMapper.get(entity);
+					if(morelationtdEntity != null && !morelationtdEntity.equals("")) {
+						if(tdkey.equals("最大值")) {
+							if(morelationtdEntity.getExtradecimal2() != dto.getDefvaluenum()) {
+								entity.setExtradecimal2(dto.getDefvaluenum());
+								entity.setId(morelationtdEntity.getId());
+								morelationtdMapper.update(entity);
+								logger.info("MorelationtdDataOutThread update succeeded...");
+							}
+						} else if(tdkey.equals("最小值")) {
+							if(morelationtdEntity.getExtradecimal1() != dto.getDefvaluenum()) {
+								entity.setExtradecimal1(dto.getDefvaluenum());
+								entity.setId(morelationtdEntity.getId());
+								morelationtdMapper.update(entity);
+								logger.info("MorelationtdDataOutThread update succeeded...");
+							}
+						}
+					} else {
+						if(tdkey.equals("最大值")) {
+							entity.setExtradecimal2(dto.getDefvaluenum());
+							morelationtdMapper.insert(entity);
+							logger.info("MorelationtdDataOutThread insert succeeded...");
+						} else if(tdkey.equals("最小值")) {
+							entity.setExtradecimal1(dto.getDefvaluenum());
+							morelationtdMapper.insert(entity);
+							logger.info("MorelationtdDataOutThread insert succeeded...");
+						}
+					}
+				}
+			}
+			
+		} catch(Exception e) {
+			logger.error("MorelationtdDataOutThread InsertMorelationtd: " + e);
+		}
+	}
+
+}

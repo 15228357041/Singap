@@ -1,0 +1,154 @@
+package com.mingcloud.proxy.logiclayer.wordlogtrigger;
+
+import org.apache.http.client.ClientProtocolException;
+
+import java.io.IOException;
+
+/**
+ * @author ShenXD
+ * @desc WordLogTrigger 定时发送请求，触发日报生成
+ * @date 2017-09-08 上午10:17:15
+ */
+public class WordLogTrigger {
+	/*private static Logger logger = Logger.getLogger(WordLogTrigger.class);
+	
+	private static PositionData positionData = PositionData.getInstance();
+    
+*//*	public WordLogTrigger() {
+		// TODO Auto-generated constructor stub
+		getPropertiesReader();
+	}*//*
+	
+    //生成日报接口
+	private static String wordURL;
+	
+	//登陆
+	private static String loginURL;
+	
+	private static final String username = "admin";
+	 
+    private static final String password = "admin";
+	
+	*//*public static void generateWordLog() {
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+            	triggerAllPositionWordLog();
+            }
+        };
+
+        //设置执行时间
+        Date date = DateHelper.getTimeToTriggerWordLog();
+        //设置为daemon线程，当程序只有daemon线程的时候，会自动终止运行
+        Timer timer = new Timer("WordLogTrigger", true);
+        //每天的date时刻执行task
+        timer.schedule(task, date, 1000 * 60 * 60 * 24);
+    }*//*
+	
+	private void getPropertiesReader(){
+		Properties properties=new Properties();//获取Properties实例
+	    InputStream inStream=getClass().getResourceAsStream("/url.properties");//获取配置文件输入流
+	    try {
+	    	 properties.load(inStream);//载入输入流
+	    	 wordURL = properties.getProperty("wordURL");
+	    	 loginURL = properties.getProperty("loginURL");
+	    } catch (Exception e) {
+	    	logger.error("url配置文件失效");
+	    }
+	}
+	
+	private static void triggerAllPositionWordLog() {
+//		PositionEntity entity = new PositionEntity();
+//		entity.setPositiontype(10);
+//		entity.setTombstone(1);
+//		//所有场站
+//		List<PositionEntity> list = positionMapper.selectByPositiontype(entity);
+		
+		List<PositionEntity> list = positionData.getPositionList();
+		
+		if (list != null && !list.isEmpty()) {	
+	    	CookieStore cookieStore = new BasicCookieStore();
+	    	//创建HttpClient对象
+	    	CloseableHttpClient httpClient = HttpClients.custom()
+	    			.setDefaultCookieStore(cookieStore).build();
+	    	
+	    	//添加参数
+	    	List<NameValuePair> params = new ArrayList<NameValuePair>();
+	    	params.add(new BasicNameValuePair("username", username));
+	    	params.add(new BasicNameValuePair("password", password));
+	    	try {
+	    		//excuteHttpPost执行post请求并返回结果是否成功
+    			if(excuteHttpPost(loginURL, httpClient, params)) {
+    				logger.info("Login suceeded.");
+    				//遍历场站list
+    				for (PositionEntity curentity : list) {
+    					//获取当前场站的id
+    	    			Integer id = curentity.getId();	
+    					try {
+    						//添加参数
+    						List<NameValuePair> triggerParams = new ArrayList<NameValuePair>();
+    						triggerParams.add(new BasicNameValuePair("extraid1", id.toString()));
+    						triggerParams.add(new BasicNameValuePair("extradatetime1", DateHelper.getCurrentTime()));
+    						logger.info("id : " + id);
+    						logger.info("extradatetime1 : " + DateHelper.getCurrentTime());
+    						logger.info("wordURL : " + wordURL);
+    						//用于结束循环的标记
+    						boolean flag = true;
+    						int i = 1;
+    						while (flag && i < 4) {
+    				    	    if (excuteHttpPost(wordURL, httpClient, triggerParams)) {
+    				    	        logger.info("Generating wordlog for position with id = " + id + 
+    				    	        		" successeed at the " + i + " time.");
+    				    	        flag = false;
+    				    	    } else {
+    				    	    	logger.info("Generating wordlog for position with id = " + id + 
+    				    	        		" failed at the " + i + " time.");
+    				    	    }
+    				    	    //最大次数
+    				    	    i++;
+    						}
+    					} catch (Exception e) {
+    						logger.error("Wordlog Generation HttpRequest failed: " + e);
+    					}
+    	    		}
+    			} else {
+    				logger.error("Failed to login.");
+    			}	
+	    	} catch (ClientProtocolException e ) {
+	    		logger.error("login failed:" + e.toString());
+	    	} catch (UnsupportedEncodingException e1) {
+	    		logger.error("login failed:" + e1.toString());
+	    	} catch (IOException e2) {
+	    		logger.error("login failed:" + e2.toString());
+	    	} finally {
+	    		//关闭httpClient对象
+	    		try {
+	    			httpClient.close();
+	    		} catch(IOException e) {
+	    			logger.error("failed to close httpClient:" + e.toString());
+	    		}
+	    	}
+		}
+	}
+	
+	*//**
+	 * 拼装HttpPost对象并交给HttpClient执行
+	 * @return boolean
+	 * @throws IOException 
+	 * @throws ClientProtocolException 
+	 *//*
+	public static boolean excuteHttpPost(String URL, CloseableHttpClient httpClient, 
+			List<NameValuePair> params) throws ClientProtocolException, IOException {
+		//创建HttpPost对象
+		HttpPost httpPost = new HttpPost(URL);
+    	UrlEncodedFormEntity triggerUefEntity =  new UrlEncodedFormEntity(params, "UTF-8");
+    	httpPost.setEntity(triggerUefEntity);
+    	logger.debug("Executing request: " + httpPost.getURI());		
+	    HttpEntity responseEntity = httpClient.execute(httpPost).getEntity();
+	    String tag = EntityUtils.toString(responseEntity);
+	    //解析response返回的结果，返回是否成功
+	    logger.debug("Response: " + tag);
+	    boolean success = JSON.parseObject(tag).getBoolean("success");
+    	return success;
+	}*/
+}

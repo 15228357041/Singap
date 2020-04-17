@@ -1,0 +1,313 @@
+package com.mingcloud.proxy.datalayer.dto.archiveinfo;
+
+import java.util.Date;
+
+import com.mingcloud.proxy.datalayer.dto.BaseDto;
+
+public class MaintenanceobjectgroupDto extends BaseDto {
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8597690793273569814L;
+
+	private Integer id;
+
+    private String mogroupkey;
+
+    private String mogroupname;
+
+    private Integer rootmogroupid;
+
+    private Date lastchangedate;
+
+    private Integer lastchangetime;
+
+    private Date lastexportdate;
+
+    private Integer lastexporttime;
+
+    private Date lastimportdate;
+
+    private Integer lastimporttime;
+
+    private Integer siteid;
+
+    private Byte recordactive;
+
+    private Long mogroupbarcode;
+
+    private String custombarcode;
+
+    private Integer icon;
+
+    private String extramogroupinfo1;
+
+    private String extramogroupinfo2;
+
+    private String extramogroupinfo3;
+
+    private String extramogroupinfo4;
+
+    private String extramogroupinfo5;
+
+    private Integer recordlanguageid;
+
+    private Date createdate;
+
+    private Integer createuserid;
+
+    private Date modificationdate;
+
+    private Integer modificationuserid;
+
+    private String picpath;
+
+    private String barcode;
+
+    private String memo;
+
+    private Integer orgid;
+
+    private Integer tombstone;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getMogroupkey() {
+        return mogroupkey;
+    }
+
+    public void setMogroupkey(String mogroupkey) {
+        this.mogroupkey = mogroupkey == null ? null : mogroupkey.trim();
+    }
+
+    public String getMogroupname() {
+        return mogroupname;
+    }
+
+    public void setMogroupname(String mogroupname) {
+        this.mogroupname = mogroupname == null ? null : mogroupname.trim();
+    }
+
+    public Integer getRootmogroupid() {
+        return rootmogroupid;
+    }
+
+    public void setRootmogroupid(Integer rootmogroupid) {
+        this.rootmogroupid = rootmogroupid;
+    }
+
+    public Date getLastchangedate() {
+        return lastchangedate;
+    }
+
+    public void setLastchangedate(Date lastchangedate) {
+        this.lastchangedate = lastchangedate;
+    }
+
+    public Integer getLastchangetime() {
+        return lastchangetime;
+    }
+
+    public void setLastchangetime(Integer lastchangetime) {
+        this.lastchangetime = lastchangetime;
+    }
+
+    public Date getLastexportdate() {
+        return lastexportdate;
+    }
+
+    public void setLastexportdate(Date lastexportdate) {
+        this.lastexportdate = lastexportdate;
+    }
+
+    public Integer getLastexporttime() {
+        return lastexporttime;
+    }
+
+    public void setLastexporttime(Integer lastexporttime) {
+        this.lastexporttime = lastexporttime;
+    }
+
+    public Date getLastimportdate() {
+        return lastimportdate;
+    }
+
+    public void setLastimportdate(Date lastimportdate) {
+        this.lastimportdate = lastimportdate;
+    }
+
+    public Integer getLastimporttime() {
+        return lastimporttime;
+    }
+
+    public void setLastimporttime(Integer lastimporttime) {
+        this.lastimporttime = lastimporttime;
+    }
+
+    public Integer getSiteid() {
+        return siteid;
+    }
+
+    public void setSiteid(Integer siteid) {
+        this.siteid = siteid;
+    }
+
+    public Byte getRecordactive() {
+        return recordactive;
+    }
+
+    public void setRecordactive(Byte recordactive) {
+        this.recordactive = recordactive;
+    }
+
+    public Long getMogroupbarcode() {
+        return mogroupbarcode;
+    }
+
+    public void setMogroupbarcode(Long mogroupbarcode) {
+        this.mogroupbarcode = mogroupbarcode;
+    }
+
+    public String getCustombarcode() {
+        return custombarcode;
+    }
+
+    public void setCustombarcode(String custombarcode) {
+        this.custombarcode = custombarcode == null ? null : custombarcode.trim();
+    }
+
+    public Integer getIcon() {
+        return icon;
+    }
+
+    public void setIcon(Integer icon) {
+        this.icon = icon;
+    }
+
+    public String getExtramogroupinfo1() {
+        return extramogroupinfo1;
+    }
+
+    public void setExtramogroupinfo1(String extramogroupinfo1) {
+        this.extramogroupinfo1 = extramogroupinfo1 == null ? null : extramogroupinfo1.trim();
+    }
+
+    public String getExtramogroupinfo2() {
+        return extramogroupinfo2;
+    }
+
+    public void setExtramogroupinfo2(String extramogroupinfo2) {
+        this.extramogroupinfo2 = extramogroupinfo2 == null ? null : extramogroupinfo2.trim();
+    }
+
+    public String getExtramogroupinfo3() {
+        return extramogroupinfo3;
+    }
+
+    public void setExtramogroupinfo3(String extramogroupinfo3) {
+        this.extramogroupinfo3 = extramogroupinfo3 == null ? null : extramogroupinfo3.trim();
+    }
+
+    public String getExtramogroupinfo4() {
+        return extramogroupinfo4;
+    }
+
+    public void setExtramogroupinfo4(String extramogroupinfo4) {
+        this.extramogroupinfo4 = extramogroupinfo4 == null ? null : extramogroupinfo4.trim();
+    }
+
+    public String getExtramogroupinfo5() {
+        return extramogroupinfo5;
+    }
+
+    public void setExtramogroupinfo5(String extramogroupinfo5) {
+        this.extramogroupinfo5 = extramogroupinfo5 == null ? null : extramogroupinfo5.trim();
+    }
+
+    public Integer getRecordlanguageid() {
+        return recordlanguageid;
+    }
+
+    public void setRecordlanguageid(Integer recordlanguageid) {
+        this.recordlanguageid = recordlanguageid;
+    }
+
+    public Date getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+
+    public Integer getCreateuserid() {
+        return createuserid;
+    }
+
+    public void setCreateuserid(Integer createuserid) {
+        this.createuserid = createuserid;
+    }
+
+    public Date getModificationdate() {
+        return modificationdate;
+    }
+
+    public void setModificationdate(Date modificationdate) {
+        this.modificationdate = modificationdate;
+    }
+
+    public Integer getModificationuserid() {
+        return modificationuserid;
+    }
+
+    public void setModificationuserid(Integer modificationuserid) {
+        this.modificationuserid = modificationuserid;
+    }
+
+    public String getPicpath() {
+        return picpath;
+    }
+
+    public void setPicpath(String picpath) {
+        this.picpath = picpath == null ? null : picpath.trim();
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode == null ? null : barcode.trim();
+    }
+
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo == null ? null : memo.trim();
+    }
+
+    public Integer getOrgid() {
+        return orgid;
+    }
+
+    public void setOrgid(Integer orgid) {
+        this.orgid = orgid;
+    }
+
+    public Integer getTombstone() {
+        return tombstone;
+    }
+
+    public void setTombstone(Integer tombstone) {
+        this.tombstone = tombstone;
+    }
+}

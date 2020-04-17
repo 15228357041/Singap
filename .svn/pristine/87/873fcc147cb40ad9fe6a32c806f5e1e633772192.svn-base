@@ -1,0 +1,94 @@
+package com.mingcloud.proxy.logiclayer.weatherhandler;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.CommonrecodeexMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.CommonrecodeexDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.CommonrecodeexEntity;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.log4j.Logger;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
+
+/**
+ * @author ShenXD
+ * @desc 天气输出线程
+ * @date 2017-8-16 上午10:54:17
+ */
+public class WeatherDataOutThread implements Runnable {
+	private static Logger logger = Logger.getLogger(WeatherDataOutThread.class);
+
+	private CommonrecodeexMapper commonrecodeexMapper =
+			SpringContextUtil.getBean("commonrecodeexMapper");
+	
+	private DataCenter dataCenter = DataCenter.getInstance();
+
+	public void run() {
+		while(true){
+			if (dataCenter.getWeatherCommonrecodeexlistSize() > 0) {
+				InsertCommonrecodeex();
+				logger.info("WeatherDataCenter size: " + dataCenter.getWeatherCommonrecodeexlistSize());
+			}
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				logger.error("WeatherDataOutThread: " + e);
+			}
+		}
+	}
+	
+	@Transactional
+	private void InsertCommonrecodeex(){
+		try {
+			
+			CommonrecodeexEntity commonrecodeexentity = new CommonrecodeexEntity();
+
+			if (dataCenter.getWeatherCommonrecodeexlistSize() > 0){
+				CommonrecodeexDto dto = dataCenter.popWeatherCommonrecodeexlist();
+				commonrecodeexentity.setExtraid1(dto.getExtraid1());				
+				//systemkey
+				commonrecodeexentity.setExtravarchar1(dto.getExtravarchar1());
+				commonrecodeexentity.setNtype(dto.getNtype());
+				commonrecodeexentity.setExtradatetime1(dto.getExtradatetime1());
+				
+				List <CommonrecodeexEntity> list = commonrecodeexMapper.select(commonrecodeexentity);
+				
+				//时间
+				commonrecodeexentity.setExtradatetime1(dto.getExtradatetime1());
+				//温度
+				commonrecodeexentity.setExtradecimal1(dto.getExtradecimal1());
+				//湿度
+				commonrecodeexentity.setExtradecimal2(dto.getExtradecimal2());
+				
+				//天气
+				commonrecodeexentity.setExtravarchar2(dto.getExtravarchar2());
+				//风速
+				commonrecodeexentity.setExtraint1(dto.getExtraint1());
+				
+				if (list.size() > 0)
+				{
+					for (int i = 0; i < list.size(); i++) {
+						Integer id = list.get(i).getId();
+						commonrecodeexentity.setId(id);
+						commonrecodeexentity.setModificationdate(new Date());
+						commonrecodeexMapper.update(commonrecodeexentity);
+						logger.info("Updating weather succeeded...");
+					}
+				}
+				else
+				{
+					commonrecodeexentity.setCreatedate(new Date());
+					if(!commonrecodeexentity.getNtype().equals(30)) {
+						commonrecodeexMapper.insert(commonrecodeexentity);
+					}
+					logger.info("Inserting weather succeeded...");
+				}
+				
+			}
+		} catch (Exception e) {  
+			logger.error("WeatherDataOutThread.InsertCommonrecodeex: " + e);
+        }
+	}
+
+}

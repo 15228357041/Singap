@@ -1,0 +1,71 @@
+package com.mingcloud.proxy.logiclayer.vcomhandler;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.CommonrecodeMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.CommonrecodeexDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.CommonrecodeEntity;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.log4j.Logger;
+
+import java.util.Date;
+import java.util.List;
+
+public class VcomApiDataOutThread implements Runnable {
+	private static Logger logger = Logger.getLogger(VcomApiDataOutThread.class);
+
+	private CommonrecodeMapper commonrecodeMapper = SpringContextUtil.getBean("commonrecodeMapper");
+	
+	private DataCenter dataCenter = DataCenter.getInstance();
+	
+	public void run() {
+		while (true) {
+			if (dataCenter.getVcomApilistSize() > 0) {
+				logger.info("VcomApiDataOutThread size: " + dataCenter.getVcomApilistSize());
+				InsertCommonrecode();
+			}
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				logger.error("VcomApiDataOutThread: " + e);
+			}
+		}
+	}
+	
+	private void InsertCommonrecode() {
+		// TODO Auto-generated method stub
+		try {
+			CommonrecodeexDto dto = dataCenter.popVcomApilist();
+			
+			CommonrecodeEntity commonrecodeEntity = new CommonrecodeEntity();
+			commonrecodeEntity.setExtraid1(dto.getExtraid1());
+			commonrecodeEntity.setExtradatetime1(dto.getExtradatetime1());
+			commonrecodeEntity.setNtype(dto.getNtype());
+			commonrecodeEntity.setExtravarchar1(dto.getExtravarchar1());
+			commonrecodeEntity.setExtravarchar2(dto.getExtravarchar2());
+
+			List<CommonrecodeEntity> list = commonrecodeMapper.select(commonrecodeEntity);
+			// value
+			commonrecodeEntity.setExtravarchar3(dto.getExtravarchar3());
+			commonrecodeEntity.setExtradecimal1(dto.getExtradecimal1());
+			commonrecodeEntity.setExtravarchar11(dto.getExtravarchar2());
+			commonrecodeEntity.setExtravarchar12(Integer.toString(dto.getExtraint1()));
+			
+			if(list != null && !list.isEmpty()) {
+				for(CommonrecodeEntity entity : list) {
+					commonrecodeEntity.setId(entity.getId());
+					commonrecodeEntity.setModificationdate(new Date());
+					commonrecodeMapper.update(commonrecodeEntity);
+					logger.info("Updating code data succeeded...");
+				}
+			} else {
+				commonrecodeEntity.setCreatedate(new Date());
+				commonrecodeMapper.insert(commonrecodeEntity);
+				logger.info("Inserting code data succeeded...");
+			}
+			
+		} catch(Exception e) {
+			logger.error("VcomApiDataOutThread.InsertCommonrecode: " + e);
+		}
+	}
+
+}

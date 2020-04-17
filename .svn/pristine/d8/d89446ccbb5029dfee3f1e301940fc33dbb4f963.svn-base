@@ -1,0 +1,183 @@
+package com.mingcloud.proxy.datalayer.entity.geelyasp;
+
+import com.mingcloud.proxy.datalayer.entity.BaseEntity;
+
+import java.util.Date;
+
+/**
+ * @Author:zxf
+ * @Description
+ * @Date: 2018/12/12 15:24
+ */
+public class UpdateStockRecordEntity extends BaseEntity{
+
+    private Integer id;
+
+    private Integer spid;
+
+    private Integer stockid;
+
+    private Integer orgid;
+
+    private String organizationkey;
+
+    private String sparepartkey;
+
+    private String checkuser;
+
+    private String lifnr;
+
+    private String sparepartname;
+
+    private String stockkey;
+
+    private Integer status;
+
+    private Integer tombstone;
+
+    private Date createdate;
+
+    private Integer createuserid;
+
+    private Date modificationdate;
+
+    private Integer modificationuserid;
+
+    private String stockname;
+
+    public String getStockname() {
+        return stockname;
+    }
+
+    public void setStockname(String stockname) {
+        this.stockname = stockname;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getOrganizationkey() {
+        return organizationkey;
+    }
+
+    public void setOrganizationkey(String organizationkey) {
+        this.organizationkey = organizationkey;
+    }
+
+    public String getSparepartkey() {
+        return sparepartkey;
+    }
+
+    public void setSparepartkey(String sparepartkey) {
+        this.sparepartkey = sparepartkey;
+    }
+
+    public String getCheckuser() {
+        return checkuser;
+    }
+
+    public void setCheckuser(String checkuser) {
+        this.checkuser = checkuser;
+    }
+
+    public String getLifnr() {
+        return lifnr;
+    }
+
+    public void setLifnr(String lifnr) {
+        this.lifnr = lifnr;
+    }
+
+    public String getSparepartname() {
+        return sparepartname;
+    }
+
+    public void setSparepartname(String sparepartname) {
+        this.sparepartname = sparepartname;
+    }
+
+    public String getStockkey() {
+        return stockkey;
+    }
+
+    public void setStockkey(String stockkey) {
+        this.stockkey = stockkey;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getTombstone() {
+        return tombstone;
+    }
+
+    public void setTombstone(Integer tombstone) {
+        this.tombstone = tombstone;
+    }
+
+    public Date getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+
+    public Integer getCreateuserid() {
+        return createuserid;
+    }
+
+    public void setCreateuserid(Integer createuserid) {
+        this.createuserid = createuserid;
+    }
+
+    public Date getModificationdate() {
+        return modificationdate;
+    }
+
+    public void setModificationdate(Date modificationdate) {
+        this.modificationdate = modificationdate;
+    }
+
+    public Integer getModificationuserid() {
+        return modificationuserid;
+    }
+
+    public void setModificationuserid(Integer modificationuserid) {
+        this.modificationuserid = modificationuserid;
+    }
+
+    public Integer getSpid() {
+        return spid;
+    }
+
+    public void setSpid(Integer spid) {
+        this.spid = spid;
+    }
+
+    public Integer getStockid() {
+        return stockid;
+    }
+
+    public void setStockid(Integer stockid) {
+        this.stockid = stockid;
+    }
+
+    public Integer getOrgid() {
+        return orgid;
+    }
+
+    public void setOrgid(Integer orgid) {
+        this.orgid = orgid;
+    }
+}

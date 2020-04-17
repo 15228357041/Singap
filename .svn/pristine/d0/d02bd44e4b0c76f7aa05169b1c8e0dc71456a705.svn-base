@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.MesRecordMapper">
+
+	<!-- table columns -->
+	<sql id="database_table_columns">
+		CODE, NAME, VAL, TYPE, WORKSHOP, LINE, TIME
+	</sql>
+
+	<resultMap id="MesBaseResult" type="MesRecordDto">
+		<result column="CODE" property="code" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="VAL" property="val" jdbcType="DECIMAL" />
+		<result column="TYPE" property="type" jdbcType="VARCHAR" />
+		<result column="WORKSHOP" property="workshop" jdbcType="VARCHAR" />
+		<result column="LINE" property="line" jdbcType="VARCHAR" />
+		<result column="TIME" property="time" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<select id="selectAllApi" resultMap="MesBaseResult">
+		SELECT CODE, NAME, VAL, TYPE, WORKSHOP, LINE, TIME
+		FROM MES4.V_LED2
+	</select>
+
+</mapper>

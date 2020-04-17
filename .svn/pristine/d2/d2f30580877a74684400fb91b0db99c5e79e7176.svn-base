@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.MaintenanceobjectgroupMapper" >
+  <resultMap id="BaseResultMap" type="MaintenanceobjectgroupEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mogroupkey" property="mogroupkey" jdbcType="VARCHAR" />
+    <result column="mogroupname" property="mogroupname" jdbcType="VARCHAR" />
+    <result column="rootmogroupid" property="rootmogroupid" jdbcType="INTEGER" />
+    <result column="lastchangedate" property="lastchangedate" jdbcType="DATE" />
+    <result column="lastchangetime" property="lastchangetime" jdbcType="INTEGER" />
+    <result column="lastexportdate" property="lastexportdate" jdbcType="DATE" />
+    <result column="lastexporttime" property="lastexporttime" jdbcType="INTEGER" />
+    <result column="lastimportdate" property="lastimportdate" jdbcType="DATE" />
+    <result column="lastimporttime" property="lastimporttime" jdbcType="INTEGER" />
+    <result column="siteid" property="siteid" jdbcType="INTEGER" />
+    <result column="recordactive" property="recordactive" jdbcType="TINYINT" />
+    <result column="mogroupbarcode" property="mogroupbarcode" jdbcType="BIGINT" />
+    <result column="custombarcode" property="custombarcode" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="INTEGER" />
+    <result column="extramogroupinfo1" property="extramogroupinfo1" jdbcType="VARCHAR" />
+    <result column="extramogroupinfo2" property="extramogroupinfo2" jdbcType="VARCHAR" />
+    <result column="extramogroupinfo3" property="extramogroupinfo3" jdbcType="VARCHAR" />
+    <result column="extramogroupinfo4" property="extramogroupinfo4" jdbcType="VARCHAR" />
+    <result column="extramogroupinfo5" property="extramogroupinfo5" jdbcType="VARCHAR" />
+    <result column="recordlanguageid" property="recordlanguageid" jdbcType="INTEGER" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="createuserid" property="createuserid" jdbcType="INTEGER" />
+    <result column="modificationdate" property="modificationdate" jdbcType="TIMESTAMP" />
+    <result column="modificationuserid" property="modificationuserid" jdbcType="INTEGER" />
+    <result column="picpath" property="picpath" jdbcType="VARCHAR" />
+    <result column="barcode" property="barcode" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="orgid" property="orgid" jdbcType="INTEGER" />
+    <result column="tombstone" property="tombstone" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mogroupkey, mogroupname, rootmogroupid, lastchangedate, lastchangetime, lastexportdate, 
+    lastexporttime, lastimportdate, lastimporttime, siteid, recordactive, mogroupbarcode, 
+    custombarcode, icon, extramogroupinfo1, extramogroupinfo2, extramogroupinfo3, extramogroupinfo4, 
+    extramogroupinfo5, recordlanguageid, createdate, createuserid, modificationdate, 
+    modificationuserid, picpath, barcode, memo, orgid, tombstone
+  </sql>
+  
+  <resultMap id="ApiBeanResult" type="MaintenanceobjectgroupEntity">
+	<result column="TI_key" property="mogroupkey" jdbcType="VARCHAR" />
+	<result column="TI_name" property="mogroupname" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="selectAllApi" resultMap="ApiBeanResult" >
+    select TI_key, TI_name 
+    from Technical_id
+  </select>
+  
+  <select id="get" resultMap="BaseResultMap" parameterType="MaintenanceobjectgroupEntity" >
+    select 
+    <include refid="Base_Column_List" />
+    from maintenanceobjectgroup
+    where mogroupkey = #{mogroupkey,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from maintenanceobjectgroup
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="MaintenanceobjectgroupEntity" >
+    insert into maintenanceobjectgroup
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mogroupkey != null" >
+        mogroupkey,
+      </if>
+      <if test="mogroupname != null" >
+        mogroupname,
+      </if>
+      <if test="rootmogroupid != null" >
+        rootmogroupid,
+      </if>
+      <if test="lastchangedate != null" >
+        lastchangedate,
+      </if>
+      <if test="lastchangetime != null" >
+        lastchangetime,
+      </if>
+      <if test="lastexportdate != null" >
+        lastexportdate,
+      </if>
+      <if test="lastexporttime != null" >
+        lastexporttime,
+      </if>
+      <if test="lastimportdate != null" >
+        lastimportdate,
+      </if>
+      <if test="lastimporttime != null" >
+        lastimporttime,
+      </if>
+      <if test="siteid != null" >
+        siteid,
+      </if>
+      <if test="recordactive != null" >
+        recordactive,
+      </if>
+      <if test="mogroupbarcode != null" >
+        mogroupbarcode,
+      </if>
+      <if test="custombarcode != null" >
+        custombarcode,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="extramogroupinfo1 != null" >
+        extramogroupinfo1,
+      </if>
+      <if test="extramogroupinfo2 != null" >
+        extramogroupinfo2,
+      </if>
+      <if test="extramogroupinfo3 != null" >
+        extramogroupinfo3,
+      </if>
+      <if test="extramogroupinfo4 != null" >
+        extramogroupinfo4,
+      </if>
+      <if test="extramogroupinfo5 != null" >
+        extramogroupinfo5,
+      </if>
+      <if test="recordlanguageid != null" >
+        recordlanguageid,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+      <if test="createuserid != null" >
+        createuserid,
+      </if>
+      <if test="modificationdate != null" >
+        modificationdate,
+      </if>
+      <if test="modificationuserid != null" >
+        modificationuserid,
+      </if>
+      <if test="picpath != null" >
+        picpath,
+      </if>
+      <if test="barcode != null" >
+        barcode,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="orgid != null" >
+        orgid,
+      </if>
+      <if test="tombstone != null" >
+        tombstone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mogroupkey != null" >
+        #{mogroupkey,jdbcType=VARCHAR},
+      </if>
+      <if test="mogroupname != null" >
+        #{mogroupname,jdbcType=VARCHAR},
+      </if>
+      <if test="rootmogroupid != null" >
+        #{rootmogroupid,jdbcType=INTEGER},
+      </if>
+      <if test="lastchangedate != null" >
+        #{lastchangedate,jdbcType=DATE},
+      </if>
+      <if test="lastchangetime != null" >
+        #{lastchangetime,jdbcType=INTEGER},
+      </if>
+      <if test="lastexportdate != null" >
+        #{lastexportdate,jdbcType=DATE},
+      </if>
+      <if test="lastexporttime != null" >
+        #{lastexporttime,jdbcType=INTEGER},
+      </if>
+      <if test="lastimportdate != null" >
+        #{lastimportdate,jdbcType=DATE},
+      </if>
+      <if test="lastimporttime != null" >
+        #{lastimporttime,jdbcType=INTEGER},
+      </if>
+      <if test="siteid != null" >
+        #{siteid,jdbcType=INTEGER},
+      </if>
+      <if test="recordactive != null" >
+        #{recordactive,jdbcType=TINYINT},
+      </if>
+      <if test="mogroupbarcode != null" >
+        #{mogroupbarcode,jdbcType=BIGINT},
+      </if>
+      <if test="custombarcode != null" >
+        #{custombarcode,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=INTEGER},
+      </if>
+      <if test="extramogroupinfo1 != null" >
+        #{extramogroupinfo1,jdbcType=VARCHAR},
+      </if>
+      <if test="extramogroupinfo2 != null" >
+        #{extramogroupinfo2,jdbcType=VARCHAR},
+      </if>
+      <if test="extramogroupinfo3 != null" >
+        #{extramogroupinfo3,jdbcType=VARCHAR},
+      </if>
+      <if test="extramogroupinfo4 != null" >
+        #{extramogroupinfo4,jdbcType=VARCHAR},
+      </if>
+      <if test="extramogroupinfo5 != null" >
+        #{extramogroupinfo5,jdbcType=VARCHAR},
+      </if>
+      <if test="recordlanguageid != null" >
+        #{recordlanguageid,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuserid != null" >
+        #{createuserid,jdbcType=INTEGER},
+      </if>
+      <if test="modificationdate != null" >
+        #{modificationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificationuserid != null" >
+        #{modificationuserid,jdbcType=INTEGER},
+      </if>
+      <if test="picpath != null" >
+        #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=INTEGER},
+      </if>
+      <if test="tombstone != null" >
+        #{tombstone,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="MaintenanceobjectgroupEntity" >
+    update maintenanceobjectgroup
+    <set >
+      <if test="mogroupkey != null" >
+        mogroupkey = #{mogroupkey,jdbcType=VARCHAR},
+      </if>
+      <if test="mogroupname != null" >
+        mogroupname = #{mogroupname,jdbcType=VARCHAR},
+      </if>
+      <if test="rootmogroupid != null" >
+        rootmogroupid = #{rootmogroupid,jdbcType=INTEGER},
+      </if>
+      <if test="lastchangedate != null" >
+        lastchangedate = #{lastchangedate,jdbcType=DATE},
+      </if>
+      <if test="lastchangetime != null" >
+        lastchangetime = #{lastchangetime,jdbcType=INTEGER},
+      </if>
+      <if test="lastexportdate != null" >
+        lastexportdate = #{lastexportdate,jdbcType=DATE},
+      </if>
+      <if test="lastexporttime != null" >
+        lastexporttime = #{lastexporttime,jdbcType=INTEGER},
+      </if>
+      <if test="lastimportdate != null" >
+        lastimportdate = #{lastimportdate,jdbcType=DATE},
+      </if>
+      <if test="lastimporttime != null" >
+        lastimporttime = #{lastimporttime,jdbcType=INTEGER},
+      </if>
+      <if test="siteid != null" >
+        siteid = #{siteid,jdbcType=INTEGER},
+      </if>
+      <if test="recordactive != null" >
+        recordactive = #{recordactive,jdbcType=TINYINT},
+      </if>
+      <if test="mogroupbarcode != null" >
+        mogroupbarcode = #{mogroupbarcode,jdbcType=BIGINT},
+      </if>
+      <if test="custombarcode != null" >
+        custombarcode = #{custombarcode,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=INTEGER},
+      </if>
+      <if test="extramogroupinfo1 != null" >
+        extramogroupinfo1 = #{extramogroupinfo1,jdbcType=VARCHAR},
+      </if>
+      <if test="extramogroupinfo2 != null" >
+        extramogroupinfo2 = #{extramogroupinfo2,jdbcType=VARCHAR},
+      </if>
+      <if test="extramogroupinfo3 != null" >
+        extramogroupinfo3 = #{extramogroupinfo3,jdbcType=VARCHAR},
+      </if>
+      <if test="extramogroupinfo4 != null" >
+        extramogroupinfo4 = #{extramogroupinfo4,jdbcType=VARCHAR},
+      </if>
+      <if test="extramogroupinfo5 != null" >
+        extramogroupinfo5 = #{extramogroupinfo5,jdbcType=VARCHAR},
+      </if>
+      <if test="recordlanguageid != null" >
+        recordlanguageid = #{recordlanguageid,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuserid != null" >
+        createuserid = #{createuserid,jdbcType=INTEGER},
+      </if>
+      <if test="modificationdate != null" >
+        modificationdate = #{modificationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificationuserid != null" >
+        modificationuserid = #{modificationuserid,jdbcType=INTEGER},
+      </if>
+      <if test="picpath != null" >
+        picpath = #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        orgid = #{orgid,jdbcType=INTEGER},
+      </if>
+      <if test="tombstone != null" >
+        tombstone = #{tombstone,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,298 @@
+package com.mingcloud.proxy.logiclayer.messagehandler.messagedistance;
+
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.MessageSourceDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.SucmessagelogEntity;
+import com.mingcloud.proxy.logiclayer.messagehandler.MessageSourceDataInThread;
+import com.mingcloud.proxy.logiclayer.messagehandler.messagedto.MessageDto;
+import com.mingcloud.proxy.logiclayer.vcom_dayhander.VcomDayDataInThread;
+import net.sf.json.JSONObject;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * Created by zyn on 2018/8/3
+ */
+public class OfficalWechatMessage implements MessageStrategy {
+
+    private static String accesstoken = "";
+
+    private static OfficalWechatMessage officalWechatMessage;
+
+    private PrintWriter out = null;
+
+    private BufferedReader in = null;
+
+    private static Date d1 = null;
+
+    private static Date d2 = null;
+
+    static {
+        accesstoken = JSONObject.fromObject(OfficalWechatMessage.getAeecssToken()).getString("access_token");
+        d1 = new Date();
+    }
+
+    private static String getAeecssToken() {
+        String url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=" +MessageSourceDataInThread.officalwechatcorpid +"&corpsecret="+MessageSourceDataInThread.officalwechatcorpsecret;
+
+        BufferedReader aeecssTokenin = null;
+        try {
+           url=replaceBlank(url);
+            System.out.println("xyc:"+url);
+            URL realUrl = new URL(url);
+
+            try {
+                trustAllHttpsCertificates();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+//           HttpURLConnection urlConnection = (HttpURLConnection) realUrl.openConnection();
+//            if(200 == urlConnection.getResponseCode()){
+//                //得到输入流
+//                InputStream is =urlConnection.getInputStream();
+//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                byte[] buffer = new byte[1024];
+//                int len = 0;
+//                while(-1 != (len = is.read(buffer))){
+//                    baos.write(buffer,0,len);
+//                    baos.flush();
+//                }
+//                accesstoken=baos.toString("utf-8");
+//            }
+            // 打开和URL之间的连接
+            URLConnection conn = realUrl.openConnection();
+            // 设置通用的请求属性
+            conn.setRequestProperty("accept", "*/*");
+            conn.setRequestProperty("connection", "Keep-Alive");
+            conn.setRequestProperty("user-agent",
+                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+            // 发送POST请求必须设置如下两行
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            // 定义BufferedReader输入流来读取URL的响应
+            aeecssTokenin = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream()));
+            String line;
+            while ((line = aeecssTokenin.readLine()) != null) {
+                accesstoken += line;
+            }
+        } catch (Exception e) {
+            System.out.println("发送 POST 请求出现异常！" + e);
+            e.printStackTrace();
+        } finally {
+            try {
+                aeecssTokenin.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } //使用finally块来关闭输出流、输入流
+        return accesstoken.substring(accesstoken.indexOf("{"),accesstoken.lastIndexOf("}")+1);
+    }
+
+    private static String replaceBlank(String str) {
+        String dest = "";
+        if (str != null) {
+            Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+            Matcher m = p.matcher(str);
+
+            dest = m.replaceAll("");
+        }
+        return  dest;
+
+    }
+
+    private OfficalWechatMessage() {
+    }
+
+    public static OfficalWechatMessage getInstance() {
+        if (officalWechatMessage == null) {
+            officalWechatMessage = new OfficalWechatMessage();
+        }
+        return officalWechatMessage;
+    }
+
+    public boolean sendMessage(MessageDto dto) {
+        MessageSourceDto messageSourceDto = dto.getMessageSourceDto();
+        String result = this.sendOfficalWeChatMessage(messageSourceDto,dto.getMessage(), dto.getAcceptor());
+        String errMsg = "";
+        if (result != null && !"".equals(result)) {
+            errMsg = (String) JSONObject.fromObject(JSONObject.fromObject(result).get("content")).get("errmsg");
+        }
+        SucmessagelogEntity sucmessagelogEntity = new SucmessagelogEntity();
+        sucmessagelogEntity.setKeyword(messageSourceDto.getKeyword());
+        sucmessagelogEntity.setKeywordvalue(dto.getResultMap().get(messageSourceDto.getKeyword()));
+        sucmessagelogEntity.setMessagesourceid(messageSourceDto.getId());
+        if ("ok".equals(errMsg)) {
+            sucmessagelogEntity.setResultcontent(errMsg);
+            sucmessagelogEntity.setCreatedate(new Date());
+            sucmessagelogEntity.setContent(dto.getMessage());
+            sucmessagelogEntity.setAcceptor(dto.getAcceptor());
+            dto.getSucmessagelogData().addSucmessagelogData(sucmessagelogEntity);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 向指定 URL 发送POST方法的请求
+     *
+     * @param message 请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
+     * @return 所代表远程资源的响应结果
+     */
+    private String sendOfficalWeChatMessage(MessageSourceDto dto, String message, String acceptor) {
+        d2 = new Date();
+        if (d2.getTime() - d1.getTime() > (1 * 60 * 60 * 1000)) {
+            accesstoken = JSONObject.fromObject(OfficalWechatMessage.getAeecssToken()).getString("access_token");
+            d1 = d2;
+        }
+        String url = null;
+        String result = "";
+        try {
+            String body = "{" +
+                    "\"touser\":\"" + acceptor + "\"," +
+                    "\"msgtype\":\"text\"," +
+                    "\"agentid\":\"" + MessageSourceDataInThread.officalwechatagentid + "\"," +
+                    "\"text\":{" +
+                    "\"content\":\"" + message + "\"" +
+                    "}}";
+            body = URLEncoder.encode(body, "UTF-8");
+
+            System.out.println("sendaccesstoken:" + accesstoken);
+
+            url = "http://work.weixin.qq.com/api/devtools/devhandler.php?tid=21" +
+                    "&access_token=" + accesstoken +
+                    "&body=" + body;
+            System.out.println(url);
+
+            URL realUrl = new URL(url.trim());
+
+            System.out.println("XYC:"+realUrl);
+//            HttpURLConnection urlConnection = (HttpURLConnection) realUrl.openConnection();
+//            if(200 == urlConnection.getResponseCode()){
+//                //得到输入流
+//                InputStream is =urlConnection.getInputStream();
+//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                byte[] buffer = new byte[1024];
+//                int len = 0;
+//                while(-1 != (len = is.read(buffer))){
+//                    baos.write(buffer,0,len);
+//                    baos.flush();
+//                }
+//                result=baos.toString("utf-8");
+//            }
+
+
+
+            // 打开和URL之间的连接
+            URLConnection conn = realUrl.openConnection();
+            String newUrl = url;
+            Map<String, List<String>> map = conn.getHeaderFields();
+            // 遍历所有的响应头字段
+            for (String key : map.keySet())
+            {
+                //如果发现有重定向了新的地址
+                if ("Location".equals(key))
+                {
+                    //获取新地址
+                    newUrl = map.get(key).get(0) ;
+                    break;
+                }
+            }
+            // 重新实例化url对象
+            realUrl = new URL(newUrl);
+            // 重新打开和URL之间的连接
+            conn = realUrl.openConnection();
+            // 设置通用的请求属性
+            conn.setRequestProperty("accept", "*/*");
+            conn.setRequestProperty("connection", "Keep-Alive");
+            conn.setRequestProperty("user-agent",
+                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+            // 发送POST请求必须设置如下两行
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+
+
+            // 定义BufferedReader输入流来读取URL的响应
+            in = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream()));
+            String line;
+            while ((line = in.readLine()) != null) {
+                result += line;
+            }
+        } catch (Exception e) {
+            System.out.println("发送 POST 请求出现异常！" + e);
+            e.printStackTrace();
+        }
+        //使用finally块来关闭输出流、输入流
+        finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+
+
+    private static void trustAllHttpsCertificates() throws Exception {
+        javax.net.ssl.TrustManager[] trustAllCerts = new javax.net.ssl.TrustManager[1];
+        javax.net.ssl.TrustManager tm = new VcomDayDataInThread.miTM();
+        trustAllCerts[0] = tm;
+        javax.net.ssl.SSLContext sc = javax.net.ssl.SSLContext
+                .getInstance("SSL");
+        sc.init(null, trustAllCerts, null);
+        javax.net.ssl.HttpsURLConnection.setDefaultSSLSocketFactory(sc
+                .getSocketFactory());
+    }
+
+//    static class miTM implements javax.net.ssl.TrustManager,
+//            javax.net.ssl.X509TrustManager {
+//        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+//            return null;
+//        }
+//
+//        public boolean isServerTrusted(
+//                java.security.cert.X509Certificate[] certs) {
+//            return true;
+//        }
+//
+//        public boolean isClientTrusted(
+//                java.security.cert.X509Certificate[] certs) {
+//            return true;
+//        }
+//
+//        public void checkServerTrusted(
+//                java.security.cert.X509Certificate[] certs, String authType)
+//                throws java.security.cert.CertificateException {
+//            return;
+//        }
+//
+//        public void checkClientTrusted(
+//                java.security.cert.X509Certificate[] certs, String authType)
+//                throws java.security.cert.CertificateException {
+//            return;
+//        }
+//    }
+
+
+
+}

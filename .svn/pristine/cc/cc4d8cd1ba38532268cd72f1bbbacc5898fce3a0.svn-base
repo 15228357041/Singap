@@ -1,0 +1,23 @@
+package com.mingcloud.proxy.logiclayer.vcomhandler;
+
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.StatisticsMapper;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.log4j.Logger;
+
+public class VcomDateStatisticsThread  implements  Runnable{
+    private static Logger logger = Logger.getLogger(VcomDataInThread.class);
+    private StatisticsMapper statisticsMapper = SpringContextUtil.getBean("statisticsMapper");
+
+    @Override
+    public void run() {
+        try {
+            Thread.sleep(1000);
+            logger.info("VcomDateStatisticsThread running...");
+            statisticsMapper.VComData();
+            logger.info("VcomDateStatisticsThread end...");
+        } catch (InterruptedException e) {
+            logger.error("VcomDateStatisticsThread: " + e.getStackTrace());
+        }
+    }
+
+}

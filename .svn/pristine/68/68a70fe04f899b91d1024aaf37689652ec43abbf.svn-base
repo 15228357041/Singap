@@ -1,0 +1,18 @@
+package com.mingcloud.proxy.datalayer.dao.archiveinfo;
+
+import com.mingcloud.proxy.datalayer.dao.BaseMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.SparepartDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.SparepartEntity;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+public interface SparepartMapper extends BaseMapper<SparepartEntity> {
+	
+	public List<SparepartEntity> selectAllApi();
+
+
+    List<SparepartDto> selectSpWithStockOrg(@Param("organizationkey") String organizationkey, @Param("stockkey") String stockkey, @Param("sparepartkey") String sparepartkey);
+
+    List<SparepartEntity> selectKeyIdList();
+}

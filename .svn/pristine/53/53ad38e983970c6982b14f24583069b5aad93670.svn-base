@@ -1,0 +1,15 @@
+package com.mingcloud.proxy.datalayer.dao.archiveinfo;
+
+import java.util.Map;
+
+import com.mingcloud.proxy.datalayer.dao.BaseMapper;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.PurchaserequestlineEntity;
+
+public interface PurchaserequestlineMapper extends BaseMapper<PurchaserequestlineEntity> {
+    
+	public PurchaserequestlineEntity checkLine(Map<String, Object> map);
+	
+	public int insertLine(Map<String, Object> map);
+	
+	public int updateLine(Map<String, Object> map);
+}

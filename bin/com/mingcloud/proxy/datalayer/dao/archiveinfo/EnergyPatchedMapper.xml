@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.EnergyPatchedMapper" >
+    <resultMap id="entityBeanResult" type="EnergyPatchedEntity">
+        <id column="record_id" property="recordId" jdbcType="INTEGER"/>
+        <result column="date" property="date" jdbcType="VARCHAR"/>
+        <result column="meter_id" property="meterId" jdbcType="VARCHAR"/>
+        <result column="sunhours" property="sunHours" jdbcType="VARCHAR"/>
+        <result column="energy" property="energy" jdbcType="DECIMAL"/>
+    </resultMap>
+    <sql id="table_name">
+        energyPatched
+    </sql>
+    <sql id="table_id">
+        <include refid="table_name"/>.id
+    </sql>
+    <!-- table columns -->
+    <sql id="database_table_columns">
+                    <include refid="table_name"/>.recordId,
+                    <include refid="table_name"/>.date,
+                    <include refid="table_name"/>.meterId,
+                    <include refid="table_name"/>.energy
+            </sql>
+    <sql id="update_energyPatched_where">
+        <trim prefix="" suffix="" prefixOverrides=",">
+            <if test="recordId != null">
+                recordId = #{recordId},
+            </if>
+            <if test="date != null">
+                date = #{date},
+            </if>
+            <if test="meterId != null">
+                meterId = #{meterId},
+            </if>
+            <if test="energy != null">
+                energy = #{energy},
+            </if>
+        </trim>
+    </sql>
+    <!-- dynamic full match -->
+    <sql id="dynamic_full_match_condition">
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="recordId != null">
+                AND<include refid="table_name"/>.recordId = #{recordId}
+             </if>
+            <if test="date != null">
+                AND<include refid="table_name"/>.date = #{date}
+             </if>
+            <if test="meterId != null">
+                AND<include refid="table_name"/>.meterId = #{meterId}
+             </if>
+            <if test="energy != null">
+                AND<include refid="table_name"/>.energy = #{energy}
+             </if>
+        </trim>
+    </sql>
+
+    <select id="get" parameterType="EnergyPatchedEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        from
+        <include refid="table_name" />
+        where
+        <include refid="table_id" />
+        = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select databaseId="mysql" id="selectOne" parameterType="EnergyPatchedEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        FROM
+        <include refid="table_name" />
+        <include refid="dynamic_full_match_condition" />
+        limit 1
+    </select>
+
+    <select id="select" parameterType="EnergyPatchedEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        FROM
+        <include refid="table_name" />
+        <include refid="dynamic_full_match_condition" />
+    </select>
+
+    <select id="selectCount" parameterType="EnergyPatchedEntity" resultType="int">
+        SELECT COUNT(1)
+        FROM
+        <include refid="table_name" />
+        <include refid="dynamic_full_match_condition" />
+    </select>
+
+    <select id="selectAll" parameterType="EnergyPatchedEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        FROM
+        <include refid="table_name" />
+        order by
+        <include refid="table_id" />
+        desc
+    </select>
+
+    <select databaseId="mysql" id="selectPage" parameterType="EnergyPatchedEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        FROM
+        <include refid="table_name" />
+        <include refid="dynamic_full_match_condition" />
+        order by
+        <include refid="table_id" />
+        desc limit #{offset},#{span}
+    </select>
+
+    <select databaseId="mysql" id="selectAllPage" parameterType="EnergyPatchedEntity" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        FROM
+        <include refid="table_name" />
+        order by
+        <include refid="table_id" />
+        desc limit #{offset},#{span}
+    </select>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="entityBeanResult">
+        SELECT
+        <include refid="database_table_columns" />
+        FROM
+        <include refid="table_name"/>
+        WHERE id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="getTotalEnergy" resultType="java.math.BigDecimal">
+        SELECT
+        sum(e.energy)
+        FROM monitoring.energy_patched as e
+        left join monitoring.meter as m on e.meter_id = m.meter_id
+        left join monitoring.site  as s on m.site_id = s.site_id
+        where  m.meter_type ='Solar Generation' and m.meter_name not like '%emc%'
+        and m.meter_name not like'%fuisland%'
+        and e.date between #{startDate} and #{endDate}
+    </select>
+    <select id="getTodayEnergyAndSunhours"
+            resultType="com.mingcloud.proxy.datalayer.dto.archiveinfo.EnergyPatchedDto">
+        SELECT concat('S', repeat('0',5-length(s.site_id)),s.site_id) as site_id,
+        ROUND(sum(e.energy),4) as energy,
+        ROUND(p.sunhours*1000,4) as sunHours,
+        e.date
+        FROM monitoring.energy_patched as e
+        left join monitoring.meter as m on e.meter_id = m.meter_id
+        left join monitoring.site  as s on m.site_id = s.site_id
+        left join monitoring.pyr_SH as p on s.pyr_id = p.pyr_id and e.date = p.date
+        where (e.date between #{startDate} and #{endDate}) and m.meter_type ='Solar Generation' and m.meter_name not like '%emc%'
+        and m.meter_name not like'%fuisland%'
+        AND s.site_id = #{siteid}
+        AND e.energy &gt; 0 AND e.energy &lt; 1000000
+        GROUP BY e.date
+    </select>
+    <select id="getEnergyAndSunByDate"
+            resultType="com.mingcloud.proxy.datalayer.dto.archiveinfo.EnergyPatchedDto">
+        SELECT concat('S', repeat('0',5-length(s.site_id)),s.site_id) as site_id,
+        ROUND(sum(e.energy),4) as energy,
+        ROUND(p.sunhours*1000,4) as sunHours,
+        e.date
+        FROM monitoring.energy_patched as e
+        left join monitoring.meter as m on e.meter_id = m.meter_id
+        left join monitoring.site  as s on m.site_id = s.site_id
+        left join monitoring.pyr_SH as p on s.pyr_id = p.pyr_id and e.date = p.date
+        where (e.date between #{startDate} and #{endDate}) and m.meter_type ='Solar Generation' and m.meter_name not like '%emc%'
+        and m.meter_name not like'%fuisland%'
+        AND s.site_id = #{siteid}
+        AND e.energy &gt; 0 AND e.energy &lt; 1000000
+        GROUP BY
+	    e.date
+    </select>
+</mapper>
+
+
+
+

@@ -1,0 +1,292 @@
+package com.mingcloud.proxy.logiclayer.taskhandler;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.PositionMapper;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.TaskMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.PositionDto;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.TaskDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.PositionEntity;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.TaskEntity;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.log4j.Logger;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+public class TaskDataOutThread implements Runnable {
+	private static Logger logger = Logger.getLogger(TaskDataOutThread.class);
+
+	private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+
+	private DataCenter dataCenter = DataCenter.getInstance();
+
+	private TaskMapper taskMapper = SpringContextUtil.getBean("taskMapper");
+
+	private PositionMapper positionMapper = SpringContextUtil.getBean("positionMapper");
+
+	private static Integer tasklistSize;
+
+	public TaskDataOutThread() {
+		// TODO Auto-generated constructor stub
+		// 设置数据源为MySql
+		jdbcChange.changeJdbc(JdbcChange.mySqlDataSource);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		logger.info("TaskDataOutThread begin");
+		
+		while(true) {
+			try {
+				if(dataCenter.getTasklistSize() > 0) {
+					tasklistSize = dataCenter.getTasklistSize();
+					InsertTask();
+					logger.info("TaskDataCenter Size:" + (tasklistSize-1));
+				}
+				Thread.sleep(50);
+			} catch(Exception e) {
+				logger.error("TaskDataOutThread: " + e);
+			}
+		}
+	}
+
+	private void InsertTask() {
+		// TODO Auto-generated method stub
+		try {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd-HH-mm");
+			TaskDto dto = dataCenter.popTasklist();
+			PositionEntity positionEntity=new PositionEntity();
+			positionEntity.setId(dto.getExtraid1());
+			//如果结算方式和周期没有设置则不生成电费结算单
+            //自动生成企业电费结算单
+            if (dto.getExtraint2()!=null&dto.getExtradatetime1()!=null) {
+/*                //如果没有第一次设置生成结算单日期，默认为当前日
+               if(dto.getExtradatetime1()==null) {
+                    dto.setExtradatetime1(new Date());
+                    positionEntity.setExtradatetime3(new Date());
+                    positionMapper.update(positionEntity);
+                }
+                //如果第一次没有设置生成结算单周期，默认为两个月
+                if(dto.getExtraint2()==null){
+                    dto.setExtraint2(2);
+                    positionEntity.setExtraint4(2);
+                    positionMapper.update(positionEntity);
+                }
+                //设置结算方式，默认为1
+                if(dto.getExtraint3()==null){
+                    dto.setExtraint3(1);
+                    positionEntity.setExtraint1(1);
+                    positionMapper.update(positionEntity);
+                }*/
+                logger.info("xyc time"+dto.getExtradatetime1());
+                if(compareDate(new Date(),dto.getExtradatetime1())){
+                    TaskEntity entity = new TaskEntity();
+                    entity.setTaskkey("JS"+dto.getTaskkey()+"QYJS"+ sdf.format(new Date()));
+                    entity.setTaskname(dto.getTaskname()+"企业电费结算"+df.format(new Date()));
+                    entity.setStatusid(1);
+                    entity.setOrgid(dto.getOrgid());
+                    entity.setCreatedate(new Date());
+                    entity.setExtraid1(dto.getExtraid1());
+                    entity.setExtraid2(dto.getExtraid2());
+                    entity.setExtraid3(dto.getExtraid3());
+                    entity.setExtraid4(dto.getExtraid4());
+                    entity.setExtraid5(dto.getExtraid5());
+                    entity.setExtraid6(dto.getExtraid6());
+                    entity.setExtravarchar1(dto.getExtravarchar1());
+                    entity.setExtravarchar2(dto.getExtravarchar2());
+                    entity.setExtravarchar3(dto.getExtravarchar3());
+                    entity.setExtravarchar4(dto.getExtravarchar4());
+                    entity.setExtravarchar5(dto.getExtravarchar5());
+                    entity.setExtravarchar6(dto.getExtravarchar6());
+                    entity.setExtravarchar7(dto.getExtravarchar7());
+                    entity.setExtravarchar8(dto.getExtravarchar8());
+                    entity.setExtravarchar9(dto.getExtravarchar9());
+                    entity.setExtravarchar10(dto.getExtravarchar10());
+                    entity.setExtravarchar11(dto.getExtravarchar11());
+                    entity.setExtravarchar12(dto.getExtravarchar12());
+                    entity.setExtravarchar13(dto.getExtravarchar13());
+                    entity.setExtravarchar14(dto.getExtravarchar14());
+                    entity.setExtravarchar15(dto.getExtravarchar15());
+                    entity.setExtravarchar16(dto.getExtravarchar16());
+                    entity.setExtraint1(dto.getExtraint1());
+                    entity.setExtraint2(dto.getExtraint2());
+                    entity.setTypeid(1);
+                    entity.setExtradatetime1(dto.getExtradatetime1());
+                    logger.info("XYCentity:"+entity);
+                    taskMapper.insert(entity);
+
+                    Calendar calendar   =   new GregorianCalendar();
+                    calendar.setTime(dto.getExtradatetime1());
+                    calendar.add(calendar.MONTH, dto.getExtraint2());
+                    //测试使用 改为一分钟
+                    //calendar.add(calendar.MINUTE,15);
+                    positionEntity.setExtradatetime3(calendar.getTime());
+                    positionMapper.update(positionEntity);
+
+                }
+
+
+            }
+            //生成电网结算单
+            if (dto.getExtraint3()!=null&dto.getExtradatetime2()!=null) {
+/*                //如果没有第一次设置生成结算单日期，默认为当前日
+               if(dto.getExtradatetime1()==null) {
+                    dto.setExtradatetime1(new Date());
+                    positionEntity.setExtradatetime3(new Date());
+                    positionMapper.update(positionEntity);
+                }
+                //如果第一次没有设置生成结算单周期，默认为两个月
+                if(dto.getExtraint2()==null){
+                    dto.setExtraint2(2);
+                    positionEntity.setExtraint4(2);
+                    positionMapper.update(positionEntity);
+                }
+                //设置结算方式，默认为1
+                if(dto.getExtraint3()==null){
+                    dto.setExtraint3(1);
+                    positionEntity.setExtraint1(1);
+                    positionMapper.update(positionEntity);
+                }*/
+                logger.info("xyc time" + dto.getExtradatetime2());
+                if (compareDate(new Date(), dto.getExtradatetime2())) {
+                    TaskEntity entity = new TaskEntity();
+                    entity.setTaskkey("JS" + dto.getTaskkey() + "DWJS" + sdf.format(new Date()));
+                    entity.setTaskname(dto.getTaskname() + "电网电费结算" + df.format(new Date()));
+                    entity.setStatusid(1);
+                    entity.setOrgid(dto.getOrgid());
+                    entity.setCreatedate(new Date());
+                    entity.setExtraid1(dto.getExtraid1());
+                    entity.setExtraid2(dto.getExtraid2());
+                    entity.setExtraid3(dto.getExtraid3());
+                    entity.setExtraid4(dto.getExtraid4());
+                    entity.setExtraid5(dto.getExtraid5());
+                    entity.setExtraid6(dto.getExtraid6());
+                    entity.setExtravarchar1(dto.getExtravarchar1());
+                    entity.setExtravarchar2(dto.getExtravarchar2());
+                    entity.setExtravarchar3(dto.getExtravarchar3());
+                    entity.setExtravarchar4(dto.getExtravarchar4());
+                    entity.setExtravarchar5(dto.getExtravarchar5());
+                    entity.setExtravarchar6(dto.getExtravarchar6());
+                    entity.setExtravarchar7(dto.getExtravarchar7());
+                    entity.setExtravarchar8(dto.getExtravarchar8());
+                    entity.setExtravarchar9(dto.getExtravarchar9());
+                    entity.setExtravarchar10(dto.getExtravarchar10());
+                    entity.setExtravarchar11(dto.getExtravarchar11());
+                    entity.setExtravarchar12(dto.getExtravarchar12());
+                    entity.setExtravarchar13(dto.getExtravarchar13());
+                    entity.setExtravarchar14(dto.getExtravarchar14());
+                    entity.setExtravarchar15(dto.getExtravarchar15());
+                    entity.setExtravarchar16(dto.getExtravarchar16());
+                    entity.setExtraint1(dto.getExtraint1()==null?null:dto.getExtraint1());
+                    entity.setExtraint2(dto.getExtraint2()==null?null:dto.getExtraint2());
+                    entity.setExtraint3(dto.getExtraint3()==null?null:dto.getExtraint3());
+                    entity.setExtraint4(dto.getExtraint4()==null?null:dto.getExtraint4());
+                    entity.setTypeid(2);
+                    entity.setExtradatetime2(dto.getExtradatetime2());
+                    logger.info("XYCentity:" + entity);
+                    taskMapper.insert(entity);
+
+                    Calendar calendar = new GregorianCalendar();
+                    calendar.setTime(dto.getExtradatetime2());
+                    calendar.add(calendar.MONTH, dto.getExtraint3());
+                    //测试使用 改为一分钟
+                    //calendar.add(calendar.MINUTE,15);
+                    positionEntity.setExtradatetime9(calendar.getTime());
+                    positionMapper.update(positionEntity);
+
+                }
+            }
+            //生成补贴结算单
+            if (dto.getExtraint4()!=null&dto.getExtradatetime3()!=null) {
+/*                //如果没有第一次设置生成结算单日期，默认为当前日
+               if(dto.getExtradatetime1()==null) {
+                    dto.setExtradatetime1(new Date());
+                    positionEntity.setExtradatetime3(new Date());
+                    positionMapper.update(positionEntity);
+                }
+                //如果第一次没有设置生成结算单周期，默认为两个月
+                if(dto.getExtraint2()==null){
+                    dto.setExtraint2(2);
+                    positionEntity.setExtraint4(2);
+                    positionMapper.update(positionEntity);
+                }
+                //设置结算方式，默认为1
+                if(dto.getExtraint3()==null){
+                    dto.setExtraint3(1);
+                    positionEntity.setExtraint1(1);
+                    positionMapper.update(positionEntity);
+                }*/
+                logger.info("xyc time" + dto.getExtradatetime3());
+                if (compareDate(new Date(), dto.getExtradatetime3())) {
+                    TaskEntity entity = new TaskEntity();
+                    entity.setTaskkey("JS" + dto.getTaskkey() + "BTJS" + sdf.format(new Date()));
+                    entity.setTaskname(dto.getTaskname() + "补贴电费结算" + df.format(new Date()));
+                    entity.setStatusid(1);
+                    entity.setOrgid(dto.getOrgid());
+                    entity.setCreatedate(new Date());
+                    entity.setExtraid1(dto.getExtraid1());
+                    entity.setExtraid2(dto.getExtraid2());
+                    entity.setExtraid3(dto.getExtraid3());
+                    entity.setExtraid4(dto.getExtraid4());
+                    entity.setExtraid5(dto.getExtraid5());
+                    entity.setExtraid6(dto.getExtraid6());
+                    entity.setExtravarchar1(dto.getExtravarchar1());
+                    entity.setExtravarchar2(dto.getExtravarchar2());
+                    entity.setExtravarchar3(dto.getExtravarchar3());
+                    entity.setExtravarchar4(dto.getExtravarchar4());
+                    entity.setExtravarchar5(dto.getExtravarchar5());
+                    entity.setExtravarchar6(dto.getExtravarchar6());
+                    entity.setExtravarchar7(dto.getExtravarchar7());
+                    entity.setExtravarchar8(dto.getExtravarchar8());
+                    entity.setExtravarchar9(dto.getExtravarchar9());
+                    entity.setExtravarchar10(dto.getExtravarchar10());
+                    entity.setExtravarchar11(dto.getExtravarchar11());
+                    entity.setExtravarchar12(dto.getExtravarchar12());
+                    entity.setExtravarchar13(dto.getExtravarchar13());
+                    entity.setExtravarchar14(dto.getExtravarchar14());
+                    entity.setExtravarchar15(dto.getExtravarchar15());
+                    entity.setExtravarchar16(dto.getExtravarchar16());
+                    entity.setExtraint1(dto.getExtraint1()==null?null:dto.getExtraint1());
+                    entity.setExtraint2(dto.getExtraint2()==null?null:dto.getExtraint2());
+                    entity.setExtraint3(dto.getExtraint3()==null?null:dto.getExtraint3());
+                    entity.setExtraint4(dto.getExtraint4()==null?null:dto.getExtraint4());
+                    entity.setTypeid(3);
+                    entity.setExtradatetime3(dto.getExtradatetime3());
+                    logger.info("XYCentity:" + entity);
+                    taskMapper.insert(entity);
+
+                    Calendar calendar = new GregorianCalendar();
+                    calendar.setTime(dto.getExtradatetime3());
+                    calendar.add(calendar.MONTH, dto.getExtraint4());
+                    //测试使用 改为一分钟
+                    //calendar.add(calendar.MINUTE,15);
+                    positionEntity.setExtradatetime10(calendar.getTime());
+                    positionMapper.update(positionEntity);
+
+                }
+            }
+
+
+        } catch(Exception e) {
+			logger.error("TaskDataOutThread InsertPosition: " + e);
+		}
+
+	}
+	//日期比较
+	public Boolean compareDate(Date dt1,Date dt2){
+		logger.info("xyc dt1:"+dt1);
+		logger.info("xyc dt2:"+dt2);
+		if (dt1.getTime() >= dt2.getTime()) {
+
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+}

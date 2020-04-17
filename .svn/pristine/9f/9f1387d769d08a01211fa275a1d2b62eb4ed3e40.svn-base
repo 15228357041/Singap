@@ -1,0 +1,2165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.WorkorderMapper" >
+  <resultMap id="BaseResultMap" type="WorkorderEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="wokey" property="wokey" jdbcType="VARCHAR" />
+    <result column="woname" property="woname" jdbcType="VARCHAR" />
+    <result column="jobtype" property="jobtype" jdbcType="INTEGER" />
+    <result column="jobstatus" property="jobstatus" jdbcType="INTEGER" />
+    <result column="moid" property="moid" jdbcType="INTEGER" />
+    <result column="posid" property="posid" jdbcType="INTEGER" />
+    <result column="accountid" property="accountid" jdbcType="INTEGER" />
+    <result column="costpurposeid" property="costpurposeid" jdbcType="INTEGER" />
+    <result column="costtypeid" property="costtypeid" jdbcType="INTEGER" />
+    <result column="workcategoryid" property="workcategoryid" jdbcType="INTEGER" />
+    <result column="worknoteid" property="worknoteid" jdbcType="INTEGER" />
+    <result column="jobcodeid" property="jobcodeid" jdbcType="INTEGER" />
+    <result column="conditionsid" property="conditionsid" jdbcType="INTEGER" />
+    <result column="worksupplierid" property="worksupplierid" jdbcType="INTEGER" />
+    <result column="counterid" property="counterid" jdbcType="INTEGER" />
+    <result column="code1id" property="code1id" jdbcType="INTEGER" />
+    <result column="code2id" property="code2id" jdbcType="INTEGER" />
+    <result column="code3id" property="code3id" jdbcType="INTEGER" />
+    <result column="projectid" property="projectid" jdbcType="INTEGER" />
+    <result column="intervaltime" property="intervaltime" jdbcType="INTEGER" />
+    <result column="intervaltimeunit" property="intervaltimeunit" jdbcType="VARCHAR" />
+    <result column="fixedinterval" property="fixedinterval" jdbcType="TINYINT" />
+    <result column="intervalcount" property="intervalcount" jdbcType="DECIMAL" />
+    <result column="intervalcountnext" property="intervalcountnext" jdbcType="DECIMAL" />
+    <result column="inprogress" property="inprogress" jdbcType="TINYINT" />
+    <result column="peoplenumber" property="peoplenumber" jdbcType="INTEGER" />
+    <result column="jobcard" property="jobcard" jdbcType="TINYINT" />
+    <result column="stopped" property="stopped" jdbcType="TINYINT" />
+    <result column="priorityid" property="priorityid" jdbcType="INTEGER" />
+    <result column="orderedid" property="orderedid" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="orderdate" property="orderdate" jdbcType="TIMESTAMP" />
+    <result column="ordertime" property="ordertime" jdbcType="TIME" />
+    <result column="plannedstartdate" property="plannedstartdate" jdbcType="TIMESTAMP" />
+    <result column="plannedstarttime" property="plannedstarttime" jdbcType="TIME" />
+    <result column="plannedenddate" property="plannedenddate" jdbcType="TIMESTAMP" />
+    <result column="plannedendtime" property="plannedendtime" jdbcType="TIME" />
+    <result column="startdate" property="startdate" jdbcType="TIMESTAMP" />
+    <result column="starttime" property="starttime" jdbcType="TIME" />
+    <result column="stopedstartdate" property="stopedstartdate" jdbcType="TIMESTAMP" />
+    <result column="stopedstarttime" property="stopedstarttime" jdbcType="TIME" />
+    <result column="stopedenddate" property="stopedenddate" jdbcType="TIMESTAMP" />
+    <result column="stopedendtime" property="stopedendtime" jdbcType="TIME" />
+    <result column="linestoppedsecond" property="linestoppedsecond" jdbcType="INTEGER" />
+    <result column="stopedsecond" property="stopedsecond" jdbcType="INTEGER" />
+    <result column="worksecond" property="worksecond" jdbcType="INTEGER" />
+    <result column="waitsecond" property="waitsecond" jdbcType="INTEGER" />
+    <result column="executecycletype" property="executecycletype" jdbcType="INTEGER" />
+    <result column="executecyclevalue" property="executecyclevalue" jdbcType="INTEGER" />
+    <result column="fixedexecutecycle" property="fixedexecutecycle" jdbcType="INTEGER" />
+    <result column="maintenanceobjectgroupid" property="maintenanceobjectgroupid" jdbcType="INTEGER" />
+    <result column="workpackageid" property="workpackageid" jdbcType="INTEGER" />
+    <result column="errorcode1id" property="errorcode1id" jdbcType="INTEGER" />
+    <result column="errorcode1name" property="errorcode1name" jdbcType="VARCHAR" />
+    <result column="errorcode2id" property="errorcode2id" jdbcType="INTEGER" />
+    <result column="errorcode2name" property="errorcode2name" jdbcType="VARCHAR" />
+    <result column="errorcode3id" property="errorcode3id" jdbcType="INTEGER" />
+    <result column="errorcode3name" property="errorcode3name" jdbcType="VARCHAR" />
+    <result column="finishedhumanid" property="finishedhumanid" jdbcType="INTEGER" />
+    <result column="prodhumanid" property="prodhumanid" jdbcType="INTEGER" />
+    <result column="proddescription" property="proddescription" jdbcType="VARCHAR" />
+    <result column="jobcarddate" property="jobcarddate" jdbcType="TIMESTAMP" />
+    <result column="jobcardtime" property="jobcardtime" jdbcType="TIME" />
+    <result column="jobexecdate" property="jobexecdate" jdbcType="TIMESTAMP" />
+    <result column="enddate" property="enddate" jdbcType="TIMESTAMP" />
+    <result column="endtime" property="endtime" jdbcType="TIME" />
+    <result column="plannedstoptime" property="plannedstoptime" jdbcType="DECIMAL" />
+    <result column="stoptime" property="stoptime" jdbcType="DECIMAL" />
+    <result column="waittime" property="waittime" jdbcType="DECIMAL" />
+    <result column="spartime" property="spartime" jdbcType="DECIMAL" />
+    <result column="pmtaskno" property="pmtaskno" jdbcType="BIGINT" />
+    <result column="jobexectime" property="jobexectime" jdbcType="DECIMAL" />
+    <result column="counterformat" property="counterformat" jdbcType="VARCHAR" />
+    <result column="safetyworknoteid" property="safetyworknoteid" jdbcType="INTEGER" />
+    <result column="linestopped" property="linestopped" jdbcType="TINYINT" />
+    <result column="notexecutedtimes" property="notexecutedtimes" jdbcType="INTEGER" />
+    <result column="relatedtowoid" property="relatedtowoid" jdbcType="INTEGER" />
+    <result column="lastchangedate" property="lastchangedate" jdbcType="TIMESTAMP" />
+    <result column="lastchangetime" property="lastchangetime" jdbcType="INTEGER" />
+    <result column="lastexportdate" property="lastexportdate" jdbcType="TIMESTAMP" />
+    <result column="lastexporttime" property="lastexporttime" jdbcType="INTEGER" />
+    <result column="lastimportdate" property="lastimportdate" jdbcType="TIMESTAMP" />
+    <result column="lastimporttime" property="lastimporttime" jdbcType="INTEGER" />
+    <result column="suborderflag" property="suborderflag" jdbcType="TINYINT" />
+    <result column="replacewoid" property="replacewoid" jdbcType="INTEGER" />
+    <result column="replaceinterval" property="replaceinterval" jdbcType="INTEGER" />
+    <result column="replaceexecution" property="replaceexecution" jdbcType="INTEGER" />
+    <result column="approvedbyuuserid" property="approvedbyuuserid" jdbcType="VARCHAR" />
+    <result column="approveddate" property="approveddate" jdbcType="TIMESTAMP" />
+    <result column="approvedtime" property="approvedtime" jdbcType="INTEGER" />
+    <result column="approvedstatus" property="approvedstatus" jdbcType="VARCHAR" />
+    <result column="regapprovedbyuuserid" property="regapprovedbyuuserid" jdbcType="VARCHAR" />
+    <result column="regapproveddate" property="regapproveddate" jdbcType="TIMESTAMP" />
+    <result column="regapprovedtime" property="regapprovedtime" jdbcType="INTEGER" />
+    <result column="regapprovedstatus" property="regapprovedstatus" jdbcType="VARCHAR" />
+    <result column="siteid" property="siteid" jdbcType="INTEGER" />
+    <result column="recordactive" property="recordactive" jdbcType="TINYINT" />
+    <result column="rollout" property="rollout" jdbcType="TINYINT" />
+    <result column="startdatemin" property="startdatemin" jdbcType="TIMESTAMP" />
+    <result column="startdatemax" property="startdatemax" jdbcType="TIMESTAMP" />
+    <result column="startdateoriginal" property="startdateoriginal" jdbcType="TIMESTAMP" />
+    <result column="intervalcountmin" property="intervalcountmin" jdbcType="DECIMAL" />
+    <result column="intervalcountmax" property="intervalcountmax" jdbcType="DECIMAL" />
+    <result column="intervalcountoriginal" property="intervalcountoriginal" jdbcType="DECIMAL" />
+    <result column="startdateesttype" property="startdateesttype" jdbcType="INTEGER" />
+    <result column="extrawoinfo1" property="extrawoinfo1" jdbcType="VARCHAR" />
+    <result column="extrawoinfo2" property="extrawoinfo2" jdbcType="VARCHAR" />
+    <result column="extrawoinfo3" property="extrawoinfo3" jdbcType="VARCHAR" />
+    <result column="customerid" property="customerid" jdbcType="INTEGER" />
+    <result column="budgetextwork" property="budgetextwork" jdbcType="DECIMAL" />
+    <result column="budgetintwork" property="budgetintwork" jdbcType="DECIMAL" />
+    <result column="budgetstckmaterial" property="budgetstckmaterial" jdbcType="DECIMAL" />
+    <result column="budgetothmaterial" property="budgetothmaterial" jdbcType="DECIMAL" />
+    <result column="budgetservices" property="budgetservices" jdbcType="DECIMAL" />
+    <result column="customerwo" property="customerwo" jdbcType="VARCHAR" />
+    <result column="customerorderdate" property="customerorderdate" jdbcType="TIMESTAMP" />
+    <result column="customerlatestdelivery" property="customerlatestdelivery" jdbcType="TIMESTAMP" />
+    <result column="customercalcmethod" property="customercalcmethod" jdbcType="VARCHAR" />
+    <result column="invoiceextwork" property="invoiceextwork" jdbcType="DECIMAL" />
+    <result column="invoiceintwork" property="invoiceintwork" jdbcType="DECIMAL" />
+    <result column="invoicestckmaterial" property="invoicestckmaterial" jdbcType="DECIMAL" />
+    <result column="invoiceothmaterial" property="invoiceothmaterial" jdbcType="DECIMAL" />
+    <result column="invoiceservices" property="invoiceservices" jdbcType="DECIMAL" />
+    <result column="finishworksupplierid" property="finishworksupplierid" jdbcType="INTEGER" />
+    <result column="extrawoinfo4" property="extrawoinfo4" jdbcType="VARCHAR" />
+    <result column="extrawoinfo5" property="extrawoinfo5" jdbcType="VARCHAR" />
+    <result column="clusterid" property="clusterid" jdbcType="INTEGER" />
+    <result column="agreementid" property="agreementid" jdbcType="INTEGER" />
+    <result column="actualstartdate" property="actualstartdate" jdbcType="TIMESTAMP" />
+    <result column="actualstarttime" property="actualstarttime" jdbcType="INTEGER" />
+    <result column="moname" property="moname" jdbcType="VARCHAR" />
+    <result column="tiid" property="tiid" jdbcType="INTEGER" />
+    <result column="mocodeid" property="mocodeid" jdbcType="INTEGER" />
+    <result column="mogroupid" property="mogroupid" jdbcType="INTEGER" />
+    <result column="safetydocumentexist" property="safetydocumentexist" jdbcType="TINYINT" />
+    <result column="automaticestimatecounter" property="automaticestimatecounter" jdbcType="TINYINT" />
+    <result column="requestedenddate" property="requestedenddate" jdbcType="TIMESTAMP" />
+    <result column="requestedstartdate" property="requestedstartdate" jdbcType="TIMESTAMP" />
+    <result column="jobtypecodeid" property="jobtypecodeid" jdbcType="INTEGER" />
+    <result column="promisedenddate" property="promisedenddate" jdbcType="TIMESTAMP" />
+    <result column="roundid" property="roundid" jdbcType="INTEGER" />
+    <result column="inspectioncontrol" property="inspectioncontrol" jdbcType="VARCHAR" />
+    <result column="customerinvoicestatus" property="customerinvoicestatus" jdbcType="VARCHAR" />
+    <result column="rootwoid" property="rootwoid" jdbcType="INTEGER" />
+    <result column="wobarcode" property="wobarcode" jdbcType="DECIMAL" />
+    <result column="totalregistrationcounter" property="totalregistrationcounter" jdbcType="DECIMAL" />
+    <result column="registrationcounter" property="registrationcounter" jdbcType="DECIMAL" />
+    <result column="poscodeid" property="poscodeid" jdbcType="INTEGER" />
+    <result column="posgroupid" property="posgroupid" jdbcType="INTEGER" />
+    <result column="costcarrierid" property="costcarrierid" jdbcType="INTEGER" />
+    <result column="permitid" property="permitid" jdbcType="INTEGER" />
+    <result column="requestedstarttime" property="requestedstarttime" jdbcType="INTEGER" />
+    <result column="requestedendtime" property="requestedendtime" jdbcType="INTEGER" />
+    <result column="debitcosttypeid" property="debitcosttypeid" jdbcType="INTEGER" />
+    <result column="spid" property="spid" jdbcType="INTEGER" />
+    <result column="stockid" property="stockid" jdbcType="INTEGER" />
+    <result column="quantityprodrepair" property="quantityprodrepair" jdbcType="DECIMAL" />
+    <result column="stocklocationkey" property="stocklocationkey" jdbcType="VARCHAR" />
+    <result column="moskillid" property="moskillid" jdbcType="INTEGER" />
+    <result column="wnskillid" property="wnskillid" jdbcType="INTEGER" />
+    <result column="exported" property="exported" jdbcType="TINYINT" />
+    <result column="stopbegindate" property="stopbegindate" jdbcType="TIMESTAMP" />
+    <result column="stopbegintime" property="stopbegintime" jdbcType="INTEGER" />
+    <result column="stopenddate" property="stopenddate" jdbcType="TIMESTAMP" />
+    <result column="stopendtime" property="stopendtime" jdbcType="INTEGER" />
+    <result column="alwaysopen" property="alwaysopen" jdbcType="TINYINT" />
+    <result column="posname" property="posname" jdbcType="VARCHAR" />
+    <result column="generalskillid" property="generalskillid" jdbcType="INTEGER" />
+    <result column="pmtemplatewoid" property="pmtemplatewoid" jdbcType="INTEGER" />
+    <result column="plantid" property="plantid" jdbcType="INTEGER" />
+    <result column="legalunitid" property="legalunitid" jdbcType="INTEGER" />
+    <result column="legalunitcurrencykey" property="legalunitcurrencykey" jdbcType="VARCHAR" />
+    <result column="safetyassigneduuserid" property="safetyassigneduuserid" jdbcType="VARCHAR" />
+    <result column="safetyassigneddate" property="safetyassigneddate" jdbcType="TIMESTAMP" />
+    <result column="safetyassignedtime" property="safetyassignedtime" jdbcType="INTEGER" />
+    <result column="starttimeoriginal" property="starttimeoriginal" jdbcType="INTEGER" />
+    <result column="safetyassignedstatus" property="safetyassignedstatus" jdbcType="VARCHAR" />
+    <result column="exportieid" property="exportieid" jdbcType="INTEGER" />
+    <result column="interfaceremark" property="interfaceremark" jdbcType="VARCHAR" />
+    <result column="interfacestatus" property="interfacestatus" jdbcType="VARCHAR" />
+    <result column="interfaceiesequence" property="interfaceiesequence" jdbcType="BIGINT" />
+    <result column="approveddtz" property="approveddtz" jdbcType="TIMESTAMP" />
+    <result column="regapproveddtz" property="regapproveddtz" jdbcType="TIMESTAMP" />
+    <result column="lastchangedtz" property="lastchangedtz" jdbcType="TIMESTAMP" />
+    <result column="lastexportdtz" property="lastexportdtz" jdbcType="TIMESTAMP" />
+    <result column="lastimportdtz" property="lastimportdtz" jdbcType="TIMESTAMP" />
+    <result column="actualstartdtz" property="actualstartdtz" jdbcType="TIMESTAMP" />
+    <result column="jobcarddtz" property="jobcarddtz" jdbcType="TIMESTAMP" />
+    <result column="jobexecdtz" property="jobexecdtz" jdbcType="TIMESTAMP" />
+    <result column="orderdtz" property="orderdtz" jdbcType="TIMESTAMP" />
+    <result column="safetyassigneddtz" property="safetyassigneddtz" jdbcType="TIMESTAMP" />
+    <result column="recordlanguageid" property="recordlanguageid" jdbcType="INTEGER" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="createuserid" property="createuserid" jdbcType="INTEGER" />
+    <result column="modificationdate" property="modificationdate" jdbcType="TIMESTAMP" />
+    <result column="modificationuserid" property="modificationuserid" jdbcType="INTEGER" />
+    <result column="picpath" property="picpath" jdbcType="VARCHAR" />
+    <result column="barcode" property="barcode" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="orgid" property="orgid" jdbcType="INTEGER" />
+    <result column="stationsid" property="stationsid" jdbcType="INTEGER" />
+    <result column="subjobstatus" property="subjobstatus" jdbcType="INTEGER" />
+    <result column="jobinstructionheaderid" property="jobinstructionheaderid" jdbcType="INTEGER" />
+    <result column="momodelid" property="momodelid" jdbcType="INTEGER" />
+    <result column="receivesparepartsdate" property="receivesparepartsdate" jdbcType="TIMESTAMP" />
+    <result column="arrivalstationdate" property="arrivalstationdate" jdbcType="TIMESTAMP" />
+    <result column="arrivalstationlocation" property="arrivalstationlocation" jdbcType="VARCHAR" />
+    <result column="technicalcompletiondate" property="technicalcompletiondate" jdbcType="TIMESTAMP" />
+    <result column="wopicpath1" property="wopicpath1" jdbcType="VARCHAR" />
+    <result column="wopicpath2" property="wopicpath2" jdbcType="VARCHAR" />
+    <result column="wopicpath3" property="wopicpath3" jdbcType="VARCHAR" />
+    <result column="positionname" property="positionname" jdbcType="VARCHAR" />
+    <result column="createusername" property="createusername" jdbcType="VARCHAR" />
+    <result column="acceptstandard" property="acceptstandard" jdbcType="VARCHAR" />
+    <result column="audiopath" property="audiopath" jdbcType="VARCHAR" />
+    <result column="judgehumanid" property="judgehumanid" jdbcType="VARCHAR" />
+    <result column="judgegrade" property="judgegrade" jdbcType="INTEGER" />
+    <result column="checked" property="checked" jdbcType="INTEGER" />
+    <result column="checkuserid" property="checkuserid" jdbcType="INTEGER" />
+    <result column="worktaskid" property="worktaskid" jdbcType="INTEGER" />
+    <result column="judgedescription" property="judgedescription" jdbcType="VARCHAR" />
+    <result column="acceptworkorderdate" property="acceptworkorderdate" jdbcType="TIMESTAMP" />
+    <result column="decideschemedate" property="decideschemedate" jdbcType="TIMESTAMP" />
+    <result column="mainposid" property="mainposid" jdbcType="INTEGER" />
+    <result column="rejectdescription" property="rejectdescription" jdbcType="VARCHAR" />
+    <result column="nextnode" property="nextnode" jdbcType="INTEGER" />
+    <result column="decidedescription" property="decidedescription" jdbcType="VARCHAR" />
+    <result column="characterization" property="characterization" jdbcType="VARCHAR" />
+    <result column="extraid1" property="extraid1" jdbcType="INTEGER" />
+    <result column="extraid2" property="extraid2" jdbcType="INTEGER" />
+    <result column="extraid3" property="extraid3" jdbcType="INTEGER" />
+    <result column="extraid4" property="extraid4" jdbcType="INTEGER" />
+    <result column="extraid5" property="extraid5" jdbcType="INTEGER" />
+    <result column="extravarchar1" property="extravarchar1" jdbcType="VARCHAR" />
+    <result column="extravarchar2" property="extravarchar2" jdbcType="VARCHAR" />
+    <result column="extravarchar3" property="extravarchar3" jdbcType="VARCHAR" />
+    <result column="extravarchar4" property="extravarchar4" jdbcType="VARCHAR" />
+    <result column="extravarchar5" property="extravarchar5" jdbcType="VARCHAR" />
+    <result column="extravarchar6" property="extravarchar6" jdbcType="VARCHAR" />
+    <result column="extravarchar7" property="extravarchar7" jdbcType="VARCHAR" />
+    <result column="extravarchar8" property="extravarchar8" jdbcType="VARCHAR" />
+    <result column="extravarchar9" property="extravarchar9" jdbcType="VARCHAR" />
+    <result column="extravarchar10" property="extravarchar10" jdbcType="VARCHAR" />
+    <result column="extradecimal1" property="extradecimal1" jdbcType="DECIMAL" />
+    <result column="extradecimal2" property="extradecimal2" jdbcType="DECIMAL" />
+    <result column="extradecimal3" property="extradecimal3" jdbcType="DECIMAL" />
+    <result column="extradecimal4" property="extradecimal4" jdbcType="DECIMAL" />
+    <result column="extradecimal5" property="extradecimal5" jdbcType="DECIMAL" />
+    <result column="extradecimal6" property="extradecimal6" jdbcType="DECIMAL" />
+    <result column="extradecimal7" property="extradecimal7" jdbcType="DECIMAL" />
+    <result column="extradecimal8" property="extradecimal8" jdbcType="DECIMAL" />
+    <result column="extradecimal9" property="extradecimal9" jdbcType="DECIMAL" />
+    <result column="extradecimal10" property="extradecimal10" jdbcType="DECIMAL" />
+    <result column="extraint1" property="extraint1" jdbcType="INTEGER" />
+    <result column="extraint2" property="extraint2" jdbcType="INTEGER" />
+    <result column="extraint3" property="extraint3" jdbcType="INTEGER" />
+    <result column="extraint4" property="extraint4" jdbcType="INTEGER" />
+    <result column="extraint5" property="extraint5" jdbcType="INTEGER" />
+    <result column="extradatetime1" property="extradatetime1" jdbcType="TIMESTAMP" />
+    <result column="extradatetime2" property="extradatetime2" jdbcType="TIMESTAMP" />
+    <result column="extradatetime3" property="extradatetime3" jdbcType="TIMESTAMP" />
+    <result column="extradatetime4" property="extradatetime4" jdbcType="TIMESTAMP" />
+    <result column="extradatetime5" property="extradatetime5" jdbcType="TIMESTAMP" />
+    <result column="jobstandard" property="jobstandard" jdbcType="VARCHAR" />
+    <result column="jobmethod" property="jobmethod" jdbcType="VARCHAR" />
+    <result column="typeid" property="typeid" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="ApiBeanResult" type="WorkorderEntity" >
+    <result column="wo_key" property="wokey" jdbcType="VARCHAR" />
+    <result column="wo_name" property="woname" jdbcType="VARCHAR" />
+    <result column="mo_name" property="moname" jdbcType="VARCHAR" />
+    <result column="mo_key" property="extravarchar1" jdbcType="VARCHAR" />
+    <result column="code1_name" property="errorcode1name" jdbcType="VARCHAR" />
+    <result column="code3_name" property="errorcode3name" jdbcType="VARCHAR" />
+    <result column="order_date" property="orderdate" jdbcType="DATE" />
+    <result column="job_type" property="extravarchar2" jdbcType="VARCHAR" />
+    <result column="jobstatus#" property="jobstatus" jdbcType="INTEGER" />
+    <result column="actualstartdate" property="actualstartdate" jdbcType="TIMESTAMP" />
+    <result column="jobexecdate" property="jobexecdate" jdbcType="TIMESTAMP" />
+    <result column="stoptime" property="stoptime" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, wokey, woname, jobtype, jobstatus, moid, posid, accountid, costpurposeid, costtypeid, 
+    workcategoryid, worknoteid, jobcodeid, conditionsid, worksupplierid, counterid, code1id, 
+    code2id, code3id, projectid, intervaltime, intervaltimeunit, fixedinterval, intervalcount, 
+    intervalcountnext, inprogress, peoplenumber, jobcard, stopped, priorityid, orderedid, 
+    description, orderdate, ordertime, plannedstartdate, plannedstarttime, plannedenddate, 
+    plannedendtime, startdate, starttime, stopedstartdate, stopedstarttime, stopedenddate, 
+    stopedendtime, linestoppedsecond, stopedsecond, worksecond, waitsecond, executecycletype, 
+    executecyclevalue, fixedexecutecycle, maintenanceobjectgroupid, workpackageid, errorcode1id, 
+    errorcode1name, errorcode2id, errorcode2name, errorcode3id, errorcode3name, finishedhumanid, 
+    prodhumanid, proddescription, jobcarddate, jobcardtime, jobexecdate, enddate, endtime, 
+    plannedstoptime, stoptime, waittime, spartime, pmtaskno, jobexectime, counterformat, 
+    safetyworknoteid, linestopped, notexecutedtimes, relatedtowoid, lastchangedate, lastchangetime, 
+    lastexportdate, lastexporttime, lastimportdate, lastimporttime, suborderflag, replacewoid, 
+    replaceinterval, replaceexecution, approvedbyuuserid, approveddate, approvedtime, 
+    approvedstatus, regapprovedbyuuserid, regapproveddate, regapprovedtime, regapprovedstatus, 
+    siteid, recordactive, rollout, startdatemin, startdatemax, startdateoriginal, intervalcountmin, 
+    intervalcountmax, intervalcountoriginal, startdateesttype, extrawoinfo1, extrawoinfo2, 
+    extrawoinfo3, customerid, budgetextwork, budgetintwork, budgetstckmaterial, budgetothmaterial, 
+    budgetservices, customerwo, customerorderdate, customerlatestdelivery, customercalcmethod, 
+    invoiceextwork, invoiceintwork, invoicestckmaterial, invoiceothmaterial, invoiceservices, 
+    finishworksupplierid, extrawoinfo4, extrawoinfo5, clusterid, agreementid, actualstartdate, 
+    actualstarttime, moname, tiid, mocodeid, mogroupid, safetydocumentexist, automaticestimatecounter, 
+    requestedenddate, requestedstartdate, jobtypecodeid, promisedenddate, roundid, inspectioncontrol, 
+    customerinvoicestatus, rootwoid, wobarcode, totalregistrationcounter, registrationcounter, 
+    poscodeid, posgroupid, costcarrierid, permitid, requestedstarttime, requestedendtime, 
+    debitcosttypeid, spid, stockid, quantityprodrepair, stocklocationkey, moskillid, 
+    wnskillid, exported, stopbegindate, stopbegintime, stopenddate, stopendtime, alwaysopen, 
+    posname, generalskillid, pmtemplatewoid, plantid, legalunitid, legalunitcurrencykey, 
+    safetyassigneduuserid, safetyassigneddate, safetyassignedtime, starttimeoriginal, 
+    safetyassignedstatus, exportieid, interfaceremark, interfacestatus, interfaceiesequence, 
+    approveddtz, regapproveddtz, lastchangedtz, lastexportdtz, lastimportdtz, actualstartdtz, 
+    jobcarddtz, jobexecdtz, orderdtz, safetyassigneddtz, recordlanguageid, createdate, 
+    createuserid, modificationdate, modificationuserid, picpath, barcode, memo, orgid, 
+    stationsid, subjobstatus, jobinstructionheaderid, momodelid, receivesparepartsdate, 
+    arrivalstationdate, arrivalstationlocation, technicalcompletiondate, wopicpath1, 
+    wopicpath2, wopicpath3, positionname, createusername, acceptstandard, audiopath, 
+    judgehumanid, judgegrade, checked, checkuserid, worktaskid, judgedescription, acceptworkorderdate, 
+    decideschemedate, mainposid, rejectdescription, nextnode, decidedescription, characterization, 
+    extraid1, extraid2, extraid3, extraid4, extraid5, extravarchar1, extravarchar2, extravarchar3, 
+    extravarchar4, extravarchar5, extravarchar6, extravarchar7, extravarchar8, extravarchar9, 
+    extravarchar10, extradecimal1, extradecimal2, extradecimal3, extradecimal4, extradecimal5, 
+    extradecimal6, extradecimal7, extradecimal8, extradecimal9, extradecimal10, extraint1, 
+    extraint2, extraint3, extraint4, extraint5, extradatetime1, extradatetime2, extradatetime3, 
+    extradatetime4, extradatetime5, jobstandard, jobmethod, typeid
+  </sql>
+  <select id="get" resultMap="BaseResultMap" parameterType="WorkorderEntity" >
+    select 
+    <include refid="Base_Column_List" />
+    from workorder
+    where wokey = #{wokey,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAllWorkOrder" resultMap="BaseResultMap" parameterType="WorkorderEntity">
+    select
+    <include refid="Base_Column_List" />
+    from workorder
+
+  </select>
+
+  <select id="selectAllApi" resultMap="ApiBeanResult">
+	SELECT wo.wo_key, mo.mo_key, wo.mo_name, wo.wo_name, ec1.code1_name,ec3.code3_name, wo.order_date+wo.order_time/86400 as order_date,  wo.actual_start_date+wo.actual_start_time/86400 as actualstartdate, wo.jobexec_date+wo.jobexec_time/86400 as jobexecdate, round(wo.stop_time*60,0) as stoptime, wo.job_type, wo.jobstatus#
+	FROM APIPRO.Work_Order wo, apipro.maintenance_object mo, apipro.error_code1 ec1,apipro.error_code3 ec3
+	WHERE find_top_mo(wo.mo_key)=mo.mo_key AND wo.code1_key=ec1.code1_key(+) AND wo.code3_key=ec3.code3_key(+)
+  </select> 
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from workorder
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="WorkorderEntity" >
+    insert into workorder (id, wokey, woname, 
+      jobtype, jobstatus, moid, 
+      posid, accountid, costpurposeid, 
+      costtypeid, workcategoryid, worknoteid, 
+      jobcodeid, conditionsid, worksupplierid, 
+      counterid, code1id, code2id, 
+      code3id, projectid, intervaltime, 
+      intervaltimeunit, fixedinterval, intervalcount, 
+      intervalcountnext, inprogress, peoplenumber, 
+      jobcard, stopped, priorityid, 
+      orderedid, description, orderdate, 
+      ordertime, plannedstartdate, plannedstarttime, 
+      plannedenddate, plannedendtime, startdate, 
+      starttime, stopedstartdate, stopedstarttime, 
+      stopedenddate, stopedendtime, linestoppedsecond, 
+      stopedsecond, worksecond, waitsecond, 
+      executecycletype, executecyclevalue, fixedexecutecycle, 
+      maintenanceobjectgroupid, workpackageid, 
+      errorcode1id, errorcode1name, errorcode2id, 
+      errorcode2name, errorcode3id, errorcode3name, 
+      finishedhumanid, prodhumanid, proddescription, 
+      jobcarddate, jobcardtime, jobexecdate, 
+      enddate, endtime, plannedstoptime, 
+      stoptime, waittime, spartime, 
+      pmtaskno, jobexectime, counterformat, 
+      safetyworknoteid, linestopped, notexecutedtimes, 
+      relatedtowoid, lastchangedate, lastchangetime, 
+      lastexportdate, lastexporttime, lastimportdate, 
+      lastimporttime, suborderflag, replacewoid, 
+      replaceinterval, replaceexecution, approvedbyuuserid, 
+      approveddate, approvedtime, approvedstatus, 
+      regapprovedbyuuserid, regapproveddate, 
+      regapprovedtime, regapprovedstatus, siteid, 
+      recordactive, rollout, startdatemin, 
+      startdatemax, startdateoriginal, intervalcountmin, 
+      intervalcountmax, intervalcountoriginal, 
+      startdateesttype, extrawoinfo1, extrawoinfo2, 
+      extrawoinfo3, customerid, budgetextwork, 
+      budgetintwork, budgetstckmaterial, budgetothmaterial, 
+      budgetservices, customerwo, customerorderdate, 
+      customerlatestdelivery, customercalcmethod, 
+      invoiceextwork, invoiceintwork, invoicestckmaterial, 
+      invoiceothmaterial, invoiceservices, finishworksupplierid, 
+      extrawoinfo4, extrawoinfo5, clusterid, 
+      agreementid, actualstartdate, actualstarttime, 
+      moname, tiid, mocodeid, 
+      mogroupid, safetydocumentexist, automaticestimatecounter, 
+      requestedenddate, requestedstartdate, 
+      jobtypecodeid, promisedenddate, roundid, 
+      inspectioncontrol, customerinvoicestatus, 
+      rootwoid, wobarcode, totalregistrationcounter, 
+      registrationcounter, poscodeid, posgroupid, 
+      costcarrierid, permitid, requestedstarttime, 
+      requestedendtime, debitcosttypeid, spid, 
+      stockid, quantityprodrepair, stocklocationkey, 
+      moskillid, wnskillid, exported, 
+      stopbegindate, stopbegintime, stopenddate, 
+      stopendtime, alwaysopen, posname, 
+      generalskillid, pmtemplatewoid, plantid, 
+      legalunitid, legalunitcurrencykey, safetyassigneduuserid, 
+      safetyassigneddate, safetyassignedtime, 
+      starttimeoriginal, safetyassignedstatus, 
+      exportieid, interfaceremark, interfacestatus, 
+      interfaceiesequence, approveddtz, regapproveddtz, 
+      lastchangedtz, lastexportdtz, lastimportdtz, 
+      actualstartdtz, jobcarddtz, jobexecdtz, 
+      orderdtz, safetyassigneddtz, recordlanguageid, 
+      createdate, createuserid, modificationdate, 
+      modificationuserid, picpath, barcode, 
+      memo, orgid, stationsid, 
+      subjobstatus, jobinstructionheaderid, momodelid, 
+      receivesparepartsdate, arrivalstationdate, 
+      arrivalstationlocation, technicalcompletiondate, 
+      wopicpath1, wopicpath2, wopicpath3, 
+      positionname, createusername, acceptstandard, 
+      audiopath, judgehumanid, judgegrade, 
+      checked, checkuserid, worktaskid, 
+      judgedescription, acceptworkorderdate, 
+      decideschemedate, mainposid, rejectdescription, 
+      nextnode, decidedescription, characterization, 
+      extraid1, extraid2, extraid3, 
+      extraid4, extraid5, extravarchar1, 
+      extravarchar2, extravarchar3, extravarchar4, 
+      extravarchar5, extravarchar6, extravarchar7, 
+      extravarchar8, extravarchar9, extravarchar10, 
+      extradecimal1, extradecimal2, extradecimal3, 
+      extradecimal4, extradecimal5, extradecimal6, 
+      extradecimal7, extradecimal8, extradecimal9, 
+      extradecimal10, extraint1, extraint2, 
+      extraint3, extraint4, extraint5, 
+      extradatetime1, extradatetime2, extradatetime3, 
+      extradatetime4, extradatetime5, jobstandard, 
+      jobmethod, typeid)
+    values (#{id,jdbcType=INTEGER}, #{wokey,jdbcType=VARCHAR}, #{woname,jdbcType=VARCHAR}, 
+      #{jobtype,jdbcType=INTEGER}, #{jobstatus,jdbcType=INTEGER}, #{moid,jdbcType=INTEGER}, 
+      #{posid,jdbcType=INTEGER}, #{accountid,jdbcType=INTEGER}, #{costpurposeid,jdbcType=INTEGER}, 
+      #{costtypeid,jdbcType=INTEGER}, #{workcategoryid,jdbcType=INTEGER}, #{worknoteid,jdbcType=INTEGER}, 
+      #{jobcodeid,jdbcType=INTEGER}, #{conditionsid,jdbcType=INTEGER}, #{worksupplierid,jdbcType=INTEGER}, 
+      #{counterid,jdbcType=INTEGER}, #{code1id,jdbcType=INTEGER}, #{code2id,jdbcType=INTEGER}, 
+      #{code3id,jdbcType=INTEGER}, #{projectid,jdbcType=INTEGER}, #{intervaltime,jdbcType=INTEGER}, 
+      #{intervaltimeunit,jdbcType=VARCHAR}, #{fixedinterval,jdbcType=TINYINT}, #{intervalcount,jdbcType=DECIMAL}, 
+      #{intervalcountnext,jdbcType=DECIMAL}, #{inprogress,jdbcType=TINYINT}, #{peoplenumber,jdbcType=INTEGER}, 
+      #{jobcard,jdbcType=TINYINT}, #{stopped,jdbcType=TINYINT}, #{priorityid,jdbcType=INTEGER}, 
+      #{orderedid,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{orderdate,jdbcType=TIMESTAMP}, 
+      #{ordertime,jdbcType=TIME}, #{plannedstartdate,jdbcType=TIMESTAMP}, #{plannedstarttime,jdbcType=TIME}, 
+      #{plannedenddate,jdbcType=TIMESTAMP}, #{plannedendtime,jdbcType=TIME}, #{startdate,jdbcType=TIMESTAMP}, 
+      #{starttime,jdbcType=TIME}, #{stopedstartdate,jdbcType=TIMESTAMP}, #{stopedstarttime,jdbcType=TIME}, 
+      #{stopedenddate,jdbcType=TIMESTAMP}, #{stopedendtime,jdbcType=TIME}, #{linestoppedsecond,jdbcType=INTEGER}, 
+      #{stopedsecond,jdbcType=INTEGER}, #{worksecond,jdbcType=INTEGER}, #{waitsecond,jdbcType=INTEGER}, 
+      #{executecycletype,jdbcType=INTEGER}, #{executecyclevalue,jdbcType=INTEGER}, #{fixedexecutecycle,jdbcType=INTEGER}, 
+      #{maintenanceobjectgroupid,jdbcType=INTEGER}, #{workpackageid,jdbcType=INTEGER}, 
+      #{errorcode1id,jdbcType=INTEGER}, #{errorcode1name,jdbcType=VARCHAR}, #{errorcode2id,jdbcType=INTEGER}, 
+      #{errorcode2name,jdbcType=VARCHAR}, #{errorcode3id,jdbcType=INTEGER}, #{errorcode3name,jdbcType=VARCHAR}, 
+      #{finishedhumanid,jdbcType=INTEGER}, #{prodhumanid,jdbcType=INTEGER}, #{proddescription,jdbcType=VARCHAR}, 
+      #{jobcarddate,jdbcType=TIMESTAMP}, #{jobcardtime,jdbcType=TIME}, #{jobexecdate,jdbcType=TIMESTAMP}, 
+      #{enddate,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIME}, #{plannedstoptime,jdbcType=DECIMAL}, 
+      #{stoptime,jdbcType=DECIMAL}, #{waittime,jdbcType=DECIMAL}, #{spartime,jdbcType=DECIMAL}, 
+      #{pmtaskno,jdbcType=BIGINT}, #{jobexectime,jdbcType=DECIMAL}, #{counterformat,jdbcType=VARCHAR}, 
+      #{safetyworknoteid,jdbcType=INTEGER}, #{linestopped,jdbcType=TINYINT}, #{notexecutedtimes,jdbcType=INTEGER}, 
+      #{relatedtowoid,jdbcType=INTEGER}, #{lastchangedate,jdbcType=TIMESTAMP}, #{lastchangetime,jdbcType=INTEGER}, 
+      #{lastexportdate,jdbcType=TIMESTAMP}, #{lastexporttime,jdbcType=INTEGER}, #{lastimportdate,jdbcType=TIMESTAMP}, 
+      #{lastimporttime,jdbcType=INTEGER}, #{suborderflag,jdbcType=TINYINT}, #{replacewoid,jdbcType=INTEGER}, 
+      #{replaceinterval,jdbcType=INTEGER}, #{replaceexecution,jdbcType=INTEGER}, #{approvedbyuuserid,jdbcType=VARCHAR}, 
+      #{approveddate,jdbcType=TIMESTAMP}, #{approvedtime,jdbcType=INTEGER}, #{approvedstatus,jdbcType=VARCHAR}, 
+      #{regapprovedbyuuserid,jdbcType=VARCHAR}, #{regapproveddate,jdbcType=TIMESTAMP}, 
+      #{regapprovedtime,jdbcType=INTEGER}, #{regapprovedstatus,jdbcType=VARCHAR}, #{siteid,jdbcType=INTEGER}, 
+      #{recordactive,jdbcType=TINYINT}, #{rollout,jdbcType=TINYINT}, #{startdatemin,jdbcType=TIMESTAMP}, 
+      #{startdatemax,jdbcType=TIMESTAMP}, #{startdateoriginal,jdbcType=TIMESTAMP}, #{intervalcountmin,jdbcType=DECIMAL}, 
+      #{intervalcountmax,jdbcType=DECIMAL}, #{intervalcountoriginal,jdbcType=DECIMAL}, 
+      #{startdateesttype,jdbcType=INTEGER}, #{extrawoinfo1,jdbcType=VARCHAR}, #{extrawoinfo2,jdbcType=VARCHAR}, 
+      #{extrawoinfo3,jdbcType=VARCHAR}, #{customerid,jdbcType=INTEGER}, #{budgetextwork,jdbcType=DECIMAL}, 
+      #{budgetintwork,jdbcType=DECIMAL}, #{budgetstckmaterial,jdbcType=DECIMAL}, #{budgetothmaterial,jdbcType=DECIMAL}, 
+      #{budgetservices,jdbcType=DECIMAL}, #{customerwo,jdbcType=VARCHAR}, #{customerorderdate,jdbcType=TIMESTAMP}, 
+      #{customerlatestdelivery,jdbcType=TIMESTAMP}, #{customercalcmethod,jdbcType=VARCHAR}, 
+      #{invoiceextwork,jdbcType=DECIMAL}, #{invoiceintwork,jdbcType=DECIMAL}, #{invoicestckmaterial,jdbcType=DECIMAL}, 
+      #{invoiceothmaterial,jdbcType=DECIMAL}, #{invoiceservices,jdbcType=DECIMAL}, #{finishworksupplierid,jdbcType=INTEGER}, 
+      #{extrawoinfo4,jdbcType=VARCHAR}, #{extrawoinfo5,jdbcType=VARCHAR}, #{clusterid,jdbcType=INTEGER}, 
+      #{agreementid,jdbcType=INTEGER}, #{actualstartdate,jdbcType=TIMESTAMP}, #{actualstarttime,jdbcType=INTEGER}, 
+      #{moname,jdbcType=VARCHAR}, #{tiid,jdbcType=INTEGER}, #{mocodeid,jdbcType=INTEGER}, 
+      #{mogroupid,jdbcType=INTEGER}, #{safetydocumentexist,jdbcType=TINYINT}, #{automaticestimatecounter,jdbcType=TINYINT}, 
+      #{requestedenddate,jdbcType=TIMESTAMP}, #{requestedstartdate,jdbcType=TIMESTAMP}, 
+      #{jobtypecodeid,jdbcType=INTEGER}, #{promisedenddate,jdbcType=TIMESTAMP}, #{roundid,jdbcType=INTEGER}, 
+      #{inspectioncontrol,jdbcType=VARCHAR}, #{customerinvoicestatus,jdbcType=VARCHAR}, 
+      #{rootwoid,jdbcType=INTEGER}, #{wobarcode,jdbcType=DECIMAL}, #{totalregistrationcounter,jdbcType=DECIMAL}, 
+      #{registrationcounter,jdbcType=DECIMAL}, #{poscodeid,jdbcType=INTEGER}, #{posgroupid,jdbcType=INTEGER}, 
+      #{costcarrierid,jdbcType=INTEGER}, #{permitid,jdbcType=INTEGER}, #{requestedstarttime,jdbcType=INTEGER}, 
+      #{requestedendtime,jdbcType=INTEGER}, #{debitcosttypeid,jdbcType=INTEGER}, #{spid,jdbcType=INTEGER}, 
+      #{stockid,jdbcType=INTEGER}, #{quantityprodrepair,jdbcType=DECIMAL}, #{stocklocationkey,jdbcType=VARCHAR}, 
+      #{moskillid,jdbcType=INTEGER}, #{wnskillid,jdbcType=INTEGER}, #{exported,jdbcType=TINYINT}, 
+      #{stopbegindate,jdbcType=TIMESTAMP}, #{stopbegintime,jdbcType=INTEGER}, #{stopenddate,jdbcType=TIMESTAMP}, 
+      #{stopendtime,jdbcType=INTEGER}, #{alwaysopen,jdbcType=TINYINT}, #{posname,jdbcType=VARCHAR}, 
+      #{generalskillid,jdbcType=INTEGER}, #{pmtemplatewoid,jdbcType=INTEGER}, #{plantid,jdbcType=INTEGER}, 
+      #{legalunitid,jdbcType=INTEGER}, #{legalunitcurrencykey,jdbcType=VARCHAR}, #{safetyassigneduuserid,jdbcType=VARCHAR}, 
+      #{safetyassigneddate,jdbcType=TIMESTAMP}, #{safetyassignedtime,jdbcType=INTEGER}, 
+      #{starttimeoriginal,jdbcType=INTEGER}, #{safetyassignedstatus,jdbcType=VARCHAR}, 
+      #{exportieid,jdbcType=INTEGER}, #{interfaceremark,jdbcType=VARCHAR}, #{interfacestatus,jdbcType=VARCHAR}, 
+      #{interfaceiesequence,jdbcType=BIGINT}, #{approveddtz,jdbcType=TIMESTAMP}, #{regapproveddtz,jdbcType=TIMESTAMP}, 
+      #{lastchangedtz,jdbcType=TIMESTAMP}, #{lastexportdtz,jdbcType=TIMESTAMP}, #{lastimportdtz,jdbcType=TIMESTAMP}, 
+      #{actualstartdtz,jdbcType=TIMESTAMP}, #{jobcarddtz,jdbcType=TIMESTAMP}, #{jobexecdtz,jdbcType=TIMESTAMP}, 
+      #{orderdtz,jdbcType=TIMESTAMP}, #{safetyassigneddtz,jdbcType=TIMESTAMP}, #{recordlanguageid,jdbcType=INTEGER}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{createuserid,jdbcType=INTEGER}, #{modificationdate,jdbcType=TIMESTAMP}, 
+      #{modificationuserid,jdbcType=INTEGER}, #{picpath,jdbcType=VARCHAR}, #{barcode,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR}, #{orgid,jdbcType=INTEGER}, #{stationsid,jdbcType=INTEGER}, 
+      #{subjobstatus,jdbcType=INTEGER}, #{jobinstructionheaderid,jdbcType=INTEGER}, #{momodelid,jdbcType=INTEGER}, 
+      #{receivesparepartsdate,jdbcType=TIMESTAMP}, #{arrivalstationdate,jdbcType=TIMESTAMP}, 
+      #{arrivalstationlocation,jdbcType=VARCHAR}, #{technicalcompletiondate,jdbcType=TIMESTAMP}, 
+      #{wopicpath1,jdbcType=VARCHAR}, #{wopicpath2,jdbcType=VARCHAR}, #{wopicpath3,jdbcType=VARCHAR}, 
+      #{positionname,jdbcType=VARCHAR}, #{createusername,jdbcType=VARCHAR}, #{acceptstandard,jdbcType=VARCHAR}, 
+      #{audiopath,jdbcType=VARCHAR}, #{judgehumanid,jdbcType=VARCHAR}, #{judgegrade,jdbcType=INTEGER}, 
+      #{checked,jdbcType=INTEGER}, #{checkuserid,jdbcType=INTEGER}, #{worktaskid,jdbcType=INTEGER}, 
+      #{judgedescription,jdbcType=VARCHAR}, #{acceptworkorderdate,jdbcType=TIMESTAMP}, 
+      #{decideschemedate,jdbcType=TIMESTAMP}, #{mainposid,jdbcType=INTEGER}, #{rejectdescription,jdbcType=VARCHAR}, 
+      #{nextnode,jdbcType=INTEGER}, #{decidedescription,jdbcType=VARCHAR}, #{characterization,jdbcType=VARCHAR}, 
+      #{extraid1,jdbcType=INTEGER}, #{extraid2,jdbcType=INTEGER}, #{extraid3,jdbcType=INTEGER}, 
+      #{extraid4,jdbcType=INTEGER}, #{extraid5,jdbcType=INTEGER}, #{extravarchar1,jdbcType=VARCHAR}, 
+      #{extravarchar2,jdbcType=VARCHAR}, #{extravarchar3,jdbcType=VARCHAR}, #{extravarchar4,jdbcType=VARCHAR}, 
+      #{extravarchar5,jdbcType=VARCHAR}, #{extravarchar6,jdbcType=VARCHAR}, #{extravarchar7,jdbcType=VARCHAR}, 
+      #{extravarchar8,jdbcType=VARCHAR}, #{extravarchar9,jdbcType=VARCHAR}, #{extravarchar10,jdbcType=VARCHAR}, 
+      #{extradecimal1,jdbcType=DECIMAL}, #{extradecimal2,jdbcType=DECIMAL}, #{extradecimal3,jdbcType=DECIMAL}, 
+      #{extradecimal4,jdbcType=DECIMAL}, #{extradecimal5,jdbcType=DECIMAL}, #{extradecimal6,jdbcType=DECIMAL}, 
+      #{extradecimal7,jdbcType=DECIMAL}, #{extradecimal8,jdbcType=DECIMAL}, #{extradecimal9,jdbcType=DECIMAL}, 
+      #{extradecimal10,jdbcType=DECIMAL}, #{extraint1,jdbcType=INTEGER}, #{extraint2,jdbcType=INTEGER}, 
+      #{extraint3,jdbcType=INTEGER}, #{extraint4,jdbcType=INTEGER}, #{extraint5,jdbcType=INTEGER}, 
+      #{extradatetime1,jdbcType=TIMESTAMP}, #{extradatetime2,jdbcType=TIMESTAMP}, #{extradatetime3,jdbcType=TIMESTAMP}, 
+      #{extradatetime4,jdbcType=TIMESTAMP}, #{extradatetime5,jdbcType=TIMESTAMP}, #{jobstandard,jdbcType=VARCHAR}, 
+      #{jobmethod,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="WorkorderEntity" >
+    update workorder
+    <set >
+      <if test="wokey != null" >
+        wokey = #{wokey,jdbcType=VARCHAR},
+      </if>
+      <if test="woname != null" >
+        woname = #{woname,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtype != null" >
+        jobtype = #{jobtype,jdbcType=INTEGER},
+      </if>
+      <if test="jobstatus != null" >
+        jobstatus = #{jobstatus,jdbcType=INTEGER},
+      </if>
+      <if test="moid != null" >
+        moid = #{moid,jdbcType=INTEGER},
+      </if>
+      <if test="posid != null" >
+        posid = #{posid,jdbcType=INTEGER},
+      </if>
+      <if test="accountid != null" >
+        accountid = #{accountid,jdbcType=INTEGER},
+      </if>
+      <if test="costpurposeid != null" >
+        costpurposeid = #{costpurposeid,jdbcType=INTEGER},
+      </if>
+      <if test="costtypeid != null" >
+        costtypeid = #{costtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="workcategoryid != null" >
+        workcategoryid = #{workcategoryid,jdbcType=INTEGER},
+      </if>
+      <if test="worknoteid != null" >
+        worknoteid = #{worknoteid,jdbcType=INTEGER},
+      </if>
+      <if test="jobcodeid != null" >
+        jobcodeid = #{jobcodeid,jdbcType=INTEGER},
+      </if>
+      <if test="conditionsid != null" >
+        conditionsid = #{conditionsid,jdbcType=INTEGER},
+      </if>
+      <if test="worksupplierid != null" >
+        worksupplierid = #{worksupplierid,jdbcType=INTEGER},
+      </if>
+      <if test="counterid != null" >
+        counterid = #{counterid,jdbcType=INTEGER},
+      </if>
+      <if test="code1id != null" >
+        code1id = #{code1id,jdbcType=INTEGER},
+      </if>
+      <if test="code2id != null" >
+        code2id = #{code2id,jdbcType=INTEGER},
+      </if>
+      <if test="code3id != null" >
+        code3id = #{code3id,jdbcType=INTEGER},
+      </if>
+      <if test="projectid != null" >
+        projectid = #{projectid,jdbcType=INTEGER},
+      </if>
+      <if test="intervaltime != null" >
+        intervaltime = #{intervaltime,jdbcType=INTEGER},
+      </if>
+      <if test="intervaltimeunit != null" >
+        intervaltimeunit = #{intervaltimeunit,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedinterval != null" >
+        fixedinterval = #{fixedinterval,jdbcType=TINYINT},
+      </if>
+      <if test="intervalcount != null" >
+        intervalcount = #{intervalcount,jdbcType=DECIMAL},
+      </if>
+      <if test="intervalcountnext != null" >
+        intervalcountnext = #{intervalcountnext,jdbcType=DECIMAL},
+      </if>
+      <if test="inprogress != null" >
+        inprogress = #{inprogress,jdbcType=TINYINT},
+      </if>
+      <if test="peoplenumber != null" >
+        peoplenumber = #{peoplenumber,jdbcType=INTEGER},
+      </if>
+      <if test="jobcard != null" >
+        jobcard = #{jobcard,jdbcType=TINYINT},
+      </if>
+      <if test="stopped != null" >
+        stopped = #{stopped,jdbcType=TINYINT},
+      </if>
+      <if test="priorityid != null" >
+        priorityid = #{priorityid,jdbcType=INTEGER},
+      </if>
+      <if test="orderedid != null" >
+        orderedid = #{orderedid,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="orderdate != null" >
+        orderdate = #{orderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ordertime != null" >
+        ordertime = #{ordertime,jdbcType=TIME},
+      </if>
+      <if test="plannedstartdate != null" >
+        plannedstartdate = #{plannedstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plannedstarttime != null" >
+        plannedstarttime = #{plannedstarttime,jdbcType=TIME},
+      </if>
+      <if test="plannedenddate != null" >
+        plannedenddate = #{plannedenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plannedendtime != null" >
+        plannedendtime = #{plannedendtime,jdbcType=TIME},
+      </if>
+      <if test="startdate != null" >
+        startdate = #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="starttime != null" >
+        starttime = #{starttime,jdbcType=TIME},
+      </if>
+      <if test="stopedstartdate != null" >
+        stopedstartdate = #{stopedstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopedstarttime != null" >
+        stopedstarttime = #{stopedstarttime,jdbcType=TIME},
+      </if>
+      <if test="stopedenddate != null" >
+        stopedenddate = #{stopedenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopedendtime != null" >
+        stopedendtime = #{stopedendtime,jdbcType=TIME},
+      </if>
+      <if test="linestoppedsecond != null" >
+        linestoppedsecond = #{linestoppedsecond,jdbcType=INTEGER},
+      </if>
+      <if test="stopedsecond != null" >
+        stopedsecond = #{stopedsecond,jdbcType=INTEGER},
+      </if>
+      <if test="worksecond != null" >
+        worksecond = #{worksecond,jdbcType=INTEGER},
+      </if>
+      <if test="waitsecond != null" >
+        waitsecond = #{waitsecond,jdbcType=INTEGER},
+      </if>
+      <if test="executecycletype != null" >
+        executecycletype = #{executecycletype,jdbcType=INTEGER},
+      </if>
+      <if test="executecyclevalue != null" >
+        executecyclevalue = #{executecyclevalue,jdbcType=INTEGER},
+      </if>
+      <if test="fixedexecutecycle != null" >
+        fixedexecutecycle = #{fixedexecutecycle,jdbcType=INTEGER},
+      </if>
+      <if test="maintenanceobjectgroupid != null" >
+        maintenanceobjectgroupid = #{maintenanceobjectgroupid,jdbcType=INTEGER},
+      </if>
+      <if test="workpackageid != null" >
+        workpackageid = #{workpackageid,jdbcType=INTEGER},
+      </if>
+      <if test="errorcode1id != null" >
+        errorcode1id = #{errorcode1id,jdbcType=INTEGER},
+      </if>
+      <if test="errorcode1name != null" >
+        errorcode1name = #{errorcode1name,jdbcType=VARCHAR},
+      </if>
+      <if test="errorcode2id != null" >
+        errorcode2id = #{errorcode2id,jdbcType=INTEGER},
+      </if>
+      <if test="errorcode2name != null" >
+        errorcode2name = #{errorcode2name,jdbcType=VARCHAR},
+      </if>
+      <if test="errorcode3id != null" >
+        errorcode3id = #{errorcode3id,jdbcType=INTEGER},
+      </if>
+      <if test="errorcode3name != null" >
+        errorcode3name = #{errorcode3name,jdbcType=VARCHAR},
+      </if>
+      <if test="finishedhumanid != null" >
+        finishedhumanid = #{finishedhumanid,jdbcType=INTEGER},
+      </if>
+      <if test="prodhumanid != null" >
+        prodhumanid = #{prodhumanid,jdbcType=INTEGER},
+      </if>
+      <if test="proddescription != null" >
+        proddescription = #{proddescription,jdbcType=VARCHAR},
+      </if>
+      <if test="jobcarddate != null" >
+        jobcarddate = #{jobcarddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobcardtime != null" >
+        jobcardtime = #{jobcardtime,jdbcType=TIME},
+      </if>
+      <if test="jobexecdate != null" >
+        jobexecdate = #{jobexecdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enddate != null" >
+        enddate = #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=TIME},
+      </if>
+      <if test="plannedstoptime != null" >
+        plannedstoptime = #{plannedstoptime,jdbcType=DECIMAL},
+      </if>
+      <if test="stoptime != null" >
+        stoptime = #{stoptime,jdbcType=DECIMAL},
+      </if>
+      <if test="waittime != null" >
+        waittime = #{waittime,jdbcType=DECIMAL},
+      </if>
+      <if test="spartime != null" >
+        spartime = #{spartime,jdbcType=DECIMAL},
+      </if>
+      <if test="pmtaskno != null" >
+        pmtaskno = #{pmtaskno,jdbcType=BIGINT},
+      </if>
+      <if test="jobexectime != null" >
+        jobexectime = #{jobexectime,jdbcType=DECIMAL},
+      </if>
+      <if test="counterformat != null" >
+        counterformat = #{counterformat,jdbcType=VARCHAR},
+      </if>
+      <if test="safetyworknoteid != null" >
+        safetyworknoteid = #{safetyworknoteid,jdbcType=INTEGER},
+      </if>
+      <if test="linestopped != null" >
+        linestopped = #{linestopped,jdbcType=TINYINT},
+      </if>
+      <if test="notexecutedtimes != null" >
+        notexecutedtimes = #{notexecutedtimes,jdbcType=INTEGER},
+      </if>
+      <if test="relatedtowoid != null" >
+        relatedtowoid = #{relatedtowoid,jdbcType=INTEGER},
+      </if>
+      <if test="lastchangedate != null" >
+        lastchangedate = #{lastchangedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastchangetime != null" >
+        lastchangetime = #{lastchangetime,jdbcType=INTEGER},
+      </if>
+      <if test="lastexportdate != null" >
+        lastexportdate = #{lastexportdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastexporttime != null" >
+        lastexporttime = #{lastexporttime,jdbcType=INTEGER},
+      </if>
+      <if test="lastimportdate != null" >
+        lastimportdate = #{lastimportdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastimporttime != null" >
+        lastimporttime = #{lastimporttime,jdbcType=INTEGER},
+      </if>
+      <if test="suborderflag != null" >
+        suborderflag = #{suborderflag,jdbcType=TINYINT},
+      </if>
+      <if test="replacewoid != null" >
+        replacewoid = #{replacewoid,jdbcType=INTEGER},
+      </if>
+      <if test="replaceinterval != null" >
+        replaceinterval = #{replaceinterval,jdbcType=INTEGER},
+      </if>
+      <if test="replaceexecution != null" >
+        replaceexecution = #{replaceexecution,jdbcType=INTEGER},
+      </if>
+      <if test="approvedbyuuserid != null" >
+        approvedbyuuserid = #{approvedbyuuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="approveddate != null" >
+        approveddate = #{approveddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approvedtime != null" >
+        approvedtime = #{approvedtime,jdbcType=INTEGER},
+      </if>
+      <if test="approvedstatus != null" >
+        approvedstatus = #{approvedstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="regapprovedbyuuserid != null" >
+        regapprovedbyuuserid = #{regapprovedbyuuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="regapproveddate != null" >
+        regapproveddate = #{regapproveddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regapprovedtime != null" >
+        regapprovedtime = #{regapprovedtime,jdbcType=INTEGER},
+      </if>
+      <if test="regapprovedstatus != null" >
+        regapprovedstatus = #{regapprovedstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="siteid != null" >
+        siteid = #{siteid,jdbcType=INTEGER},
+      </if>
+      <if test="recordactive != null" >
+        recordactive = #{recordactive,jdbcType=TINYINT},
+      </if>
+      <if test="rollout != null" >
+        rollout = #{rollout,jdbcType=TINYINT},
+      </if>
+      <if test="startdatemin != null" >
+        startdatemin = #{startdatemin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startdatemax != null" >
+        startdatemax = #{startdatemax,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startdateoriginal != null" >
+        startdateoriginal = #{startdateoriginal,jdbcType=TIMESTAMP},
+      </if>
+      <if test="intervalcountmin != null" >
+        intervalcountmin = #{intervalcountmin,jdbcType=DECIMAL},
+      </if>
+      <if test="intervalcountmax != null" >
+        intervalcountmax = #{intervalcountmax,jdbcType=DECIMAL},
+      </if>
+      <if test="intervalcountoriginal != null" >
+        intervalcountoriginal = #{intervalcountoriginal,jdbcType=DECIMAL},
+      </if>
+      <if test="startdateesttype != null" >
+        startdateesttype = #{startdateesttype,jdbcType=INTEGER},
+      </if>
+      <if test="extrawoinfo1 != null" >
+        extrawoinfo1 = #{extrawoinfo1,jdbcType=VARCHAR},
+      </if>
+      <if test="extrawoinfo2 != null" >
+        extrawoinfo2 = #{extrawoinfo2,jdbcType=VARCHAR},
+      </if>
+      <if test="extrawoinfo3 != null" >
+        extrawoinfo3 = #{extrawoinfo3,jdbcType=VARCHAR},
+      </if>
+      <if test="customerid != null" >
+        customerid = #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="budgetextwork != null" >
+        budgetextwork = #{budgetextwork,jdbcType=DECIMAL},
+      </if>
+      <if test="budgetintwork != null" >
+        budgetintwork = #{budgetintwork,jdbcType=DECIMAL},
+      </if>
+      <if test="budgetstckmaterial != null" >
+        budgetstckmaterial = #{budgetstckmaterial,jdbcType=DECIMAL},
+      </if>
+      <if test="budgetothmaterial != null" >
+        budgetothmaterial = #{budgetothmaterial,jdbcType=DECIMAL},
+      </if>
+      <if test="budgetservices != null" >
+        budgetservices = #{budgetservices,jdbcType=DECIMAL},
+      </if>
+      <if test="customerwo != null" >
+        customerwo = #{customerwo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerorderdate != null" >
+        customerorderdate = #{customerorderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerlatestdelivery != null" >
+        customerlatestdelivery = #{customerlatestdelivery,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customercalcmethod != null" >
+        customercalcmethod = #{customercalcmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceextwork != null" >
+        invoiceextwork = #{invoiceextwork,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceintwork != null" >
+        invoiceintwork = #{invoiceintwork,jdbcType=DECIMAL},
+      </if>
+      <if test="invoicestckmaterial != null" >
+        invoicestckmaterial = #{invoicestckmaterial,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceothmaterial != null" >
+        invoiceothmaterial = #{invoiceothmaterial,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceservices != null" >
+        invoiceservices = #{invoiceservices,jdbcType=DECIMAL},
+      </if>
+      <if test="finishworksupplierid != null" >
+        finishworksupplierid = #{finishworksupplierid,jdbcType=INTEGER},
+      </if>
+      <if test="extrawoinfo4 != null" >
+        extrawoinfo4 = #{extrawoinfo4,jdbcType=VARCHAR},
+      </if>
+      <if test="extrawoinfo5 != null" >
+        extrawoinfo5 = #{extrawoinfo5,jdbcType=VARCHAR},
+      </if>
+      <if test="clusterid != null" >
+        clusterid = #{clusterid,jdbcType=INTEGER},
+      </if>
+      <if test="agreementid != null" >
+        agreementid = #{agreementid,jdbcType=INTEGER},
+      </if>
+      <if test="actualstartdate != null" >
+        actualstartdate = #{actualstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualstarttime != null" >
+        actualstarttime = #{actualstarttime,jdbcType=INTEGER},
+      </if>
+      <if test="moname != null" >
+        moname = #{moname,jdbcType=VARCHAR},
+      </if>
+      <if test="tiid != null" >
+        tiid = #{tiid,jdbcType=INTEGER},
+      </if>
+      <if test="mocodeid != null" >
+        mocodeid = #{mocodeid,jdbcType=INTEGER},
+      </if>
+      <if test="mogroupid != null" >
+        mogroupid = #{mogroupid,jdbcType=INTEGER},
+      </if>
+      <if test="safetydocumentexist != null" >
+        safetydocumentexist = #{safetydocumentexist,jdbcType=TINYINT},
+      </if>
+      <if test="automaticestimatecounter != null" >
+        automaticestimatecounter = #{automaticestimatecounter,jdbcType=TINYINT},
+      </if>
+      <if test="requestedenddate != null" >
+        requestedenddate = #{requestedenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requestedstartdate != null" >
+        requestedstartdate = #{requestedstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobtypecodeid != null" >
+        jobtypecodeid = #{jobtypecodeid,jdbcType=INTEGER},
+      </if>
+      <if test="promisedenddate != null" >
+        promisedenddate = #{promisedenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roundid != null" >
+        roundid = #{roundid,jdbcType=INTEGER},
+      </if>
+      <if test="inspectioncontrol != null" >
+        inspectioncontrol = #{inspectioncontrol,jdbcType=VARCHAR},
+      </if>
+      <if test="customerinvoicestatus != null" >
+        customerinvoicestatus = #{customerinvoicestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="rootwoid != null" >
+        rootwoid = #{rootwoid,jdbcType=INTEGER},
+      </if>
+      <if test="wobarcode != null" >
+        wobarcode = #{wobarcode,jdbcType=DECIMAL},
+      </if>
+      <if test="totalregistrationcounter != null" >
+        totalregistrationcounter = #{totalregistrationcounter,jdbcType=DECIMAL},
+      </if>
+      <if test="registrationcounter != null" >
+        registrationcounter = #{registrationcounter,jdbcType=DECIMAL},
+      </if>
+      <if test="poscodeid != null" >
+        poscodeid = #{poscodeid,jdbcType=INTEGER},
+      </if>
+      <if test="posgroupid != null" >
+        posgroupid = #{posgroupid,jdbcType=INTEGER},
+      </if>
+      <if test="costcarrierid != null" >
+        costcarrierid = #{costcarrierid,jdbcType=INTEGER},
+      </if>
+      <if test="permitid != null" >
+        permitid = #{permitid,jdbcType=INTEGER},
+      </if>
+      <if test="requestedstarttime != null" >
+        requestedstarttime = #{requestedstarttime,jdbcType=INTEGER},
+      </if>
+      <if test="requestedendtime != null" >
+        requestedendtime = #{requestedendtime,jdbcType=INTEGER},
+      </if>
+      <if test="debitcosttypeid != null" >
+        debitcosttypeid = #{debitcosttypeid,jdbcType=INTEGER},
+      </if>
+      <if test="spid != null" >
+        spid = #{spid,jdbcType=INTEGER},
+      </if>
+      <if test="stockid != null" >
+        stockid = #{stockid,jdbcType=INTEGER},
+      </if>
+      <if test="quantityprodrepair != null" >
+        quantityprodrepair = #{quantityprodrepair,jdbcType=DECIMAL},
+      </if>
+      <if test="stocklocationkey != null" >
+        stocklocationkey = #{stocklocationkey,jdbcType=VARCHAR},
+      </if>
+      <if test="moskillid != null" >
+        moskillid = #{moskillid,jdbcType=INTEGER},
+      </if>
+      <if test="wnskillid != null" >
+        wnskillid = #{wnskillid,jdbcType=INTEGER},
+      </if>
+      <if test="exported != null" >
+        exported = #{exported,jdbcType=TINYINT},
+      </if>
+      <if test="stopbegindate != null" >
+        stopbegindate = #{stopbegindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopbegintime != null" >
+        stopbegintime = #{stopbegintime,jdbcType=INTEGER},
+      </if>
+      <if test="stopenddate != null" >
+        stopenddate = #{stopenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopendtime != null" >
+        stopendtime = #{stopendtime,jdbcType=INTEGER},
+      </if>
+      <if test="alwaysopen != null" >
+        alwaysopen = #{alwaysopen,jdbcType=TINYINT},
+      </if>
+      <if test="posname != null" >
+        posname = #{posname,jdbcType=VARCHAR},
+      </if>
+      <if test="generalskillid != null" >
+        generalskillid = #{generalskillid,jdbcType=INTEGER},
+      </if>
+      <if test="pmtemplatewoid != null" >
+        pmtemplatewoid = #{pmtemplatewoid,jdbcType=INTEGER},
+      </if>
+      <if test="plantid != null" >
+        plantid = #{plantid,jdbcType=INTEGER},
+      </if>
+      <if test="legalunitid != null" >
+        legalunitid = #{legalunitid,jdbcType=INTEGER},
+      </if>
+      <if test="legalunitcurrencykey != null" >
+        legalunitcurrencykey = #{legalunitcurrencykey,jdbcType=VARCHAR},
+      </if>
+      <if test="safetyassigneduuserid != null" >
+        safetyassigneduuserid = #{safetyassigneduuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="safetyassigneddate != null" >
+        safetyassigneddate = #{safetyassigneddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="safetyassignedtime != null" >
+        safetyassignedtime = #{safetyassignedtime,jdbcType=INTEGER},
+      </if>
+      <if test="starttimeoriginal != null" >
+        starttimeoriginal = #{starttimeoriginal,jdbcType=INTEGER},
+      </if>
+      <if test="safetyassignedstatus != null" >
+        safetyassignedstatus = #{safetyassignedstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="exportieid != null" >
+        exportieid = #{exportieid,jdbcType=INTEGER},
+      </if>
+      <if test="interfaceremark != null" >
+        interfaceremark = #{interfaceremark,jdbcType=VARCHAR},
+      </if>
+      <if test="interfacestatus != null" >
+        interfacestatus = #{interfacestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceiesequence != null" >
+        interfaceiesequence = #{interfaceiesequence,jdbcType=BIGINT},
+      </if>
+      <if test="approveddtz != null" >
+        approveddtz = #{approveddtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regapproveddtz != null" >
+        regapproveddtz = #{regapproveddtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastchangedtz != null" >
+        lastchangedtz = #{lastchangedtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastexportdtz != null" >
+        lastexportdtz = #{lastexportdtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastimportdtz != null" >
+        lastimportdtz = #{lastimportdtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualstartdtz != null" >
+        actualstartdtz = #{actualstartdtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobcarddtz != null" >
+        jobcarddtz = #{jobcarddtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobexecdtz != null" >
+        jobexecdtz = #{jobexecdtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderdtz != null" >
+        orderdtz = #{orderdtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="safetyassigneddtz != null" >
+        safetyassigneddtz = #{safetyassigneddtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordlanguageid != null" >
+        recordlanguageid = #{recordlanguageid,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuserid != null" >
+        createuserid = #{createuserid,jdbcType=INTEGER},
+      </if>
+      <if test="modificationdate != null" >
+        modificationdate = #{modificationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificationuserid != null" >
+        modificationuserid = #{modificationuserid,jdbcType=INTEGER},
+      </if>
+      <if test="picpath != null" >
+        picpath = #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        orgid = #{orgid,jdbcType=INTEGER},
+      </if>
+      <if test="stationsid != null" >
+        stationsid = #{stationsid,jdbcType=INTEGER},
+      </if>
+      <if test="subjobstatus != null" >
+        subjobstatus = #{subjobstatus,jdbcType=INTEGER},
+      </if>
+      <if test="jobinstructionheaderid != null" >
+        jobinstructionheaderid = #{jobinstructionheaderid,jdbcType=INTEGER},
+      </if>
+      <if test="momodelid != null" >
+        momodelid = #{momodelid,jdbcType=INTEGER},
+      </if>
+      <if test="receivesparepartsdate != null" >
+        receivesparepartsdate = #{receivesparepartsdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivalstationdate != null" >
+        arrivalstationdate = #{arrivalstationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivalstationlocation != null" >
+        arrivalstationlocation = #{arrivalstationlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalcompletiondate != null" >
+        technicalcompletiondate = #{technicalcompletiondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wopicpath1 != null" >
+        wopicpath1 = #{wopicpath1,jdbcType=VARCHAR},
+      </if>
+      <if test="wopicpath2 != null" >
+        wopicpath2 = #{wopicpath2,jdbcType=VARCHAR},
+      </if>
+      <if test="wopicpath3 != null" >
+        wopicpath3 = #{wopicpath3,jdbcType=VARCHAR},
+      </if>
+      <if test="positionname != null" >
+        positionname = #{positionname,jdbcType=VARCHAR},
+      </if>
+      <if test="createusername != null" >
+        createusername = #{createusername,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptstandard != null" >
+        acceptstandard = #{acceptstandard,jdbcType=VARCHAR},
+      </if>
+      <if test="audiopath != null" >
+        audiopath = #{audiopath,jdbcType=VARCHAR},
+      </if>
+      <if test="judgehumanid != null" >
+        judgehumanid = #{judgehumanid,jdbcType=VARCHAR},
+      </if>
+      <if test="judgegrade != null" >
+        judgegrade = #{judgegrade,jdbcType=INTEGER},
+      </if>
+      <if test="checked != null" >
+        checked = #{checked,jdbcType=INTEGER},
+      </if>
+      <if test="checkuserid != null" >
+        checkuserid = #{checkuserid,jdbcType=INTEGER},
+      </if>
+      <if test="worktaskid != null" >
+        worktaskid = #{worktaskid,jdbcType=INTEGER},
+      </if>
+      <if test="judgedescription != null" >
+        judgedescription = #{judgedescription,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptworkorderdate != null" >
+        acceptworkorderdate = #{acceptworkorderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="decideschemedate != null" >
+        decideschemedate = #{decideschemedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainposid != null" >
+        mainposid = #{mainposid,jdbcType=INTEGER},
+      </if>
+      <if test="rejectdescription != null" >
+        rejectdescription = #{rejectdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="nextnode != null" >
+        nextnode = #{nextnode,jdbcType=INTEGER},
+      </if>
+      <if test="decidedescription != null" >
+        decidedescription = #{decidedescription,jdbcType=VARCHAR},
+      </if>
+      <if test="characterization != null" >
+        characterization = #{characterization,jdbcType=VARCHAR},
+      </if>
+      <if test="extraid1 != null" >
+        extraid1 = #{extraid1,jdbcType=INTEGER},
+      </if>
+      <if test="extraid2 != null" >
+        extraid2 = #{extraid2,jdbcType=INTEGER},
+      </if>
+      <if test="extraid3 != null" >
+        extraid3 = #{extraid3,jdbcType=INTEGER},
+      </if>
+      <if test="extraid4 != null" >
+        extraid4 = #{extraid4,jdbcType=INTEGER},
+      </if>
+      <if test="extraid5 != null" >
+        extraid5 = #{extraid5,jdbcType=INTEGER},
+      </if>
+      <if test="extravarchar1 != null" >
+        extravarchar1 = #{extravarchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar2 != null" >
+        extravarchar2 = #{extravarchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar3 != null" >
+        extravarchar3 = #{extravarchar3,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar4 != null" >
+        extravarchar4 = #{extravarchar4,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar5 != null" >
+        extravarchar5 = #{extravarchar5,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar6 != null" >
+        extravarchar6 = #{extravarchar6,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar7 != null" >
+        extravarchar7 = #{extravarchar7,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar8 != null" >
+        extravarchar8 = #{extravarchar8,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar9 != null" >
+        extravarchar9 = #{extravarchar9,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar10 != null" >
+        extravarchar10 = #{extravarchar10,jdbcType=VARCHAR},
+      </if>
+      <if test="extradecimal1 != null" >
+        extradecimal1 = #{extradecimal1,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal2 != null" >
+        extradecimal2 = #{extradecimal2,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal3 != null" >
+        extradecimal3 = #{extradecimal3,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal4 != null" >
+        extradecimal4 = #{extradecimal4,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal5 != null" >
+        extradecimal5 = #{extradecimal5,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal6 != null" >
+        extradecimal6 = #{extradecimal6,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal7 != null" >
+        extradecimal7 = #{extradecimal7,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal8 != null" >
+        extradecimal8 = #{extradecimal8,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal9 != null" >
+        extradecimal9 = #{extradecimal9,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal10 != null" >
+        extradecimal10 = #{extradecimal10,jdbcType=DECIMAL},
+      </if>
+      <if test="extraint1 != null" >
+        extraint1 = #{extraint1,jdbcType=INTEGER},
+      </if>
+      <if test="extraint2 != null" >
+        extraint2 = #{extraint2,jdbcType=INTEGER},
+      </if>
+      <if test="extraint3 != null" >
+        extraint3 = #{extraint3,jdbcType=INTEGER},
+      </if>
+      <if test="extraint4 != null" >
+        extraint4 = #{extraint4,jdbcType=INTEGER},
+      </if>
+      <if test="extraint5 != null" >
+        extraint5 = #{extraint5,jdbcType=INTEGER},
+      </if>
+      <if test="extradatetime1 != null" >
+        extradatetime1 = #{extradatetime1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extradatetime2 != null" >
+        extradatetime2 = #{extradatetime2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extradatetime3 != null" >
+        extradatetime3 = #{extradatetime3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extradatetime4 != null" >
+        extradatetime4 = #{extradatetime4,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extradatetime5 != null" >
+        extradatetime5 = #{extradatetime5,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobstandard != null" >
+        jobstandard = #{jobstandard,jdbcType=VARCHAR},
+      </if>
+      <if test="jobmethod != null" >
+        jobmethod = #{jobmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null" >
+        typeid = #{typeid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="update" parameterType="WorkorderEntity" >
+    update workorder
+    <set >
+      <if test="wokey != null" >
+        wokey = #{wokey,jdbcType=VARCHAR},
+      </if>
+      <if test="woname != null" >
+        woname = #{woname,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtype != null" >
+        jobtype = #{jobtype,jdbcType=INTEGER},
+      </if>
+      <if test="jobstatus != null" >
+        jobstatus = #{jobstatus,jdbcType=INTEGER},
+      </if>
+      <if test="moid != null" >
+        moid = #{moid,jdbcType=INTEGER},
+      </if>
+      <if test="posid != null" >
+        posid = #{posid,jdbcType=INTEGER},
+      </if>
+      <if test="accountid != null" >
+        accountid = #{accountid,jdbcType=INTEGER},
+      </if>
+      <if test="costpurposeid != null" >
+        costpurposeid = #{costpurposeid,jdbcType=INTEGER},
+      </if>
+      <if test="costtypeid != null" >
+        costtypeid = #{costtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="workcategoryid != null" >
+        workcategoryid = #{workcategoryid,jdbcType=INTEGER},
+      </if>
+      <if test="worknoteid != null" >
+        worknoteid = #{worknoteid,jdbcType=INTEGER},
+      </if>
+      <if test="jobcodeid != null" >
+        jobcodeid = #{jobcodeid,jdbcType=INTEGER},
+      </if>
+      <if test="conditionsid != null" >
+        conditionsid = #{conditionsid,jdbcType=INTEGER},
+      </if>
+      <if test="worksupplierid != null" >
+        worksupplierid = #{worksupplierid,jdbcType=INTEGER},
+      </if>
+      <if test="counterid != null" >
+        counterid = #{counterid,jdbcType=INTEGER},
+      </if>
+      <if test="code1id != null" >
+        code1id = #{code1id,jdbcType=INTEGER},
+      </if>
+      <if test="code2id != null" >
+        code2id = #{code2id,jdbcType=INTEGER},
+      </if>
+      <if test="code3id != null" >
+        code3id = #{code3id,jdbcType=INTEGER},
+      </if>
+      <if test="projectid != null" >
+        projectid = #{projectid,jdbcType=INTEGER},
+      </if>
+      <if test="intervaltime != null" >
+        intervaltime = #{intervaltime,jdbcType=INTEGER},
+      </if>
+      <if test="intervaltimeunit != null" >
+        intervaltimeunit = #{intervaltimeunit,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedinterval != null" >
+        fixedinterval = #{fixedinterval,jdbcType=TINYINT},
+      </if>
+      <if test="intervalcount != null" >
+        intervalcount = #{intervalcount,jdbcType=DECIMAL},
+      </if>
+      <if test="intervalcountnext != null" >
+        intervalcountnext = #{intervalcountnext,jdbcType=DECIMAL},
+      </if>
+      <if test="inprogress != null" >
+        inprogress = #{inprogress,jdbcType=TINYINT},
+      </if>
+      <if test="peoplenumber != null" >
+        peoplenumber = #{peoplenumber,jdbcType=INTEGER},
+      </if>
+      <if test="jobcard != null" >
+        jobcard = #{jobcard,jdbcType=TINYINT},
+      </if>
+      <if test="stopped != null" >
+        stopped = #{stopped,jdbcType=TINYINT},
+      </if>
+      <if test="priorityid != null" >
+        priorityid = #{priorityid,jdbcType=INTEGER},
+      </if>
+      <if test="orderedid != null" >
+        orderedid = #{orderedid,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="orderdate != null" >
+        orderdate = #{orderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ordertime != null" >
+        ordertime = #{ordertime,jdbcType=TIME},
+      </if>
+      <if test="plannedstartdate != null" >
+        plannedstartdate = #{plannedstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plannedstarttime != null" >
+        plannedstarttime = #{plannedstarttime,jdbcType=TIME},
+      </if>
+      <if test="plannedenddate != null" >
+        plannedenddate = #{plannedenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plannedendtime != null" >
+        plannedendtime = #{plannedendtime,jdbcType=TIME},
+      </if>
+      <if test="startdate != null" >
+        startdate = #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="starttime != null" >
+        starttime = #{starttime,jdbcType=TIME},
+      </if>
+      <if test="stopedstartdate != null" >
+        stopedstartdate = #{stopedstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopedstarttime != null" >
+        stopedstarttime = #{stopedstarttime,jdbcType=TIME},
+      </if>
+      <if test="stopedenddate != null" >
+        stopedenddate = #{stopedenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopedendtime != null" >
+        stopedendtime = #{stopedendtime,jdbcType=TIME},
+      </if>
+      <if test="linestoppedsecond != null" >
+        linestoppedsecond = #{linestoppedsecond,jdbcType=INTEGER},
+      </if>
+      <if test="stopedsecond != null" >
+        stopedsecond = #{stopedsecond,jdbcType=INTEGER},
+      </if>
+      <if test="worksecond != null" >
+        worksecond = #{worksecond,jdbcType=INTEGER},
+      </if>
+      <if test="waitsecond != null" >
+        waitsecond = #{waitsecond,jdbcType=INTEGER},
+      </if>
+      <if test="executecycletype != null" >
+        executecycletype = #{executecycletype,jdbcType=INTEGER},
+      </if>
+      <if test="executecyclevalue != null" >
+        executecyclevalue = #{executecyclevalue,jdbcType=INTEGER},
+      </if>
+      <if test="fixedexecutecycle != null" >
+        fixedexecutecycle = #{fixedexecutecycle,jdbcType=INTEGER},
+      </if>
+      <if test="maintenanceobjectgroupid != null" >
+        maintenanceobjectgroupid = #{maintenanceobjectgroupid,jdbcType=INTEGER},
+      </if>
+      <if test="workpackageid != null" >
+        workpackageid = #{workpackageid,jdbcType=INTEGER},
+      </if>
+      <if test="errorcode1id != null" >
+        errorcode1id = #{errorcode1id,jdbcType=INTEGER},
+      </if>
+      <if test="errorcode1name != null" >
+        errorcode1name = #{errorcode1name,jdbcType=VARCHAR},
+      </if>
+      <if test="errorcode2id != null" >
+        errorcode2id = #{errorcode2id,jdbcType=INTEGER},
+      </if>
+      <if test="errorcode2name != null" >
+        errorcode2name = #{errorcode2name,jdbcType=VARCHAR},
+      </if>
+      <if test="errorcode3id != null" >
+        errorcode3id = #{errorcode3id,jdbcType=INTEGER},
+      </if>
+      <if test="errorcode3name != null" >
+        errorcode3name = #{errorcode3name,jdbcType=VARCHAR},
+      </if>
+      <if test="finishedhumanid != null" >
+        finishedhumanid = #{finishedhumanid,jdbcType=INTEGER},
+      </if>
+      <if test="prodhumanid != null" >
+        prodhumanid = #{prodhumanid,jdbcType=INTEGER},
+      </if>
+      <if test="proddescription != null" >
+        proddescription = #{proddescription,jdbcType=VARCHAR},
+      </if>
+      <if test="jobcarddate != null" >
+        jobcarddate = #{jobcarddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobcardtime != null" >
+        jobcardtime = #{jobcardtime,jdbcType=TIME},
+      </if>
+      <if test="jobexecdate != null" >
+        jobexecdate = #{jobexecdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enddate != null" >
+        enddate = #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=TIME},
+      </if>
+      <if test="plannedstoptime != null" >
+        plannedstoptime = #{plannedstoptime,jdbcType=DECIMAL},
+      </if>
+      <if test="stoptime != null" >
+        stoptime = #{stoptime,jdbcType=DECIMAL},
+      </if>
+      <if test="waittime != null" >
+        waittime = #{waittime,jdbcType=DECIMAL},
+      </if>
+      <if test="spartime != null" >
+        spartime = #{spartime,jdbcType=DECIMAL},
+      </if>
+      <if test="pmtaskno != null" >
+        pmtaskno = #{pmtaskno,jdbcType=BIGINT},
+      </if>
+      <if test="jobexectime != null" >
+        jobexectime = #{jobexectime,jdbcType=DECIMAL},
+      </if>
+      <if test="counterformat != null" >
+        counterformat = #{counterformat,jdbcType=VARCHAR},
+      </if>
+      <if test="safetyworknoteid != null" >
+        safetyworknoteid = #{safetyworknoteid,jdbcType=INTEGER},
+      </if>
+      <if test="linestopped != null" >
+        linestopped = #{linestopped,jdbcType=TINYINT},
+      </if>
+      <if test="notexecutedtimes != null" >
+        notexecutedtimes = #{notexecutedtimes,jdbcType=INTEGER},
+      </if>
+      <if test="relatedtowoid != null" >
+        relatedtowoid = #{relatedtowoid,jdbcType=INTEGER},
+      </if>
+      <if test="lastchangedate != null" >
+        lastchangedate = #{lastchangedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastchangetime != null" >
+        lastchangetime = #{lastchangetime,jdbcType=INTEGER},
+      </if>
+      <if test="lastexportdate != null" >
+        lastexportdate = #{lastexportdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastexporttime != null" >
+        lastexporttime = #{lastexporttime,jdbcType=INTEGER},
+      </if>
+      <if test="lastimportdate != null" >
+        lastimportdate = #{lastimportdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastimporttime != null" >
+        lastimporttime = #{lastimporttime,jdbcType=INTEGER},
+      </if>
+      <if test="suborderflag != null" >
+        suborderflag = #{suborderflag,jdbcType=TINYINT},
+      </if>
+      <if test="replacewoid != null" >
+        replacewoid = #{replacewoid,jdbcType=INTEGER},
+      </if>
+      <if test="replaceinterval != null" >
+        replaceinterval = #{replaceinterval,jdbcType=INTEGER},
+      </if>
+      <if test="replaceexecution != null" >
+        replaceexecution = #{replaceexecution,jdbcType=INTEGER},
+      </if>
+      <if test="approvedbyuuserid != null" >
+        approvedbyuuserid = #{approvedbyuuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="approveddate != null" >
+        approveddate = #{approveddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approvedtime != null" >
+        approvedtime = #{approvedtime,jdbcType=INTEGER},
+      </if>
+      <if test="approvedstatus != null" >
+        approvedstatus = #{approvedstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="regapprovedbyuuserid != null" >
+        regapprovedbyuuserid = #{regapprovedbyuuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="regapproveddate != null" >
+        regapproveddate = #{regapproveddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regapprovedtime != null" >
+        regapprovedtime = #{regapprovedtime,jdbcType=INTEGER},
+      </if>
+      <if test="regapprovedstatus != null" >
+        regapprovedstatus = #{regapprovedstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="siteid != null" >
+        siteid = #{siteid,jdbcType=INTEGER},
+      </if>
+      <if test="recordactive != null" >
+        recordactive = #{recordactive,jdbcType=TINYINT},
+      </if>
+      <if test="rollout != null" >
+        rollout = #{rollout,jdbcType=TINYINT},
+      </if>
+      <if test="startdatemin != null" >
+        startdatemin = #{startdatemin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startdatemax != null" >
+        startdatemax = #{startdatemax,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startdateoriginal != null" >
+        startdateoriginal = #{startdateoriginal,jdbcType=TIMESTAMP},
+      </if>
+      <if test="intervalcountmin != null" >
+        intervalcountmin = #{intervalcountmin,jdbcType=DECIMAL},
+      </if>
+      <if test="intervalcountmax != null" >
+        intervalcountmax = #{intervalcountmax,jdbcType=DECIMAL},
+      </if>
+      <if test="intervalcountoriginal != null" >
+        intervalcountoriginal = #{intervalcountoriginal,jdbcType=DECIMAL},
+      </if>
+      <if test="startdateesttype != null" >
+        startdateesttype = #{startdateesttype,jdbcType=INTEGER},
+      </if>
+      <if test="extrawoinfo1 != null" >
+        extrawoinfo1 = #{extrawoinfo1,jdbcType=VARCHAR},
+      </if>
+      <if test="extrawoinfo2 != null" >
+        extrawoinfo2 = #{extrawoinfo2,jdbcType=VARCHAR},
+      </if>
+      <if test="extrawoinfo3 != null" >
+        extrawoinfo3 = #{extrawoinfo3,jdbcType=VARCHAR},
+      </if>
+      <if test="customerid != null" >
+        customerid = #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="budgetextwork != null" >
+        budgetextwork = #{budgetextwork,jdbcType=DECIMAL},
+      </if>
+      <if test="budgetintwork != null" >
+        budgetintwork = #{budgetintwork,jdbcType=DECIMAL},
+      </if>
+      <if test="budgetstckmaterial != null" >
+        budgetstckmaterial = #{budgetstckmaterial,jdbcType=DECIMAL},
+      </if>
+      <if test="budgetothmaterial != null" >
+        budgetothmaterial = #{budgetothmaterial,jdbcType=DECIMAL},
+      </if>
+      <if test="budgetservices != null" >
+        budgetservices = #{budgetservices,jdbcType=DECIMAL},
+      </if>
+      <if test="customerwo != null" >
+        customerwo = #{customerwo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerorderdate != null" >
+        customerorderdate = #{customerorderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerlatestdelivery != null" >
+        customerlatestdelivery = #{customerlatestdelivery,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customercalcmethod != null" >
+        customercalcmethod = #{customercalcmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceextwork != null" >
+        invoiceextwork = #{invoiceextwork,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceintwork != null" >
+        invoiceintwork = #{invoiceintwork,jdbcType=DECIMAL},
+      </if>
+      <if test="invoicestckmaterial != null" >
+        invoicestckmaterial = #{invoicestckmaterial,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceothmaterial != null" >
+        invoiceothmaterial = #{invoiceothmaterial,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceservices != null" >
+        invoiceservices = #{invoiceservices,jdbcType=DECIMAL},
+      </if>
+      <if test="finishworksupplierid != null" >
+        finishworksupplierid = #{finishworksupplierid,jdbcType=INTEGER},
+      </if>
+      <if test="extrawoinfo4 != null" >
+        extrawoinfo4 = #{extrawoinfo4,jdbcType=VARCHAR},
+      </if>
+      <if test="extrawoinfo5 != null" >
+        extrawoinfo5 = #{extrawoinfo5,jdbcType=VARCHAR},
+      </if>
+      <if test="clusterid != null" >
+        clusterid = #{clusterid,jdbcType=INTEGER},
+      </if>
+      <if test="agreementid != null" >
+        agreementid = #{agreementid,jdbcType=INTEGER},
+      </if>
+      <if test="actualstartdate != null" >
+        actualstartdate = #{actualstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualstarttime != null" >
+        actualstarttime = #{actualstarttime,jdbcType=INTEGER},
+      </if>
+      <if test="moname != null" >
+        moname = #{moname,jdbcType=VARCHAR},
+      </if>
+      <if test="tiid != null" >
+        tiid = #{tiid,jdbcType=INTEGER},
+      </if>
+      <if test="mocodeid != null" >
+        mocodeid = #{mocodeid,jdbcType=INTEGER},
+      </if>
+      <if test="mogroupid != null" >
+        mogroupid = #{mogroupid,jdbcType=INTEGER},
+      </if>
+      <if test="safetydocumentexist != null" >
+        safetydocumentexist = #{safetydocumentexist,jdbcType=TINYINT},
+      </if>
+      <if test="automaticestimatecounter != null" >
+        automaticestimatecounter = #{automaticestimatecounter,jdbcType=TINYINT},
+      </if>
+      <if test="requestedenddate != null" >
+        requestedenddate = #{requestedenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requestedstartdate != null" >
+        requestedstartdate = #{requestedstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobtypecodeid != null" >
+        jobtypecodeid = #{jobtypecodeid,jdbcType=INTEGER},
+      </if>
+      <if test="promisedenddate != null" >
+        promisedenddate = #{promisedenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roundid != null" >
+        roundid = #{roundid,jdbcType=INTEGER},
+      </if>
+      <if test="inspectioncontrol != null" >
+        inspectioncontrol = #{inspectioncontrol,jdbcType=VARCHAR},
+      </if>
+      <if test="customerinvoicestatus != null" >
+        customerinvoicestatus = #{customerinvoicestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="rootwoid != null" >
+        rootwoid = #{rootwoid,jdbcType=INTEGER},
+      </if>
+      <if test="wobarcode != null" >
+        wobarcode = #{wobarcode,jdbcType=DECIMAL},
+      </if>
+      <if test="totalregistrationcounter != null" >
+        totalregistrationcounter = #{totalregistrationcounter,jdbcType=DECIMAL},
+      </if>
+      <if test="registrationcounter != null" >
+        registrationcounter = #{registrationcounter,jdbcType=DECIMAL},
+      </if>
+      <if test="poscodeid != null" >
+        poscodeid = #{poscodeid,jdbcType=INTEGER},
+      </if>
+      <if test="posgroupid != null" >
+        posgroupid = #{posgroupid,jdbcType=INTEGER},
+      </if>
+      <if test="costcarrierid != null" >
+        costcarrierid = #{costcarrierid,jdbcType=INTEGER},
+      </if>
+      <if test="permitid != null" >
+        permitid = #{permitid,jdbcType=INTEGER},
+      </if>
+      <if test="requestedstarttime != null" >
+        requestedstarttime = #{requestedstarttime,jdbcType=INTEGER},
+      </if>
+      <if test="requestedendtime != null" >
+        requestedendtime = #{requestedendtime,jdbcType=INTEGER},
+      </if>
+      <if test="debitcosttypeid != null" >
+        debitcosttypeid = #{debitcosttypeid,jdbcType=INTEGER},
+      </if>
+      <if test="spid != null" >
+        spid = #{spid,jdbcType=INTEGER},
+      </if>
+      <if test="stockid != null" >
+        stockid = #{stockid,jdbcType=INTEGER},
+      </if>
+      <if test="quantityprodrepair != null" >
+        quantityprodrepair = #{quantityprodrepair,jdbcType=DECIMAL},
+      </if>
+      <if test="stocklocationkey != null" >
+        stocklocationkey = #{stocklocationkey,jdbcType=VARCHAR},
+      </if>
+      <if test="moskillid != null" >
+        moskillid = #{moskillid,jdbcType=INTEGER},
+      </if>
+      <if test="wnskillid != null" >
+        wnskillid = #{wnskillid,jdbcType=INTEGER},
+      </if>
+      <if test="exported != null" >
+        exported = #{exported,jdbcType=TINYINT},
+      </if>
+      <if test="stopbegindate != null" >
+        stopbegindate = #{stopbegindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopbegintime != null" >
+        stopbegintime = #{stopbegintime,jdbcType=INTEGER},
+      </if>
+      <if test="stopenddate != null" >
+        stopenddate = #{stopenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopendtime != null" >
+        stopendtime = #{stopendtime,jdbcType=INTEGER},
+      </if>
+      <if test="alwaysopen != null" >
+        alwaysopen = #{alwaysopen,jdbcType=TINYINT},
+      </if>
+      <if test="posname != null" >
+        posname = #{posname,jdbcType=VARCHAR},
+      </if>
+      <if test="generalskillid != null" >
+        generalskillid = #{generalskillid,jdbcType=INTEGER},
+      </if>
+      <if test="pmtemplatewoid != null" >
+        pmtemplatewoid = #{pmtemplatewoid,jdbcType=INTEGER},
+      </if>
+      <if test="plantid != null" >
+        plantid = #{plantid,jdbcType=INTEGER},
+      </if>
+      <if test="legalunitid != null" >
+        legalunitid = #{legalunitid,jdbcType=INTEGER},
+      </if>
+      <if test="legalunitcurrencykey != null" >
+        legalunitcurrencykey = #{legalunitcurrencykey,jdbcType=VARCHAR},
+      </if>
+      <if test="safetyassigneduuserid != null" >
+        safetyassigneduuserid = #{safetyassigneduuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="safetyassigneddate != null" >
+        safetyassigneddate = #{safetyassigneddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="safetyassignedtime != null" >
+        safetyassignedtime = #{safetyassignedtime,jdbcType=INTEGER},
+      </if>
+      <if test="starttimeoriginal != null" >
+        starttimeoriginal = #{starttimeoriginal,jdbcType=INTEGER},
+      </if>
+      <if test="safetyassignedstatus != null" >
+        safetyassignedstatus = #{safetyassignedstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="exportieid != null" >
+        exportieid = #{exportieid,jdbcType=INTEGER},
+      </if>
+      <if test="interfaceremark != null" >
+        interfaceremark = #{interfaceremark,jdbcType=VARCHAR},
+      </if>
+      <if test="interfacestatus != null" >
+        interfacestatus = #{interfacestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceiesequence != null" >
+        interfaceiesequence = #{interfaceiesequence,jdbcType=BIGINT},
+      </if>
+      <if test="approveddtz != null" >
+        approveddtz = #{approveddtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regapproveddtz != null" >
+        regapproveddtz = #{regapproveddtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastchangedtz != null" >
+        lastchangedtz = #{lastchangedtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastexportdtz != null" >
+        lastexportdtz = #{lastexportdtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastimportdtz != null" >
+        lastimportdtz = #{lastimportdtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualstartdtz != null" >
+        actualstartdtz = #{actualstartdtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobcarddtz != null" >
+        jobcarddtz = #{jobcarddtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobexecdtz != null" >
+        jobexecdtz = #{jobexecdtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderdtz != null" >
+        orderdtz = #{orderdtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="safetyassigneddtz != null" >
+        safetyassigneddtz = #{safetyassigneddtz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordlanguageid != null" >
+        recordlanguageid = #{recordlanguageid,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuserid != null" >
+        createuserid = #{createuserid,jdbcType=INTEGER},
+      </if>
+      <if test="modificationdate != null" >
+        modificationdate = #{modificationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificationuserid != null" >
+        modificationuserid = #{modificationuserid,jdbcType=INTEGER},
+      </if>
+      <if test="picpath != null" >
+        picpath = #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        orgid = #{orgid,jdbcType=INTEGER},
+      </if>
+      <if test="stationsid != null" >
+        stationsid = #{stationsid,jdbcType=INTEGER},
+      </if>
+      <if test="subjobstatus != null" >
+        subjobstatus = #{subjobstatus,jdbcType=INTEGER},
+      </if>
+      <if test="jobinstructionheaderid != null" >
+        jobinstructionheaderid = #{jobinstructionheaderid,jdbcType=INTEGER},
+      </if>
+      <if test="momodelid != null" >
+        momodelid = #{momodelid,jdbcType=INTEGER},
+      </if>
+      <if test="receivesparepartsdate != null" >
+        receivesparepartsdate = #{receivesparepartsdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivalstationdate != null" >
+        arrivalstationdate = #{arrivalstationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivalstationlocation != null" >
+        arrivalstationlocation = #{arrivalstationlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalcompletiondate != null" >
+        technicalcompletiondate = #{technicalcompletiondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wopicpath1 != null" >
+        wopicpath1 = #{wopicpath1,jdbcType=VARCHAR},
+      </if>
+      <if test="wopicpath2 != null" >
+        wopicpath2 = #{wopicpath2,jdbcType=VARCHAR},
+      </if>
+      <if test="wopicpath3 != null" >
+        wopicpath3 = #{wopicpath3,jdbcType=VARCHAR},
+      </if>
+      <if test="positionname != null" >
+        positionname = #{positionname,jdbcType=VARCHAR},
+      </if>
+      <if test="createusername != null" >
+        createusername = #{createusername,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptstandard != null" >
+        acceptstandard = #{acceptstandard,jdbcType=VARCHAR},
+      </if>
+      <if test="audiopath != null" >
+        audiopath = #{audiopath,jdbcType=VARCHAR},
+      </if>
+      <if test="judgehumanid != null" >
+        judgehumanid = #{judgehumanid,jdbcType=VARCHAR},
+      </if>
+      <if test="judgegrade != null" >
+        judgegrade = #{judgegrade,jdbcType=INTEGER},
+      </if>
+      <if test="checked != null" >
+        checked = #{checked,jdbcType=INTEGER},
+      </if>
+      <if test="checkuserid != null" >
+        checkuserid = #{checkuserid,jdbcType=INTEGER},
+      </if>
+      <if test="worktaskid != null" >
+        worktaskid = #{worktaskid,jdbcType=INTEGER},
+      </if>
+      <if test="judgedescription != null" >
+        judgedescription = #{judgedescription,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptworkorderdate != null" >
+        acceptworkorderdate = #{acceptworkorderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="decideschemedate != null" >
+        decideschemedate = #{decideschemedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainposid != null" >
+        mainposid = #{mainposid,jdbcType=INTEGER},
+      </if>
+      <if test="rejectdescription != null" >
+        rejectdescription = #{rejectdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="nextnode != null" >
+        nextnode = #{nextnode,jdbcType=INTEGER},
+      </if>
+      <if test="decidedescription != null" >
+        decidedescription = #{decidedescription,jdbcType=VARCHAR},
+      </if>
+      <if test="characterization != null" >
+        characterization = #{characterization,jdbcType=VARCHAR},
+      </if>
+      <if test="extraid1 != null" >
+        extraid1 = #{extraid1,jdbcType=INTEGER},
+      </if>
+      <if test="extraid2 != null" >
+        extraid2 = #{extraid2,jdbcType=INTEGER},
+      </if>
+      <if test="extraid3 != null" >
+        extraid3 = #{extraid3,jdbcType=INTEGER},
+      </if>
+      <if test="extraid4 != null" >
+        extraid4 = #{extraid4,jdbcType=INTEGER},
+      </if>
+      <if test="extraid5 != null" >
+        extraid5 = #{extraid5,jdbcType=INTEGER},
+      </if>
+      <if test="extravarchar1 != null" >
+        extravarchar1 = #{extravarchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar2 != null" >
+        extravarchar2 = #{extravarchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar3 != null" >
+        extravarchar3 = #{extravarchar3,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar4 != null" >
+        extravarchar4 = #{extravarchar4,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar5 != null" >
+        extravarchar5 = #{extravarchar5,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar6 != null" >
+        extravarchar6 = #{extravarchar6,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar7 != null" >
+        extravarchar7 = #{extravarchar7,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar8 != null" >
+        extravarchar8 = #{extravarchar8,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar9 != null" >
+        extravarchar9 = #{extravarchar9,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar10 != null" >
+        extravarchar10 = #{extravarchar10,jdbcType=VARCHAR},
+      </if>
+      <if test="extradecimal1 != null" >
+        extradecimal1 = #{extradecimal1,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal2 != null" >
+        extradecimal2 = #{extradecimal2,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal3 != null" >
+        extradecimal3 = #{extradecimal3,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal4 != null" >
+        extradecimal4 = #{extradecimal4,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal5 != null" >
+        extradecimal5 = #{extradecimal5,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal6 != null" >
+        extradecimal6 = #{extradecimal6,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal7 != null" >
+        extradecimal7 = #{extradecimal7,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal8 != null" >
+        extradecimal8 = #{extradecimal8,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal9 != null" >
+        extradecimal9 = #{extradecimal9,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal10 != null" >
+        extradecimal10 = #{extradecimal10,jdbcType=DECIMAL},
+      </if>
+      <if test="extraint1 != null" >
+        extraint1 = #{extraint1,jdbcType=INTEGER},
+      </if>
+      <if test="extraint2 != null" >
+        extraint2 = #{extraint2,jdbcType=INTEGER},
+      </if>
+      <if test="extraint3 != null" >
+        extraint3 = #{extraint3,jdbcType=INTEGER},
+      </if>
+      <if test="extraint4 != null" >
+        extraint4 = #{extraint4,jdbcType=INTEGER},
+      </if>
+      <if test="extraint5 != null" >
+        extraint5 = #{extraint5,jdbcType=INTEGER},
+      </if>
+      <if test="extradatetime1 != null" >
+        extradatetime1 = #{extradatetime1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extradatetime2 != null" >
+        extradatetime2 = #{extradatetime2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extradatetime3 != null" >
+        extradatetime3 = #{extradatetime3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extradatetime4 != null" >
+        extradatetime4 = #{extradatetime4,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extradatetime5 != null" >
+        extradatetime5 = #{extradatetime5,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobstandard != null" >
+        jobstandard = #{jobstandard,jdbcType=VARCHAR},
+      </if>
+      <if test="jobmethod != null" >
+        jobmethod = #{jobmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null" >
+        typeid = #{typeid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectPmWorkorder" resultMap="BaseResultMap" parameterType="WorkorderEntity" >
+    select w.id, w.wokey, w.woname,w.jobtype, w.jobstatus
+    from workorder w
+    <where>
+      AND <![CDATA[ w.plannedstartdate < NOW() ]]>
+      AND w.jobtype=3
+      AND w.jobstatus=1
+    </where>
+  </select>
+</mapper>

@@ -1,0 +1,24 @@
+package com.mingcloud.proxy.logiclayer.messagehandler.messagedistance;
+
+import com.mingcloud.proxy.logiclayer.messagehandler.messagedto.MessageDto;
+
+/**
+ * Created by zyn on 2018/9/1
+ */
+public interface MessageStrategy {
+
+    /**
+     * 类型
+     */
+    int OFFICALWECHAT = 0;
+
+
+
+    int EMAIL = 1;
+
+    int STORAGE_MESSAGE = -1;
+
+    int GEELYC3=2;
+
+    boolean sendMessage(MessageDto dto);
+}

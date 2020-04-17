@@ -1,0 +1,25 @@
+package com.mingcloud.proxy.datalayer.dao.archiveinfo;
+
+import com.mingcloud.proxy.datalayer.dao.BaseMapper;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.MaintenanceobjectEntity;
+
+import java.util.List;
+
+
+public interface MaintenanceobjectMapper extends BaseMapper<MaintenanceobjectEntity>{
+	
+	List<MaintenanceobjectEntity> getByRootpath(MaintenanceobjectEntity entity);
+	
+	List<MaintenanceobjectEntity> selectAllApi();
+
+	List<MaintenanceobjectEntity> selectAllInverter(MaintenanceobjectEntity entity);
+
+	/**
+	 * 奇瑞获取设备
+	 * @return
+	 */
+	List<MaintenanceobjectEntity> selectAllChery();
+
+	MaintenanceobjectEntity selectByMoKey(String mokey);
+
+}

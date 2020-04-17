@@ -1,0 +1,8 @@
+package com.mingcloud.proxy.datalayer.dao.apipro;
+
+import com.mingcloud.proxy.datalayer.dao.BaseMapper;
+import com.mingcloud.proxy.datalayer.entity.apipro.GeSapMoEntity;
+
+public interface GeSapMoMapper extends BaseMapper<GeSapMoEntity>{
+
+}

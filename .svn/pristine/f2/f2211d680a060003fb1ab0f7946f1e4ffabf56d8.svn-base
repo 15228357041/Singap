@@ -1,0 +1,316 @@
+package com.mingcloud.proxy.logiclayer.transactionshandler;
+
+import com.mingcloud.proxy.common.WoKeyRelationStockEnum;
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.*;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.Rdrecords11Dto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.*;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.log4j.Logger;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+public class TransactionsDataOutThread implements Runnable {
+	private static Logger logger = Logger.getLogger(TransactionsDataOutThread.class);
+	
+	private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+	
+	private DataCenter dataCenter = DataCenter.getInstance();
+	
+	private WorkorderMapper workorderMapper = SpringContextUtil.getBean("workorderMapper");
+	private SparepartMapper sparepartMapper = SpringContextUtil.getBean("sparepartMapper");
+	private StockMapper stockMapper = SpringContextUtil.getBean("stockMapper");
+	private StockcontrolMapper stockcontrolMapper = SpringContextUtil.getBean("stockcontrolMapper");
+	private UseditemsMapper useditemsMapper = SpringContextUtil.getBean("useditemsMapper");
+	private TransactionsMapper transactionsMapper = SpringContextUtil.getBean("transactionsMapper");
+	
+	private static Integer rdrecords11listSize = 0;
+
+	public TransactionsDataOutThread() {
+		// TODO Auto-generated constructor stub
+		// 设置数据源为MySql
+		jdbcChange.changeJdbc(JdbcChange.mySqlDataSource);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		logger.info("TransactionsDataOutThread begin");
+		
+		while (true) {
+			try {
+				if (dataCenter.getRdrecords11listSize() > 0) {
+					rdrecords11listSize = dataCenter.getRdrecords11listSize();
+					InsertTransactions();
+					logger.info("TransactionsDataCenter Size:" + (rdrecords11listSize-1));
+				}
+				Thread.sleep(100);
+			} catch (Exception e) {
+				logger.error("TransactionsDataOutThread: " + e);
+			}
+		}
+	}
+	
+	private void InsertTransactions() {
+        Rdrecords11Dto dto = dataCenter.popRdrecords11list();
+        //U8中代表工单编号的字段，虚拟工单以R开头，正常工单一般以CM开头
+        String wokey = dto.getCdefine2();
+        //虚拟工单
+        if (wokey.startsWith("R")) {
+            //处理虚拟工单
+            handleStockFictitiousWokey(dto);
+        } else {
+            //处理正常工单领料
+            handleStockRealWoKey(dto);
+        }
+	}
+
+    private  void handleStockRealWoKey(Rdrecords11Dto dto){
+        try {
+            if (null == dto.getIquantity() || dto.getIquantity().intValue() <= 0) {
+                throw new Exception("出库数量不能小于0");
+            }
+
+            BigDecimal iquantity = dto.getIquantity();
+            BigDecimal price = dto.getIprice();
+
+            WorkorderEntity workEntity = new WorkorderEntity();
+            workEntity.setWokey(dto.getCdefine2());
+            WorkorderEntity workorderEntity = workorderMapper.get(workEntity);
+            if (null == workorderEntity) {
+                throw new Exception("查询不到相关工单信息");
+            }
+            if (null == workorderEntity.getStockid()){
+                throw new Exception("工单的仓库信息不能为空");
+            }
+
+            SparepartEntity spEntity = new SparepartEntity();
+            spEntity.setSparepartkey(dto.getCinvcode());
+            SparepartEntity sparepartEntity = sparepartMapper.get(spEntity);
+            if (null == sparepartEntity) {
+                throw new Exception("查询不到相关备件信息");
+            }
+
+            //出库的仓库信息
+            StockEntity stEntity = new StockEntity();
+            stEntity.setStockkey(dto.getCwhcode());
+            StockEntity outStockEntity = stockMapper.get(stEntity);
+
+            if (null == outStockEntity) {
+                throw new Exception("查询不到出库仓库信息");
+            }
+
+            //根据工单的仓库id,查询入库仓库信息
+            StockEntity inStock = new StockEntity();
+            inStock.setId(workorderEntity.getStockid());
+            StockEntity inStockEntity = stockMapper.get(inStock);
+            if(null == inStockEntity){
+                throw new Exception("查询不到入库仓库信息");
+            }
+
+
+            TransactionsEntity outTransEntity = new TransactionsEntity();
+            TransactionsEntity inTransEntity = new TransactionsEntity();
+            UseditemsEntity useditemsEntity = new UseditemsEntity();
+
+            outTransEntity.setSpid(sparepartEntity.getId());
+            outTransEntity.setTranstype(outStockEntity.getStocktype());
+            outTransEntity.setRelationid(workorderEntity.getId());
+            outTransEntity.setStockid(outStockEntity.getId());
+            outTransEntity.setQty(iquantity.multiply(new BigDecimal(-1)));
+            outTransEntity.setPrice(price);
+            outTransEntity.setMemo(dto.getCmemo());
+            outTransEntity.setParentid(dto.getId());
+
+            inTransEntity.setSpid(sparepartEntity.getId());
+            inTransEntity.setTranstype(inStockEntity.getStocktype());
+            inTransEntity.setRelationid(workorderEntity.getId());
+            inTransEntity.setStockid(workorderEntity.getStockid());
+            inTransEntity.setQty(iquantity);
+            inTransEntity.setPrice(price);
+            inTransEntity.setMemo(dto.getCmemo());
+            inTransEntity.setParentid(dto.getId());
+
+            TransactionsEntity transEntityIn = transactionsMapper.get(inTransEntity);
+            TransactionsEntity transEntityOut = transactionsMapper.get(outTransEntity);
+
+            Date date = new Date();
+
+            if (null == transEntityIn) {
+                insertTransactions(inTransEntity, date);
+                StockcontrolEntity inStockControl = new StockcontrolEntity();
+                inStockControl.setSpid(sparepartEntity.getId());
+                inStockControl.setStockid(workorderEntity.getStockid());
+
+                //处理库存
+                handleStockControl(inStockControl, inTransEntity, date);
+
+                //库存变化说明：从u8领料后，领料库的库存减少，领到库的库存增加。备件又从领到库拿出使用，领到库库存减少
+                inTransEntity.setStockid(workorderEntity.getStockid());
+                inTransEntity.setQty(iquantity.multiply(new BigDecimal(-1)));
+                //插入领到库库存减少日志
+                insertTransactions(inTransEntity, date);
+
+                //库存减少
+                handleStockControl(inStockControl, inTransEntity, date);
+            }
+
+            //如果transactions信息为空,插入transactions信息
+            if (null == transEntityOut) {
+                insertTransactions(outTransEntity, date);
+                StockcontrolEntity outStockControl = new StockcontrolEntity();
+                outStockControl.setSpid(sparepartEntity.getId());
+                outStockControl.setStockid(outStockEntity.getId());
+                handleStockControl(outStockControl, transEntityOut, date);
+            }
+
+            //备件使用记录是在工单反馈或信息补录 登记备件时产生的，默认登记多少，在U8那边就领多少
+            useditemsEntity.setQty(iquantity);
+            useditemsEntity.setPrice(price);
+            useditemsEntity.setStockid(workorderEntity.getStockid());
+            useditemsEntity.setSpid(sparepartEntity.getId());
+            useditemsEntity.setWorkorderid(workorderEntity.getId());
+            useditemsEntity.setMemo(dto.getCmemo());
+            //查询已使用备件是否有记录
+            UseditemsEntity useditemsOld = useditemsMapper.get(useditemsEntity);
+            if (null == useditemsOld) {
+                useditemsEntity.setCreatedate(date);
+                useditemsEntity.setModificationdate(date);
+                useditemsMapper.insert(useditemsEntity);
+            }
+        } catch (Exception e) {
+            logger.error("TransactionsDataOutThread InsertTransactions: " + e);
+        }
+    }
+
+    /**
+     * 虚拟工单领料说明：
+     * 每种虚拟工单对应一个入库仓库 例：RZ1ZZ-代表入库仓库是一工厂总装二级库
+     * 需要进行的操作：
+     * 1.库存日志表（transactions）增加出入库日志
+     * 2.库存表（stockcontrol）进行更新
+     * @param dto
+     */
+    private void handleStockFictitiousWokey(Rdrecords11Dto dto){
+
+        try {
+            if (null == dto.getIquantity() || dto.getIquantity().intValue() <= 0) {
+                throw new Exception("出库数量不能小于0");
+            }
+            BigDecimal iquantity = dto.getIquantity();
+            BigDecimal price = dto.getIprice();
+
+            SparepartEntity spEntity = new SparepartEntity();
+            spEntity.setSparepartkey(dto.getCinvcode());
+            SparepartEntity sparepartEntity = sparepartMapper.get(spEntity);
+            if (null == sparepartEntity) {
+                throw new Exception("查询不到相关备件信息");
+            }
+
+            //出库的仓库信息
+            StockEntity stEntity = new StockEntity();
+            stEntity.setStockkey(dto.getCwhcode());
+            StockEntity outStockEntity = stockMapper.get(stEntity);
+
+            if (null == outStockEntity) {
+                throw new Exception("查询不到出库仓库信息");
+            }
+
+            //根据虚拟工单号获取对应的入库的仓库id
+            Integer inStockId = WoKeyRelationStockEnum.getStockId(dto.getCdefine2());
+            //根据工单的仓库id,查询入库仓库信息
+            StockEntity inStock = new StockEntity();
+            inStock.setId(inStockId);
+            StockEntity inStockEntity = stockMapper.get(inStock);
+            if(null == inStockEntity){
+                throw new Exception("查询不到入库仓库信息");
+            }
+
+            TransactionsEntity outTransEntity = new TransactionsEntity();
+            TransactionsEntity inTransEntity = new TransactionsEntity();
+            outTransEntity.setSpid(sparepartEntity.getId());
+            outTransEntity.setTranstype(outStockEntity.getStocktype());
+            //虚拟工单无法设置关联工单id
+            //outTransEntity.setRelationid();
+            outTransEntity.setParentid(dto.getId());
+            outTransEntity.setStockid(outStockEntity.getId());
+            outTransEntity.setQty(iquantity.multiply(new BigDecimal(-1)));
+            outTransEntity.setPrice(price);
+            outTransEntity.setMemo(dto.getCmemo());
+
+            inTransEntity.setSpid(sparepartEntity.getId());
+            inTransEntity.setTranstype(inStockEntity.getStocktype());
+            //inTransEntity.setRelationid(workorderEntity.getId());
+            inTransEntity.setParentid(dto.getId());
+            inTransEntity.setStockid(inStockId);
+            inTransEntity.setQty(iquantity);
+            inTransEntity.setPrice(price);
+            inTransEntity.setMemo(dto.getCmemo());
+
+            TransactionsEntity transEntityIn = transactionsMapper.get(inTransEntity);
+
+            Date date = new Date();
+            if (null == transEntityIn) {
+                //插入日志表
+                insertTransactions(inTransEntity, date);
+
+                StockcontrolEntity inStockControl = new StockcontrolEntity();
+                inStockControl.setSpid(sparepartEntity.getId());
+                inStockControl.setStockid(inStockId);
+                //处理库存
+                handleStockControl(inStockControl, inTransEntity, date);
+            }
+
+            TransactionsEntity transEntityOut = transactionsMapper.get(outTransEntity);
+            if (null == transEntityOut) {
+                insertTransactions(outTransEntity ,date);
+                StockcontrolEntity outStockControl = new StockcontrolEntity();
+                outStockControl.setSpid(sparepartEntity.getId());
+                outStockControl.setStockid(outStockEntity.getId());
+                handleStockControl(outStockControl, outTransEntity, date);
+            }
+
+        } catch (Exception e) {
+            logger.error("TransactionsDataOutThread InsertTransactions: " + e);
+        }
+    }
+
+    //插入日志表
+    private void insertTransactions(TransactionsEntity entity, Date date){
+        entity.setTombstone(1);
+        entity.setTransdatetime(date);
+        entity.setModificationdate(date);
+        try {
+            transactionsMapper.insert(entity);
+        } catch (Exception e) {
+            logger.error("InsertTransactions: " + e);
+        }
+    }
+
+    //处理库存
+    private void handleStockControl(StockcontrolEntity stockcontrolEntity, TransactionsEntity transactionsEntity,Date date){
+
+        try {
+            //原库存信息
+            StockcontrolEntity stockControl = stockcontrolMapper.get(stockcontrolEntity);
+            //领到库库存增加
+            BigDecimal addQty = new BigDecimal(0);
+            if (null != stockControl){
+                stockcontrolEntity.setModificationdate(date);
+                addQty = stockControl.getQty().add(transactionsEntity.getQty());
+                stockcontrolEntity.setQty(addQty);
+                stockcontrolMapper.updateQty(stockcontrolEntity);
+            } else {
+                //如果没有库存信息插入一条
+                stockcontrolEntity.setCreatedate(date);
+                stockcontrolEntity.setQty(transactionsEntity.getQty());
+                stockcontrolMapper.insert(stockcontrolEntity);
+            }
+        } catch (Exception e) {
+            logger.error("handleStockControl: " + e);
+        }
+
+    }
+}

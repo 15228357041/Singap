@@ -1,0 +1,149 @@
+package com.mingcloud.proxy.datalayer.entity.archiveinfo;
+
+import com.mingcloud.proxy.datalayer.entity.BaseEntity;
+
+
+public class BeiqiTransferEntity extends BaseEntity {
+
+	private static final long serialVersionUID = -2799024587468226163L;
+
+	private String mokey;// 设备编号
+
+	private String extravarchar18;// 资产分类
+
+	private String extravarchar20;// 公司代码
+
+	private String moname;// 资产名称
+
+	private String extramoinfo1;// 规格型号
+
+	private String accountid;//成本中心对应字段
+	
+	private Integer extraid4;//责任成本中心对应字段
+	
+	private String costcenterkey1;// 成本中心
+	
+	private String costcenterkey2;//责任成本中心
+
+	private String assetkey;// 资产编号
+	
+	private String rootmoid;//父设备ID
+	
+	private String poskey;//位置编码
+	
+	private String contractno;//合同号
+
+	public String getMokey() {
+		return mokey;
+	}
+
+	public void setMokey(String mokey) {
+		this.mokey = mokey;
+	}
+
+	public String getExtravarchar18() {
+		return extravarchar18;
+	}
+
+	public void setExtravarchar18(String extravarchar18) {
+		this.extravarchar18 = extravarchar18;
+	}
+
+	public String getExtravarchar20() {
+		return extravarchar20;
+	}
+
+	public void setExtravarchar20(String extravarchar20) {
+		this.extravarchar20 = extravarchar20;
+	}
+
+	public String getMoname() {
+		return moname;
+	}
+
+	public void setMoname(String moname) {
+		this.moname = moname;
+	}
+
+	public String getExtramoinfo1() {
+		return extramoinfo1;
+	}
+
+	public void setExtramoinfo1(String extramoinfo1) {
+		this.extramoinfo1 = extramoinfo1;
+	}
+
+	public String getAccountid() {
+		return accountid;
+	}
+
+	public void setAccountid(String accountid) {
+		this.accountid = accountid;
+	}
+
+	public Integer getExtraid4() {
+		return extraid4;
+	}
+
+	public void setExtraid4(Integer extraid4) {
+		this.extraid4 = extraid4;
+	}
+
+	public String getAssetkey() {
+		return assetkey;
+	}
+
+	public void setAssetkey(String assetkey) {
+		this.assetkey = assetkey;
+	}
+
+	public String getCostcenterkey2() {
+		return costcenterkey2;
+	}
+
+	public void setCostcenterkey2(String costcenterkey2) {
+		this.costcenterkey2 = costcenterkey2;
+	}
+
+	public String getCostcenterkey1() {
+		return costcenterkey1;
+	}
+
+	public void setCostcenterkey1(String costcenterkey1) {
+		this.costcenterkey1 = costcenterkey1;
+	}
+
+	public String getRootmoid() {
+		return rootmoid;
+	}
+
+	public void setRootmoid(String rootmoid) {
+		this.rootmoid = rootmoid;
+	}
+
+	public String getPoskey() {
+		return poskey;
+	}
+
+	public void setPoskey(String poskey) {
+		this.poskey = poskey;
+	}
+
+	public String getContractno() {
+		return contractno;
+	}
+
+	public void setContractno(String contractno) {
+		this.contractno = contractno;
+	}
+
+	@Override
+	public String toString() {
+		return "BeiqiTransferEntity [mokey=" + mokey + ", extravarchar18=" + extravarchar18 + ", extravarchar20="
+				+ extravarchar20 + ", moname=" + moname + ", extramoinfo1=" + extramoinfo1 + ", accountid=" + accountid
+				+ ", extraid4=" + extraid4 + ", costcenterkey1=" + costcenterkey1 + ", costcenterkey2=" + costcenterkey2
+				+ ", assetkey=" + assetkey + ", rootmoid=" + rootmoid + ", poskey=" + poskey + ", contractno="
+				+ contractno + "]";
+	}
+
+}

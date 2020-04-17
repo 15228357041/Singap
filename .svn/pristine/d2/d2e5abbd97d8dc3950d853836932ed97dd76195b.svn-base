@@ -1,0 +1,39 @@
+package com.mingcloud.proxy.common;
+
+public enum InspectionTypeEnum {
+    I("I",1),
+    L("L",2);
+
+    private Integer typeId;
+    private String typeKey;
+
+    private InspectionTypeEnum(String typeKey, Integer typeId){
+        this.typeKey = typeKey;
+        this.typeId = typeId;
+    }
+
+    public static Integer getTypeId(String typeKey){
+        for (InspectionTypeEnum e : InspectionTypeEnum.values()) {
+            if (e.getTypeKey().equals(typeKey)) {
+                return e.getTypeId();
+            }
+        }
+        return null;
+    }
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
+    }
+
+    public String getTypeKey() {
+        return typeKey;
+    }
+
+    public void setTypeKey(String typeKey) {
+        this.typeKey = typeKey;
+    }
+}

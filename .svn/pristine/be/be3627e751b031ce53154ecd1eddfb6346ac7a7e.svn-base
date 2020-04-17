@@ -1,0 +1,62 @@
+package test;
+
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.CommonrecodeexMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.CommonrecodeexDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.CommonrecodeexEntity;
+import com.mingcloud.proxy.logiclayer.weatherhandler.WeatherDataInThread;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:applicationContext.xml" })
+public class Junittest {
+	@Autowired
+	CommonrecodeexMapper commonrecodeMapper;
+	
+	@Test
+	public void test() {
+		WeatherDataInThread WeatherInThread = new WeatherDataInThread();
+        Thread WeatherdataInthread = new Thread(WeatherInThread);
+        WeatherdataInthread.start();
+       
+	}
+	
+	@Test
+	public void testAdd() {
+		for(int i = 1; i <= 8; i++) {
+			for(int j = 1; j <= 29; j++) {
+				for(int k = 0; k <=23; k ++){
+					String a = "2017-" + (i > 10 ? i : "0" + i)+ "-" + 
+					        (j > 10 ? j : "0" +j ) +" "+ 
+							(j > 10 ? j : "0" +j )+ ":00:00";
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						Date d = new Date();
+						try {
+							d = sdf.parse(a);
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						CommonrecodeexEntity dto = new CommonrecodeexEntity();
+						dto.setExtradatetime1(d);
+						dto.setNtype(3);
+						dto.setExtraid1(399);
+						dto.setExtravarchar1("XHT8R");
+						dto.setExtradecimal1(new BigDecimal(70));
+						commonrecodeMapper.insert(dto);
+				}
+			}
+		}
+       
+	}
+
+}

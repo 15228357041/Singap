@@ -1,0 +1,859 @@
+package com.mingcloud.proxy.datalayer.entity.archiveinfo;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+public class TaskEntity {
+    private Integer id;
+
+    private Integer roottaskid;
+
+    private Integer taskgroupid;
+
+    private String taskkey;
+
+    private String taskname;
+
+    private Integer typeid;
+
+    private Integer statusid;
+
+    private Integer extraid1;
+
+    private Integer extraid2;
+
+    private Integer extraid3;
+
+    private Integer extraid4;
+
+    private Integer extraid5;
+
+    private String extravarchar1;
+
+    private String extravarchar2;
+
+    private String extravarchar3;
+
+    private String extravarchar4;
+
+    private String extravarchar5;
+
+    private String extravarchar6;
+
+    private String extravarchar7;
+
+    private String extravarchar8;
+
+    private String extravarchar9;
+
+    private String extravarchar10;
+
+    private BigDecimal extradecimal1;
+
+    private BigDecimal extradecimal2;
+
+    private BigDecimal extradecimal3;
+
+    private BigDecimal extradecimal4;
+
+    private BigDecimal extradecimal5;
+
+    private Integer extraint1;
+
+    private Integer extraint2;
+
+    private Integer extraint3;
+
+    private Integer extraint4;
+
+    private Integer extraint5;
+
+    private Date extradatetime1;
+
+    private Date extradatetime2;
+
+    private Date extradatetime3;
+
+    private Date extradatetime4;
+
+    private Date extradatetime5;
+
+    private Date createdate;
+
+    private Integer createuserid;
+
+    private Date modificationdate;
+
+    private Integer modificationuserid;
+
+    private String picpath;
+
+    private String barcode;
+
+    private String memo;
+
+    private Integer orgid;
+
+    private Integer accountid;
+
+    private Integer tombstone;
+
+    private String extravarchar11;
+
+    private String extravarchar12;
+
+    private String extravarchar13;
+
+    private String extravarchar14;
+
+    private String extravarchar15;
+
+    private String extravarchar16;
+
+    private String extravarchar17;
+
+    private String extravarchar18;
+
+    private String extravarchar19;
+
+    private String extravarchar20;
+
+    private Integer extraid6;
+
+    private Integer extraid7;
+
+    private Integer extraid8;
+
+    private Integer extraid9;
+
+    private Integer extraid10;
+
+    private String extravarchar21;
+
+    private String extravarchar22;
+
+    private String extravarchar23;
+
+    private String extravarchar24;
+
+    private String extravarchar25;
+
+    private String extravarchar26;
+
+    private String extravarchar27;
+
+    private String extravarchar28;
+
+    private String extravarchar29;
+
+    private String extravarchar30;
+
+    private BigDecimal extradecimal6;
+
+    private BigDecimal extradecimal7;
+
+    private BigDecimal extradecimal8;
+
+    private BigDecimal extradecimal9;
+
+    private BigDecimal extradecimal10;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getRoottaskid() {
+        return roottaskid;
+    }
+
+    public void setRoottaskid(Integer roottaskid) {
+        this.roottaskid = roottaskid;
+    }
+
+    public Integer getTaskgroupid() {
+        return taskgroupid;
+    }
+
+    public void setTaskgroupid(Integer taskgroupid) {
+        this.taskgroupid = taskgroupid;
+    }
+
+    public String getTaskkey() {
+        return taskkey;
+    }
+
+    public void setTaskkey(String taskkey) {
+        this.taskkey = taskkey;
+    }
+
+    public String getTaskname() {
+        return taskname;
+    }
+
+    public void setTaskname(String taskname) {
+        this.taskname = taskname;
+    }
+
+    public Integer getTypeid() {
+        return typeid;
+    }
+
+    public void setTypeid(Integer typeid) {
+        this.typeid = typeid;
+    }
+
+    public Integer getStatusid() {
+        return statusid;
+    }
+
+    public void setStatusid(Integer statusid) {
+        this.statusid = statusid;
+    }
+
+    public Integer getExtraid1() {
+        return extraid1;
+    }
+
+    public void setExtraid1(Integer extraid1) {
+        this.extraid1 = extraid1;
+    }
+
+    public Integer getExtraid2() {
+        return extraid2;
+    }
+
+    public void setExtraid2(Integer extraid2) {
+        this.extraid2 = extraid2;
+    }
+
+    public Integer getExtraid3() {
+        return extraid3;
+    }
+
+    public void setExtraid3(Integer extraid3) {
+        this.extraid3 = extraid3;
+    }
+
+    public Integer getExtraid4() {
+        return extraid4;
+    }
+
+    public void setExtraid4(Integer extraid4) {
+        this.extraid4 = extraid4;
+    }
+
+    public Integer getExtraid5() {
+        return extraid5;
+    }
+
+    public void setExtraid5(Integer extraid5) {
+        this.extraid5 = extraid5;
+    }
+
+    public String getExtravarchar1() {
+        return extravarchar1;
+    }
+
+    public void setExtravarchar1(String extravarchar1) {
+        this.extravarchar1 = extravarchar1;
+    }
+
+    public String getExtravarchar2() {
+        return extravarchar2;
+    }
+
+    public void setExtravarchar2(String extravarchar2) {
+        this.extravarchar2 = extravarchar2;
+    }
+
+    public String getExtravarchar3() {
+        return extravarchar3;
+    }
+
+    public void setExtravarchar3(String extravarchar3) {
+        this.extravarchar3 = extravarchar3;
+    }
+
+    public String getExtravarchar4() {
+        return extravarchar4;
+    }
+
+    public void setExtravarchar4(String extravarchar4) {
+        this.extravarchar4 = extravarchar4;
+    }
+
+    public String getExtravarchar5() {
+        return extravarchar5;
+    }
+
+    public void setExtravarchar5(String extravarchar5) {
+        this.extravarchar5 = extravarchar5;
+    }
+
+    public String getExtravarchar6() {
+        return extravarchar6;
+    }
+
+    public void setExtravarchar6(String extravarchar6) {
+        this.extravarchar6 = extravarchar6;
+    }
+
+    public String getExtravarchar7() {
+        return extravarchar7;
+    }
+
+    public void setExtravarchar7(String extravarchar7) {
+        this.extravarchar7 = extravarchar7;
+    }
+
+    public String getExtravarchar8() {
+        return extravarchar8;
+    }
+
+    public void setExtravarchar8(String extravarchar8) {
+        this.extravarchar8 = extravarchar8;
+    }
+
+    public String getExtravarchar9() {
+        return extravarchar9;
+    }
+
+    public void setExtravarchar9(String extravarchar9) {
+        this.extravarchar9 = extravarchar9;
+    }
+
+    public String getExtravarchar10() {
+        return extravarchar10;
+    }
+
+    public void setExtravarchar10(String extravarchar10) {
+        this.extravarchar10 = extravarchar10;
+    }
+
+    public BigDecimal getExtradecimal1() {
+        return extradecimal1;
+    }
+
+    public void setExtradecimal1(BigDecimal extradecimal1) {
+        this.extradecimal1 = extradecimal1;
+    }
+
+    public BigDecimal getExtradecimal2() {
+        return extradecimal2;
+    }
+
+    public void setExtradecimal2(BigDecimal extradecimal2) {
+        this.extradecimal2 = extradecimal2;
+    }
+
+    public BigDecimal getExtradecimal3() {
+        return extradecimal3;
+    }
+
+    public void setExtradecimal3(BigDecimal extradecimal3) {
+        this.extradecimal3 = extradecimal3;
+    }
+
+    public BigDecimal getExtradecimal4() {
+        return extradecimal4;
+    }
+
+    public void setExtradecimal4(BigDecimal extradecimal4) {
+        this.extradecimal4 = extradecimal4;
+    }
+
+    public BigDecimal getExtradecimal5() {
+        return extradecimal5;
+    }
+
+    public void setExtradecimal5(BigDecimal extradecimal5) {
+        this.extradecimal5 = extradecimal5;
+    }
+
+    public Integer getExtraint1() {
+        return extraint1;
+    }
+
+    public void setExtraint1(Integer extraint1) {
+        this.extraint1 = extraint1;
+    }
+
+    public Integer getExtraint2() {
+        return extraint2;
+    }
+
+    public void setExtraint2(Integer extraint2) {
+        this.extraint2 = extraint2;
+    }
+
+    public Integer getExtraint3() {
+        return extraint3;
+    }
+
+    public void setExtraint3(Integer extraint3) {
+        this.extraint3 = extraint3;
+    }
+
+    public Integer getExtraint4() {
+        return extraint4;
+    }
+
+    public void setExtraint4(Integer extraint4) {
+        this.extraint4 = extraint4;
+    }
+
+    public Integer getExtraint5() {
+        return extraint5;
+    }
+
+    public void setExtraint5(Integer extraint5) {
+        this.extraint5 = extraint5;
+    }
+
+    public Date getExtradatetime1() {
+        return extradatetime1;
+    }
+
+    public void setExtradatetime1(Date extradatetime1) {
+        this.extradatetime1 = extradatetime1;
+    }
+
+    public Date getExtradatetime2() {
+        return extradatetime2;
+    }
+
+    public void setExtradatetime2(Date extradatetime2) {
+        this.extradatetime2 = extradatetime2;
+    }
+
+    public Date getExtradatetime3() {
+        return extradatetime3;
+    }
+
+    public void setExtradatetime3(Date extradatetime3) {
+        this.extradatetime3 = extradatetime3;
+    }
+
+    public Date getExtradatetime4() {
+        return extradatetime4;
+    }
+
+    public void setExtradatetime4(Date extradatetime4) {
+        this.extradatetime4 = extradatetime4;
+    }
+
+    public Date getExtradatetime5() {
+        return extradatetime5;
+    }
+
+    public void setExtradatetime5(Date extradatetime5) {
+        this.extradatetime5 = extradatetime5;
+    }
+
+    public Date getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+
+    public Integer getCreateuserid() {
+        return createuserid;
+    }
+
+    public void setCreateuserid(Integer createuserid) {
+        this.createuserid = createuserid;
+    }
+
+    public Date getModificationdate() {
+        return modificationdate;
+    }
+
+    public void setModificationdate(Date modificationdate) {
+        this.modificationdate = modificationdate;
+    }
+
+    public Integer getModificationuserid() {
+        return modificationuserid;
+    }
+
+    public void setModificationuserid(Integer modificationuserid) {
+        this.modificationuserid = modificationuserid;
+    }
+
+    public String getPicpath() {
+        return picpath;
+    }
+
+    public void setPicpath(String picpath) {
+        this.picpath = picpath;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public Integer getOrgid() {
+        return orgid;
+    }
+
+    public void setOrgid(Integer orgid) {
+        this.orgid = orgid;
+    }
+
+    public Integer getAccountid() {
+        return accountid;
+    }
+
+    public void setAccountid(Integer accountid) {
+        this.accountid = accountid;
+    }
+
+    public Integer getTombstone() {
+        return tombstone;
+    }
+
+    public void setTombstone(Integer tombstone) {
+        this.tombstone = tombstone;
+    }
+
+    public String getExtravarchar11() {
+        return extravarchar11;
+    }
+
+    public void setExtravarchar11(String extravarchar11) {
+        this.extravarchar11 = extravarchar11;
+    }
+
+    public String getExtravarchar12() {
+        return extravarchar12;
+    }
+
+    public void setExtravarchar12(String extravarchar12) {
+        this.extravarchar12 = extravarchar12;
+    }
+
+    public String getExtravarchar13() {
+        return extravarchar13;
+    }
+
+    public void setExtravarchar13(String extravarchar13) {
+        this.extravarchar13 = extravarchar13;
+    }
+
+    public String getExtravarchar14() {
+        return extravarchar14;
+    }
+
+    public void setExtravarchar14(String extravarchar14) {
+        this.extravarchar14 = extravarchar14;
+    }
+
+    public String getExtravarchar15() {
+        return extravarchar15;
+    }
+
+    public void setExtravarchar15(String extravarchar15) {
+        this.extravarchar15 = extravarchar15;
+    }
+
+    public String getExtravarchar16() {
+        return extravarchar16;
+    }
+
+    public void setExtravarchar16(String extravarchar16) {
+        this.extravarchar16 = extravarchar16;
+    }
+
+    public String getExtravarchar17() {
+        return extravarchar17;
+    }
+
+    public void setExtravarchar17(String extravarchar17) {
+        this.extravarchar17 = extravarchar17;
+    }
+
+    public String getExtravarchar18() {
+        return extravarchar18;
+    }
+
+    public void setExtravarchar18(String extravarchar18) {
+        this.extravarchar18 = extravarchar18;
+    }
+
+    public String getExtravarchar19() {
+        return extravarchar19;
+    }
+
+    public void setExtravarchar19(String extravarchar19) {
+        this.extravarchar19 = extravarchar19;
+    }
+
+    public String getExtravarchar20() {
+        return extravarchar20;
+    }
+
+    public void setExtravarchar20(String extravarchar20) {
+        this.extravarchar20 = extravarchar20;
+    }
+
+    public Integer getExtraid6() {
+        return extraid6;
+    }
+
+    public void setExtraid6(Integer extraid6) {
+        this.extraid6 = extraid6;
+    }
+
+    public Integer getExtraid7() {
+        return extraid7;
+    }
+
+    public void setExtraid7(Integer extraid7) {
+        this.extraid7 = extraid7;
+    }
+
+    public Integer getExtraid8() {
+        return extraid8;
+    }
+
+    public void setExtraid8(Integer extraid8) {
+        this.extraid8 = extraid8;
+    }
+
+    public Integer getExtraid9() {
+        return extraid9;
+    }
+
+    public void setExtraid9(Integer extraid9) {
+        this.extraid9 = extraid9;
+    }
+
+    public Integer getExtraid10() {
+        return extraid10;
+    }
+
+    public void setExtraid10(Integer extraid10) {
+        this.extraid10 = extraid10;
+    }
+
+    public String getExtravarchar21() {
+        return extravarchar21;
+    }
+
+    public void setExtravarchar21(String extravarchar21) {
+        this.extravarchar21 = extravarchar21;
+    }
+
+    public String getExtravarchar22() {
+        return extravarchar22;
+    }
+
+    public void setExtravarchar22(String extravarchar22) {
+        this.extravarchar22 = extravarchar22;
+    }
+
+    public String getExtravarchar23() {
+        return extravarchar23;
+    }
+
+    public void setExtravarchar23(String extravarchar23) {
+        this.extravarchar23 = extravarchar23;
+    }
+
+    public String getExtravarchar24() {
+        return extravarchar24;
+    }
+
+    public void setExtravarchar24(String extravarchar24) {
+        this.extravarchar24 = extravarchar24;
+    }
+
+    public String getExtravarchar25() {
+        return extravarchar25;
+    }
+
+    public void setExtravarchar25(String extravarchar25) {
+        this.extravarchar25 = extravarchar25;
+    }
+
+    public String getExtravarchar26() {
+        return extravarchar26;
+    }
+
+    public void setExtravarchar26(String extravarchar26) {
+        this.extravarchar26 = extravarchar26;
+    }
+
+    public String getExtravarchar27() {
+        return extravarchar27;
+    }
+
+    public void setExtravarchar27(String extravarchar27) {
+        this.extravarchar27 = extravarchar27;
+    }
+
+    public String getExtravarchar28() {
+        return extravarchar28;
+    }
+
+    public void setExtravarchar28(String extravarchar28) {
+        this.extravarchar28 = extravarchar28;
+    }
+
+    public String getExtravarchar29() {
+        return extravarchar29;
+    }
+
+    public void setExtravarchar29(String extravarchar29) {
+        this.extravarchar29 = extravarchar29;
+    }
+
+    public String getExtravarchar30() {
+        return extravarchar30;
+    }
+
+    public void setExtravarchar30(String extravarchar30) {
+        this.extravarchar30 = extravarchar30;
+    }
+
+    public BigDecimal getExtradecimal6() {
+        return extradecimal6;
+    }
+
+    public void setExtradecimal6(BigDecimal extradecimal6) {
+        this.extradecimal6 = extradecimal6;
+    }
+
+    public BigDecimal getExtradecimal7() {
+        return extradecimal7;
+    }
+
+    public void setExtradecimal7(BigDecimal extradecimal7) {
+        this.extradecimal7 = extradecimal7;
+    }
+
+    public BigDecimal getExtradecimal8() {
+        return extradecimal8;
+    }
+
+    public void setExtradecimal8(BigDecimal extradecimal8) {
+        this.extradecimal8 = extradecimal8;
+    }
+
+    public BigDecimal getExtradecimal9() {
+        return extradecimal9;
+    }
+
+    public void setExtradecimal9(BigDecimal extradecimal9) {
+        this.extradecimal9 = extradecimal9;
+    }
+
+    public BigDecimal getExtradecimal10() {
+        return extradecimal10;
+    }
+
+    public void setExtradecimal10(BigDecimal extradecimal10) {
+        this.extradecimal10 = extradecimal10;
+    }
+
+    @Override
+    public String toString() {
+        return "TaskEntity{" +
+                "id=" + id +
+                ", roottaskid=" + roottaskid +
+                ", taskgroupid=" + taskgroupid +
+                ", taskkey='" + taskkey + '\'' +
+                ", taskname='" + taskname + '\'' +
+                ", typeid=" + typeid +
+                ", statusid=" + statusid +
+                ", extraid1=" + extraid1 +
+                ", extraid2=" + extraid2 +
+                ", extraid3=" + extraid3 +
+                ", extraid4=" + extraid4 +
+                ", extraid5=" + extraid5 +
+                ", extravarchar1='" + extravarchar1 + '\'' +
+                ", extravarchar2='" + extravarchar2 + '\'' +
+                ", extravarchar3='" + extravarchar3 + '\'' +
+                ", extravarchar4='" + extravarchar4 + '\'' +
+                ", extravarchar5='" + extravarchar5 + '\'' +
+                ", extravarchar6='" + extravarchar6 + '\'' +
+                ", extravarchar7='" + extravarchar7 + '\'' +
+                ", extravarchar8='" + extravarchar8 + '\'' +
+                ", extravarchar9='" + extravarchar9 + '\'' +
+                ", extravarchar10='" + extravarchar10 + '\'' +
+                ", extradecimal1=" + extradecimal1 +
+                ", extradecimal2=" + extradecimal2 +
+                ", extradecimal3=" + extradecimal3 +
+                ", extradecimal4=" + extradecimal4 +
+                ", extradecimal5=" + extradecimal5 +
+                ", extraint1=" + extraint1 +
+                ", extraint2=" + extraint2 +
+                ", extraint3=" + extraint3 +
+                ", extraint4=" + extraint4 +
+                ", extraint5=" + extraint5 +
+                ", extradatetime1=" + extradatetime1 +
+                ", extradatetime2=" + extradatetime2 +
+                ", extradatetime3=" + extradatetime3 +
+                ", extradatetime4=" + extradatetime4 +
+                ", extradatetime5=" + extradatetime5 +
+                ", createdate=" + createdate +
+                ", createuserid=" + createuserid +
+                ", modificationdate=" + modificationdate +
+                ", modificationuserid=" + modificationuserid +
+                ", picpath='" + picpath + '\'' +
+                ", barcode='" + barcode + '\'' +
+                ", memo='" + memo + '\'' +
+                ", orgid=" + orgid +
+                ", accountid=" + accountid +
+                ", tombstone=" + tombstone +
+                ", extravarchar11='" + extravarchar11 + '\'' +
+                ", extravarchar12='" + extravarchar12 + '\'' +
+                ", extravarchar13='" + extravarchar13 + '\'' +
+                ", extravarchar14='" + extravarchar14 + '\'' +
+                ", extravarchar15='" + extravarchar15 + '\'' +
+                ", extravarchar16='" + extravarchar16 + '\'' +
+                ", extravarchar17='" + extravarchar17 + '\'' +
+                ", extravarchar18='" + extravarchar18 + '\'' +
+                ", extravarchar19='" + extravarchar19 + '\'' +
+                ", extravarchar20='" + extravarchar20 + '\'' +
+                ", extraid6=" + extraid6 +
+                ", extraid7=" + extraid7 +
+                ", extraid8=" + extraid8 +
+                ", extraid9=" + extraid9 +
+                ", extraid10=" + extraid10 +
+                ", extravarchar21='" + extravarchar21 + '\'' +
+                ", extravarchar22='" + extravarchar22 + '\'' +
+                ", extravarchar23='" + extravarchar23 + '\'' +
+                ", extravarchar24='" + extravarchar24 + '\'' +
+                ", extravarchar25='" + extravarchar25 + '\'' +
+                ", extravarchar26='" + extravarchar26 + '\'' +
+                ", extravarchar27='" + extravarchar27 + '\'' +
+                ", extravarchar28='" + extravarchar28 + '\'' +
+                ", extravarchar29='" + extravarchar29 + '\'' +
+                ", extravarchar30='" + extravarchar30 + '\'' +
+                ", extradecimal6=" + extradecimal6 +
+                ", extradecimal7=" + extradecimal7 +
+                ", extradecimal8=" + extradecimal8 +
+                ", extradecimal9=" + extradecimal9 +
+                ", extradecimal10=" + extradecimal10 +
+                '}';
+    }
+}

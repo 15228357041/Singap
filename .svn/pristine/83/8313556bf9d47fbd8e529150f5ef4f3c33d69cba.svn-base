@@ -1,0 +1,87 @@
+package com.mingcloud.proxy.logiclayer.beiqitransfer;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datacenter.SIFATransferData;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.CommonrecodeexMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.CommonrecodeexDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.CommonrecodeexEntity;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.SIFATransferEntity;
+import com.mingcloud.proxy.util.SpringContextUtil;
+import org.apache.log4j.Logger;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+
+
+/**
+ * @author ShenXD
+ * @desc 澶╂皵杈撳嚭绾跨▼
+ * @date 2017-8-16 涓婂崍10:54:17
+ */
+public class BeiqiTransferDataOutThread implements Runnable {
+	private static Logger logger = Logger.getLogger(BeiqiTransferDataOutThread.class);
+
+	private CommonrecodeexMapper commonrecodeexMapper =
+			SpringContextUtil.getBean("commonrecodeexMapper");
+	
+	private DataCenter dataCenter = DataCenter.getInstance();
+	
+	private static SIFATransferData sIFATransferData = SIFATransferData.getInstance();
+	
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+
+	public void run() {
+		while(true){
+			if (dataCenter.getWeatherCommonrecodeexlistSize() > 0) {
+				InsertCommonrecodeex();
+				logger.info("BeiqiDataCenter size: " + dataCenter.getWeatherCommonrecodeexlistSize());
+			}
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				logger.error("BeiqiDataOutThread: " + e);
+			}
+		}
+	}
+	
+	@Transactional
+	private void InsertCommonrecodeex(){
+		try {
+			
+			CommonrecodeexEntity commonrecodeexentity = new CommonrecodeexEntity();
+
+			if (dataCenter.getWeatherCommonrecodeexlistSize() > 0){
+				CommonrecodeexDto dto = dataCenter.popWeatherCommonrecodeexlist();
+				commonrecodeexentity.setExtravarchar1(dto.getExtravarchar1());				
+				
+				List <CommonrecodeexEntity> list = commonrecodeexMapper.select(commonrecodeexentity);
+				
+				SIFATransferEntity en = new SIFATransferEntity();
+				
+//				curdto.setExtravarchar1(checkOutParameter(entit.getANLABUKRS())); // 公司代码
+//				curdto.setExtravarchar2(checkOutParameter(entit.getANLAANLN1())); // 资产编号
+//				curdto.setExtravarchar3(checkOutParameter(entit.getANLZKOSTL())); // 新的成本中心代码
+//				curdto.setExtravarchar4(checkOutParameter(entit.getSYDATUM())); // 更改日期
+            	
+				en.setExtravarchar20(dto.getExtravarchar1());
+            	en.setAssetkey(dto.getExtravarchar2());
+//            	en.setCostcenterkey(dto.getExtravarchar3());
+            	en.setExtradatetime5(sdf.parse(dto.getExtravarchar4()));
+            	
+            	if(dto.getExtravarchar2()==null) {
+            		logger.info("BeiqiDataOutThread.noAssetkey.UselessData ");
+            	}else {
+//            		en.setAccountid(sIFATransferData.getAccountididByCostcenterkey(en.getCostcenterkey()));
+            		sIFATransferData.updateSIFATransfer(en);//update
+//            		logger.info("BeiqiDataOutThread.updateCommonrecodeexSucceed.Accountid:"+en.getAccountid());
+            	}
+				
+			}
+		} catch (Exception e) {  
+			logger.error("BeiqiDataOutThread.InsertCommonrecodeex: " + e);
+        }
+	}
+
+}

@@ -1,0 +1,192 @@
+package com.mingcloud.proxy.datalayer.entity.archiveinfo;
+
+
+import com.mingcloud.proxy.datalayer.entity.BaseEntity;
+
+import java.util.Date;
+
+public class SucmessagelogEntity extends BaseEntity {
+
+    /**
+     * 主键id
+     */
+    private Integer id;
+
+    /**
+     * 成功消息日志编码
+     */
+    private String sucmessagelogkey;
+
+    /**
+     * 成功消息日志名称
+     */
+    private String sucmessagelogname;
+
+    /**
+     * 关联消息源表id
+     */
+    private Integer messagesourceid;
+
+    /**
+     * 搜索关键字段
+     */
+    private String keyword;
+
+    /**
+     * 关键字的值
+     */
+    private String keywordvalue;
+
+    /**
+     * 返回结果
+     */
+    private String resultcontent;
+
+    /**
+     * 创建日期
+     */
+    private Date createdate;
+
+    /**
+     * 创建用户ID
+     */
+    private Integer createuserid;
+
+    /**
+     * 修改日期
+     */
+    private Date modificationdate;
+
+    /**
+     * 修改用户ID
+     */
+    private Integer modificationuserid;
+
+    /**
+     * 是否可用
+     */
+    private Integer tombstone;
+
+    /**
+     * 正文内容
+     */
+    private String content;
+
+    /**
+     * 接收用户
+     */
+    private String acceptor;
+
+    //get和set方法
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getSucmessagelogkey() {
+        return sucmessagelogkey;
+    }
+
+    public void setSucmessagelogkey(String sucmessagelogkey) {
+        this.sucmessagelogkey = sucmessagelogkey;
+    }
+
+    public String getSucmessagelogname() {
+        return sucmessagelogname;
+    }
+
+    public void setSucmessagelogname(String sucmessagelogname) {
+        this.sucmessagelogname = sucmessagelogname;
+    }
+
+    public Integer getMessagesourceid() {
+        return messagesourceid;
+    }
+
+    public void setMessagesourceid(Integer messagesourceid) {
+        this.messagesourceid = messagesourceid;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public String getKeywordvalue() {
+        return keywordvalue;
+    }
+
+    public void setKeywordvalue(String keywordvalue) {
+        this.keywordvalue = keywordvalue;
+    }
+
+    public String getResultcontent() {
+        return resultcontent;
+    }
+
+    public void setResultcontent(String resultcontent) {
+        this.resultcontent = resultcontent;
+    }
+
+    public Date getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+
+    public Integer getCreateuserid() {
+        return createuserid;
+    }
+
+    public void setCreateuserid(Integer createuserid) {
+        this.createuserid = createuserid;
+    }
+
+    public Date getModificationdate() {
+        return modificationdate;
+    }
+
+    public void setModificationdate(Date modificationdate) {
+        this.modificationdate = modificationdate;
+    }
+
+    public Integer getModificationuserid() {
+        return modificationuserid;
+    }
+
+    public void setModificationuserid(Integer modificationuserid) {
+        this.modificationuserid = modificationuserid;
+    }
+
+    public Integer getTombstone() {
+        return tombstone;
+    }
+
+    public void setTombstone(Integer tombstone) {
+        this.tombstone = tombstone;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getAcceptor() {
+        return acceptor;
+    }
+
+    public void setAcceptor(String acceptor) {
+        this.acceptor = acceptor;
+    }
+}

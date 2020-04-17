@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.UsersMapper" >
+  <resultMap id="BaseResultMap" type="UsersEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userkey" property="userkey" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="usergroupid" property="usergroupid" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="startdate" property="startdate" jdbcType="TIMESTAMP" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="createuserid" property="createuserid" jdbcType="INTEGER" />
+    <result column="modificationdate" property="modificationdate" jdbcType="TIMESTAMP" />
+    <result column="modificationuserid" property="modificationuserid" jdbcType="INTEGER" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="picpath" property="picpath" jdbcType="VARCHAR" />
+    <result column="barcode" property="barcode" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="enddate" property="enddate" jdbcType="TIMESTAMP" />
+    <result column="mobilephone" property="mobilephone" jdbcType="VARCHAR" />
+    <result column="humanid" property="humanid" jdbcType="INTEGER" />
+    <result column="orgid" property="orgid" jdbcType="INTEGER" />
+    <result column="ismulti" property="ismulti" jdbcType="INTEGER" />
+    <result column="tombstone" property="tombstone" jdbcType="INTEGER" />
+    <result column="logintype" property="logintype" jdbcType="INTEGER" />
+    <result column="extravarchar1" property="extravarchar1" jdbcType="VARCHAR" />
+    <result column="extravarchar2" property="extravarchar2" jdbcType="VARCHAR" />
+    <result column="extravarchar3" property="extravarchar3" jdbcType="VARCHAR" />
+    <result column="extravarchar4" property="extravarchar4" jdbcType="VARCHAR" />
+    <result column="extravarchar5" property="extravarchar5" jdbcType="VARCHAR" />
+    <result column="extravarchar6" property="extravarchar6" jdbcType="VARCHAR" />
+    <result column="extravarchar7" property="extravarchar7" jdbcType="VARCHAR" />
+    <result column="extravarchar8" property="extravarchar8" jdbcType="VARCHAR" />
+    <result column="extravarchar9" property="extravarchar9" jdbcType="VARCHAR" />
+    <result column="extravarchar10" property="extravarchar10" jdbcType="VARCHAR" />
+    <result column="extradecimal1" property="extradecimal1" jdbcType="DECIMAL" />
+    <result column="extradecimal2" property="extradecimal2" jdbcType="DECIMAL" />
+    <result column="extradecimal3" property="extradecimal3" jdbcType="DECIMAL" />
+    <result column="extradecimal4" property="extradecimal4" jdbcType="DECIMAL" />
+    <result column="extradecimal5" property="extradecimal5" jdbcType="DECIMAL" />
+    <result column="extraint1" property="extraint1" jdbcType="INTEGER" />
+    <result column="extraint2" property="extraint2" jdbcType="INTEGER" />
+    <result column="extraint3" property="extraint3" jdbcType="INTEGER" />
+    <result column="extraint4" property="extraint4" jdbcType="INTEGER" />
+    <result column="extraint5" property="extraint5" jdbcType="INTEGER" />
+    <result column="extraid1" property="extraid1" jdbcType="INTEGER" />
+    <result column="extraid2" property="extraid2" jdbcType="INTEGER" />
+    <result column="extraid3" property="extraid3" jdbcType="INTEGER" />
+    <result column="extraid4" property="extraid4" jdbcType="INTEGER" />
+    <result column="extraid5" property="extraid5" jdbcType="INTEGER" />
+    <result column="extradatetime1" property="extradatetime1" jdbcType="TIMESTAMP" />
+    <result column="extradatetime2" property="extradatetime2" jdbcType="TIMESTAMP" />
+    <result column="extradatetime3" property="extradatetime3" jdbcType="TIMESTAMP" />
+    <result column="extradatetime4" property="extradatetime4" jdbcType="TIMESTAMP" />
+    <result column="extradatetime5" property="extradatetime5" jdbcType="TIMESTAMP" />
+    <result column="customerid" property="customerid" jdbcType="INTEGER" />
+    <result column="wechatuserid" property="wechatuserid" jdbcType="INTEGER" />
+    <result column="dimissiondate" property="dimissionDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userkey, username, password, usergroupid, email, address, telephone, startdate, 
+    createdate, createuserid, modificationdate, modificationuserid, memo, picpath, barcode, 
+    status, enddate, mobilephone, humanid, orgid, ismulti, tombstone, logintype, extravarchar1, 
+    extravarchar2, extravarchar3, extravarchar4, extravarchar5, extravarchar6, extravarchar7, 
+    extravarchar8, extravarchar9, extravarchar10, extradecimal1, extradecimal2, extradecimal3, 
+    extradecimal4, extradecimal5, extraint1, extraint2, extraint3, extraint4, extraint5, 
+    extraid1, extraid2, extraid3, extraid4, extraid5, extradatetime1, extradatetime2, 
+    extradatetime3, extradatetime4, extradatetime5, customerid, wechatuserid
+  </sql>
+  
+  <resultMap id="ApiBeanResult" type="UsersEntity">
+  	<result column="Uuser_ID" property="userkey" jdbcType="VARCHAR" />
+    <result column="User_Name" property="username" jdbcType="VARCHAR" />
+    <result column="UPassword" property="password" jdbcType="VARCHAR" />
+    <result column="Usergroup_ID" property="extravarchar1" jdbcType="VARCHAR" />
+    <result column="email_address" property="email" jdbcType="VARCHAR" />
+    <result column="WORK_SUPPLIER_KEY" property="workSupplierKey" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="selectAllApi" resultMap="ApiBeanResult">
+	select Uuser_ID, User_Name, UPassword, Usergroup_ID, email_address
+	from Users
+  </select>
+
+  <select id="selectAllUsers" resultMap="ApiBeanResult">
+    select Uuser_ID, User_Name, UPassword, WORK_SUPPLIER_KEY
+    from Users
+  </select>
+  
+  <select id="get" resultMap="BaseResultMap" parameterType="UsersEntity" >
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where userkey = #{userkey,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from users
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="UsersEntity" >
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userkey != null" >
+        userkey,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="usergroupid != null" >
+        usergroupid,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="startdate != null" >
+        startdate,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+      <if test="createuserid != null" >
+        createuserid,
+      </if>
+      <if test="modificationdate != null" >
+        modificationdate,
+      </if>
+      <if test="modificationuserid != null" >
+        modificationuserid,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="picpath != null" >
+        picpath,
+      </if>
+      <if test="barcode != null" >
+        barcode,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="enddate != null" >
+        enddate,
+      </if>
+      <if test="mobilephone != null" >
+        mobilephone,
+      </if>
+      <if test="humanid != null" >
+        humanid,
+      </if>
+      <if test="orgid != null" >
+        orgid,
+      </if>
+      <if test="ismulti != null" >
+        ismulti,
+      </if>
+      <if test="tombstone != null" >
+        tombstone,
+      </if>
+      <if test="logintype != null" >
+        logintype,
+      </if>
+      <if test="extravarchar1 != null" >
+        extravarchar1,
+      </if>
+      <if test="extravarchar2 != null" >
+        extravarchar2,
+      </if>
+      <if test="extravarchar3 != null" >
+        extravarchar3,
+      </if>
+      <if test="extravarchar4 != null" >
+        extravarchar4,
+      </if>
+      <if test="extravarchar5 != null" >
+        extravarchar5,
+      </if>
+      <if test="extravarchar6 != null" >
+        extravarchar6,
+      </if>
+      <if test="extravarchar7 != null" >
+        extravarchar7,
+      </if>
+      <if test="extravarchar8 != null" >
+        extravarchar8,
+      </if>
+      <if test="extravarchar9 != null" >
+        extravarchar9,
+      </if>
+      <if test="extravarchar10 != null" >
+        extravarchar10,
+      </if>
+      <if test="extradecimal1 != null" >
+        extradecimal1,
+      </if>
+      <if test="extradecimal2 != null" >
+        extradecimal2,
+      </if>
+      <if test="extradecimal3 != null" >
+        extradecimal3,
+      </if>
+      <if test="extradecimal4 != null" >
+        extradecimal4,
+      </if>
+      <if test="extradecimal5 != null" >
+        extradecimal5,
+      </if>
+      <if test="extraint1 != null" >
+        extraint1,
+      </if>
+      <if test="extraint2 != null" >
+        extraint2,
+      </if>
+      <if test="extraint3 != null" >
+        extraint3,
+      </if>
+      <if test="extraint4 != null" >
+        extraint4,
+      </if>
+      <if test="extraint5 != null" >
+        extraint5,
+      </if>
+      <if test="extraid1 != null" >
+        extraid1,
+      </if>
+      <if test="extraid2 != null" >
+        extraid2,
+      </if>
+      <if test="extraid3 != null" >
+        extraid3,
+      </if>
+      <if test="extraid4 != null" >
+        extraid4,
+      </if>
+      <if test="extraid5 != null" >
+        extraid5,
+      </if>
+      <if test="extradatetime1 != null" >
+        extradatetime1,
+      </if>
+      <if test="extradatetime2 != null" >
+        extradatetime2,
+      </if>
+      <if test="extradatetime3 != null" >
+        extradatetime3,
+      </if>
+      <if test="extradatetime4 != null" >
+        extradatetime4,
+      </if>
+      <if test="extradatetime5 != null" >
+        extradatetime5,
+      </if>
+      <if test="customerid != null" >
+        customerid,
+      </if>
+      <if test="wechatuserid != null" >
+        wechatuserid
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userkey != null" >
+        #{userkey,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="usergroupid != null" >
+        #{usergroupid,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuserid != null" >
+        #{createuserid,jdbcType=INTEGER},
+      </if>
+      <if test="modificationdate != null" >
+        #{modificationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificationuserid != null" >
+        #{modificationuserid,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="picpath != null" >
+        #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="enddate != null" >
+        #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mobilephone != null" >
+        #{mobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="humanid != null" >
+        #{humanid,jdbcType=INTEGER},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=INTEGER},
+      </if>
+      <if test="ismulti != null" >
+        #{ismulti,jdbcType=INTEGER},
+      </if>
+      <if test="tombstone != null" >
+        #{tombstone,jdbcType=INTEGER},
+      </if>
+      <if test="logintype != null" >
+        #{logintype,jdbcType=INTEGER},
+      </if>
+      <if test="extravarchar1 != null" >
+        #{extravarchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar2 != null" >
+        #{extravarchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar3 != null" >
+        #{extravarchar3,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar4 != null" >
+        #{extravarchar4,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar5 != null" >
+        #{extravarchar5,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar6 != null" >
+        #{extravarchar6,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar7 != null" >
+        #{extravarchar7,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar8 != null" >
+        #{extravarchar8,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar9 != null" >
+        #{extravarchar9,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar10 != null" >
+        #{extravarchar10,jdbcType=VARCHAR},
+      </if>
+      <if test="extradecimal1 != null" >
+        #{extradecimal1,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal2 != null" >
+        #{extradecimal2,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal3 != null" >
+        #{extradecimal3,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal4 != null" >
+        #{extradecimal4,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal5 != null" >
+        #{extradecimal5,jdbcType=DECIMAL},
+      </if>
+      <if test="extraint1 != null" >
+        #{extraint1,jdbcType=INTEGER},
+      </if>
+      <if test="extraint2 != null" >
+        #{extraint2,jdbcType=INTEGER},
+      </if>
+      <if test="extraint3 != null" >
+        #{extraint3,jdbcType=INTEGER},
+      </if>
+      <if test="extraint4 != null" >
+        #{extraint4,jdbcType=INTEGER},
+      </if>
+      <if test="extraint5 != null" >
+        #{extraint5,jdbcType=INTEGER},
+      </if>
+      <if test="extraid1 != null" >
+        #{extraid1,jdbcType=INTEGER},
+      </if>
+      <if test="extraid2 != null" >
+        #{extraid2,jdbcType=INTEGER},
+      </if>
+      <if test="extraid3 != null" >
+        #{extraid3,jdbcType=INTEGER},
+      </if>
+      <if test="extraid4 != null" >
+        #{extraid4,jdbcType=INTEGER},
+      </if>
+      <if test="extraid5 != null" >
+        #{extraid5,jdbcType=INTEGER},
+      </if>
+      <if test="extradatetime1 != null" >
+        #{extradatetime1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extradatetime2 != null" >
+        #{extradatetime2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extradatetime3 != null" >
+        #{extradatetime3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extradatetime4 != null" >
+        #{extradatetime4,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extradatetime5 != null" >
+        #{extradatetime5,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerid != null" >
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="wechatuserid != null" >
+        #{wechatuserid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="UsersEntity" >
+    update users
+    <set >
+      <if test="userkey != null" >
+        userkey = #{userkey,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="usergroupid != null" >
+        usergroupid = #{usergroupid,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        startdate = #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuserid != null" >
+        createuserid = #{createuserid,jdbcType=INTEGER},
+      </if>
+      <if test="modificationdate != null" >
+        modificationdate = #{modificationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificationuserid != null" >
+        modificationuserid = #{modificationuserid,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="picpath != null" >
+        picpath = #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="enddate != null" >
+        enddate = #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mobilephone != null" >
+        mobilephone = #{mobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="humanid != null" >
+        humanid = #{humanid,jdbcType=INTEGER},
+      </if>
+      <if test="orgid != null" >
+        orgid = #{orgid,jdbcType=INTEGER},
+      </if>
+      <if test="ismulti != null" >
+        ismulti = #{ismulti,jdbcType=INTEGER},
+      </if>
+      <if test="tombstone != null" >
+        tombstone = #{tombstone,jdbcType=INTEGER},
+      </if>
+      <if test="logintype != null" >
+        logintype = #{logintype,jdbcType=INTEGER},
+      </if>
+      <if test="extravarchar1 != null" >
+        extravarchar1 = #{extravarchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar2 != null" >
+        extravarchar2 = #{extravarchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar3 != null" >
+        extravarchar3 = #{extravarchar3,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar4 != null" >
+        extravarchar4 = #{extravarchar4,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar5 != null" >
+        extravarchar5 = #{extravarchar5,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar6 != null" >
+        extravarchar6 = #{extravarchar6,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar7 != null" >
+        extravarchar7 = #{extravarchar7,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar8 != null" >
+        extravarchar8 = #{extravarchar8,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar9 != null" >
+        extravarchar9 = #{extravarchar9,jdbcType=VARCHAR},
+      </if>
+      <if test="extravarchar10 != null" >
+        extravarchar10 = #{extravarchar10,jdbcType=VARCHAR},
+      </if>
+      <if test="extradecimal1 != null" >
+        extradecimal1 = #{extradecimal1,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal2 != null" >
+        extradecimal2 = #{extradecimal2,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal3 != null" >
+        extradecimal3 = #{extradecimal3,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal4 != null" >
+        extradecimal4 = #{extradecimal4,jdbcType=DECIMAL},
+      </if>
+      <if test="extradecimal5 != null" >
+        extradecimal5 = #{extradecimal5,jdbcType=DECIMAL},
+      </if>
+      <if test="extraint1 != null" >
+        extraint1 = #{extraint1,jdbcType=INTEGER},
+      </if>
+      <if test="extraint2 != null" >
+        extraint2 = #{extraint2,jdbcType=INTEGER},
+      </if>
+      <if test="extraint3 != null" >
+        extraint3 = #{extraint3,jdbcType=INTEGER},
+      </if>
+      <if test="extraint4 != null" >
+        extraint4 = #{extraint4,jdbcType=INTEGER},
+      </if>
+      <if test="extraint5 != null" >
+        extraint5 = #{extraint5,jdbcType=INTEGER},
+      </if>
+      <if test="extraid1 != null" >
+        extraid1 = #{extraid1,jdbcType=INTEGER},
+      </if>
+      <if test="extraid2 != null" >
+        extraid2 = #{extraid2,jdbcType=INTEGER},
+      </if>
+      <if test="extraid3 != null" >
+        extraid3 = #{extraid3,jdbcType=INTEGER},
+      </if>
+      <if test="extraid4 != null" >
+        extraid4 = #{extraid4,jdbcType=INTEGER},
+      </if>
+      <if test="extraid5 != null" >
+        extraid5 = #{extraid5,jdbcType=INTEGER},
+      </if>
+      <if test="extradatetime1 != null" >
+        extradatetime1 = #{extradatetime1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extradatetime2 != null" >
+        extradatetime2 = #{extradatetime2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extradatetime3 != null" >
+        extradatetime3 = #{extradatetime3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extradatetime4 != null" >
+        extradatetime4 = #{extradatetime4,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extradatetime5 != null" >
+        extradatetime5 = #{extradatetime5,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerid != null" >
+        customerid = #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="wechatuserid != null" >
+        wechatuserid = #{wechatuserid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="batchUpdateStatus" parameterType="java.util.List">
+    UPDATE
+    users
+    SET modificationdate = now(),
+    status = 0
+    WHERE id IN
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+
+  <select id="getUsersByKeys"  resultMap="BaseResultMap">
+    SELECT
+    id,
+    userkey,
+    username
+    FROM
+    users
+    WHERE users.userkey
+    IN
+    <foreach collection="list" item="userkey" index="index" open="(" close=")" separator=",">
+      #{userkey}
+    </foreach>
+  </select>
+
+  <insert id="batchInsertDimission" parameterType="java.util.List">
+    insert into
+    users_dimission
+    (
+    userkey,
+    dimissiondate
+    )
+    values
+    <foreach collection="list" item="UsersEntity" index="i" separator="," >
+      (
+      #{UsersEntity.userkey,jdbcType=VARCHAR},
+      now()
+      )
+    </foreach>
+  </insert>
+
+</mapper>

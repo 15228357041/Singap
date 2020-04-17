@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mingcloud.proxy.datalayer.dao.archiveinfo.CounterHeaderMapper">
+  <resultMap id="BaseResultMap" type="CounterheaderEntity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="counterheaderkey" jdbcType="VARCHAR" property="counterheaderkey" />
+    <result column="counterheadername" jdbcType="VARCHAR" property="counterheadername" />
+    <result column="relationkey" jdbcType="VARCHAR" property="relationkey" />
+    <result column="typeid" jdbcType="INTEGER" property="typeid" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="accountid" jdbcType="INTEGER" property="accountid" />
+    <result column="createdate" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="createuserid" jdbcType="INTEGER" property="createuserid" />
+    <result column="modificationdate" jdbcType="TIMESTAMP" property="modificationdate" />
+    <result column="modificationuserid" jdbcType="INTEGER" property="modificationuserid" />
+    <result column="picpath" jdbcType="VARCHAR" property="picpath" />
+    <result column="barcode" jdbcType="VARCHAR" property="barcode" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="orgid" jdbcType="INTEGER" property="orgid" />
+    <result column="tombstone" jdbcType="INTEGER" property="tombstone" />
+    <result column="stockinid" jdbcType="INTEGER" property="stockinid" />
+  </resultMap>
+  	<sql id="table_name">
+		counterheader
+	</sql>
+	<sql id="table_id">
+		<include refid="table_name"/>.id
+	</sql>
+  <sql id="database_table_columns">
+    <include refid="table_name"/>.id,
+    <include refid="table_name"/>.counterheaderkey,
+    <include refid="table_name"/>.counterheadername,
+    <include refid="table_name"/>.relationkey,
+    <include refid="table_name"/>.typeid,
+    <include refid="table_name"/>.status,
+    <include refid="table_name"/>.accountid,
+    <include refid="table_name"/>.createdate,
+    <include refid="table_name"/>.createuserid,
+    <include refid="table_name"/>.modificationdate,
+    <include refid="table_name"/>.modificationuserid,
+    <include refid="table_name"/>.picpath,
+    <include refid="table_name"/>.barcode,
+    <include refid="table_name"/>.memo,
+    <include refid="table_name"/>.orgid, 
+    <include refid="table_name"/>.tombstone,
+    <include refid="table_name"/>.stockinid,
+    <include refid="table_name"/>.createdate, 
+    <include refid="table_name"/>.createuserid,
+    <include refid="table_name"/>.modificationdate,
+    <include refid="table_name"/>.modificationuserid,
+    <include refid="table_name"/>.picpath,
+    <include refid="table_name"/>.barcode,
+    <include refid="table_name"/>.memo,
+    <include refid="table_name"/>.orgid, 
+    <include refid="table_name"/>.accountid,
+    <include refid="table_name"/>.tombstone
+  </sql>
+  <insert id="insert" parameterType="CounterheaderEntity" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into 
+    <include refid="table_name"/>
+	(
+	counterheaderkey, 
+	counterheadername, 
+    relationkey, 
+    typeid, 
+    status, 
+    accountid, 
+    createdate, 
+    createuserid, 
+    modificationdate, 
+    modificationuserid, 
+    picpath, 
+    barcode, 
+    memo, 
+    orgid, 
+    tombstone, 
+    stockinid
+    )
+    values 
+    (
+    #{counterheaderkey,jdbcType=VARCHAR}, 
+    #{counterheadername,jdbcType=VARCHAR}, 
+    #{relationkey,jdbcType=VARCHAR}, 
+    #{typeid,jdbcType=INTEGER}, 
+    #{status,jdbcType=INTEGER}, 
+    #{accountid,jdbcType=INTEGER}, 
+    #{createdate,jdbcType=TIMESTAMP}, 
+    #{createuserid,jdbcType=INTEGER}, 
+    #{modificationdate,jdbcType=TIMESTAMP}, 
+    #{modificationuserid,jdbcType=INTEGER}, 
+    #{picpath,jdbcType=VARCHAR}, 
+    #{barcode,jdbcType=VARCHAR}, 
+    #{memo,jdbcType=VARCHAR}, 
+    #{orgid,jdbcType=INTEGER}, 
+    1, 
+    #{stockinid,jdbcType=INTEGER}
+      )
+  </insert>
+  
+  <sql id="update_counterheader_where">
+	<trim prefix="" suffix="" suffixOverrides=",">
+	  <if test="counterheaderkey != null">
+        counterheaderkey = #{counterheaderkey,jdbcType=VARCHAR},
+      </if>
+      <if test="counterheadername != null">
+        counterheadername = #{counterheadername,jdbcType=VARCHAR},
+      </if>
+      <if test="relationkey != null">
+        relationkey = #{relationkey,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null">
+        typeid = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="accountid != null">
+        accountid = #{accountid,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null">
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuserid != null">
+        createuserid = #{createuserid,jdbcType=INTEGER},
+      </if>
+      <if test="modificationdate != null">
+        modificationdate = #{modificationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificationuserid != null">
+        modificationuserid = #{modificationuserid,jdbcType=INTEGER},
+      </if>
+      <if test="picpath != null">
+        picpath = #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null">
+        barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null">
+        orgid = #{orgid,jdbcType=INTEGER},
+      </if>
+      <if test="tombstone != null">
+        tombstone = #{tombstone,jdbcType=INTEGER},
+      </if>
+      <if test="stockinid != null">
+        stockinid = #{stockinid,jdbcType=INTEGER},
+      </if>
+	</trim>
+  </sql>
+  <update id="update" parameterType="CounterheaderEntity">
+  		update
+  		<include refid="table_name" />
+  		<set>
+			<include refid="update_counterheader_where"/>
+		</set>
+		where
+			<include refid="table_id"/>=#{id,jdbcType=INTEGER}
+  </update>
+	<sql id="dynamic_full_match_condition">
+		<trim prefix="WHERE" prefixOverrides="AND">
+	  	<if test="id != null" >
+        	AND <include refid="table_name"/>.id = #{id,jdbcType=INTEGER}
+      	</if>
+      	<if test="counterheaderkey != null" >
+       		AND <include refid="table_name"/>.counterheaderkey = #{counterheaderkey,jdbcType=VARCHAR}
+      	</if>
+      	<if test="counterheadername != null" >
+        	AND <include refid="table_name"/>.counterheadername = #{counterheadername,jdbcType=VARCHAR}
+      	</if>
+      	<if test="relationkey != null" >
+        	AND <include refid="table_name"/>.relationkey = #{relationkey,jdbcType=VARCHAR}
+      	</if>
+      	<if test="typeid != null" >
+        	AND <include refid="table_name"/>.typeid = #{typeid,jdbcType=INTEGER}
+      	</if>
+      	<if test="status != null" >
+        	AND <include refid="table_name"/>.status = #{status,jdbcType=INTEGER}
+      	</if>
+      	<if test="accountid != null" >
+        	AND <include refid="table_name"/>.accountid = #{accountid,jdbcType=INTEGER}
+      	</if>
+      	<if test="createdate != null" >
+        	AND <include refid="table_name"/>.createdate = #{createdate,jdbcType=TIMESTAMP}
+      	</if>
+      	<if test="createuserid != null" >
+        	AND <include refid="table_name"/>.createuserid =  #{createuserid,jdbcType=INTEGER}
+      	</if>
+      	<if test="modificationdate != null" >
+      	
+        	AND <include refid="table_name"/>.modificationdate = #{modificationdate,jdbcType=TIMESTAMP} 
+      	</if>
+      	<if test="modificationuserid != null" >
+       		AND <include refid="table_name"/>.modificationuserid = #{modificationuserid,jdbcType=INTEGER}
+      	</if>
+      	<if test="picpath != null" >
+        	AND <include refid="table_name"/>.picpath = #{picpath,jdbcType=VARCHAR}
+      	</if>
+      	<if test="barcode != null" >
+        	AND <include refid="table_name"/>.barcode = #{barcode,jdbcType=VARCHAR}
+      	</if>
+      	<if test="memo != null" >
+        	AND <include refid="table_name"/>.memo = #{memo,jdbcType=VARCHAR}
+      	</if>
+      	<if test="orgid != null" >
+        	AND <include refid="table_name"/>.orgid = #{orgid,jdbcType=INTEGER}
+      	</if>
+      	<if test="tombstone != null" >
+        	AND <include refid="table_name"/>.tombstone =  #{tombstone,jdbcType=INTEGER}
+      	</if>
+      	<if test="stockinid != null" >
+        	AND <include refid="table_name"/>.stockinid = #{stockinid,jdbcType=INTEGER}
+      	</if>
+		</trim>
+	</sql> 
+	<select id="isExistByProperty" parameterType="CounterheaderEntity"
+		resultType="int">
+		SELECT COUNT(1)
+		FROM
+		<include refid="table_name" />
+		<include refid="dynamic_full_match_condition" />
+	</select>
+	<select id="select" parameterType="CounterheaderEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="database_table_columns" />
+		FROM
+		<include refid="table_name" />
+		<include refid="dynamic_full_match_condition" />
+	</select> 
+	<!-- 逻辑删除，为更新 -->
+	<update id="delete" parameterType="CounterheaderEntity" >
+		update
+		<include refid="table_name" />
+		<set>
+		<trim prefix="" suffix="" suffixOverrides=",">
+       		 tombstone = 0,
+     	 <if test="modificationdate != null" >
+       		 modificationdate = #{modificationdate,jdbcType=TIMESTAMP},
+     	 </if>
+		<if test="modificationuserid != null" >
+       		 modificationuserid = #{modificationuserid,jdbcType=INTEGER},
+     	 </if>
+			</trim>
+		</set>
+		where
+		<include refid="table_id" />
+		= #{id,jdbcType=INTEGER}
+	</update>
+	
+	<select id="selectAllChildren" parameterType="CounterheaderEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="database_table_columns" />
+		FROM
+		<include refid="table_name" />
+
+		<include refid="dynamic_full_match_condition"/>
+	</select>
+	
+	<select id="selectPage" parameterType="CounterheaderEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="database_table_columns" />
+		FROM
+		<include refid="table_name" />
+		<include refid="dynamic_full_match_condition" />
+		order by
+		<include refid="table_id" />
+		desc limit #{offset},#{span}
+	</select>
+	
+	<select id="selectCount" parameterType="CounterheaderEntity"
+		resultType="int">
+		SELECT COUNT(1)
+		FROM
+		<include refid="table_name" />
+		<include refid="dynamic_full_match_condition" />
+	</select>
+	
+	<select id="selectOne" parameterType="CounterheaderEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="database_table_columns" />
+		FROM
+		<include refid="table_name" />
+		<include refid="dynamic_full_match_condition" />
+		limit 1
+	</select>
+	<select id="selectAll" parameterType="CounterheaderEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="database_table_columns" />
+		FROM
+		<include refid="table_name" />
+		order by
+		<include refid="table_id" />
+		desc
+	</select>
+	<select id="selectAllPage" parameterType="CounterheaderEntity"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="database_table_columns" />
+		FROM
+		<include refid="table_name" />
+		order by
+		<include refid="table_id" />
+		desc limit #{offset},#{span}
+	</select>
+	<!-- 根据节点id获取优先级树的路径(java实现) 通过Id 查询父id -->
+	<select id="selectRootIdById" parameterType="CounterheaderEntity"
+		resultMap="BaseResultMap">		
+		SELECT IFNULL(appgroupid,0) appgroupid ,count(1) counttotal,id
+		FROM <include refid="table_name" /> 
+		where id = #{id,jdbcType=INTEGER} 
+	</select>
+	<!-- 根据id获取详细信息 -->
+	<select id="get" parameterType="CounterheaderEntity" resultMap="BaseResultMap">
+		SELECT
+		<include refid="database_table_columns" />
+		from
+		<include refid="table_name" />
+		where
+		<include refid="table_id" />
+		= #{id}
+	</select>
+
+	<select id="selectByRelationkey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT
+		<include refid="database_table_columns" />
+		FROM
+		<include refid="table_name" />
+		WHERE relationkey = #{relationkey, jdbcType=VARCHAR}
+	</select>
+
+</mapper> 

@@ -1,0 +1,50 @@
+package com.mingcloud.proxy.util;
+
+import org.apache.log4j.Logger;
+
+import net.sourceforge.pinyin4j.PinyinHelper;
+import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
+
+public class HangyuPinyinHelper {
+	private static Logger logger = Logger.getLogger(HangyuPinyinHelper.class);
+	
+	private HangyuPinyinHelper() {}
+	
+	private static HangyuPinyinHelper hangyuPinyinHelper = null;
+	
+	public static HangyuPinyinHelper getHangyuPinyinHelper() {
+		if (hangyuPinyinHelper == null) {
+			hangyuPinyinHelper = new HangyuPinyinHelper();
+		}
+		return hangyuPinyinHelper;
+	}
+	
+	/** 
+	 11      * 将文字转为汉语拼音
+	 12      * @param chineselanguage 要转成拼音的中文
+	 13      */
+	public String toHangyuPinyin(String ChineseLanguage) {
+		char[] chars = ChineseLanguage.trim().toCharArray();
+		String hanyupinyin = "";
+		HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
+		defaultFormat.setCaseType(HanyuPinyinCaseType.LOWERCASE);// 输出拼音全部小写
+		defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);// 不带声调
+		defaultFormat.setVCharType(HanyuPinyinVCharType.WITH_V);
+		try {
+			for (int i=0; i<chars.length; i++){
+				if (String.valueOf(chars[i]).matches("[\u4e00-\u9fa5]+")){// 如果字符是中文,则将中文转为汉语拼音
+					hanyupinyin += PinyinHelper.toHanyuPinyinStringArray(chars[i], defaultFormat)[0];
+				} else {
+					hanyupinyin += chars[i];
+				}
+			}
+		} catch(Exception e) {
+			logger.error("城市名称不是汉语。");
+		}
+		return hanyupinyin;
+	}
+
+}

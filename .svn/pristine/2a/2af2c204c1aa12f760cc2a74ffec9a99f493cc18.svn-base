@@ -1,0 +1,11 @@
+package com.mingcloud.proxy.datalayer.dao.archiveinfo;
+
+import com.mingcloud.proxy.datalayer.dao.BaseMapper;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.StockEntity;
+
+import java.util.List;
+
+public interface StockMapper extends BaseMapper<StockEntity> {
+
+    List<StockEntity> selectKeyIdList();
+}

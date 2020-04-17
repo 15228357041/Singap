@@ -1,0 +1,11 @@
+package com.mingcloud.proxy.datalayer.dao.archiveinfo;
+
+
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.MesRecordDto;
+
+import java.util.List;
+
+public interface MesRecordMapper {
+
+    public List<MesRecordDto> selectAllApi();
+}

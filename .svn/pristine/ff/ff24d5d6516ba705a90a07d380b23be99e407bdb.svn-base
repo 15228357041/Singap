@@ -1,0 +1,51 @@
+package com.mingcloud.proxy.datacenter;
+
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.BeiqiTransferMapper;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.BeiqiTransferEntity;
+import com.mingcloud.proxy.util.SpringContextUtil;
+
+import java.util.List;
+
+
+
+public class BeiqiTransferData {
+	
+	private List<BeiqiTransferEntity> beiqiTransferList;
+	
+	private static BeiqiTransferData beiqiTransferData;
+	
+	private static BeiqiTransferMapper BeiqiMapper = SpringContextUtil.getBean("beiqiTransferMapper");
+	
+    private BeiqiTransferData() {
+    	setBeiqiTransferData();
+    }
+    
+    private void setBeiqiTransferData() {
+    	BeiqiTransferEntity entity = new BeiqiTransferEntity();
+    	beiqiTransferList = BeiqiMapper.selectAll();
+    }
+    
+    public static BeiqiTransferData getInstance() {
+    	if(beiqiTransferData == null) {
+    		beiqiTransferData = new BeiqiTransferData();
+    	}
+    	return beiqiTransferData;
+    }
+    
+    public void resetBeiqiTransferList() {
+    	setBeiqiTransferData();
+    }
+    
+    public List<BeiqiTransferEntity> getBeiqiTransferList() {
+    	return beiqiTransferList;
+    }
+    
+    public int insertBeiqiTransferData(BeiqiTransferEntity beiqiTransferEntity) {
+		return BeiqiMapper.insert(beiqiTransferEntity);
+    }
+    
+    public int updateBeiqiTransferData(BeiqiTransferEntity beiqiTransferEntity) {
+		return BeiqiMapper.update(beiqiTransferEntity);
+    }
+    
+}

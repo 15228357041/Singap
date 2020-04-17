@@ -1,0 +1,135 @@
+package com.mingcloud.proxy.datalayer.dto.archiveinfo;
+
+import java.util.Date;
+
+public class HumanDto {
+    /**
+     * human.id
+     */
+    private Integer id;
+
+    /**
+     * human.humankey (编码)
+     */
+    private String humankey;
+
+    /**
+     * human.humanname (姓名)
+     */
+    private String humanname;
+
+    /**
+     * human.createdate
+     */
+    private Date createdate;
+
+    /**
+     * human.createuserid
+     */
+    private Integer createuserid;
+
+    /**
+     * human.modificationdate
+     */
+    private Date modificationdate;
+
+    /**
+     * human.modificationuserid
+     */
+    private Integer modificationuserid;
+
+    /**
+     * human.orgid
+     */
+    private Integer orgid;
+
+    /**
+     * 状态
+     */
+    private Integer statusid;
+
+    /**
+     * 删除状态 1=正常  0=删除
+     */
+    private Integer tombstone;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getHumankey() {
+        return humankey;
+    }
+
+    public void setHumankey(String humankey) {
+        this.humankey = humankey;
+    }
+
+    public String getHumanname() {
+        return humanname;
+    }
+
+    public void setHumanname(String humanname) {
+        this.humanname = humanname;
+    }
+
+    public Date getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+
+    public Integer getCreateuserid() {
+        return createuserid;
+    }
+
+    public void setCreateuserid(Integer createuserid) {
+        this.createuserid = createuserid;
+    }
+
+    public Date getModificationdate() {
+        return modificationdate;
+    }
+
+    public void setModificationdate(Date modificationdate) {
+        this.modificationdate = modificationdate;
+    }
+
+    public Integer getModificationuserid() {
+        return modificationuserid;
+    }
+
+    public void setModificationuserid(Integer modificationuserid) {
+        this.modificationuserid = modificationuserid;
+    }
+
+    public Integer getOrgid() {
+        return orgid;
+    }
+
+    public void setOrgid(Integer orgid) {
+        this.orgid = orgid;
+    }
+
+    public Integer getStatusid() {
+        return statusid;
+    }
+
+    public void setStatusid(Integer statusid) {
+        this.statusid = statusid;
+    }
+
+    public Integer getTombstone() {
+        return tombstone;
+    }
+
+    public void setTombstone(Integer tombstone) {
+        this.tombstone = tombstone;
+    }
+}

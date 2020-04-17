@@ -1,0 +1,19 @@
+package com.mingcloud.proxy.datalayer.dao.archiveinfo;
+
+import com.mingcloud.proxy.datalayer.dao.BaseMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.InstrumentDto;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.LogDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.LogEntity;
+
+import java.util.Map;
+
+/**
+ * @author Bxf
+ * @desc 技能档案
+ * @date 2017-7-4 10:14:44
+ * */
+public interface LogMapper extends BaseMapper<LogEntity> {
+
+    @Override
+     int insert(LogEntity domain);
+}

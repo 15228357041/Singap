@@ -1,0 +1,217 @@
+package com.mingcloud.proxy.datalayer.dto.inspection;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+public class InspectionDto {
+
+    private Integer id;
+
+    private String inspectionkey;
+
+    private String inspectionname;
+
+    private Integer humanid;
+
+    private String inspectionpointkey;
+
+    private String mokey;
+
+    private String inspectiondate;
+
+    private String inspectiontime;
+
+    private String inspectionvalue;
+
+    private String description;
+
+    private BigDecimal upperlimitvalue;
+
+    private BigDecimal lowerlimitvalue;
+
+    private String organizationkey;
+
+    private Integer status;
+
+    private String limitOn;
+
+    private String alarmOn;
+
+    private Integer isupload;
+
+    private String planstartdate;
+
+    private String route;
+
+    private Integer checkuserid;
+
+    private String alarmFlag;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getInspectionkey() {
+        return inspectionkey;
+    }
+
+    public void setInspectionkey(String inspectionkey) {
+        this.inspectionkey = inspectionkey;
+    }
+
+    public String getInspectionname() {
+        return inspectionname;
+    }
+
+    public void setInspectionname(String inspectionname) {
+        this.inspectionname = inspectionname;
+    }
+
+    public Integer getHumanid() {
+        return humanid;
+    }
+
+    public void setHumanid(Integer humanid) {
+        this.humanid = humanid;
+    }
+
+    public String getInspectionpointkey() {
+        return inspectionpointkey;
+    }
+
+    public void setInspectionpointkey(String inspectionpointkey) {
+        this.inspectionpointkey = inspectionpointkey;
+    }
+
+    public String getMokey() {
+        return mokey;
+    }
+
+    public void setMokey(String mokey) {
+        this.mokey = mokey;
+    }
+
+    public String getInspectiondate() {
+        return inspectiondate;
+    }
+
+    public void setInspectiondate(String inspectiondate) {
+        this.inspectiondate = inspectiondate;
+    }
+
+    public String getInspectiontime() {
+        return inspectiontime;
+    }
+
+    public void setInspectiontime(String inspectiontime) {
+        this.inspectiontime = inspectiontime;
+    }
+
+    public String getInspectionvalue() {
+        return inspectionvalue;
+    }
+
+    public void setInspectionvalue(String inspectionvalue) {
+        this.inspectionvalue = inspectionvalue;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public BigDecimal getUpperlimitvalue() {
+        return upperlimitvalue;
+    }
+
+    public void setUpperlimitvalue(BigDecimal upperlimitvalue) {
+        this.upperlimitvalue = upperlimitvalue;
+    }
+
+    public BigDecimal getLowerlimitvalue() {
+        return lowerlimitvalue;
+    }
+
+    public void setLowerlimitvalue(BigDecimal lowerlimitvalue) {
+        this.lowerlimitvalue = lowerlimitvalue;
+    }
+
+    public String getOrganizationkey() {
+        return organizationkey;
+    }
+
+    public void setOrganizationkey(String organizationkey) {
+        this.organizationkey = organizationkey;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getLimitOn() {
+        return limitOn;
+    }
+
+    public void setLimitOn(String limitOn) {
+        this.limitOn = limitOn;
+    }
+
+    public String getAlarmOn() {
+        return alarmOn;
+    }
+
+    public void setAlarmOn(String alarmOn) {
+        this.alarmOn = alarmOn;
+    }
+
+    public Integer getIsupload() {
+        return isupload;
+    }
+
+    public void setIsupload(Integer isupload) {
+        this.isupload = isupload;
+    }
+
+    public String getPlanstartdate() {
+        return planstartdate;
+    }
+
+    public void setPlanstartdate(String planstartdate) {
+        this.planstartdate = planstartdate;
+    }
+
+    public String getRoute() {
+        return route;
+    }
+
+    public void setRoute(String route) {
+        this.route = route;
+    }
+
+    public Integer getCheckuserid() {
+        return checkuserid;
+    }
+
+    public void setCheckuserid(Integer checkuserid) {
+        this.checkuserid = checkuserid;
+    }
+
+    public String getAlarmFlag() {
+        return alarmFlag;
+    }
+
+    public void setAlarmFlag(String alarmFlag) {
+        this.alarmFlag = alarmFlag;
+    }
+}

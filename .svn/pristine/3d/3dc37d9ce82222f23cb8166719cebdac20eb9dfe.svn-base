@@ -1,0 +1,337 @@
+
+package com.mingcloud.proxy.logiclayer.beiqifamdhandler.webservice;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
+import java.util.List;
+
+
+/**
+ * <p>DT_FAMD_REQ complex type�� Java �ࡣ
+ * 
+ * <p>����ģʽƬ��ָ�������ڴ����е�Ԥ�����ݡ�
+ * 
+ * <pre>
+ * &lt;complexType name="DT_FAMD_REQ"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="FAMD_REQ" maxOccurs="unbounded"&gt;
+ *           &lt;complexType&gt;
+ *             &lt;complexContent&gt;
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                 &lt;sequence&gt;
+ *                   &lt;element name="ANLA_NO" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *                   &lt;element name="ANLA_ANLKL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *                   &lt;element name="ANLA_BUKRS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *                   &lt;element name="ANLA_TXT50" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *                   &lt;element name="ANLH_TXT" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *                   &lt;element name="ANLA_INVNR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *                   &lt;element name="ANLZ_KOSTL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *                   &lt;element name="ANLZ_KOSTL_1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *                 &lt;/sequence&gt;
+ *               &lt;/restriction&gt;
+ *             &lt;/complexContent&gt;
+ *           &lt;/complexType&gt;
+ *         &lt;/element&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "DT_FAMD_REQ", propOrder = {
+    "famdreq"
+})
+public class DTFAMDREQ {
+
+    @XmlElement(name = "FAMD_REQ", required = true)
+    protected List<FAMDREQ> famdreq;
+
+    /**
+     * Gets the value of the famdreq property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the famdreq property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getFAMDREQ().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link FAMDREQ }
+     * 
+     * 
+     */
+    public List<FAMDREQ> getFAMDREQ() {
+        if (famdreq == null) {
+            famdreq = new ArrayList<FAMDREQ>();
+        }
+        return this.famdreq;
+    }
+
+
+    /**
+     * <p>anonymous complex type�� Java �ࡣ
+     * 
+     * <p>����ģʽƬ��ָ�������ڴ����е�Ԥ�����ݡ�
+     * 
+     * <pre>
+     * &lt;complexType&gt;
+     *   &lt;complexContent&gt;
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *       &lt;sequence&gt;
+     *         &lt;element name="ANLA_NO" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+     *         &lt;element name="ANLA_ANLKL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+     *         &lt;element name="ANLA_BUKRS" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+     *         &lt;element name="ANLA_TXT50" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+     *         &lt;element name="ANLH_TXT" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+     *         &lt;element name="ANLA_INVNR" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+     *         &lt;element name="ANLZ_KOSTL" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+     *         &lt;element name="ANLZ_KOSTL_1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+     *       &lt;/sequence&gt;
+     *     &lt;/restriction&gt;
+     *   &lt;/complexContent&gt;
+     * &lt;/complexType&gt;
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "anlano",
+        "anlaanlkl",
+        "anlabukrs",
+        "anlatxt50",
+        "anlhtxt",
+        "anlainvnr",
+        "anlzkostl",
+        "anlzkostl1"
+    })
+    public static class FAMDREQ {
+
+        @XmlElement(name = "ANLA_NO")
+        protected String anlano;
+        @XmlElement(name = "ANLA_ANLKL")
+        protected String anlaanlkl;
+        @XmlElement(name = "ANLA_BUKRS")
+        protected String anlabukrs;
+        @XmlElement(name = "ANLA_TXT50")
+        protected String anlatxt50;
+        @XmlElement(name = "ANLH_TXT")
+        protected String anlhtxt;
+        @XmlElement(name = "ANLA_INVNR")
+        protected String anlainvnr;
+        @XmlElement(name = "ANLZ_KOSTL")
+        protected String anlzkostl;
+        @XmlElement(name = "ANLZ_KOSTL_1")
+        protected String anlzkostl1;
+
+        /**
+         * ��ȡanlano���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getANLANO() {
+            return anlano;
+        }
+
+        /**
+         * ����anlano���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setANLANO(String value) {
+            this.anlano = value;
+        }
+
+        /**
+         * ��ȡanlaanlkl���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getANLAANLKL() {
+            return anlaanlkl;
+        }
+
+        /**
+         * ����anlaanlkl���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setANLAANLKL(String value) {
+            this.anlaanlkl = value;
+        }
+
+        /**
+         * ��ȡanlabukrs���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getANLABUKRS() {
+            return anlabukrs;
+        }
+
+        /**
+         * ����anlabukrs���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setANLABUKRS(String value) {
+            this.anlabukrs = value;
+        }
+
+        /**
+         * ��ȡanlatxt50���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getANLATXT50() {
+            return anlatxt50;
+        }
+
+        /**
+         * ����anlatxt50���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setANLATXT50(String value) {
+            this.anlatxt50 = value;
+        }
+
+        /**
+         * ��ȡanlhtxt���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getANLHTXT() {
+            return anlhtxt;
+        }
+
+        /**
+         * ����anlhtxt���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setANLHTXT(String value) {
+            this.anlhtxt = value;
+        }
+
+        /**
+         * ��ȡanlainvnr���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getANLAINVNR() {
+            return anlainvnr;
+        }
+
+        /**
+         * ����anlainvnr���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setANLAINVNR(String value) {
+            this.anlainvnr = value;
+        }
+
+        /**
+         * ��ȡanlzkostl���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getANLZKOSTL() {
+            return anlzkostl;
+        }
+
+        /**
+         * ����anlzkostl���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setANLZKOSTL(String value) {
+            this.anlzkostl = value;
+        }
+
+        /**
+         * ��ȡanlzkostl1���Ե�ֵ��
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getANLZKOSTL1() {
+            return anlzkostl1;
+        }
+
+        /**
+         * ����anlzkostl1���Ե�ֵ��
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setANLZKOSTL1(String value) {
+            this.anlzkostl1 = value;
+        }
+
+    }
+
+}

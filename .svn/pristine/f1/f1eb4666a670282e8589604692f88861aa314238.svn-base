@@ -1,0 +1,47 @@
+package com.mingcloud.proxy.logiclayer.messagehandler.messagedistance;
+
+
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.MessageSourceDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.SucmessagelogEntity;
+import com.mingcloud.proxy.logiclayer.messagehandler.messagedto.MessageDto;
+
+import java.util.Date;
+
+/**
+ * Created by zyn on 2018/9/1
+ */
+public class StorageMessage implements MessageStrategy {
+
+    private static StorageMessage storageMessage;
+
+    private StorageMessage() {
+    }
+
+    public static StorageMessage getInstance() {
+        if (storageMessage == null) {
+            storageMessage = new StorageMessage();
+        }
+        return storageMessage;
+    }
+
+    public boolean sendMessage(MessageDto dto) {
+        try {
+            MessageSourceDto messageSourceDto = dto.getMessageSourceDto();
+            SucmessagelogEntity sucmessagelogEntity = new SucmessagelogEntity();
+            sucmessagelogEntity.setMessagesourceid(messageSourceDto.getId());
+            sucmessagelogEntity.setKeyword(messageSourceDto.getKeyword());
+            sucmessagelogEntity.setKeywordvalue(dto.getResultMap().get(messageSourceDto.getKeyword()));
+            sucmessagelogEntity.setResultcontent("storage message");
+            sucmessagelogEntity.setCreatedate(new Date());
+            sucmessagelogEntity.setContent(dto.getMessage());
+            sucmessagelogEntity.setAcceptor(dto.getAcceptor());
+            dto.getSucmessagelogData().addSucmessagelogData(sucmessagelogEntity);
+            System.out.println("storage message:" + sucmessagelogEntity);
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return true;
+        }
+    }
+
+}

@@ -1,0 +1,13 @@
+package com.mingcloud.proxy.datalayer.dao.archiveinfo;
+
+import com.mingcloud.proxy.datalayer.dao.BaseMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.InstrumentDto;
+
+import java.util.List;
+
+public interface InstrumentMapper extends BaseMapper<InstrumentDto>{
+
+    InstrumentDto selectByInstrumentKey(String instrumentkey);
+
+    List<InstrumentDto> selectKeyIdMap();
+}

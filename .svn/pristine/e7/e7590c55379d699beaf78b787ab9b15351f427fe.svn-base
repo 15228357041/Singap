@@ -1,0 +1,21 @@
+package com.mingcloud.proxy.datalayer.dao.archiveinfo;
+
+import com.mingcloud.proxy.datalayer.dao.BaseMapper;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.StockcontrolEntity;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+
+public interface StockcontrolMapper extends BaseMapper<StockcontrolEntity> {
+	
+	public StockcontrolEntity checkStock(String sparepartkey, String stockkey);
+	
+	public int insertStock(BigDecimal qty, Date createdate, String sparepartkey, String stockkey); 
+	
+	public int updateQty(StockcontrolEntity entity);
+
+	List<StockcontrolEntity> selectKeyIdList();
+
+	int batchUpdate(List<StockcontrolEntity> list);
+}

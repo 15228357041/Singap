@@ -1,0 +1,34 @@
+
+ysquid:S1488Š"\Immediately return this expression instead of assigning it to the temporary variable "days".(¦ˆåßøÿÿÿÿ
+ysquid:S1488™"\Immediately return this expression instead of assigning it to the temporary variable "year".(ô’Ç”üÿÿÿÿ
+ysquid:S1488¦"\Immediately return this expression instead of assigning it to the temporary variable "date".(ÊØæÕúÿÿÿÿ
+csquid:S00112K"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+dsquid:S00112À"FDefine and throw a dedicated exception instead of using a generic one.(Ê“Åıÿÿÿÿ
+_squid:S00112Ã"FDefine and throw a dedicated exception instead of using a generic one.(ÃÔ÷ı
+‹squid:UselessImportCheck"bRemove this unused import 'com.mingcloud.proxy.datalayer.entity.archiveinfo.CommonrecodeexEntity'.(”İ·öøÿÿÿÿ
+Xsquid:UselessImportCheck
+"/Remove this unused import 'java.util.TimeZone'.(à‡Õùÿÿÿÿ
+Usquid:UselessImportCheck"1Remove this unused import 'java.math.BigDecimal'.(êêŠ
+@squid:S1148¿"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+ksquid:S3008W"URename this field "weekday_gb" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğ€åk
+squid:S4144ì"hUpdate this method so that its implementation is not identical to "getTimeToTriggerWordLog" on line 231.(Áé¡8
+osquid:ModifiersOrderCheck$"EReorder the modifiers to comply with the Java Language Specification.(š‡‰Ëşÿÿÿÿ
+jsquid:ModifiersOrderCheck'"EReorder the modifiers to comply with the Java Language Specification.(Ü°ã
+jsquid:ModifiersOrderCheck*"EReorder the modifiers to comply with the Java Language Specification.(·†¦–
+osquid:ModifiersOrderCheck-"EReorder the modifiers to comply with the Java Language Specification.(ı‡¼Îüÿÿÿÿ
+jsquid:ModifiersOrderCheck0"EReorder the modifiers to comply with the Java Language Specification.(ª·ªÄ
+osquid:ModifiersOrderCheckZ"EReorder the modifiers to comply with the Java Language Specification.(ôá˜ıÿÿÿÿ
+osquid:ModifiersOrderCheckv"EReorder the modifiers to comply with the Java Language Specification.(ÈîÛ¥ıÿÿÿÿ
+jsquid:ModifiersOrderCheck{"EReorder the modifiers to comply with the Java Language Specification.(ÛœÕô
+ksquid:ModifiersOrderCheck€"EReorder the modifiers to comply with the Java Language Specification.(³åÙÃ
+ksquid:ModifiersOrderCheck…"EReorder the modifiers to comply with the Java Language Specification.(×š³Ï
+psquid:ModifiersOrderCheckŠ"EReorder the modifiers to comply with the Java Language Specification.(¾èñÂıÿÿÿÿ
+ksquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(ŞÈ¯î
+ksquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(éÖƒ…
+ksquid:ModifiersOrderCheck£"EReorder the modifiers to comply with the Java Language Specification.(•­Â»
+ksquid:ModifiersOrderCheck¨"EReorder the modifiers to comply with the Java Language Specification.(ÎÑ‘Û
+psquid:ModifiersOrderCheck­"EReorder the modifiers to comply with the Java Language Specification.(İ·óúÿÿÿÿ
+ksquid:ModifiersOrderCheck²"EReorder the modifiers to comply with the Java Language Specification.(œæÃî
+P
+squid:S106ı"9Replace this use of System.out or System.err by a logger.(²¨ç÷
+hsquid:CommentedOutCodeLine¹"<This block of commented-out lines of code should be removed.(‚âÄúıÿÿÿÿ

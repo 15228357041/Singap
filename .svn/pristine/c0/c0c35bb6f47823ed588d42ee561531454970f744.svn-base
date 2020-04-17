@@ -1,0 +1,79 @@
+package com.mingcloud.proxy.logiclayer.stockhandler;
+
+import java.util.Date;
+
+import org.apache.log4j.Logger;
+
+import com.mingcloud.proxy.datacenter.DataCenter;
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.StockcontrolMapper;
+import com.mingcloud.proxy.datalayer.dto.archiveinfo.CommonrecodeexDto;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.StockcontrolEntity;
+import com.mingcloud.proxy.util.JdbcChange;
+import com.mingcloud.proxy.util.SpringContextUtil;
+
+public class StockDataOutThread implements Runnable {
+	private static Logger logger = Logger.getLogger(StockDataOutThread.class);
+
+	private JdbcChange jdbcChange = JdbcChange.getJdbcChange();
+
+	private DataCenter dataCenter = DataCenter.getInstance();
+
+	private StockcontrolMapper stockcontrolMapper = SpringContextUtil.getBean("stockcontrolMapper");
+
+	private static int stockCommonrecodeexlistSize = 0;
+
+	String stockkey = null;
+	String sparepartkey = null;
+	
+	public StockDataOutThread() {
+		// TODO Auto-generated constructor stub
+		// 设置数据源为MySql
+		jdbcChange.changeJdbc(JdbcChange.mySqlDataSource);
+	}
+
+	public void run() {
+		// TODO Auto-generated method stub
+
+		logger.info("StockDataOutThread begin");
+
+		while (true) {
+			try {
+				if (dataCenter.getStockCommonrecodeexlistSize() > 0) {
+					stockCommonrecodeexlistSize = dataCenter.getStockCommonrecodeexlistSize();
+					InsertStock();
+					logger.info("StockDataCenter Size: " + (stockCommonrecodeexlistSize-1));
+				}
+				Thread.sleep(10);
+			} catch (Exception e) {
+				logger.error("StockDataOutThread:" + e);
+			}
+		}
+	}
+
+	public void InsertStock() {
+		try {
+			CommonrecodeexDto dto = dataCenter.popStockCommonrecodeexlist();
+			sparepartkey = dto.getExtravarchar1();
+			stockkey = dto.getExtravarchar2();
+			StockcontrolEntity entity = stockcontrolMapper.checkStock(sparepartkey, stockkey);
+			if (entity != null) {
+				if (entity.getQty() == null || entity.getQty().intValue() != dto.getExtradecimal1().intValue()) {
+					StockcontrolEntity stockcontrolEntity = new StockcontrolEntity();
+					stockcontrolEntity.setId(entity.getId());
+					stockcontrolEntity.setQty(dto.getExtradecimal1());
+					stockcontrolMapper.update(stockcontrolEntity);
+					logger.info("StockDataOutThread update succeeded...");
+				} else {
+					logger.info("StockDataOutThread stock data no change...");
+				}
+			} else {
+				Date date = new Date();
+				stockcontrolMapper.insertStock(dto.getExtradecimal1(), date, sparepartkey, stockkey);
+				logger.info("StockDataOutThread insert succeeded...");
+			}
+		} catch (Exception e) {
+			logger.error("StockDataOutThread.InsertSparepart:" + e);
+		}
+	}
+
+}

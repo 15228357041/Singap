@@ -1,0 +1,676 @@
+package com.mingcloud.proxy.datalayer.entity.archiveinfo;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+public class StatisticsEntity {
+    private Integer id;
+
+    private Integer posid;
+
+    private String poskey;
+
+    private String posabname;
+
+    private String posname;
+
+    private BigDecimal extradecimal1;
+
+    private BigDecimal extradecimal2;
+
+    private BigDecimal extradecimal3;
+
+    private BigDecimal extradecimal4;
+
+    private BigDecimal extradecimal5;
+
+    private BigDecimal extradecimal6;
+
+    private BigDecimal extradecimal7;
+
+    private BigDecimal extradecimal8;
+
+    private BigDecimal extradecimal9;
+
+    private BigDecimal extradecimal10;
+
+    private BigDecimal extradecimal11;
+
+    private BigDecimal extradecimal12;
+
+    private BigDecimal extradecimal13;
+
+    private BigDecimal extradecimal14;
+
+    private BigDecimal extradecimal15;
+
+    private BigDecimal extradecimal16;
+
+    private BigDecimal extradecimal17;
+
+    private BigDecimal extradecimal18;
+
+    private BigDecimal extradecimal19;
+
+    private BigDecimal extradecimal20;
+
+    private BigDecimal extradecimal21;
+
+    private BigDecimal extradecimal22;
+
+    private BigDecimal extradecimal23;
+
+    private BigDecimal extradecimal24;
+
+    private BigDecimal extradecimal25;
+
+    private BigDecimal extradecimal26;
+
+    private BigDecimal extradecimal27;
+
+    private BigDecimal extradecimal28;
+
+    private BigDecimal extradecimal29;
+
+    private BigDecimal extradecimal30;
+
+    private BigDecimal extradecimal31;
+
+    private BigDecimal extradecimal32;
+
+    private BigDecimal extradecimal33;
+
+    private BigDecimal extradecimal34;
+
+    private BigDecimal extradecimal35;
+
+    private BigDecimal extradecimal36;
+
+    private BigDecimal extradecimal37;
+
+    private BigDecimal extradecimal38;
+
+    private BigDecimal extradecimal39;
+
+    private BigDecimal extradecimal40;
+
+    private BigDecimal extradecimal41;
+
+    private BigDecimal extradecimal42;
+
+    private BigDecimal extradecimal43;
+
+    private BigDecimal extradecimal44;
+
+    private BigDecimal extradecimal45;
+
+    private BigDecimal extradecimal46;
+
+    private BigDecimal extradecimal47;
+
+    private BigDecimal extradecimal48;
+
+    private BigDecimal extradecimal49;
+
+    private BigDecimal extradecimal50;
+
+    private BigDecimal extradecimal51;
+
+    private BigDecimal extradecimal52;
+
+    private BigDecimal extradecimal53;
+
+    private BigDecimal extradecimal54;
+
+    private BigDecimal extradecimal55;
+
+    private BigDecimal extradecimal56;
+
+    private BigDecimal extradecimal57;
+
+    private BigDecimal extradecimal58;
+
+    private BigDecimal extradecimal59;
+
+    private BigDecimal extradecimal60;
+
+    private Date createdate;
+
+    private Date modificationdate;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getPosid() {
+        return posid;
+    }
+
+    public void setPosid(Integer posid) {
+        this.posid = posid;
+    }
+
+    public String getPoskey() {
+        return poskey;
+    }
+
+    public void setPoskey(String poskey) {
+        this.poskey = poskey;
+    }
+
+    public String getPosabname() {
+        return posabname;
+    }
+
+    public void setPosabname(String posabname) {
+        this.posabname = posabname;
+    }
+
+    public String getPosname() {
+        return posname;
+    }
+
+    public void setPosname(String posname) {
+        this.posname = posname;
+    }
+
+    public BigDecimal getExtradecimal1() {
+        return extradecimal1;
+    }
+
+    public void setExtradecimal1(BigDecimal extradecimal1) {
+        this.extradecimal1 = extradecimal1;
+    }
+
+    public BigDecimal getExtradecimal2() {
+        return extradecimal2;
+    }
+
+    public void setExtradecimal2(BigDecimal extradecimal2) {
+        this.extradecimal2 = extradecimal2;
+    }
+
+    public BigDecimal getExtradecimal3() {
+        return extradecimal3;
+    }
+
+    public void setExtradecimal3(BigDecimal extradecimal3) {
+        this.extradecimal3 = extradecimal3;
+    }
+
+    public BigDecimal getExtradecimal4() {
+        return extradecimal4;
+    }
+
+    public void setExtradecimal4(BigDecimal extradecimal4) {
+        this.extradecimal4 = extradecimal4;
+    }
+
+    public BigDecimal getExtradecimal5() {
+        return extradecimal5;
+    }
+
+    public void setExtradecimal5(BigDecimal extradecimal5) {
+        this.extradecimal5 = extradecimal5;
+    }
+
+    public BigDecimal getExtradecimal6() {
+        return extradecimal6;
+    }
+
+    public void setExtradecimal6(BigDecimal extradecimal6) {
+        this.extradecimal6 = extradecimal6;
+    }
+
+    public BigDecimal getExtradecimal7() {
+        return extradecimal7;
+    }
+
+    public void setExtradecimal7(BigDecimal extradecimal7) {
+        this.extradecimal7 = extradecimal7;
+    }
+
+    public BigDecimal getExtradecimal8() {
+        return extradecimal8;
+    }
+
+    public void setExtradecimal8(BigDecimal extradecimal8) {
+        this.extradecimal8 = extradecimal8;
+    }
+
+    public BigDecimal getExtradecimal9() {
+        return extradecimal9;
+    }
+
+    public void setExtradecimal9(BigDecimal extradecimal9) {
+        this.extradecimal9 = extradecimal9;
+    }
+
+    public BigDecimal getExtradecimal10() {
+        return extradecimal10;
+    }
+
+    public void setExtradecimal10(BigDecimal extradecimal10) {
+        this.extradecimal10 = extradecimal10;
+    }
+
+    public BigDecimal getExtradecimal11() {
+        return extradecimal11;
+    }
+
+    public void setExtradecimal11(BigDecimal extradecimal11) {
+        this.extradecimal11 = extradecimal11;
+    }
+
+    public BigDecimal getExtradecimal12() {
+        return extradecimal12;
+    }
+
+    public void setExtradecimal12(BigDecimal extradecimal12) {
+        this.extradecimal12 = extradecimal12;
+    }
+
+    public BigDecimal getExtradecimal13() {
+        return extradecimal13;
+    }
+
+    public void setExtradecimal13(BigDecimal extradecimal13) {
+        this.extradecimal13 = extradecimal13;
+    }
+
+    public BigDecimal getExtradecimal14() {
+        return extradecimal14;
+    }
+
+    public void setExtradecimal14(BigDecimal extradecimal14) {
+        this.extradecimal14 = extradecimal14;
+    }
+
+    public BigDecimal getExtradecimal15() {
+        return extradecimal15;
+    }
+
+    public void setExtradecimal15(BigDecimal extradecimal15) {
+        this.extradecimal15 = extradecimal15;
+    }
+
+    public BigDecimal getExtradecimal16() {
+        return extradecimal16;
+    }
+
+    public void setExtradecimal16(BigDecimal extradecimal16) {
+        this.extradecimal16 = extradecimal16;
+    }
+
+    public BigDecimal getExtradecimal17() {
+        return extradecimal17;
+    }
+
+    public void setExtradecimal17(BigDecimal extradecimal17) {
+        this.extradecimal17 = extradecimal17;
+    }
+
+    public BigDecimal getExtradecimal18() {
+        return extradecimal18;
+    }
+
+    public void setExtradecimal18(BigDecimal extradecimal18) {
+        this.extradecimal18 = extradecimal18;
+    }
+
+    public BigDecimal getExtradecimal19() {
+        return extradecimal19;
+    }
+
+    public void setExtradecimal19(BigDecimal extradecimal19) {
+        this.extradecimal19 = extradecimal19;
+    }
+
+    public BigDecimal getExtradecimal20() {
+        return extradecimal20;
+    }
+
+    public void setExtradecimal20(BigDecimal extradecimal20) {
+        this.extradecimal20 = extradecimal20;
+    }
+
+    public BigDecimal getExtradecimal21() {
+        return extradecimal21;
+    }
+
+    public void setExtradecimal21(BigDecimal extradecimal21) {
+        this.extradecimal21 = extradecimal21;
+    }
+
+    public BigDecimal getExtradecimal22() {
+        return extradecimal22;
+    }
+
+    public void setExtradecimal22(BigDecimal extradecimal22) {
+        this.extradecimal22 = extradecimal22;
+    }
+
+    public BigDecimal getExtradecimal23() {
+        return extradecimal23;
+    }
+
+    public void setExtradecimal23(BigDecimal extradecimal23) {
+        this.extradecimal23 = extradecimal23;
+    }
+
+    public BigDecimal getExtradecimal24() {
+        return extradecimal24;
+    }
+
+    public void setExtradecimal24(BigDecimal extradecimal24) {
+        this.extradecimal24 = extradecimal24;
+    }
+
+    public BigDecimal getExtradecimal25() {
+        return extradecimal25;
+    }
+
+    public void setExtradecimal25(BigDecimal extradecimal25) {
+        this.extradecimal25 = extradecimal25;
+    }
+
+    public BigDecimal getExtradecimal26() {
+        return extradecimal26;
+    }
+
+    public void setExtradecimal26(BigDecimal extradecimal26) {
+        this.extradecimal26 = extradecimal26;
+    }
+
+    public BigDecimal getExtradecimal27() {
+        return extradecimal27;
+    }
+
+    public void setExtradecimal27(BigDecimal extradecimal27) {
+        this.extradecimal27 = extradecimal27;
+    }
+
+    public BigDecimal getExtradecimal28() {
+        return extradecimal28;
+    }
+
+    public void setExtradecimal28(BigDecimal extradecimal28) {
+        this.extradecimal28 = extradecimal28;
+    }
+
+    public BigDecimal getExtradecimal29() {
+        return extradecimal29;
+    }
+
+    public void setExtradecimal29(BigDecimal extradecimal29) {
+        this.extradecimal29 = extradecimal29;
+    }
+
+    public BigDecimal getExtradecimal30() {
+        return extradecimal30;
+    }
+
+    public void setExtradecimal30(BigDecimal extradecimal30) {
+        this.extradecimal30 = extradecimal30;
+    }
+
+    public BigDecimal getExtradecimal31() {
+        return extradecimal31;
+    }
+
+    public void setExtradecimal31(BigDecimal extradecimal31) {
+        this.extradecimal31 = extradecimal31;
+    }
+
+    public BigDecimal getExtradecimal32() {
+        return extradecimal32;
+    }
+
+    public void setExtradecimal32(BigDecimal extradecimal32) {
+        this.extradecimal32 = extradecimal32;
+    }
+
+    public BigDecimal getExtradecimal33() {
+        return extradecimal33;
+    }
+
+    public void setExtradecimal33(BigDecimal extradecimal33) {
+        this.extradecimal33 = extradecimal33;
+    }
+
+    public BigDecimal getExtradecimal34() {
+        return extradecimal34;
+    }
+
+    public void setExtradecimal34(BigDecimal extradecimal34) {
+        this.extradecimal34 = extradecimal34;
+    }
+
+    public BigDecimal getExtradecimal35() {
+        return extradecimal35;
+    }
+
+    public void setExtradecimal35(BigDecimal extradecimal35) {
+        this.extradecimal35 = extradecimal35;
+    }
+
+    public BigDecimal getExtradecimal36() {
+        return extradecimal36;
+    }
+
+    public void setExtradecimal36(BigDecimal extradecimal36) {
+        this.extradecimal36 = extradecimal36;
+    }
+
+    public BigDecimal getExtradecimal37() {
+        return extradecimal37;
+    }
+
+    public void setExtradecimal37(BigDecimal extradecimal37) {
+        this.extradecimal37 = extradecimal37;
+    }
+
+    public BigDecimal getExtradecimal38() {
+        return extradecimal38;
+    }
+
+    public void setExtradecimal38(BigDecimal extradecimal38) {
+        this.extradecimal38 = extradecimal38;
+    }
+
+    public BigDecimal getExtradecimal39() {
+        return extradecimal39;
+    }
+
+    public void setExtradecimal39(BigDecimal extradecimal39) {
+        this.extradecimal39 = extradecimal39;
+    }
+
+    public BigDecimal getExtradecimal40() {
+        return extradecimal40;
+    }
+
+    public void setExtradecimal40(BigDecimal extradecimal40) {
+        this.extradecimal40 = extradecimal40;
+    }
+
+    public BigDecimal getExtradecimal41() {
+        return extradecimal41;
+    }
+
+    public void setExtradecimal41(BigDecimal extradecimal41) {
+        this.extradecimal41 = extradecimal41;
+    }
+
+    public BigDecimal getExtradecimal42() {
+        return extradecimal42;
+    }
+
+    public void setExtradecimal42(BigDecimal extradecimal42) {
+        this.extradecimal42 = extradecimal42;
+    }
+
+    public BigDecimal getExtradecimal43() {
+        return extradecimal43;
+    }
+
+    public void setExtradecimal43(BigDecimal extradecimal43) {
+        this.extradecimal43 = extradecimal43;
+    }
+
+    public BigDecimal getExtradecimal44() {
+        return extradecimal44;
+    }
+
+    public void setExtradecimal44(BigDecimal extradecimal44) {
+        this.extradecimal44 = extradecimal44;
+    }
+
+    public BigDecimal getExtradecimal45() {
+        return extradecimal45;
+    }
+
+    public void setExtradecimal45(BigDecimal extradecimal45) {
+        this.extradecimal45 = extradecimal45;
+    }
+
+    public BigDecimal getExtradecimal46() {
+        return extradecimal46;
+    }
+
+    public void setExtradecimal46(BigDecimal extradecimal46) {
+        this.extradecimal46 = extradecimal46;
+    }
+
+    public BigDecimal getExtradecimal47() {
+        return extradecimal47;
+    }
+
+    public void setExtradecimal47(BigDecimal extradecimal47) {
+        this.extradecimal47 = extradecimal47;
+    }
+
+    public BigDecimal getExtradecimal48() {
+        return extradecimal48;
+    }
+
+    public void setExtradecimal48(BigDecimal extradecimal48) {
+        this.extradecimal48 = extradecimal48;
+    }
+
+    public BigDecimal getExtradecimal49() {
+        return extradecimal49;
+    }
+
+    public void setExtradecimal49(BigDecimal extradecimal49) {
+        this.extradecimal49 = extradecimal49;
+    }
+
+    public BigDecimal getExtradecimal50() {
+        return extradecimal50;
+    }
+
+    public void setExtradecimal50(BigDecimal extradecimal50) {
+        this.extradecimal50 = extradecimal50;
+    }
+
+    public BigDecimal getExtradecimal51() {
+        return extradecimal51;
+    }
+
+    public void setExtradecimal51(BigDecimal extradecimal51) {
+        this.extradecimal51 = extradecimal51;
+    }
+
+    public BigDecimal getExtradecimal52() {
+        return extradecimal52;
+    }
+
+    public void setExtradecimal52(BigDecimal extradecimal52) {
+        this.extradecimal52 = extradecimal52;
+    }
+
+    public BigDecimal getExtradecimal53() {
+        return extradecimal53;
+    }
+
+    public void setExtradecimal53(BigDecimal extradecimal53) {
+        this.extradecimal53 = extradecimal53;
+    }
+
+    public BigDecimal getExtradecimal54() {
+        return extradecimal54;
+    }
+
+    public void setExtradecimal54(BigDecimal extradecimal54) {
+        this.extradecimal54 = extradecimal54;
+    }
+
+    public BigDecimal getExtradecimal55() {
+        return extradecimal55;
+    }
+
+    public void setExtradecimal55(BigDecimal extradecimal55) {
+        this.extradecimal55 = extradecimal55;
+    }
+
+    public BigDecimal getExtradecimal56() {
+        return extradecimal56;
+    }
+
+    public void setExtradecimal56(BigDecimal extradecimal56) {
+        this.extradecimal56 = extradecimal56;
+    }
+
+    public BigDecimal getExtradecimal57() {
+        return extradecimal57;
+    }
+
+    public void setExtradecimal57(BigDecimal extradecimal57) {
+        this.extradecimal57 = extradecimal57;
+    }
+
+    public BigDecimal getExtradecimal58() {
+        return extradecimal58;
+    }
+
+    public void setExtradecimal58(BigDecimal extradecimal58) {
+        this.extradecimal58 = extradecimal58;
+    }
+
+    public BigDecimal getExtradecimal59() {
+        return extradecimal59;
+    }
+
+    public void setExtradecimal59(BigDecimal extradecimal59) {
+        this.extradecimal59 = extradecimal59;
+    }
+
+    public BigDecimal getExtradecimal60() {
+        return extradecimal60;
+    }
+
+    public void setExtradecimal60(BigDecimal extradecimal60) {
+        this.extradecimal60 = extradecimal60;
+    }
+
+    public Date getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+
+    public Date getModificationdate() {
+        return modificationdate;
+    }
+
+    public void setModificationdate(Date modificationdate) {
+        this.modificationdate = modificationdate;
+    }
+}

@@ -1,0 +1,43 @@
+package com.mingcloud.proxy.datacenter.messageData;
+
+
+import com.mingcloud.proxy.datalayer.dao.archiveinfo.MessageSourceMapper;
+import com.mingcloud.proxy.datalayer.entity.archiveinfo.MessageSourceEntity;
+import com.mingcloud.proxy.util.SpringContextUtil;
+
+import java.util.List;
+
+public class MessageSourceData {
+	
+	private static MessageSourceData messageSourceData;
+	
+	private static MessageSourceMapper messageSourceMapper = SpringContextUtil.getBean("messageSourceMapper");
+	
+	public static MessageSourceData getInstance() {
+    	if(messageSourceData == null) {
+			messageSourceData = new MessageSourceData();
+    	}
+    	return messageSourceData;
+    }
+	
+    private List<MessageSourceEntity> messageSourceList;
+    
+    public List<MessageSourceEntity> getMessageSourceList() {
+    	return messageSourceList;
+    }
+
+    public void resetMessageSourceList() {
+		setMessageSourceData();
+    }
+
+    private void setMessageSourceData() {
+//		MessageSourceEntity entity = new MessageSourceEntity();
+		messageSourceList = messageSourceMapper.selectAll();
+    }
+
+	public Integer updateBatchMessageSourceInterval(List<MessageSourceEntity> messageSourceIntervalList){
+		messageSourceMapper.updateBatchMessageSourceInterval(messageSourceIntervalList);
+		return null;
+	}
+
+}
