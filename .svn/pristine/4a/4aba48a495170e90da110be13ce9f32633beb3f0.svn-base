@@ -1,9 +1,0 @@
-package com.mingcloud.proxy.datalayer.dao.archiveinfo;
-
-import com.mingcloud.proxy.datalayer.dao.BaseMapper;
-import com.mingcloud.proxy.datalayer.entity.archiveinfo.StatisticsEntity;
-
-public interface StatisticsMapper extends BaseMapper<StatisticsEntity> {
-    public void VComData();
-    public void VCoomDataDaily(String curdate);
-}

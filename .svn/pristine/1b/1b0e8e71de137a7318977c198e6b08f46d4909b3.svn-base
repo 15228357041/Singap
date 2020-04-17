@@ -1,2 +1,0 @@
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://transfar.com/BjReserve")
-package com.mingcloud.proxy.logiclayer.chuanhuahandler.webservice;

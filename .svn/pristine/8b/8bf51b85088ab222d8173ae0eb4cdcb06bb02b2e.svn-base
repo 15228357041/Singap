@@ -1,8 +1,0 @@
-package com.mingcloud.proxy.datalayer.dao.archiveinfo;
-
-import com.mingcloud.proxy.datalayer.dao.BaseMapper;
-import com.mingcloud.proxy.datalayer.entity.archiveinfo.Rdrecord11Entity;
-
-public interface Rdrecord11Mapper extends BaseMapper<Rdrecord11Entity> {
-    
-}
