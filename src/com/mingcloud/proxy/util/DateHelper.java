@@ -5,9 +5,7 @@ import com.mingcloud.proxy.datalayer.entity.archiveinfo.CommonrecodeexEntity;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
+import java.util.*;
 
 /**
  * 
@@ -249,8 +247,20 @@ public final class DateHelper {
 	}
 
 	public static void main(String[] args) {
-		Date date = DateHelper.getTimeThread(PropertiesFileUtil.getInstance("config").get("scheduleTime"));
-		System.out.println(date);
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				System.out.println(new Date());
+			}
+		};
+		// 设置执行时间
+		Date date = DateHelper.getTimeThread("T09:33:00.000");
+		System.out.println("process startdate" + date);
+		System.out.println("now date" + new Date());
+		// 设置为daemon线程，当程序只有daemon线程的时候，会自动终止运行
+		Timer timer = new Timer("UserDimissionTask");
+		// 每天的date时刻执行task
+		timer.schedule(task, date,   60 * 1000);
 	}
 
 	/**

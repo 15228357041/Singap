@@ -33,12 +33,13 @@ public class SingaporeDataThread implements Runnable{
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
+                System.out.println("process startdate " + new Date());
                 insertCommonrecodeex();
             }
         };
         // 设置执行时间
         Date date = DateHelper.getTimeThread(PropertiesFileUtil.getInstance("config").get("scheduleTime"));
-        System.out.println("process startdate" + date);
+        System.out.println("process plan startdate " + date);
         System.out.println("now date" + new Date());
         // 设置为daemon线程，当程序只有daemon线程的时候，会自动终止运行
         Timer timer = new Timer("UserDimissionTask");

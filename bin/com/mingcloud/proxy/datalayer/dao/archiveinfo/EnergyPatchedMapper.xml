@@ -151,7 +151,7 @@
         where (e.date between #{startDate} and #{endDate}) and m.meter_type ='Solar Generation' and m.meter_name not like '%emc%'
         and m.meter_name not like'%fuisland%'
         AND s.site_id = #{siteid}
-        AND e.energy &gt; 0 AND e.energy &lt; 1000000
+        AND e.energy &gt;= 0 AND e.energy &lt; 1000000
         GROUP BY e.date
     </select>
     <select id="getEnergyAndSunByDate"
@@ -167,7 +167,7 @@
         where (e.date between #{startDate} and #{endDate}) and m.meter_type ='Solar Generation' and m.meter_name not like '%emc%'
         and m.meter_name not like'%fuisland%'
         AND s.site_id = #{siteid}
-        AND e.energy &gt; 0 AND e.energy &lt; 1000000
+        AND e.energy &gt;= 0 AND e.energy &lt; 1000000
         GROUP BY
 	    e.date
     </select>
