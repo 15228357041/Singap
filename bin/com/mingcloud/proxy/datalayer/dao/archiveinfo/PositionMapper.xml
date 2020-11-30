@@ -2262,23 +2262,28 @@
 			<if test="orgid != null">
 				ANd orgid = #{orgid}
 			</if>
+			<if test="sinaporetype != null">
+				ANd sinaporetype = #{sinaporetype}
+			</if>
 		</where>
 	</select>
 	<select id="selectSiteId"
 			resultType="com.mingcloud.proxy.datalayer.dto.archiveinfo.SiterelationpositionDto">
 		SELECT
-		s.siteid,
-		s.posid,
+		p.id AS posid,
 		p.posname,
 		p.extravarchar13 AS posabname,
 		p.poskey,
 		p.extradecimal1,
-		p.extradatetime2 as apiDate
+		p.extradatetime2 as apiDate,
+		p.extravarchar32 as siteid
 		FROM
-		siterelationposition s,
 		position p
 		WHERE
-		s.posid = p.id
-		AND p.orgid = 2
+		p.orgid = 2
+		AND p.sinaporetype = 2
+		AND p.extravarchar32 is not NULL
+		AND p.extravarchar32 != ''
+		AND p.extravarchar32 REGEXP '[^0-9]' = 0
 	</select>
 </mapper>

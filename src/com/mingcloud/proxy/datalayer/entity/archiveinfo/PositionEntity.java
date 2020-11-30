@@ -324,6 +324,16 @@ public class PositionEntity extends BaseEntity {
 
     private String rootpath;
 
+    private Integer sinaporetype;
+
+    public Integer getSinaporetype() {
+        return sinaporetype;
+    }
+
+    public void setSinaporetype(Integer sinaporetype) {
+        this.sinaporetype = sinaporetype;
+    }
+
     public Integer getExtraint6() {
         return extraint6;
     }

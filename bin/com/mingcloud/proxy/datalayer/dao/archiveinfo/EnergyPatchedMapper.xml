@@ -134,8 +134,7 @@
         FROM monitoring.energy_patched as e
         left join monitoring.meter as m on e.meter_id = m.meter_id
         left join monitoring.site  as s on m.site_id = s.site_id
-        where  m.meter_type ='Solar Generation' and m.meter_name not like '%emc%'
-        and m.meter_name not like'%fuisland%'
+        where  m.meter_type ='Solar Generation'
         and e.date between #{startDate} and #{endDate}
     </select>
     <select id="getTodayEnergyAndSunhours"
@@ -148,8 +147,7 @@
         left join monitoring.meter as m on e.meter_id = m.meter_id
         left join monitoring.site  as s on m.site_id = s.site_id
         left join monitoring.pyr_SH as p on s.pyr_id = p.pyr_id and e.date = p.date
-        where (e.date between #{startDate} and #{endDate}) and m.meter_type ='Solar Generation' and m.meter_name not like '%emc%'
-        and m.meter_name not like'%fuisland%'
+        where (e.date between #{startDate} and #{endDate}) and m.meter_type ='Solar Generation'
         AND s.site_id = #{siteid}
         AND e.energy &gt;= 0 AND e.energy &lt; 1000000
         GROUP BY e.date
@@ -164,8 +162,7 @@
         left join monitoring.meter as m on e.meter_id = m.meter_id
         left join monitoring.site  as s on m.site_id = s.site_id
         left join monitoring.pyr_SH as p on s.pyr_id = p.pyr_id and e.date = p.date
-        where (e.date between #{startDate} and #{endDate}) and m.meter_type ='Solar Generation' and m.meter_name not like '%emc%'
-        and m.meter_name not like'%fuisland%'
+        where (e.date between #{startDate} and #{endDate}) and m.meter_type ='Solar Generation'
         AND s.site_id = #{siteid}
         AND e.energy &gt;= 0 AND e.energy &lt; 1000000
         GROUP BY

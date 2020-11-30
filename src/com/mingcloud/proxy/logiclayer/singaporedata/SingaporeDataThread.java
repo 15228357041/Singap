@@ -30,7 +30,7 @@ public class SingaporeDataThread implements Runnable{
     private StatisticslinesMapper statisticslinesMapper = SpringContextUtil.getBean("statisticslinesMapper");
     @Override
     public void run() {
-        TimerTask task = new TimerTask() {
+ /*       TimerTask task = new TimerTask() {
             @Override
             public void run() {
                 System.out.println("process startdate " + new Date());
@@ -44,7 +44,10 @@ public class SingaporeDataThread implements Runnable{
         // 设置为daemon线程，当程序只有daemon线程的时候，会自动终止运行
         Timer timer = new Timer("UserDimissionTask");
         // 每天的date时刻执行task
-        timer.schedule(task, date, 24 * 60 * 60 * 1000);
+        timer.schedule(task, date, 24 * 60 * 60 * 1000);*/
+
+        System.out.println("process startdate " + new Date());
+        insertCommonrecodeex();
     }
 
     public void insertCommonrecodeex(){
@@ -52,6 +55,7 @@ public class SingaporeDataThread implements Runnable{
         entity.setTombstone(1);
         entity.setPositiontype(10);
         entity.setOrgid(2);
+        entity.setSinaporetype(2);
         List<SiterelationpositionDto> list = positionMapper.selectSiteId(entity);
         for (SiterelationpositionDto obj : list){
             Calendar startCalendr = Calendar.getInstance();

@@ -49,6 +49,7 @@ public class SingaporeDataTranThread implements Runnable{
         PositionEntity entity = new PositionEntity();
         entity.setTombstone(1);
         entity.setPositiontype(10);
+        entity.setSinaporetype(2);
         entity.setOrgid(2);
         List<SiterelationpositionDto> list = positionMapper.selectSiteId(entity);
         for (SiterelationpositionDto obj : list) {
