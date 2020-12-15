@@ -46,11 +46,15 @@ public class SingaporeDataThread implements Runnable{
         // 每天的date时刻执行task
         timer.schedule(task, date, 24 * 60 * 60 * 1000);*/
 
-        System.out.println("process startdate " + new Date());
-        insertCommonrecodeex();
+        try {
+            System.out.println("process startdate " + new Date());
+            insertCommonrecodeex();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void insertCommonrecodeex(){
+    public void insertCommonrecodeex() throws Exception{
         PositionEntity entity = new PositionEntity();
         entity.setTombstone(1);
         entity.setPositiontype(10);

@@ -65,9 +65,9 @@ public class Proxy {
 			singaporeDataThread.start();
 		}*/
 
-	/*	SingaporeDataThread singaporeDataTranThread = new SingaporeDataThread();
-		Thread singaporeDataThread = new Thread(singaporeDataTranThread);
-		singaporeDataThread.setName("UserDimissionThread");
-		singaporeDataThread.start();*/
+//		SingaporeDataThread singaporeDataTranThread = new SingaporeDataThread();
+//		Thread singaporeDataThread = new Thread(singaporeDataTranThread);
+//		singaporeDataThread.setName("UserDimissionThread");
+//		singaporeDataThread.start();
 	}
 }
